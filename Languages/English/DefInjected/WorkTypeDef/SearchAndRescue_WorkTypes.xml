@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_FieldRescue.labelShort>field rescue</SAR_FieldRescue.labelShort>
+  <SAR_FieldRescue.pawnLabel>Field responder</SAR_FieldRescue.pawnLabel>
+  <SAR_FieldRescue.gerundLabel>field rescue</SAR_FieldRescue.gerundLabel>
+  <SAR_FieldRescue.description>Coordinate battlefield triage, stabilization, medical supply, capture and evacuation. Hospital tending and surgery remain Doctor work.</SAR_FieldRescue.description>
+  <SAR_FieldRescue.verb>Rescue</SAR_FieldRescue.verb>
+</LanguageData>

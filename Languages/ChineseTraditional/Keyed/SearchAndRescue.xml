@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <ModName>搜尋與救援</ModName>
+  <ModDescription>批次安排戰地治療、救援和俘虜。標記多個人形生物或非敵對動物，讓救援人員依安全、可預測的順序執行相應階段。</ModDescription>
+
+  <SAR_Command_Label>搜尋與救援</SAR_Command_Label>
+  <SAR_Command_Desc>預設依安全順序標記所有適用階段：就地俘虜、戰地治療、戰地救援。按右鍵可選擇單一階段或設定救援集合點。</SAR_Command_Desc>
+  <SAR_Command_All>快速命令：俘虜 + 治療 + 救援</SAR_Command_All>
+  <SAR_ClearAllOrders>清除所有搜尋與救援命令（{0}）</SAR_ClearAllOrders>
+  <SAR_Treat_Label>戰地治療</SAR_Treat_Label>
+  <SAR_Treat_Desc>監視人形生物和非敵對動物的戰地醫療需求。優先穩定危及生命的傷勢，再以戰地救援內部的較低優先度處理其餘傷口。戰地救援與醫生的先後由工作頁籤決定；兩者同級時戰地救援在前。與戰地救援同時標記時，監視會持續到安全送達；傷員在轉移途中惡化時，可中斷轉移並就地治療。</SAR_Treat_Desc>
+  <SAR_Rescue_Label>戰地救援</SAR_Rescue_Label>
+  <SAR_Rescue_Desc>標記倒地的人形生物和非敵對動物，在已標記的前置階段完成後將其轉移。優先送往合適的床位（包括動物床）；沒有合適床位時，送往右鍵選單設定的救援集合點。</SAR_Rescue_Desc>
+  <SAR_Capture_Label>就地俘虜</SAR_Capture_Label>
+  <SAR_Capture_Desc>標記倒地的敵對人形生物，在治療或轉移前就地完成俘虜。</SAR_Capture_Desc>
+  <SAR_SetRescuePoint>設定救援集合點</SAR_SetRescuePoint>
+  <SAR_ClearRescuePoint>清除救援集合點</SAR_ClearRescuePoint>
+  <SAR_RescuePoint_Label>救援集合點</SAR_RescuePoint_Label>
+  <SAR_RescuePoint_Desc>選擇一個備用安全位置。只有在找不到合適床位時，救援者才會把目標搬運到這裡。</SAR_RescuePoint_Desc>
+  <SAR_OnlyHumanlike>只能標記已出現在地圖上、仍然存活的血肉人形生物。</SAR_OnlyHumanlike>
+  <SAR_OnlyHumanlikeOrAnimal>只能標記已出現在地圖上、仍然存活的血肉人形生物或動物。</SAR_OnlyHumanlikeOrAnimal>
+  <SAR_HostileAnimalUnsupported>敵對動物無法成為囚犯，因此不能標記「戰地治療」或「戰地救援」。</SAR_HostileAnimalUnsupported>
+  <SAR_NoTreatmentNeeded>此目標目前沒有需要治療的傷勢。</SAR_NoTreatmentNeeded>
+  <SAR_TreatmentRequiresCapture>必須先為敵對目標標記「就地俘虜」，才能標記「戰地治療」。</SAR_TreatmentRequiresCapture>
+  <SAR_MustBeDowned>此目標必須處於倒地狀態。</SAR_MustBeDowned>
+  <SAR_RescueRequiresCapture>必須先為敵對目標標記「就地俘虜」，才能標記「戰地救援」。</SAR_RescueRequiresCapture>
+  <SAR_AlreadyInSafeBed>此目標已位於合適的床位中，無需戰地救援。</SAR_AlreadyInSafeBed>
+  <SAR_CaptureRequiresHostile>只能就地俘虜尚未成為囚犯的倒地敵對目標。</SAR_CaptureRequiresHostile>
+  <SAR_InvalidRescuePoint>救援集合點必須是未被戰爭迷霧遮蔽且可站立的位置。</SAR_InvalidRescuePoint>
+  <SAR_CE_NoMedicine>已略過 {0} 的戰地治療：Combat Extended 的傷勢穩定處置需要藥品。</SAR_CE_NoMedicine>
+  <SAR_Settings_Category>搜尋與救援</SAR_Settings_Category>
+  <SAR_Settings_RescueWorkMode>救援人員</SAR_Settings_RescueWorkMode>
+  <SAR_Settings_RescueWorkMode_Desc>「搬運」使用一般搬運工作；「護士優先」會優先選擇 Nurse Job 的護士，人手不足時由搬運工替補；「僅限護士」則完全依照護理工作。戰地救援不會占用醫生工作。</SAR_Settings_RescueWorkMode_Desc>
+  <SAR_Settings_RescueWorkMode_Hauling>搬運</SAR_Settings_RescueWorkMode_Hauling>
+  <SAR_Settings_RescueWorkMode_NursingPreferred>護士優先，搬運替補</SAR_Settings_RescueWorkMode_NursingPreferred>
+  <SAR_Settings_RescueWorkMode_NursingOnly>僅限護士</SAR_Settings_RescueWorkMode_NursingOnly>
+  <SAR_Settings_MedicalCoordinationMode>醫療接管範圍</SAR_Settings_MedicalCoordinationMode>
+  <SAR_Settings_MedicalCoordinationMode_Desc>「僅標記」只調度玩家標記的傷員；「自動緊急」還會自動接管需要穩定傷勢、輸血或急救的殖民地成員；「全部治療」進一步統一分配所有可包紮傷病。自動接管不會建立救援或俘虜命令，也不接管手術。</SAR_Settings_MedicalCoordinationMode_Desc>
+  <SAR_Settings_MedicalCoordinationMode_MarkedOnly>僅標記</SAR_Settings_MedicalCoordinationMode_MarkedOnly>
+  <SAR_Settings_MedicalCoordinationMode_EmergencyAuto>自動接管緊急醫療</SAR_Settings_MedicalCoordinationMode_EmergencyAuto>
+  <SAR_Settings_MedicalCoordinationMode_AllTending>接管全部普通治療</SAR_Settings_MedicalCoordinationMode_AllTending>
+  <SAR_Settings_NurseDetected>已偵測到 Nurse Job，可以使用護士救援模式。</SAR_Settings_NurseDetected>
+  <SAR_Settings_NurseNotDetected>未啟用 Nurse Job；護士模式下將沒有符合條件的救援者。</SAR_Settings_NurseNotDetected>
+
+  <SAR_Settings_Tab_General>一般</SAR_Settings_Tab_General>
+  <SAR_Settings_Tab_Advanced>分診與後勤</SAR_Settings_Tab_Advanced>
+  <SAR_Settings_Tab_Compatibility>相容性</SAR_Settings_Tab_Compatibility>
+  <SAR_Settings_Section_Scope>調度範圍</SAR_Settings_Section_Scope>
+  <SAR_Settings_FieldRescueWorkType_Desc>在「工作」頁籤中啟用「戰地救援」來指定常規救援人員。它獨立於醫生工作；獄卒、搬運和護士優先度仍決定該人員可以承擔哪些子任務。</SAR_Settings_FieldRescueWorkType_Desc>
+  <SAR_Settings_Section_Continuity>任務連續性</SAR_Settings_Section_Continuity>
+  <SAR_Settings_Section_Triage>分診權重</SAR_Settings_Section_Triage>
+  <SAR_Settings_Section_Logistics>醫療後勤</SAR_Settings_Section_Logistics>
+  <SAR_Settings_PreemptRoutine>危急任務可中斷清掃和餵食患者</SAR_Settings_PreemptRoutine>
+  <SAR_Settings_PreemptRoutine_Desc>允許俘虜和緊急治療中斷非強制的清掃或餵食患者工作。玩家手動強制的工作永遠不會被中斷。</SAR_Settings_PreemptRoutine_Desc>
+  <SAR_Settings_EnableStandby>允許救援者提前接近正在治療的傷員</SAR_Settings_EnableStandby>
+  <SAR_Settings_EnableStandby_Desc>醫生已實際前往或開始治療時，救援者可以向傷員移動，以便治療結束後立即轉運。</SAR_Settings_EnableStandby_Desc>
+  <SAR_Settings_StandbyLead>救援者提前到達時間</SAR_Settings_StandbyLead>
+  <SAR_Settings_StandbyLead_Desc>救援者最多可比預計治療結束早到多久。設為零時，只有其路程時間恰好不早於剩餘治療時間才會前往。</SAR_Settings_StandbyLead_Desc>
+  <SAR_Settings_MarkerMemory>近期標記記憶</SAR_Settings_MarkerMemory>
+  <SAR_Settings_MarkerMemory_Desc>命令自動完成後保留記憶的遊戲時間。目標恢復後若在期限內再次倒地，會重新套用仍適用的標記；設為零可關閉。</SAR_Settings_MarkerMemory_Desc>
+  <SAR_Settings_BleedingSensitivity>出血緊急度敏感性</SAR_Settings_BleedingSensitivity>
+  <SAR_Settings_BleedingSensitivity_Desc>數值越高，越小的未處理出血也會被視為戰地急症，並會穩定得更徹底。不會改變遊戲中的實際出血速度。</SAR_Settings_BleedingSensitivity_Desc>
+  <SAR_Settings_BloodLossWarning>失血死亡預判範圍</SAR_Settings_BloodLossWarning>
+  <SAR_Settings_BloodLossWarning_Desc>預計會在該遊戲時間內死於失血的患者，將進入緊急穩定流程。</SAR_Settings_BloodLossWarning_Desc>
+  <SAR_Settings_SurgeryPriority>緊急手術傷員轉運優先度</SAR_Settings_SurgeryPriority>
+  <SAR_Settings_SurgeryPriority_Desc>提高「危及生命、無法一般包紮、但存在對應手術」傷員的撤離權重。設為零會移除專用加成；不包括擇期手術。</SAR_Settings_SurgeryPriority_Desc>
+  <SAR_Settings_TreatmentTransportPriority>先治療後轉運的優先度</SAR_Settings_TreatmentTransportPriority>
+  <SAR_Settings_TreatmentTransportPriority_Desc>提高先穩定傷員、再安排一般撤離的傾向。無論此值如何，俘虜階段仍維持最高優先度。</SAR_Settings_TreatmentTransportPriority_Desc>
+  <SAR_Settings_SwitchReluctance>醫生更換目標阻尼</SAR_Settings_SwitchReluctance>
+  <SAR_Settings_SwitchReluctance_Desc>數值越高，新目標必須帶來更大的收益，醫生才會在一次治療完成的安全邊界換人，可減少來回走動和抖動。</SAR_Settings_SwitchReluctance_Desc>
+  <SAR_Settings_MedicineDetour>醫療器材繞路容忍度</SAR_Settings_MedicineDetour>
+  <SAR_Settings_MedicineDetour_Desc>數值越高，醫生和補給者越願意繞路取得有用藥品或器材；仍會綜合緊急度、稀缺度和治療收益。</SAR_Settings_MedicineDetour_Desc>
+  <SAR_Settings_KitPatients>一套任務藥包涵蓋的傷員數</SAR_Settings_KitPatients>
+  <SAR_Settings_KitPatients_Desc>醫生規劃多傷員戰地藥包時，最多同時考慮多少名當前傷員。</SAR_Settings_KitPatients_Desc>
+  <SAR_Settings_KitConsumables>任務藥包的單類耗材數量</SAR_Settings_KitConsumables>
+  <SAR_Settings_KitConsumables_Desc>一次任務為同一種消耗品設定的最大攜帶數量；可重複使用的器材仍只攜帶一個。</SAR_Settings_KitConsumables_Desc>
+  <SAR_Settings_FieldSupplyRadius>戰地器材堆關聯半徑</SAR_Settings_FieldSupplyRadius>
+  <SAR_Settings_FieldSupplyRadius_Desc>位於傷員該距離內的器材可以填補其預算，並在仍被引用時受到防搬保護。</SAR_Settings_FieldSupplyRadius_Desc>
+  <SAR_Settings_Value_Percent>{0}%</SAR_Settings_Value_Percent>
+  <SAR_Settings_Value_Hours>{0} 遊戲小時</SAR_Settings_Value_Hours>
+  <SAR_Settings_Value_Seconds>{0} 秒</SAR_Settings_Value_Seconds>
+  <SAR_Settings_Value_Cells>{0} 格</SAR_Settings_Value_Cells>
+  <SAR_Settings_ResetDefaults>恢復預設設定</SAR_Settings_ResetDefaults>
+
+  <SAR_Settings_Compatibility_Title>第三方模組相容性</SAR_Settings_Compatibility_Title>
+  <SAR_Settings_Compatibility_Desc>已啟用的模組排列在前，停留一列可查看支援範圍。「聯動」僅表示第三方能力被加入新的救援階段、人員通道或補給來源；只讀取設定、辨識工作或規避衝突時標為「相容」。「未啟用」包括未啟用和未安裝。</SAR_Settings_Compatibility_Desc>
+  <SAR_Settings_Compatibility_Mod>第三方模組</SAR_Settings_Compatibility_Mod>
+  <SAR_Settings_Compatibility_Status>狀態</SAR_Settings_Compatibility_Status>
+  <SAR_Settings_Compatibility_TooltipActive>{0}
+
+{1}</SAR_Settings_Compatibility_TooltipActive>
+  <SAR_Settings_Compatibility_TooltipDisabled>未啟用。啟用後支援等級：{0}。
+
+{1}</SAR_Settings_Compatibility_TooltipDisabled>
+  <SAR_Compatibility_Status_Integration>聯動</SAR_Compatibility_Status_Integration>
+  <SAR_Compatibility_Status_Compatible>相容</SAR_Compatibility_Status_Compatible>
+  <SAR_Compatibility_Status_Partial>部分相容</SAR_Compatibility_Status_Partial>
+  <SAR_Compatibility_Status_Incompatible>不相容</SAR_Compatibility_Status_Incompatible>
+  <SAR_Compatibility_Status_Disabled>未啟用</SAR_Compatibility_Status_Disabled>
+
+  <SAR_Compatibility_CombatExtended>使用 CE 原生穩定傷勢，依數量共享預約藥品，讀取攜帶庫存並遵守 CE 容量限制。</SAR_Compatibility_CombatExtended>
+  <SAR_Compatibility_MoreInjuries>調度 CPR、氣道處理、除顫、止血、止血帶、鹽水和血袋；只能以手術處理的創傷會提高撤離優先度。</SAR_Compatibility_MoreInjuries>
+  <SAR_Compatibility_MSE2>危險狀態會參與分診；但專用手術急救、義體子部件及對應器材仍由 MSE2 的床邊系統負責。</SAR_Compatibility_MSE2>
+  <SAR_Compatibility_EPOE>透過標準健康與手術介面共存。植入、替換、截肢和擇期手術帳單不屬於戰地治療。</SAR_Compatibility_EPOE>
+  <SAR_Compatibility_SmartMedicine>使用其選藥邏輯和臨時治療點，保護已宣告的戰地器材，並避免 CE 穩定工作反覆選擇其驅動無法取得的第三方 pawn 庫存藥品。</SAR_Compatibility_SmartMedicine>
+  <SAR_Compatibility_Pharmacist>讀取其依傷情和人員類別給出的用藥建議，同時把 pawn 的原版用藥上限作為硬限制。</SAR_Compatibility_Pharmacist>
+  <SAR_Compatibility_ChooseMedicine>讀取藥品群組、傷情階段、排序和單傷涵蓋設定，用於預算、攜帶、補給和最終治療。</SAR_Compatibility_ChooseMedicine>
+  <SAR_Compatibility_MedicalTab>每輪規劃都會讀取 pawn 的標準用藥欄位；表格中的修改立即生效，不保留另一份策略快取。</SAR_Compatibility_MedicalTab>
+  <SAR_Compatibility_Defaults>不同人群的預設用藥最終寫入標準 pawn 用藥設定，搜尋與救援會直接讀取。</SAR_Compatibility_Defaults>
+  <SAR_Compatibility_EmergencyTransfusions>建立該模組原生的單包輸血工作，可從傷員、救援者、地圖或受支援的攜帶者取得血原包。</SAR_Compatibility_EmergencyTransfusions>
+  <SAR_Compatibility_HemogenDirect>未啟用 Emergency Transfusions 時，使用該模組原生工作提供緊急血原輸注。</SAR_Compatibility_HemogenDirect>
+  <SAR_Compatibility_DeathRattle>不接管其復甦流程；生命危險 Hediff 階段仍會提高統一分診緊急度。</SAR_Compatibility_DeathRattle>
+  <SAR_Compatibility_RH2FirstAid>未啟用 CE 時使用 RH2 原生戰地急救工作，並將其註冊為外部患者所有權。</SAR_Compatibility_RH2FirstAid>
+  <SAR_Compatibility_RH2Arrest>俘虜階段使用 RH2 原生的就地逮捕工作。</SAR_Compatibility_RH2Arrest>
+  <SAR_Compatibility_DubsRimkit>自我包紮和為他人包紮會被註冊為外部治療所有權，避免重複派出醫生。</SAR_Compatibility_DubsRimkit>
+  <SAR_Compatibility_TraumaTeam>在其首個工作產生前辨識小隊所有權，辨識治療和運輸工作；沒有可用救援者時會釋放失效所有權。</SAR_Compatibility_TraumaTeam>
+  <SAR_Compatibility_MovePatient>優先詢問患者的轉床元件所選擇的醫療床，再回退到原版床位搜尋。</SAR_Compatibility_MovePatient>
+  <SAR_Compatibility_MedPod>醫療艙搬入、救援、自行入艙和設施占用會被註冊為外部所有權；搜尋與救援不直接操作醫療艙。</SAR_Compatibility_MedPod>
+  <SAR_Compatibility_Casevac>CASEVAC 救援和俘虜運輸工作會被註冊為外部所有權；其手動命令仍擁有控制權。</SAR_Compatibility_Casevac>
+  <SAR_Compatibility_SmarterCapture>其自動俘虜 WorkGiver 使用統一所有權門控；玩家強制俘虜仍優先。</SAR_Compatibility_SmarterCapture>
+  <SAR_Compatibility_PickUpAndHaul>阻止卸下仍被患者長期引用、或被目前醫療計畫軟宣告的器材。</SAR_Compatibility_PickUpAndHaul>
+  <SAR_Compatibility_Hospitality>沿用標準床位、賓客身分和陣營關係，但不接管接待、收費、訪客日程或醫院專用 AI。</SAR_Compatibility_Hospitality>
+  <SAR_Compatibility_VehicleFramework>靜止、玩家所屬且可到達的載具貨艙可為藥包和補給提供器材；不負責將傷員送入載具或車內治療。</SAR_Compatibility_VehicleFramework>
+  <SAR_Compatibility_NurseJob>提供搬運、護士優先和僅限護士三種救援模式；支援性治療會使用護理工作，必要時由醫生替補。</SAR_Compatibility_NurseJob>
+  <SAR_Compatibility_WorkTab>讀取細分 WorkGiver 優先度，而不是只讀取上層工作種類。</SAR_Compatibility_WorkTab>
+  <SAR_Compatibility_MechWorkTab>決定機僕可以進入哪些戰地工作通道時，會讀取殖民地機僕的細分工作設定。</SAR_Compatibility_MechWorkTab>
+  <SAR_Compatibility_WVCWorkModes>遵守新增的機僕工作模式及其最終工作權限。</SAR_Compatibility_WVCWorkModes>
+  <SAR_Compatibility_SearchDestroy>兩者職責分離：Search and Destroy 管理徵召戰鬥行為，搜尋與救援只排程未徵召 pawn 的戰地救援工作，雙方都不借用對方的 pawn 開關。</SAR_Compatibility_SearchDestroy>
+  <SAR_Compatibility_CommonSense>治療邊界完成時只移除其自動插入的非強制清掃，不會刪除玩家佇列。</SAR_Compatibility_CommonSense>
+  <SAR_Compatibility_PriorityTreatment>註冊戰地治療、補給、CE、More Injuries 和 RH2 工作，避免正在工作的救援者被誤判為閒置。</SAR_Compatibility_PriorityTreatment>
+  <SAR_Compatibility_TreatDyingFirst>普通治療繼續採用其緊急度排序；SAR 只對已納入戰地救援的患者使用自己的配對圖，並保留玩家強制工作。</SAR_Compatibility_TreatDyingFirst>
+  <SAR_Compatibility_StabilizeBleeding>本機尚未實測其僅止血的手動工作。玩家手動命令仍優先，但與 SAR 標記同時使用目前只算部分相容。</SAR_Compatibility_StabilizeBleeding>
+  <SAR_Compatibility_AlliesHelpful>對 SAR 已標記患者，其自動產生的非強制盟友治療／救援工作會讓出所有權；未標記者仍完全沿用原模組行為。</SAR_Compatibility_AlliesHelpful>
+  <SAR_Compatibility_NoOneLeftBehind>敵方搬運者開始撤離後保持權威；因此標記俘虜的敵人仍可能在我方回應者宣告前被帶離。</SAR_Compatibility_NoOneLeftBehind>
+  <SAR_Compatibility_StayInBed>其賴床工作屬於可隨時中斷的閒置工作，戰地救援可正常搶占，無需特殊接管。</SAR_Compatibility_StayInBed>
+  <SAR_Compatibility_GrievousWounds>溢出傷害產生標準傷勢，會自動計入出血、嚴重度和治療評分。</SAR_Compatibility_GrievousWounds>
+  <SAR_Compatibility_VFEMedical>新增醫療床和藥品沿用原版 Def，會被自動發現。</SAR_Compatibility_VFEMedical>
+  <SAR_Compatibility_SensibleBedOwnership>傷員目的地仍經過原版醫療床校驗；個人床位所有權改動不會繞過它。</SAR_Compatibility_SensibleBedOwnership>
+  <SAR_Compatibility_YokaiVillage>非敵對血肉動物沿用標準治療、藥品、動物床和救援路徑；敵對動物無法俘虜，因此被排除。</SAR_Compatibility_YokaiVillage>
+</LanguageData>

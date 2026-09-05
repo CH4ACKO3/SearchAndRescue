@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_EvacuateToPoint.reportString>evacuating TargetA.</SAR_EvacuateToPoint.reportString>
+  <SAR_CaptureInPlace.reportString>capturing TargetA in place.</SAR_CaptureInPlace.reportString>
+  <SAR_WaitForFieldTreatment.reportString>waiting beside TargetA for field treatment.</SAR_WaitForFieldTreatment.reportString>
+  <SAR_RestockMedicalKit.reportString>collecting battlefield medical supplies for TargetB.</SAR_RestockMedicalKit.reportString>
+  <SAR_DeliverMedicalSupply.reportString>delivering medical supplies to TargetB.</SAR_DeliverMedicalSupply.reportString>
+</LanguageData>

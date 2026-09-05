@@ -1,0 +1,95 @@
+[h1]Search and Rescue — 搜索与救援[/h1]
+
+[i]适用于 RimWorld 1.6 · Alpha[/i]
+
+为倒地的小人或动物批量标记治疗、撤离和俘获命令，让有“战地救援”工作的小人高效地执行救援工作（就地抢救、批量地运送医疗器材、分工、伤势优先级等）。
+
+这是 Alpha 版本，这个模组仍在早期开发阶段。加入现有长期存档前，请先备份。
+
+[h2]主要功能[/h2]
+[list]
+[*][b]三种可叠加标记[/b]：战地治疗、救援、俘虏；默认快捷命令会一次应用当前目标可用的全部阶段。
+[*][b]两种操作方式[/b]：先选择命令再框选伤员，或先选中伤员再从底部命令栏标记。
+[*][b]独立“战地救援”工作类型[/b]：排在原版医生工作之前，将战场抢救与病房常规医疗分开。
+[*][b]统一分诊与匹配[/b]：综合伤情、失血、距离、技能、工作优先级、正在执行的任务和切换成本，为医生、护士与搬运者分配目标。
+[*][b]先稳定、后补治[/b]：紧急治疗只处理当前致命问题；伤情重新恶化时会再次激活，稳定后的普通伤口则以较低优先级继续处理。
+[*][b]协同救援[/b]：医生不足时可先撤离伤员；医生赶到后可就地拦截治疗，搬运者会根据预计完成时间决定等待或改救其他人。
+[*][b]战地医疗补给[/b]：按伤员的实际缺口计算药品、血液和特殊器材预算；医生会衡量取药绕路是否值得，搬运者可补送缺少的物资。
+[*][b]玩家控制[/b]：玩家手动指定的治疗、搬运和俘虏优先，SAR 不会在途中擅自改派该工作。
+[*]支持友方人形与非敌对动物的治疗、救援；俘虏阶段仅适用于人形目标。
+[/list]
+
+[h2]兼容性[/h2]
+
+[b]官方内容：兼容[/b]
+[list]
+[*]RimWorld 1.6
+[*]Royalty
+[*]Ideology
+[*]Biotech
+[*]Anomaly
+[*]Odyssey
+[/list]
+
+[b]联动[/b]
+[list]
+[*]Combat Extended
+[*]More Injuries (Continued)
+[*]Emergency Transfusions
+[*]Hemogen Pack - Emergency transfusion
+[*]Vehicle Framework
+[*]Nurse Job
+[/list]
+
+[b]兼容[/b]
+[list]
+[*]EPOE-Forked
+[*]Smart Medicine - Continued
+[*]Pharmacist: Represcribed
+[*]Choose Your Medicine
+[*]Medical Tab
+[*]1trickPwnyta's Defaults
+[*]Death Rattle Continued
+[*]RH2 — BCD: First Aid
+[*]RH2 — CPERS: Arrest Here!
+[*]Dubs Rimkit
+[*]Trauma Team Complete
+[*]Move the Patient
+[*]MedPod
+[*]RH2 — BCD: CASEVAC
+[*]Smarter Capture Them
+[*]Pick Up And Haul
+[*]Work Tab
+[*]Mech Work Tab
+[*]WVC - Work Modes
+[*]Search and Destroy (Continued)
+[*]Common Sense
+[*]Priority Treatment Ressurected
+[*]Treat Dying First
+[*]Allies are Helpful
+[*]MOMO — Stay in bed
+[*]Grievous Wounds
+[*]Vanilla Furniture Expanded - Medical Module
+[*]Sensible Bed Ownership
+[*]Yokai Village
+[/list]
+
+[b]部分兼容[/b]
+[list]
+[*]Medical System Expansion 2
+[*]Hospitality
+[*]Stabilize Bleeding
+[*]No One Left Behind
+[/list]
+
+详细兼容情况可在游戏内打开“模组设置 → Search and Rescue → 兼容性”查看。未启用的模组会显示为“未启用”；可选适配器未能正确加载时，状态会自动降为“部分兼容”。
+
+这是 Alpha 版本，这个模组仍在早期开发阶段。加入现有长期存档前，请先备份。
+
+[h2]语言[/h2]
+
+English · 简体中文 · 繁體中文
+
+[h2]前置[/h2]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077]Harmony[/url]

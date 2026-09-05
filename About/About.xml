@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+	<name>Search and Rescue</name>
+	<author>CH4AcKO3</author>
+	<packageId>CH4AcKO3.SearchAndRescue</packageId>
+	<modVersion>0.1.0-alpha.1</modVersion>
+	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278</url>
+	<supportedVersions>
+		<li>1.6</li>
+	</supportedVersions>
+	<modDependencies>
+		<li>
+			<packageId>brrainz.harmony</packageId>
+			<displayName>Harmony</displayName>
+			<steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077</steamWorkshopUrl>
+			<downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+		</li>
+	</modDependencies>
+	<loadAfter>
+		<li>brrainz.harmony</li>
+		<li>Fluffy.WorkTab</li>
+		<li>avilmask.CommonSense</li>
+		<li>NinaGoblin.AlliesAreHelpful</li>
+		<li>Spacemoth.MechTab</li>
+		<li>wvc.sergkart.biotech.MoreMechanoidsWorkModes</li>
+		<li>DarthSergeant.NurseJob</li>
+		<li>Memegoddess.SmartMedicine</li>
+		<li>Fluffy.Pharmacist</li>
+		<li>Kopp.ChooseYourMedicine</li>
+		<li>MemeGoddess.MedicalTab</li>
+		<li>defaults.1trickPwnyta</li>
+		<li>konstantynopolitaneczka.movethepatient</li>
+		<li>dogard.treatdyingfirst</li>
+		<li>tk421storm.PriorityTreatmentRessurected</li>
+		<li>CETeam.CombatExtended</li>
+		<li>Th3Fr3d.ExtendedInjuries</li>
+		<li>lke.Smarter.CaptureThem</li>
+		<li>Pausbrak.EmergencyTransfusions</li>
+		<li>sumghai.Medpod</li>
+		<li>Dubwise.DubsRimkit</li>
+		<li>vat.epoeforked</li>
+		<li>MSE2.Core</li>
+		<li>Troopersmith1.DeathRattle</li>
+		<li>EdelweissPirate.traumateamcomplete</li>
+		<li>SmashPhil.VehicleFramework</li>
+	</loadAfter>
+	<description>Search and Rescue
+
+For RimWorld 1.6 · Alpha
+
+Batch-mark downed pawns or animals for treatment, evacuation, and capture. Pawns assigned to the Field Rescue work type will coordinate the response efficiently, including on-site first aid, bulk medical-supply delivery, division of labor, and injury-based prioritization.
+
+This is an Alpha release and the mod is still in early development. Back up long-running saves before adding it.
+
+Features
+
+• Three stackable designations: field treatment, rescue, and capture. The default shortcut applies every valid stage to the selected targets at once.
+• Two ways to issue orders: choose a command and drag over casualties, or select casualties first and use the command in their bottom action bar.
+• A dedicated Field Rescue work type: placed before the vanilla Doctor work type, separating battlefield response from routine hospital care.
+• Unified triage and matching: assigns patients to doctors, nurses, and carriers using injury severity, blood loss, distance, skill, work priority, current jobs, and switching costs.
+• Stabilize first, finish later: emergency care addresses immediate lethal threats. Treatment reactivates if the patient deteriorates, while ordinary wounds on stable patients are handled at a lower priority.
+• Coordinated rescue: when doctors are scarce, casualties can be evacuated first. An arriving doctor may intercept a casualty for treatment, while carriers decide whether to wait or help someone else based on the estimated treatment time.
+• Battlefield medical logistics: calculates medicine, blood, and special-device budgets from each casualty&apos;s actual shortage. Doctors weigh whether a supply detour is worthwhile, while carriers can deliver missing supplies.
+• Player control: manually ordered treatment, carrying, and capture take priority. SAR will not redirect those jobs midway.
+• Supports treatment and rescue for friendly humanlikes and non-hostile animals. Capture applies to humanlikes only.
+
+
+Compatibility
+
+Official content: Compatible
+
+• RimWorld 1.6
+• Royalty
+• Ideology
+• Biotech
+• Anomaly
+• Odyssey
+
+
+Integration
+
+• Combat Extended
+• More Injuries (Continued)
+• Emergency Transfusions
+• Hemogen Pack - Emergency transfusion
+• Vehicle Framework
+• Nurse Job
+
+
+Compatible
+
+• EPOE-Forked
+• Smart Medicine - Continued
+• Pharmacist: Represcribed
+• Choose Your Medicine
+• Medical Tab
+• 1trickPwnyta&apos;s Defaults
+• Death Rattle Continued
+• RH2 — BCD: First Aid
+• RH2 — CPERS: Arrest Here!
+• Dubs Rimkit
+• Trauma Team Complete
+• Move the Patient
+• MedPod
+• RH2 — BCD: CASEVAC
+• Smarter Capture Them
+• Pick Up And Haul
+• Work Tab
+• Mech Work Tab
+• WVC - Work Modes
+• Search and Destroy (Continued)
+• Common Sense
+• Priority Treatment Ressurected
+• Treat Dying First
+• Allies are Helpful
+• MOMO — Stay in bed
+• Grievous Wounds
+• Vanilla Furniture Expanded - Medical Module
+• Sensible Bed Ownership
+• Yokai Village
+
+
+Partially compatible
+
+• Medical System Expansion 2
+• Hospitality
+• Stabilize Bleeding
+• No One Left Behind
+
+
+Detailed compatibility information is available under Mod Settings → Search and Rescue → Compatibility. Mods that are not active are shown as Disabled. If an optional adapter fails to load correctly, its status is automatically downgraded to Partially compatible.
+
+This is an Alpha release and the mod is still in early development. Back up long-running saves before adding it.
+
+Languages
+
+English · 简体中文 · 繁體中文
+
+Requirement
+
+Harmony (https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077)</description>
+</ModMetaData>

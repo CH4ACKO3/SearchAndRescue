@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_CaptureMarked.label>capture marked battlefield casualties</SAR_CaptureMarked.label>
+  <SAR_CaptureMarked.verb>capture</SAR_CaptureMarked.verb>
+  <SAR_CaptureMarked.gerund>capturing</SAR_CaptureMarked.gerund>
+
+  <SAR_TreatMarked.label>coordinate emergency medical care</SAR_TreatMarked.label>
+  <SAR_TreatMarked.verb>stabilize</SAR_TreatMarked.verb>
+  <SAR_TreatMarked.gerund>stabilizing</SAR_TreatMarked.gerund>
+
+  <SAR_FollowupTreatMarked.label>coordinate follow-up tending</SAR_FollowupTreatMarked.label>
+  <SAR_FollowupTreatMarked.verb>tend</SAR_FollowupTreatMarked.verb>
+  <SAR_FollowupTreatMarked.gerund>tending</SAR_FollowupTreatMarked.gerund>
+
+  <SAR_AutomaticRoutineTreat.label>coordinate automatic routine tending</SAR_AutomaticRoutineTreat.label>
+  <SAR_AutomaticRoutineTreat.verb>tend</SAR_AutomaticRoutineTreat.verb>
+  <SAR_AutomaticRoutineTreat.gerund>tending</SAR_AutomaticRoutineTreat.gerund>
+
+  <SAR_SupportiveCareMarkedNursing.label>coordinate urgent supportive care</SAR_SupportiveCareMarkedNursing.label>
+  <SAR_SupportiveCareMarkedNursing.verb>provide supportive care</SAR_SupportiveCareMarkedNursing.verb>
+  <SAR_SupportiveCareMarkedNursing.gerund>providing supportive care</SAR_SupportiveCareMarkedNursing.gerund>
+
+  <SAR_RescueMarkedHauling.label>evacuate marked battlefield casualties</SAR_RescueMarkedHauling.label>
+  <SAR_RescueMarkedHauling.verb>evacuate</SAR_RescueMarkedHauling.verb>
+  <SAR_RescueMarkedHauling.gerund>evacuating</SAR_RescueMarkedHauling.gerund>
+
+  <SAR_RescueMarkedParamedic.label>evacuate marked battlefield casualties</SAR_RescueMarkedParamedic.label>
+  <SAR_RescueMarkedParamedic.verb>evacuate</SAR_RescueMarkedParamedic.verb>
+  <SAR_RescueMarkedParamedic.gerund>evacuating</SAR_RescueMarkedParamedic.gerund>
+
+  <SAR_RescueMarkedNursing.label>evacuate marked battlefield casualties</SAR_RescueMarkedNursing.label>
+  <SAR_RescueMarkedNursing.verb>evacuate</SAR_RescueMarkedNursing.verb>
+  <SAR_RescueMarkedNursing.gerund>evacuating</SAR_RescueMarkedNursing.gerund>
+</LanguageData>

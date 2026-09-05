@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Severe blood-volume loss must beat wound tending even for unmarked patients. Keep
+       airway and CPR ahead, but place whole blood and saline above vanilla emergency tending.
+       Whole blood goes first when both resources are valid. -->
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>More Injuries</li>
+      <li>More Injuries (Continued)</li>
+    </mods>
+    <match Class="PatchOperationSequence">
+      <success>Always</success>
+      <operations>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/WorkGiverDef[defName="DoctorUseBloodBag"]/priorityInType</xpath>
+          <value><priorityInType>114</priorityInType></value>
+        </li>
+        <li Class="PatchOperationReplace">
+          <xpath>/Defs/WorkGiverDef[defName="DoctorUseSalineBag"]/priorityInType</xpath>
+          <value><priorityInType>113</priorityInType></value>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

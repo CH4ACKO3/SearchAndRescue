@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_EvacuateToPoint.reportString>正在轉移 TargetA。</SAR_EvacuateToPoint.reportString>
+  <SAR_CaptureInPlace.reportString>正在就地俘虜 TargetA。</SAR_CaptureInPlace.reportString>
+  <SAR_WaitForFieldTreatment.reportString>正在 TargetA 身旁等待戰地治療。</SAR_WaitForFieldTreatment.reportString>
+  <SAR_RestockMedicalKit.reportString>正在為 TargetB 收集戰地醫療物資。</SAR_RestockMedicalKit.reportString>
+  <SAR_DeliverMedicalSupply.reportString>正在向 TargetB 運送醫療物資。</SAR_DeliverMedicalSupply.reportString>
+</LanguageData>

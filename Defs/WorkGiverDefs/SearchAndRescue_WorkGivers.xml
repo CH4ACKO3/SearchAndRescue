@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>SAR_CaptureMarked</defName>
+    <label>capture marked battlefield casualties</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueCapture</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>capture</verb>
+    <gerund>capturing</gerund>
+    <priorityInType>120</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>SAR_TreatMarked</defName>
+    <label>coordinate emergency medical care</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueTreat</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>stabilize</verb>
+    <gerund>stabilizing</gerund>
+    <!-- Highest treatment lane inside Field Rescue. The parent work type's natural
+         priority places it before Doctor when both work types have equal settings. -->
+    <priorityInType>120</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>SAR_FollowupTreatMarked</defName>
+    <label>coordinate follow-up tending</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueFollowupTreat</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>false</emergency>
+    <verb>tend</verb>
+    <gerund>tending</gerund>
+    <!-- Lower-priority cleanup inside Field Rescue. Cross-work-type ordering is governed
+         by the player's Field Rescue and Doctor priorities, not priorityInType. -->
+    <priorityInType>85</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>SAR_AutomaticRoutineTreat</defName>
+    <label>coordinate automatic routine tending</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueAutomaticRoutineTreat</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>false</emergency>
+    <verb>tend</verb>
+    <gerund>tending</gerund>
+    <!-- AutomaticRoutine claims admitted by AllTending remain the lower routine lane
+         inside Field Rescue. Cross-work-type ordering follows the work-tab priorities. -->
+    <priorityInType>105</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef MayRequire="DarthSergeant.NurseJob">
+    <defName>SAR_SupportiveCareMarkedNursing</defName>
+    <label>coordinate urgent supportive care</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueSupportiveCareNursing</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>provide supportive care</verb>
+    <gerund>providing supportive care</gerund>
+    <!-- Transfusion/infusion and More Injuries' temporary wound-control devices are urgent,
+         but their outcome does not depend on Medicine skill. Keep this above Nurse Job's
+         rescue/feed/bed-transfer lanes. -->
+    <priorityInType>120</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+  </WorkGiverDef>
+
+  <WorkGiverDef>
+    <defName>SAR_RescueMarkedHauling</defName>
+    <label>evacuate marked battlefield casualties</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueRescueHauling</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>evacuate</verb>
+    <gerund>evacuating</gerund>
+    <priorityInType>160</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <prioritizeSustains>true</prioritizeSustains>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>SAR_RescueMarkedParamedic</defName>
+    <label>evacuate marked battlefield casualties</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueRescueParamedic</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>evacuate</verb>
+    <gerund>evacuating</gerund>
+    <!-- Below SAR emergency treatment inside Field Rescue. -->
+    <priorityInType>119</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <prioritizeSustains>true</prioritizeSustains>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef MayRequire="DarthSergeant.NurseJob">
+    <defName>SAR_RescueMarkedNursing</defName>
+    <label>evacuate marked battlefield casualties</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueRescueNursing</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>evacuate</verb>
+    <gerund>evacuating</gerund>
+    <priorityInType>60</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <prioritizeSustains>true</prioritizeSustains>
+  </WorkGiverDef>
+</Defs>

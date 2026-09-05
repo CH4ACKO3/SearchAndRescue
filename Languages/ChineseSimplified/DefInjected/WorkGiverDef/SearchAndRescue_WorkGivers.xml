@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_CaptureMarked.label>俘虏已标记的战场伤员</SAR_CaptureMarked.label>
+  <SAR_CaptureMarked.verb>俘虏</SAR_CaptureMarked.verb>
+  <SAR_CaptureMarked.gerund>正在俘虏</SAR_CaptureMarked.gerund>
+
+  <SAR_TreatMarked.label>协调紧急医疗</SAR_TreatMarked.label>
+  <SAR_TreatMarked.verb>稳定伤势</SAR_TreatMarked.verb>
+  <SAR_TreatMarked.gerund>正在稳定伤势</SAR_TreatMarked.gerund>
+
+  <SAR_FollowupTreatMarked.label>协调后续治疗</SAR_FollowupTreatMarked.label>
+  <SAR_FollowupTreatMarked.verb>治疗</SAR_FollowupTreatMarked.verb>
+  <SAR_FollowupTreatMarked.gerund>正在治疗</SAR_FollowupTreatMarked.gerund>
+
+  <SAR_AutomaticRoutineTreat.label>协调自动普通治疗</SAR_AutomaticRoutineTreat.label>
+  <SAR_AutomaticRoutineTreat.verb>治疗</SAR_AutomaticRoutineTreat.verb>
+  <SAR_AutomaticRoutineTreat.gerund>正在治疗</SAR_AutomaticRoutineTreat.gerund>
+
+  <SAR_SupportiveCareMarkedNursing.label>协调紧急支持治疗</SAR_SupportiveCareMarkedNursing.label>
+  <SAR_SupportiveCareMarkedNursing.verb>实施支持治疗</SAR_SupportiveCareMarkedNursing.verb>
+  <SAR_SupportiveCareMarkedNursing.gerund>正在实施支持治疗</SAR_SupportiveCareMarkedNursing.gerund>
+
+  <SAR_RescueMarkedHauling.label>转移已标记的战场伤员</SAR_RescueMarkedHauling.label>
+  <SAR_RescueMarkedHauling.verb>转移</SAR_RescueMarkedHauling.verb>
+  <SAR_RescueMarkedHauling.gerund>正在转移</SAR_RescueMarkedHauling.gerund>
+
+  <SAR_RescueMarkedParamedic.label>由急救机械转移已标记的战场伤员</SAR_RescueMarkedParamedic.label>
+  <SAR_RescueMarkedParamedic.verb>转移</SAR_RescueMarkedParamedic.verb>
+  <SAR_RescueMarkedParamedic.gerund>正在转移</SAR_RescueMarkedParamedic.gerund>
+
+  <SAR_RescueMarkedNursing.label>由护士转移已标记的战场伤员</SAR_RescueMarkedNursing.label>
+  <SAR_RescueMarkedNursing.verb>转移</SAR_RescueMarkedNursing.verb>
+  <SAR_RescueMarkedNursing.gerund>正在转移</SAR_RescueMarkedNursing.gerund>
+</LanguageData>

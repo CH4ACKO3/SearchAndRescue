@@ -1,0 +1,95 @@
+[h1]Search and Rescue[/h1]
+
+[i]For RimWorld 1.6 · Alpha[/i]
+
+Batch-mark downed pawns or animals for treatment, evacuation, and capture. Pawns assigned to the [b]Field Rescue[/b] work type will coordinate the response efficiently, including on-site first aid, bulk medical-supply delivery, division of labor, and injury-based prioritization.
+
+This is an Alpha release and the mod is still in early development. Back up long-running saves before adding it.
+
+[h2]Features[/h2]
+[list]
+[*][b]Three stackable designations[/b]: field treatment, rescue, and capture. The default shortcut applies every valid stage to the selected targets at once.
+[*][b]Two ways to issue orders[/b]: choose a command and drag over casualties, or select casualties first and use the command in their bottom action bar.
+[*][b]A dedicated Field Rescue work type[/b]: placed before the vanilla Doctor work type, separating battlefield response from routine hospital care.
+[*][b]Unified triage and matching[/b]: assigns patients to doctors, nurses, and carriers using injury severity, blood loss, distance, skill, work priority, current jobs, and switching costs.
+[*][b]Stabilize first, finish later[/b]: emergency care addresses immediate lethal threats. Treatment reactivates if the patient deteriorates, while ordinary wounds on stable patients are handled at a lower priority.
+[*][b]Coordinated rescue[/b]: when doctors are scarce, casualties can be evacuated first. An arriving doctor may intercept a casualty for treatment, while carriers decide whether to wait or help someone else based on the estimated treatment time.
+[*][b]Battlefield medical logistics[/b]: calculates medicine, blood, and special-device budgets from each casualty's actual shortage. Doctors weigh whether a supply detour is worthwhile, while carriers can deliver missing supplies.
+[*][b]Player control[/b]: manually ordered treatment, carrying, and capture take priority. SAR will not redirect those jobs midway.
+[*]Supports treatment and rescue for friendly humanlikes and non-hostile animals. Capture applies to humanlikes only.
+[/list]
+
+[h2]Compatibility[/h2]
+
+[b]Official content: Compatible[/b]
+[list]
+[*]RimWorld 1.6
+[*]Royalty
+[*]Ideology
+[*]Biotech
+[*]Anomaly
+[*]Odyssey
+[/list]
+
+[b]Integration[/b]
+[list]
+[*]Combat Extended
+[*]More Injuries (Continued)
+[*]Emergency Transfusions
+[*]Hemogen Pack - Emergency transfusion
+[*]Vehicle Framework
+[*]Nurse Job
+[/list]
+
+[b]Compatible[/b]
+[list]
+[*]EPOE-Forked
+[*]Smart Medicine - Continued
+[*]Pharmacist: Represcribed
+[*]Choose Your Medicine
+[*]Medical Tab
+[*]1trickPwnyta's Defaults
+[*]Death Rattle Continued
+[*]RH2 — BCD: First Aid
+[*]RH2 — CPERS: Arrest Here!
+[*]Dubs Rimkit
+[*]Trauma Team Complete
+[*]Move the Patient
+[*]MedPod
+[*]RH2 — BCD: CASEVAC
+[*]Smarter Capture Them
+[*]Pick Up And Haul
+[*]Work Tab
+[*]Mech Work Tab
+[*]WVC - Work Modes
+[*]Search and Destroy (Continued)
+[*]Common Sense
+[*]Priority Treatment Ressurected
+[*]Treat Dying First
+[*]Allies are Helpful
+[*]MOMO — Stay in bed
+[*]Grievous Wounds
+[*]Vanilla Furniture Expanded - Medical Module
+[*]Sensible Bed Ownership
+[*]Yokai Village
+[/list]
+
+[b]Partially compatible[/b]
+[list]
+[*]Medical System Expansion 2
+[*]Hospitality
+[*]Stabilize Bleeding
+[*]No One Left Behind
+[/list]
+
+Detailed compatibility information is available under [b]Mod Settings → Search and Rescue → Compatibility[/b]. Mods that are not active are shown as [b]Disabled[/b]. If an optional adapter fails to load correctly, its status is automatically downgraded to [b]Partially compatible[/b].
+
+This is an Alpha release and the mod is still in early development. Back up long-running saves before adding it.
+
+[h2]Languages[/h2]
+
+English · 简体中文 · 繁體中文
+
+[h2]Requirement[/h2]
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077]Harmony[/url]

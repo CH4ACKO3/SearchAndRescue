@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <DesignationDef>
+    <defName>SAR_Treat</defName>
+    <targetType>Thing</targetType>
+    <texturePath>SearchAndRescue/Designations/Treat</texturePath>
+    <designateCancelable>true</designateCancelable>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>SAR_Rescue</defName>
+    <targetType>Thing</targetType>
+    <texturePath>SearchAndRescue/Designations/Rescue</texturePath>
+    <designateCancelable>true</designateCancelable>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>SAR_Capture</defName>
+    <targetType>Thing</targetType>
+    <texturePath>SearchAndRescue/Designations/Capture</texturePath>
+    <designateCancelable>true</designateCancelable>
+  </DesignationDef>
+  <DesignationDef>
+    <defName>SAR_RescuePoint</defName>
+    <targetType>Cell</targetType>
+    <texturePath>Designations/Plan</texturePath>
+    <designateCancelable>true</designateCancelable>
+  </DesignationDef>
+</Defs>

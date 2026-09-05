@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <JobDef>
+    <defName>SAR_EvacuateToPoint</defName>
+    <driverClass>RimWorld.JobDriver_DeliverPawnToCell</driverClass>
+    <reportString>evacuating TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <!-- Interrupted evacuation must never leak the patient into a later mental,
+         drafted, or player-ordered job. Successful delivery already places TargetA. -->
+    <carryThingAfterJob>false</carryThingAfterJob>
+    <dropThingBeforeJob>false</dropThingBeforeJob>
+  </JobDef>
+  <JobDef>
+    <defName>SAR_CaptureInPlace</defName>
+    <driverClass>SearchAndRescue.JobDriver_CaptureInPlace</driverClass>
+    <reportString>capturing TargetA in place.</reportString>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <makeTargetPrisoner>true</makeTargetPrisoner>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>SAR_WaitForFieldTreatment</defName>
+    <driverClass>SearchAndRescue.JobDriver_StandbyForTreatment</driverClass>
+    <reportString>waiting beside TargetA for field treatment.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>SAR_RestockMedicalKit</defName>
+    <driverClass>SearchAndRescue.JobDriver_RestockMedicalKit</driverClass>
+    <reportString>collecting battlefield medical supplies for TargetB.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+  <JobDef>
+    <defName>SAR_DeliverMedicalSupply</defName>
+    <driverClass>SearchAndRescue.JobDriver_DeliverMedicalSupply</driverClass>
+    <reportString>delivering medical supplies to TargetB.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+</Defs>

@@ -1,0 +1,170 @@
+{
+  "date": "2026-09-05",
+  "method": "GABS, production methods and live JobDriver; control build restores the three original defect conditions",
+  "baseline": [
+    {
+      "TimestampUtc": "2026-09-05T23:05:19.3984036+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] delivery detail: ground=0 source=4 job=FleeAndCower",
+      "OperationId": "op_411d98ceb9a94053bfee5ded4e734532"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:05:19.3984036+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] FAIL: held inventory split delivered exactly two units",
+      "OperationId": "op_411d98ceb9a94053bfee5ded4e734532"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:05:19.3984036+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: supply driver terminates",
+      "OperationId": "op_411d98ceb9a94053bfee5ded4e734532"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:05:19.3984036+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: supply observation covers 1200 ticks",
+      "OperationId": "op_411d98ceb9a94053bfee5ded4e734532"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:05:09.3366667+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] prepared held-supply; advance 1200 ticks then Check supply regression. source=MedicineIndustrial49179",
+      "OperationId": "op_fe934cd1aebe48688d9858d0874b5f2f"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:04:58.2224987+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: new bed enables onward transport from rescue point",
+      "OperationId": "op_a9fcccd6d0734096be0987a739aa3047"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:04:58.2224987+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: changed rescue point enables transport",
+      "OperationId": "op_a9fcccd6d0734096be0987a739aa3047"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:04:58.2214958+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] FAIL: no repeated route at existing rescue point",
+      "OperationId": "op_a9fcccd6d0734096be0987a739aa3047"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:04:58.2204949+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: medical bed remains valid",
+      "OperationId": "op_a9fcccd6d0734096be0987a739aa3047"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:04:58.2204949+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] FAIL: ordinary bed satisfies production delivery contract",
+      "OperationId": "op_a9fcccd6d0734096be0987a739aa3047"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:04:58.2204949+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: ordinary bed is selected by production search",
+      "OperationId": "op_a9fcccd6d0734096be0987a739aa3047"
+    }
+  ],
+  "final": [
+    {
+      "TimestampUtc": "2026-09-05T23:10:04.0024415+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] delivery detail: ground=0 source=4 job=GotoWander",
+      "OperationId": "op_5ca1d4f7d1af4d1fa3a4ddef633f47a8"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:10:04.0024415+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: changed-owner pickup rejected without moving inventory",
+      "OperationId": "op_5ca1d4f7d1af4d1fa3a4ddef633f47a8"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:10:04.0024415+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: supply driver terminates",
+      "OperationId": "op_5ca1d4f7d1af4d1fa3a4ddef633f47a8"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:10:04.0024415+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: supply observation covers 1200 ticks",
+      "OperationId": "op_5ca1d4f7d1af4d1fa3a4ddef633f47a8"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:53.9519797+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] prepared changed-owner; advance 1200 ticks then Check supply regression. source=MedicineIndustrial49160",
+      "OperationId": "op_bc6e196c219e42078eb8d76fb2e27a92"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:51.7640552+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] delivery detail: ground=2 source=2 job=GotoWander",
+      "OperationId": "op_e7edcd3eeea348b29169793684672a24"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:51.7640552+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: held inventory split delivered exactly two units",
+      "OperationId": "op_e7edcd3eeea348b29169793684672a24"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:51.7640552+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: supply driver terminates",
+      "OperationId": "op_e7edcd3eeea348b29169793684672a24"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:51.7640552+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: supply observation covers 1200 ticks",
+      "OperationId": "op_e7edcd3eeea348b29169793684672a24"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6850069+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] prepared held-supply; advance 1200 ticks then Check supply regression. source=MedicineIndustrial49175",
+      "OperationId": "op_76ccae0e4a90421b8538ec2a19dd3679"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6280423+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: new bed enables onward transport from rescue point",
+      "OperationId": "op_c998e265a55247b699514dc9be22d643"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6280423+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: changed rescue point enables transport",
+      "OperationId": "op_c998e265a55247b699514dc9be22d643"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6275381+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: no repeated route at existing rescue point",
+      "OperationId": "op_c998e265a55247b699514dc9be22d643"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6250252+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: medical bed remains valid",
+      "OperationId": "op_c998e265a55247b699514dc9be22d643"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6250252+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: ordinary bed satisfies production delivery contract",
+      "OperationId": "op_c998e265a55247b699514dc9be22d643"
+    },
+    {
+      "TimestampUtc": "2026-09-05T23:09:41.6250252+08:00",
+      "Level": "info",
+      "Message": "[SAR live regression] PASS: ordinary bed is selected by production search",
+      "OperationId": "op_c998e265a55247b699514dc9be22d643"
+    }
+  ]
+}

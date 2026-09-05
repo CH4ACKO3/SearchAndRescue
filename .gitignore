@@ -1,0 +1,12 @@
+.idea/
+.vs/
+**/bin/
+**/obj/
+References/
+Assemblies/*.dll
+Assemblies/*.pdb
+About/PublishedFileId.txt
+*.user
+*.suo
+.DS_Store
+Thumbs.db

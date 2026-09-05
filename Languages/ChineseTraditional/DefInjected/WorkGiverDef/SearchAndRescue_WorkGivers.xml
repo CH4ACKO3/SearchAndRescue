@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_CaptureMarked.label>俘虜已標記的戰場傷員</SAR_CaptureMarked.label>
+  <SAR_CaptureMarked.verb>俘虜</SAR_CaptureMarked.verb>
+  <SAR_CaptureMarked.gerund>正在俘虜</SAR_CaptureMarked.gerund>
+
+  <SAR_TreatMarked.label>協調緊急醫療</SAR_TreatMarked.label>
+  <SAR_TreatMarked.verb>穩定傷勢</SAR_TreatMarked.verb>
+  <SAR_TreatMarked.gerund>正在穩定傷勢</SAR_TreatMarked.gerund>
+
+  <SAR_FollowupTreatMarked.label>協調後續治療</SAR_FollowupTreatMarked.label>
+  <SAR_FollowupTreatMarked.verb>治療</SAR_FollowupTreatMarked.verb>
+  <SAR_FollowupTreatMarked.gerund>正在治療</SAR_FollowupTreatMarked.gerund>
+
+  <SAR_AutomaticRoutineTreat.label>協調自動普通治療</SAR_AutomaticRoutineTreat.label>
+  <SAR_AutomaticRoutineTreat.verb>治療</SAR_AutomaticRoutineTreat.verb>
+  <SAR_AutomaticRoutineTreat.gerund>正在治療</SAR_AutomaticRoutineTreat.gerund>
+
+  <SAR_SupportiveCareMarkedNursing.label>協調緊急支持治療</SAR_SupportiveCareMarkedNursing.label>
+  <SAR_SupportiveCareMarkedNursing.verb>實施支持治療</SAR_SupportiveCareMarkedNursing.verb>
+  <SAR_SupportiveCareMarkedNursing.gerund>正在實施支持治療</SAR_SupportiveCareMarkedNursing.gerund>
+
+  <SAR_RescueMarkedHauling.label>轉移已標記的戰場傷員</SAR_RescueMarkedHauling.label>
+  <SAR_RescueMarkedHauling.verb>轉移</SAR_RescueMarkedHauling.verb>
+  <SAR_RescueMarkedHauling.gerund>正在轉移</SAR_RescueMarkedHauling.gerund>
+
+  <SAR_RescueMarkedParamedic.label>由急救機械轉移已標記的戰場傷員</SAR_RescueMarkedParamedic.label>
+  <SAR_RescueMarkedParamedic.verb>轉移</SAR_RescueMarkedParamedic.verb>
+  <SAR_RescueMarkedParamedic.gerund>正在轉移</SAR_RescueMarkedParamedic.gerund>
+
+  <SAR_RescueMarkedNursing.label>由護士轉移已標記的戰場傷員</SAR_RescueMarkedNursing.label>
+  <SAR_RescueMarkedNursing.verb>轉移</SAR_RescueMarkedNursing.verb>
+  <SAR_RescueMarkedNursing.gerund>正在轉移</SAR_RescueMarkedNursing.gerund>
+</LanguageData>

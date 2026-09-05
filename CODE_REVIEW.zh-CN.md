@@ -1,0 +1,109 @@
+# Search and Rescue 核心逻辑与代码质量审查
+
+审查日期：2026-09-05。对象：当前工作目录 `Mods/SearchAndRescue` 的源码，而非 releases 中的归档版本。初次审查只报告问题；随后经用户授权完成下述修复与实机验证。
+
+## 修复进展（2026-09-05 23:10）
+
+本报告列出的三个功能问题均已修复，后文保留的是修复前的依据和触发条件。
+
+| 问题 | 修复 | Gabs 验证结果 |
+| --- | --- | --- |
+| 持有物资无法开始送货 | GotoThing 使用 SpawnedParent；预留时记录 holder，提取前复核；提取后 targetA 指向实际搬运的分堆 | 缺陷条件对照版送达 0、来源 4；修复版推进 1,200 tick 后送达 2、来源 2 |
+| 普通床位无法完成救援 | 安全床判断接受原版合法普通床，继续排除临时治疗床 | 对照版选择成功但完成契约失败；修复版两者通过，医疗床仍通过 |
+| 同一集合点反复运输 | 床位查找后抑制已到达集合点的重复路线，无需新增存档状态 | 对照版仍生成重复路线；修复版不生成，移动集合点或新增床位后重新允许运输 |
+
+额外验证：预留后把背包物资卸到地面，推进 1,200 tick，修复版中止拾取，原堆保持 4、送达 0。夹具跨存档清理旧对象的问题也已修正；最终两次补给回归共推进 2,400 tick，12 个检查全部通过，测试期间无新增 warning/error。
+
+方法与限制：目的地检查直接调用游戏内生产搜索/完成契约；补给检查执行真实 JobDriver。对照版由相同源码和夹具恢复三个原缺陷条件构建，并非重新发布旧版本。当前 13 模组配置没有启用 Vehicle Framework，因此验证了其共用的 inventory-holder 行走/提取路径，尚未验证车辆专属 cargo 事件和质量缓存，也未将集合点检查描述为完整自动调度长时间压力测试。
+
+完整 Release 构建 0 警告、0 错误；原有 40 场景、200 组随机图测试通过。修复 DLL 已同步至本机 RimWorld 安装目录，两处 SHA256 均为 `F7FC8A332BC7C01A2A16C44F6864BE29DE0AEF25EDF36DFE1CD711A82EC76267`。测试存档未覆盖。
+
+验证摘录：[Gabs 回归结果](Docs/validation/2026-09-05-gabs.json)。完整原始日志另存于本地工作目录；复跑方法见 [TESTING.zh-CN.md](TESTING.zh-CN.md)。
+
+## 结论与验证边界
+
+核心设计较完整：接诊来源与阶段区分清楚，使用最大权匹配分配工作人员，以资源账本控制物资竞争，通过 pending/active/standby/logistics 状态管理任务交接；治疗边界切换、搬运中断落地、玩家指令让权和载入恢复都有明确处理。
+
+主要风险在“准入—选取—执行—完成—重新准入”的跨层一致性，而不是匈牙利匹配算法本身。本次发现 3 项有明确调用链依据的功能问题，建议优先修复。未发现可据此报告的 P0 问题；这不等于已经排除所有严重缺陷。
+
+执行结果：
+
+- `dotnet build Mods/SearchAndRescue/Source/SearchAndRescue/SearchAndRescue.csproj -c Release --no-restore -t:Compile`：通过，0 警告、0 错误。仅编译目标检查，未重新发布模组 DLL。
+- `dotnet run --project Mods/SearchAndRescue/Tools/SchedulerSimulation/SchedulerSimulation.csproj -c Release`：40 个场景、200 组随机 N/M 图通过。
+- 交叉检查本地 RimWorld 1.6 反编译源码中的 `Toils_Goto`、`RestUtility`、`JobDriver_DeliverPawnToCell`。
+- 未启动游戏进行实机复现；下述功能问题为静态调用链确认，实际表现与兼容组合仍应按所列用例验证。没有进行全部第三方模组的逐项运行验证。
+
+## 功能问题
+
+### 1. [P1] 车辆货舱补给任务在到达提取逻辑之前失败
+
+位置（修复前行号）：[JobDriver_MedicalLogistics.cs](Source/SearchAndRescue/JobDriver_MedicalLogistics.cs)，候选来源见 `SearchAndRescueCoordinator.cs:3859、3879、3888`。
+
+触发条件：车辆静止且满足来源条件，所需药品或器材位于车辆 inventory，运输图选择 `SAR_DeliverMedicalSupply`。
+
+依据：调度器明确把车辆货舱物资加入补给候选，预留阶段也接受 inventory holder；但送货 Driver 使用 `GotoThing(ResourceIndex, PathEndMode.ClosestTouch)`，省略了 `canGotoSpawnedParent`。原版该参数默认为 false，并附加 `FailOnDespawnedOrNull`。货舱物资本身没有 Spawned，因此任务在第一个行走 Toil 即失败，后面的 `TransferMedicalSupplyFromHolder` 无法执行。相邻的医疗包补货 Driver 在第 140 行已正确传入 true。
+
+影响：车辆补给这条已声明支持的路径不能正常完成，并可能反复触发补给重试；医生自行 restock 的路径不属于这个具体故障。
+
+建议：送货时允许走向物资的 SpawnedParent，同时像 restock 一样记录并复核原 holder，防止途中所有者变化后落入未经对应预留的地面拾取分支。继续使用 Vehicle Framework cargo API 完成提取。
+
+回归：地图没有同类物资，仅静止车辆持有药品；应完成提取、送达和患者引用登记。补充车辆开始移动、货物中途卸下、货物被其他人拿走的失败回收用例。
+
+### 2. [P1] 普通人类床位可被选中，却永远不能通过安全送达判定
+
+位置：`Compatibility.cs:1838–1849、1870–1875、1920–1940`；`SearchAndRescueCoordinator.cs:1882–1906、5206–5213`。
+
+触发条件：没有合适的医疗床，但存在原版认可的普通人类床位，患者持续倒地。
+
+依据：`FindBestRescueBed` 接受原版 `RestUtility.FindBedFor` 的普通床结果，兜底枚举也只把 Medical 作为排序项，没有排除普通床。原版明确会回退到自有床及其他普通床。然而 `IsSafeRescueBed` 对人类要求 `bed.Medical == true`；`RescueCompleted` 与清理逻辑都依赖这个判定。
+
+影响：游戏搬运 Job 已成功把患者放上床，SAR 却按未完成处理，保留救援意图并进入重试。单床场景可能找不到后续目的地而长期留下标记；多个普通床时可能继续搬动患者。启用自动接诊后，在普通床上倒地的患者也持续被视为需要运输。
+
+建议：统一“可作为目的地”和“已完成运输”的契约。若普通床是允许的回退目的地，送达判断应认可它，同时独立保留后续治疗需求；若产品只接受医疗床，应在目的地搜索时排除普通人类床，并继续查找集合点。
+
+回归：分别用单个普通床、多个普通床、医疗床全满但普通床空闲、普通囚犯床和动物床验证。断言成功送达后不会因同一次倒地重复搬运，并且未解决的治疗需求仍然保留。
+
+### 3. [P2] 自动救援到集合点后再次接诊，形成重复搬运
+
+位置：`SearchAndRescueCoordinator.cs:5386–5392`，关联 `1882–1894、5206–5219、4426–4434`。
+
+触发条件：启用 EmergencyAuto 或 AllTending，没有合适床位，设置集合点，自动接诊的己方患者送达后仍然倒地。
+
+依据：集合点送达通过距离判定完成，但完成处理只移除 designation，没有为自动救援记录完成状态。下一次构建接诊信息时，`patient.Spawned && patient.Downed && !IsInSafePatientBed(patient)` 仍成立，重新加入 `AutomaticRescue`。救援就绪检查同样只排除安全床，不排除已在当前集合点的患者。
+
+影响：救援者可能反复抱起、放下同一集合点上的患者，持续消耗运输岗位和调度工作。只使用手动标记时，移除标记可结束该次救援，故此问题针对自动接诊模式。
+
+建议：记录自动救援本次送达的目的地/完成状态，或在生成具体救援任务时排除已经到达相同集合点的情况。集合点改变、患者离开该位置、可用床位出现或患者恢复后再次倒地时，再允许新的运输任务；不要因此屏蔽后续治疗。
+
+回归：自动模式无床送到集合点后持续推进至少 1,200 tick，确认不再发出相同运输；随后改变集合点或新增医疗床，确认能重新运输。
+
+## 代码质量与改进建议
+
+### 测试存在生产代码覆盖缺口，优先于继续增加兼容分支
+
+`Tools/SchedulerSimulation/SchedulerSimulation.csproj` 只直接链接生产文件 `WeightedBipartiteMatcher.cs`。例如 `Program.cs:77、416、866` 在测试内部重新实现接诊或生命周期判定。这些测试有设计示例价值，但即使真实 Coordinator/JobDriver 中的条件被破坏，模拟仍可能全部通过。上述三项缺陷也说明“40 个场景通过”不能解释为游戏流程已通过。
+
+建议把接诊、目的地完成判定、阶段转换和配额计算提取为生产端纯函数，由游戏适配层提供不可变输入，让测试直接调用同一份实现。涉及 SpawnedParent、Job reservation、搬运落地、读档以及玩家抢占的部分，保留实机集成回归，检查实际 Job 序列与账本回收。
+
+### 调度器职责过于集中，状态转换难以局部推理
+
+`SearchAndRescueCoordinator.cs` 约 6,089 行，`Compatibility.cs` 约 2,486 行。Coordinator 同时负责准入、缓存、匹配、任务构造、资源事务、抢占、标记恢复和诊断。规则在 ready、pending-valid、active-authorized、cleanup、completion 多处表达，容易出现第 2、3 项这种契约分歧。
+
+建议围绕职责逐步拆分为接诊政策、救援目的地政策、分配生命周期与资源服务；先提取公共判定及可测试输入，不要只拆成多个 partial 文件。明确几个可执行不变量：合法目的地成功交付后能够终止本次运输；每个 worker 同时只有一个即时角色；成功或中断后的资源占用可追溯回收；玩家强制工作优先。
+
+### 性能应测量候选构建，不能只看匹配规模
+
+已有 60/120/180 tick 分层维护与快照缓存，是合理的基础。但 `SupplyReachableByAvailableHauler` 会为资源重复枚举工作人员，治疗评分和字段物资分配也多次构造 LINQ 列表。匹配器按较大一侧补方阵，时间复杂度为 O(max(W,T)^3)，AllTending 扩大候选范围后要关注规模效应。
+
+建议按现有基准矩阵比较每游戏 tick 耗时、候选构建耗时、可达性检查次数、分配量和最大重建耗时。优先缓存每次快照的合格搬运者及物资索引；仅在数据证明必要时再换求解器或裁剪图。本次没有性能采样，不能据静态结构断言当前已出现卡顿。
+
+### 构建可移植性和文档需要同步
+
+原审查时，项目引用依赖特定的 Steam 安装相对路径。GitHub 发布整理时已增加可覆盖的 `RimWorldManagedDir` 和 `HarmonyAssemblyPath` 属性，并补充 README 构建说明。README 仍以手动标记工作流为主，当前三个接诊模式的详细说明可继续完善。
+
+## 建议执行顺序
+
+1. 修复车辆补给行走目标及床位选择/完成契约，并执行对应实机回归。
+2. 增加自动运输完成状态，验证集合点和普通床不会循环救援。
+3. 将关键规则从模拟副本改为直接测试生产实现，再逐步拆分 Coordinator。
+4. 收集三个接诊模式的性能基线，之后再扩展兼容范围。
