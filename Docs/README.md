@@ -15,7 +15,7 @@ Under `Source/SearchAndRescue/`; all types retain the `SearchAndRescue` namespac
 | Folder | Responsibility |
 | --- | --- |
 | Core | Startup, settings, definitions and basic eligibility |
-| Scheduling | Care admission, assignment lifecycle and weighted matching |
+| Scheduling | Care admission, worker eligibility, patient ownership, rescue destinations, assignment lifecycle and weighted matching |
 | Medical | Care plans, medical resources and supply ledger |
 | Jobs | WorkGivers and JobDrivers |
 | Commands | Designators and pawn commands |

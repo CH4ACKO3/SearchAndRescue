@@ -7,5 +7,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\WeightedBipartiteMatcher.cs" Link="WeightedBipartiteMatcher.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Scheduling\JobOwnershipRules.cs" Link="JobOwnershipRules.cs" />
   </ItemGroup>
 </Project>

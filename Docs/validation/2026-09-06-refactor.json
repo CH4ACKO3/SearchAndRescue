@@ -1,0 +1,72 @@
+{
+  "date": "2026-09-06",
+  "dllSha256": "369FAA426B4C3B8E813CA56A67A279C7C95CB57CB0E35143291DF52C0E4959CB",
+  "build": "Release net48, warnings as errors: passed",
+  "directProductionChecks": 13,
+  "existingSimulationScenarios": 40,
+  "randomMatchingGraphs": 200,
+  "live": {
+    "save": "SAR_Promo_Hospital",
+    "activeMods": 13,
+    "scope": "Production boundary fixtures; third-party NOLB/Hospitality mods were not loaded in this round. No full gameplay or performance benchmark.",
+    "checks": [
+      {
+        "message": "[SAR live regression] PASS: NOLB Kidnap is recognized as patient transport",
+        "timestampUtc": "2026-09-05T17:28:35.8103441+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: maintenance preserves externally carried marked patient",
+        "timestampUtc": "2026-09-05T17:28:35.8103441+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: maintenance still drops orphaned carry without transport job",
+        "timestampUtc": "2026-09-05T17:28:35.812976+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: marked guest rescue job construction is blocked",
+        "timestampUtc": "2026-09-05T17:28:35.812976+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: forced rescue job construction remains available",
+        "timestampUtc": "2026-09-05T17:28:35.8187376+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: third-party positive scanner result respects SAR mark",
+        "timestampUtc": "2026-09-05T17:28:35.8193556+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: forced scanner result remains available",
+        "timestampUtc": "2026-09-05T17:28:35.8193556+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: unmarked rescue remains available",
+        "timestampUtc": "2026-09-05T17:28:35.8198869+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: ordinary bed is selected by production search",
+        "timestampUtc": "2026-09-05T17:28:35.8823262+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: ordinary bed satisfies production delivery contract",
+        "timestampUtc": "2026-09-05T17:28:35.8823262+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: medical bed remains valid",
+        "timestampUtc": "2026-09-05T17:28:35.8823262+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: no repeated route at existing rescue point",
+        "timestampUtc": "2026-09-05T17:28:35.8833824+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: changed rescue point enables transport",
+        "timestampUtc": "2026-09-05T17:28:35.8833824+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: new bed enables onward transport from rescue point",
+        "timestampUtc": "2026-09-05T17:28:35.8839092+00:00"
+      }
+    ]
+  },
+  "restoration": "ModsConfig unchanged throughout; test save not overwritten; game restarted to menu."
+}

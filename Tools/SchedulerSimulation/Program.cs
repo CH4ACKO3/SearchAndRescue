@@ -14,6 +14,7 @@ static class Simulation
 
     public static int Main()
     {
+        ProductionPolicyTests.Run();
         BetterDoctorGetsSeverePatient();
         NurseTakesTransfusionWhileDoctorTakesSkilledCare();
         DoctorFallsBackToTransfusionWithoutNurse();

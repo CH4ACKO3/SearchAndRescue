@@ -528,32 +528,9 @@ namespace SearchAndRescue
 
         private bool WorkerOperational(Pawn worker)
         {
-            return worker != null && !worker.Destroyed && worker.Spawned && worker.Map == map &&
-                   !worker.Dead && !worker.Downed && !worker.InMentalState && worker.jobs != null &&
-                   worker.health?.capacities?.CapableOf(PawnCapacityDefOf.Manipulation) == true &&
-                   WorkerControlledByScheduler(worker);
+            return WorkerEligibility.WorkerOperational(worker, map);
         }
 
-        private static bool WorkerControlledByScheduler(Pawn worker)
-        {
-            if (worker == null || worker.mindState?.duty != null || !HardworkingCompatibility.CanWorkNow(worker))
-            {
-                return false;
-            }
-
-            bool playerControlled = worker.IsColonistPlayerControlled || HardworkingCompatibility.IsWorker(worker) ||
-                                    Compatibility.IsColonyWorkMech(worker) ||
-                                    Compatibility.IsTrainedRescueAnimal(worker);
-            if (!playerControlled)
-            {
-                return false;
-            }
-
-            // Persistent Field Rescue belongs to the ordinary work graph. Drafted search-and-
-            // rescue and threat-zone coordination are intentionally outside this alpha; no
-            // optional integration may opt a drafted pawn into this scheduler implicitly.
-            return !worker.Drafted;
-        }
 
         private void RecoverTransientStateAfterLoad()
         {
@@ -2375,7 +2352,7 @@ namespace SearchAndRescue
                 Job current = carrier.CurJob;
                 bool anotherTransportOwnsCarry = current != null &&
                     CompatibilityRegistry.PatientFor(carrier, current, PatientJobRole.Transport) == patient;
-                if (activeRescueOwnsCarry || anotherTransportOwnsCarry)
+                if (JobOwnershipRules.PreserveManagedCarry(activeRescueOwnsCarry, anotherTransportOwnsCarry))
                 {
                     continue;
                 }
@@ -4568,28 +4545,12 @@ namespace SearchAndRescue
                 activeByTarget.Values.Any(assignment => assignment.Worker == worker) ||
                 activeLogisticsByWorker.ContainsKey(worker) ||
                 (!allowActiveStandby && standbyByTarget.Values.Any(standby => standby.Worker == worker)) ||
-                !worker.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) ||
-                IsProvidingBedsideCare(worker))
+                WorkerEligibility.IsProvidingBedsideCare(worker))
             {
                 return false;
             }
 
-            switch (stage)
-            {
-                case SearchAndRescueStage.Treat:
-                case SearchAndRescueStage.Restock:
-                    return Compatibility.CanPerformAnyTreatmentWork(worker);
-                case SearchAndRescueStage.FollowupTreat:
-                    return Compatibility.CanPerformFollowupTreatmentWork(worker);
-                case SearchAndRescueStage.Capture:
-                    return Compatibility.CanPerformCaptureWork(worker);
-                case SearchAndRescueStage.Rescue:
-                    return Compatibility.CanPerformRescueWork(worker);
-                case SearchAndRescueStage.Supply:
-                    return Compatibility.CanPerformSupplyWork(worker);
-                default:
-                    return false;
-            }
+            return WorkerEligibility.CanPerformStage(worker, stage);
         }
 
         private bool WorkerReadyForTargetStage(
@@ -5059,48 +5020,7 @@ namespace SearchAndRescue
             out Building_Bed bed,
             out IntVec3 destination)
         {
-            bed = null;
-            destination = IntVec3.Invalid;
-            if (rescuer == null || patient == null || !rescuer.Spawned || !patient.Spawned ||
-                rescuer.Map != map || patient.Map != map)
-            {
-                return false;
-            }
-
-            bed = Compatibility.FindBestRescueBed(patient, rescuer);
-            if (bed != null)
-            {
-                if (!Compatibility.RescueBedHasReservationCapacity(bed, patient, rescuer) ||
-                    !DestinationAllowedForAnimal(rescuer, bed.Position))
-                {
-                    bed = null;
-                    return false;
-                }
-
-                destination = bed.Position;
-                return true;
-            }
-
-            Designation rescuePoint = map.designationManager
-                .SpawnedDesignationsOfDef(SearchAndRescueDefOf.SAR_RescuePoint)
-                .FirstOrDefault();
-            // Automatic admission persists while a casualty remains downed. Do not issue
-            // another carry to the point they have already reached. Keep this after bed
-            // selection so a newly available bed still enables onward evacuation; moving
-            // the point or the patient also naturally enables a new route, including on load.
-            if (rescuePoint == null || RescueCompleted(patient, rescuePoint.target.Cell, null) ||
-                !rescuer.CanReach(rescuePoint.target.Cell, PathEndMode.OnCell, Danger.Deadly))
-            {
-                return false;
-            }
-
-            if (!DestinationAllowedForAnimal(rescuer, rescuePoint.target.Cell))
-            {
-                return false;
-            }
-
-            destination = rescuePoint.target.Cell;
-            return true;
+            return RescueDestinationPlanner.TryFind(map, rescuer, patient, out bed, out destination);
         }
 
         private bool TryFindRescueDestinationCached(
@@ -5128,14 +5048,7 @@ namespace SearchAndRescue
 
         private static bool DestinationAllowedForAnimal(Pawn worker, IntVec3 destination)
         {
-            if (!Compatibility.IsTrainedRescueAnimal(worker) || worker.playerSettings == null ||
-                !worker.playerSettings.RespectsAllowedArea)
-            {
-                return true;
-            }
-
-            Area area = worker.playerSettings.EffectiveAreaRestrictionInPawnCurrentMap;
-            return area == null || area[destination];
+            return RescueDestinationPlanner.DestinationAllowedForAnimal(worker, destination);
         }
 
         private static bool NeedsFieldStabilization(Pawn patient)
@@ -5210,17 +5123,7 @@ namespace SearchAndRescue
 
         private static bool RescueCompleted(Pawn patient, IntVec3 destination, Building_Bed destinationBed)
         {
-            if (destinationBed != null)
-            {
-                Building_Bed currentBed = patient.CurrentBed();
-                return !destinationBed.Destroyed && currentBed == destinationBed &&
-                       Compatibility.IsSafeRescueBed(currentBed, patient);
-            }
-
-            // A bed delivery only succeeds once the patient is actually tucked in. Proximity
-            // is sufficient solely for the fallback rescue-point job.
-            return destination.IsValid &&
-                   patient.Position.DistanceToSquared(destination) <= 2f;
+            return RescueDestinationPlanner.RescueCompleted(patient, destination, destinationBed);
         }
 
         private static bool IsCarriedByActiveRescuer(Pawn patient, ActiveAssignment assignment)
@@ -5233,15 +5136,15 @@ namespace SearchAndRescue
         private static bool AssignmentJobStillRunning(ActiveAssignment assignment)
         {
             Job current = assignment?.Worker?.CurJob;
-            return current != null && ReferenceEquals(current, assignment.Job) &&
-                   current.def == assignment.JobDef;
+            return JobOwnershipRules.IsSameRunningJob(
+                current, assignment?.Job, current?.def, assignment?.JobDef);
         }
 
         private static bool StandbyJobStillRunning(ActiveStandby standby)
         {
             Job current = standby?.Worker?.CurJob;
-            return current != null && ReferenceEquals(current, standby.Job) &&
-                   current.def == standby.JobDef;
+            return JobOwnershipRules.IsSameRunningJob(
+                current, standby?.Job, current?.def, standby?.JobDef);
         }
 
         private bool IsCarriedByAnyPawn(Pawn patient)
@@ -5261,22 +5164,10 @@ namespace SearchAndRescue
             });
         }
 
-        private static bool IsProvidingBedsideCare(Pawn worker)
-        {
-            Job job = worker.CurJob;
-            if (job == null || !Compatibility.IsTreatmentJob(job.def))
-            {
-                return false;
-            }
-
-            Pawn patient = CompatibilityRegistry.PatientFor(worker, job, PatientJobRole.Treatment);
-            return patient != null && IsInSafePatientBed(patient);
-        }
 
         private static bool IsInSafePatientBed(Pawn pawn)
         {
-            Building_Bed bed = pawn.CurrentBed();
-            return pawn.InBed() && Compatibility.IsSafeRescueBed(bed, pawn);
+            return RescueDestinationPlanner.IsInSafePatientBed(pawn);
         }
 
         private List<Pawn> AllMarkedPawns()
