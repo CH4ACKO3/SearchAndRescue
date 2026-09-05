@@ -6,7 +6,7 @@ param(
 $ErrorActionPreference = "Stop"
 $modRoot = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot ".."))
 if ([string]::IsNullOrWhiteSpace($OutputRoot)) {
-    $OutputRoot = [System.IO.Path]::GetFullPath((Join-Path $modRoot "..\..\work\releases"))
+    $OutputRoot = [System.IO.Path]::GetFullPath((Join-Path $modRoot "artifacts\releases"))
 }
 else {
     $OutputRoot = [System.IO.Path]::GetFullPath($OutputRoot)
@@ -46,7 +46,7 @@ foreach ($directory in @("About", "Assemblies", "Defs", "Languages", "Patches", 
 Copy-Item -LiteralPath (Join-Path $modRoot "LoadFolders.xml") -Destination $stage
 
 $forbidden = Get-ChildItem -LiteralPath $stage -Recurse -Force |
-    Where-Object { $_.FullName -match '[\\/](Source|SourceAssets|References|Tools|bin|obj)([\\/]|$)' }
+    Where-Object { $_.FullName -match '[\\/](Source|SourceAssets|References|Tools|Docs|bin|obj)([\\/]|$)' }
 if ($forbidden) {
     throw "Forbidden development files entered the release stage."
 }

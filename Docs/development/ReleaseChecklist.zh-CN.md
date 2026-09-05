@@ -7,7 +7,7 @@
 - `dotnet run --project Tools/SchedulerSimulation/SchedulerSimulation.csproj -c Release`
 - 三套语言的 Keyed key、DefInjected 文件和 XML 结构一致。
 - `About/preview.png` 小于 1 MiB；`About.xml` 的 packageId、版本和唯一硬依赖正确。
-- 运行 `Tools/BuildRelease.ps1`，确认暂存包不含 Source、SourceAssets、References、Tools、bin 或 obj。
+- 从仓库根目录运行 `Tools/BuildRelease.ps1`，默认输出到 `artifacts/releases/`；确认暂存包不含 Source、SourceAssets、References、Tools、Docs、bin 或 obj。
 
 ## 实机冒烟
 
@@ -21,7 +21,7 @@
 
 ## 创意工坊页面
 
-- Steam 默认语言使用 `WORKSHOP_DESCRIPTION.md`，简体中文页面使用 `WORKSHOP_DESCRIPTION.zh-CN.md`；逐项说明保存在 `COMPATIBILITY.zh-CN.md`，不要混入精简兼容性列表。
+- Steam 默认语言使用 [英文 BBCode](../workshop/Description.en.bbcode)，简体中文页面使用 [中文 BBCode](../workshop/Description.zh-CN.bbcode)；逐项说明保存在 [兼容性清单](../compatibility/README.zh-CN.md)，不要混入精简兼容性列表。工坊讨论区纯文本版本也保存在 `Docs/workshop/`，保留其独立措辞。
 - 已发布页面为 https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278 。发布前先核对线上英/中文描述，将作者在工坊手动修改的内容同步回本地；不要用旧版 About 或发布文案覆盖线上修改。`About.xml` 使用英文描述的游戏内纯文本版本。
 - 标签建议：`1.6`、`Mod`、`Medical`、`Utilities`。
 - 将可见性先设为“仅好友”或“隐藏”，完成订阅安装的干净复测后再公开。

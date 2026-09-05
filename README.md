@@ -12,7 +12,7 @@ Use **Orders → Search and rescue** to mark casualties. Responders prioritize p
 
 Subscribe on Steam Workshop and enable **Harmony**. Supports English, 简体中文, and 繁體中文.
 
-[Compatibility](COMPATIBILITY.md) · [兼容性](COMPATIBILITY.zh-CN.md) · [Changelog](CHANGELOG.md) · [Testing](TESTING.zh-CN.md)
+[Compatibility](Docs/compatibility/README.md) · [兼容性](Docs/compatibility/README.zh-CN.md) · [Changelog](CHANGELOG.md) · [Development & testing](Docs/README.md)
 
 ## Build
 

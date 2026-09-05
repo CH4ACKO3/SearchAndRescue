@@ -35,7 +35,7 @@ Pharmacist: Represcribed、Medical Tab 本体、Treat Dying First、Stabilize Bl
 Them、Emergency Transfusions、MedPod、Dubs Rimkit、Trauma Team Complete、Yokai Village。
 
 官方 DLC 中 Royalty、Ideology、Biotech、Odyssey 随组合启动；本机未安装 Anomaly，因此 Anomaly
-目前只有静态路径审查。完整行为边界见 `COMPATIBILITY.zh-CN.md`。
+目前只有静态路径审查。完整行为边界见 [兼容性清单](README.zh-CN.md)。
 
 ## 创意工坊复查后未新增专用补丁的项目
 
