@@ -7,6 +7,7 @@
 - `dotnet run --project Tools/SchedulerSimulation/SchedulerSimulation.csproj -c Release`
 - 三套语言的 Keyed key、DefInjected 文件和 XML 结构一致。
 - `About/preview.png` 小于 1 MiB；`About.xml` 的 packageId、版本和唯一硬依赖正确。
+- 发布包根目录包含完整 `LICENSE`，README、About 和中英文工坊描述的 MIT 协议说明一致。
 - 从仓库根目录运行 `Tools/BuildRelease.ps1`，默认输出到 `artifacts/releases/`；确认暂存包不含 Source、SourceAssets、References、Tools、Docs、bin 或 obj。
 
 ## 实机冒烟

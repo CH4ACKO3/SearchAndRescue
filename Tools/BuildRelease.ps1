@@ -25,7 +25,8 @@ $requiredFiles = @(
     "About\About.xml",
     "About\preview.png",
     "Assemblies\SearchAndRescue.dll",
-    "LoadFolders.xml"
+    "LoadFolders.xml",
+    "LICENSE"
 )
 foreach ($relativePath in $requiredFiles) {
     $source = Join-Path $modRoot $relativePath
@@ -44,6 +45,7 @@ foreach ($directory in @("About", "Assemblies", "Defs", "Languages", "Patches", 
     Copy-Item -LiteralPath (Join-Path $modRoot $directory) -Destination $stage -Recurse
 }
 Copy-Item -LiteralPath (Join-Path $modRoot "LoadFolders.xml") -Destination $stage
+Copy-Item -LiteralPath (Join-Path $modRoot "LICENSE") -Destination $stage
 
 $forbidden = Get-ChildItem -LiteralPath $stage -Recurse -Force |
     Where-Object { $_.FullName -match '[\\/](Source|SourceAssets|References|Tools|Docs|bin|obj)([\\/]|$)' }

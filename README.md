@@ -1,6 +1,6 @@
 # Search and Rescue
 
-[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278) · RimWorld 1.6 · Alpha
+[Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278) · RimWorld 1.6 · Alpha · [MIT License](LICENSE)
 
 Coordinate battlefield treatment, evacuation, capture, and medical supplies through a dedicated **Field Rescue** work type.
 
