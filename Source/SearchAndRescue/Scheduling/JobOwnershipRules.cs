@@ -1,16 +1,7 @@
-#nullable enable
-using System;
-
 namespace SearchAndRescue
 {
     internal static class JobOwnershipRules
     {
-        internal static bool IsSameRunningJob(object? current, object? assigned, object? currentDef, object? assignedDef)
-        {
-            // Jobs are pooled: identity alone is insufficient after a Job changes definition.
-            return current != null && ReferenceEquals(current, assigned) && ReferenceEquals(currentDef, assignedDef);
-        }
-
         internal static bool ExternalCarryBlocksScheduling(bool hasCurrentJob, bool activeSarJob)
         {
             // Unknown external JobDefs are still protected at the planning boundary.

@@ -22,6 +22,12 @@ Under `Source/SearchAndRescue/`; all types retain the `SearchAndRescue` namespac
 | Compatibility | Mod adapters, ownership registry and Harmony patches |
 | Diagnostics | Developer fixtures, regressions and performance reports |
 
+Ownership changes should enter through `ActiveJobClaims`; its primary, logistics and standby views are read-only. Patient-wide cancellation detaches every active lane before calling JobTracker. The coordinator retains resource release, pending plans and stage completion effects.
+
+Use `JobIdentity` (object, definition and native `loadID`) for live job ownership, and `JobEndSnapshot` across `EndCurrentJob` prefix/postfix. A pooled Job may already be cleared or reused in the postfix. Preserve the difference between an issued claim and a currently running job; WorkGivers register before the driver starts.
+
+`AssignmentStageRules` defines role aliases; `WorkerReadinessRules` handles occupancy exclusions; `WorkerEligibility` queries live worker/provider permission. New compatibility adapters should register patient job roles in `CompatibilityRegistry`, rather than add independent ownership checks. The simulation links these pure production rules directly; game-bound claim and callback checks live in `LiveRegressionDiagnostics`.
+
 RimWorld's runtime folders (`About`, `Assemblies`, `Defs`, `Languages`, `Patches`, `Textures`) remain at the repository root. `SourceAssets` holds editable artwork; its local `References` subfolder is ignored by Git. Builds use ignored `bin`/`obj` folders, and release packages go to `artifacts/releases`.
 
 Build instructions are in the [README](../README.md). Run build, simulation and packaging commands from the repository root.

@@ -84,8 +84,9 @@ namespace SearchAndRescue
         };
 
         private readonly Dictionary<Pawn, PendingAssignment> pendingByWorker = new Dictionary<Pawn, PendingAssignment>();
-        private readonly Dictionary<Pawn, ActiveAssignment> activeByTarget = new Dictionary<Pawn, ActiveAssignment>();
-        private readonly Dictionary<Pawn, ActiveStandby> standbyByTarget = new Dictionary<Pawn, ActiveStandby>();
+        private readonly ActiveJobClaims activeClaims = new ActiveJobClaims();
+        private IReadOnlyDictionary<Pawn, ActiveAssignment> activeByTarget => activeClaims.Primary;
+        private IReadOnlyDictionary<Pawn, ActiveStandby> standbyByTarget => activeClaims.Standby;
         private readonly Dictionary<StageRetryKey, StageRetryState> retryByStage =
             new Dictionary<StageRetryKey, StageRetryState>();
         private readonly Dictionary<Pawn, int> lastTravelSwitchAt = new Dictionary<Pawn, int>();
@@ -94,8 +95,7 @@ namespace SearchAndRescue
         private readonly Dictionary<Pawn, CareAdmission> careAdmissions =
             new Dictionary<Pawn, CareAdmission>();
         private List<RecentMarkerMemory> recentMarkerMemories = new List<RecentMarkerMemory>();
-        private readonly Dictionary<Pawn, ActiveAssignment> activeLogisticsByWorker =
-            new Dictionary<Pawn, ActiveAssignment>();
+        private IReadOnlyDictionary<Pawn, ActiveAssignment> activeLogisticsByWorker => activeClaims.Logistics;
         private readonly Dictionary<Pawn, SoftCareClaim> careAffinityClaims =
             new Dictionary<Pawn, SoftCareClaim>();
         // Legacy per-map roster. Humanlike entries are migrated once to SAR_FieldRescue;
@@ -165,7 +165,7 @@ namespace SearchAndRescue
                     continue;
                 }
 
-                activeByTarget.Remove(pair.Key);
+                activeClaims.ReleasePrimary(pair.Key);
                 medicalResources.ReleaseWorker(pair.Value.Worker);
                 InterruptAssignmentWorker(pair.Value);
             }
@@ -176,7 +176,7 @@ namespace SearchAndRescue
                     continue;
                 }
 
-                activeLogisticsByWorker.Remove(pair.Key);
+                activeClaims.ReleaseLogistics(pair.Key);
                 medicalResources.ReleaseWorker(pair.Key);
                 InterruptAssignmentWorker(pair.Value);
             }
@@ -405,12 +405,12 @@ namespace SearchAndRescue
             foreach (KeyValuePair<Pawn, ActiveAssignment> pair in activeByTarget
                          .Where(pair => pair.Value.Worker == pawn).ToList())
             {
-                activeByTarget.Remove(pair.Key);
+                activeClaims.ReleasePrimary(pair.Key);
                 InterruptAssignmentWorker(pair.Value);
             }
             if (activeLogisticsByWorker.TryGetValue(pawn, out ActiveAssignment logistics))
             {
-                activeLogisticsByWorker.Remove(pawn);
+                activeClaims.ReleaseLogistics(pawn);
                 InterruptAssignmentWorker(logistics);
             }
             foreach (Pawn patient in standbyByTarget
@@ -531,14 +531,11 @@ namespace SearchAndRescue
             return WorkerEligibility.WorkerOperational(worker, map);
         }
 
-
         private void RecoverTransientStateAfterLoad()
         {
             postLoadRecoveryPending = false;
             pendingByWorker.Clear();
-            activeByTarget.Clear();
-            activeLogisticsByWorker.Clear();
-            standbyByTarget.Clear();
+            activeClaims.Clear();
             retryByStage.Clear();
             careAffinityClaims.Clear();
             deferredWakeWorkers.Clear();
@@ -882,13 +879,13 @@ namespace SearchAndRescue
                     return null;
                 }
 
-                standbyByTarget[pending.Target] = new ActiveStandby(
+                activeClaims.Register(new ActiveStandby(
                     worker,
                     pending.Target,
                     job,
                     doctor,
                     treatmentJob,
-                    now + treatmentTicks);
+                    now + treatmentTicks));
                 preferredRescuerByTarget[pending.Target] = worker;
                 return job;
             }
@@ -904,15 +901,10 @@ namespace SearchAndRescue
                 CountUntendedHediffs(pending.Target),
                 pending.Target.health.hediffSet.BleedRateTotal,
                 Compatibility.FieldEmergencySeverity(pending.Target),
-                activeAdmission.Origin);
-            if (pending.Stage == SearchAndRescueStage.Supply)
-            {
-                activeLogisticsByWorker[worker] = active;
-            }
-            else
-            {
-                activeByTarget[pending.Target] = active;
-            }
+                activeAdmission.Origin,
+                GetBloodLossSeverity(pending.Target),
+                GetHediffSeverity(pending.Target, "Hemodilution"));
+            activeClaims.Register(active);
             if (pending.Stage == SearchAndRescueStage.Treat &&
                 careAffinityClaims.TryGetValue(pending.Target, out SoftCareClaim affinity) &&
                 affinity.Worker == worker && affinity.ConsumeOnTreatmentStart)
@@ -1041,33 +1033,17 @@ namespace SearchAndRescue
 
         internal bool IsActiveJob(Pawn worker, Job job, SearchAndRescueStage? stage = null)
         {
-            if (worker == null || job == null)
-            {
-                return false;
-            }
-
-            if (activeByTarget.Values.Any(assignment => assignment.Worker == worker && assignment.Job == job &&
-                    (!stage.HasValue || StageMatchesRequest(assignment.Stage, stage.Value))) ||
-                activeLogisticsByWorker.Values.Any(assignment => assignment.Worker == worker &&
-                    assignment.Job == job && (!stage.HasValue || StageMatchesRequest(assignment.Stage, stage.Value))))
-            {
-                return true;
-            }
-
-            return (!stage.HasValue || stage.Value == SearchAndRescueStage.Rescue) &&
-                   standbyByTarget.Values.Any(standby => standby.Worker == worker && standby.Job == job);
+            return activeClaims.Owns(worker, ActiveJobClaims.IdentityOf(job), stage);
         }
 
         private static bool StageMatchesRequest(SearchAndRescueStage actual, SearchAndRescueStage requested)
         {
-            return actual == requested || requested == SearchAndRescueStage.Treat &&
-                   (actual == SearchAndRescueStage.Restock || actual == SearchAndRescueStage.FollowupTreat) ||
-                   requested == SearchAndRescueStage.Rescue && actual == SearchAndRescueStage.Supply;
+            return AssignmentStageRules.Matches(actual, requested);
         }
 
         private static bool IsTreatmentStage(SearchAndRescueStage stage)
         {
-            return stage == SearchAndRescueStage.Treat || stage == SearchAndRescueStage.FollowupTreat;
+            return AssignmentStageRules.IsTreatment(stage);
         }
 
         internal void NotifyPlayerOrderedPatientJob(Pawn orderedWorker, Job job)
@@ -1089,6 +1065,10 @@ namespace SearchAndRescue
                 return;
             }
 
+            // Detach every active lane before EndCurrentJob can re-enter a WorkGiver.
+            // The mark and persistent field supplies still belong to the patient.
+            activeClaims.DetachPatient(target, out assignment,
+                out List<ActiveAssignment> detachedDeliveries, out ActiveStandby detachedStandby);
             RequestScheduleRebuild(maintenance: true);
 
             foreach (Pawn worker in pendingByWorker
@@ -1111,26 +1091,23 @@ namespace SearchAndRescue
             {
                 careAffinityClaims.Remove(claimedPatient);
             }
-            foreach (KeyValuePair<Pawn, ActiveAssignment> logistics in activeLogisticsByWorker
-                         .Where(pair => pair.Value.Target == target).ToList())
+            foreach (ActiveAssignment logistics in detachedDeliveries)
             {
-                activeLogisticsByWorker.Remove(logistics.Key);
-                if (AssignmentJobStillRunning(logistics.Value))
+                if (AssignmentJobStillRunning(logistics))
                 {
-                    // Do not let EndCurrentJob synchronously run the think tree and reacquire
-                    // the patient before TryTakeOrderedJob has made the player's reservation.
-                    logistics.Key.jobs.EndCurrentJob(
-                        JobCondition.InterruptForced,
-                        startNewJob: false);
+                    // The incoming ordered job has not reserved its target yet.
+                    logistics.Worker.jobs.EndCurrentJob(JobCondition.InterruptForced, startNewJob: false);
                 }
             }
-            StopStandby(target, startNewJob: false);
+            if (StandbyJobStillRunning(detachedStandby))
+            {
+                detachedStandby.Worker.jobs.EndCurrentJob(JobCondition.Succeeded, startNewJob: false);
+            }
             if (assignment == null)
             {
                 return;
             }
 
-            activeByTarget.Remove(target);
             if (assignment.Stage == SearchAndRescueStage.Rescue && assignment.Worker != null)
             {
                 preferredRescuerByTarget[target] = assignment.Worker;
@@ -1146,18 +1123,22 @@ namespace SearchAndRescue
             return CompatibilityRegistry.HasRole(jobDef, PatientJobRole.Any);
         }
 
-        internal void NotifyExternalPatientJobEnded(Pawn worker, Job job)
+        internal JobEndSnapshot CaptureJobEnd(Pawn worker)
         {
-            if (job == null || IsActiveJob(worker, job))
-            {
-                return;
-            }
+            Job job = worker?.CurJob;
+            return new JobEndSnapshot(
+                ActiveJobClaims.IdentityOf(job),
+                IsActiveJob(worker, job),
+                CompatibilityRegistry.PatientFor(worker, job),
+                job != null && !job.playerForced && IsRoutineBoundaryJob(job));
+        }
 
-            Pawn patient = CompatibilityRegistry.PatientFor(worker, job);
+        internal void NotifyExternalPatientJobEnded(JobEndSnapshot ended)
+        {
+            if (ended.WasManaged) return;
+            Pawn patient = ended.Patient;
             if (patient?.MapHeld == map && HasAnyCareInterest(patient))
             {
-                // External treatment/transport is a temporary ownership lease. Its natural
-                // job boundary is the best possible wake-up signal for the unified graph.
                 ClearTargetRetries(patient);
                 RequestScheduleRebuild(maintenance: true, delayTicks: 0);
             }
@@ -1223,7 +1204,7 @@ namespace SearchAndRescue
                         continue;
                     }
 
-                    activeByTarget.Remove(target);
+                    activeClaims.ReleasePrimary(target);
                     InterruptAssignmentWorker(assignment);
                 }
             }
@@ -1278,15 +1259,11 @@ namespace SearchAndRescue
                 return;
             }
 
-            ActiveAssignment assignment = activeByTarget.Values.FirstOrDefault(active =>
-                                              active.Worker == worker && active.Job == job) ??
-                                          activeLogisticsByWorker.Values.FirstOrDefault(active =>
-                                              active.Worker == worker && active.Job == job);
+            ActiveAssignment assignment = activeClaims.FindAssignment(worker, ActiveJobClaims.IdentityOf(job));
             Pawn target = assignment?.Target;
             if (target == null)
             {
-                target = standbyByTarget.Values.FirstOrDefault(standby =>
-                    standby.Worker == worker && standby.Job == job)?.Target;
+                target = activeClaims.FindStandby(worker, ActiveJobClaims.IdentityOf(job))?.Target;
             }
 
             if (assignment != null)
@@ -1323,15 +1300,14 @@ namespace SearchAndRescue
             RequestScheduleRebuild(maintenance: true);
         }
 
-        internal void NotifyManagedJobEnded(Pawn worker, Job job, JobCondition condition)
+        internal void NotifyManagedJobEnded(Pawn worker, JobEndSnapshot ended, JobCondition condition)
         {
-            if (condition != JobCondition.Succeeded || worker == null || job == null)
+            if (condition != JobCondition.Succeeded || worker == null || !ended.WasManaged)
             {
                 return;
             }
 
-            ActiveAssignment assignment = activeByTarget.Values.FirstOrDefault(active =>
-                active.Worker == worker && active.Job == job);
+            ActiveAssignment assignment = activeClaims.FindPrimary(worker, ended.Identity);
             if (assignment == null || assignment.Target == null ||
                 !activeByTarget.TryGetValue(assignment.Target, out ActiveAssignment current) ||
                 current != assignment)
@@ -1342,7 +1318,7 @@ namespace SearchAndRescue
             // EndCurrentJob's postfix runs after vanilla has installed its short transition
             // wait. Settle against the actual ending job here, before cleanup or another
             // WorkGiver can mistake a finished round for an abandoned assignment.
-            activeByTarget.Remove(assignment.Target);
+            activeClaims.ReleasePrimary(assignment.Target);
             medicalResources.ReleaseWorker(worker);
             if (IsTreatmentStage(assignment.Stage) &&
                 (assignment.JobDef != JobDefOf.TendPatient ||
@@ -1363,12 +1339,12 @@ namespace SearchAndRescue
             RequestScheduleRebuild(maintenance: true, delayTicks: 1);
         }
 
-        internal void NotifyRoutineWorkBoundary(Pawn worker, Job job, JobCondition condition)
+        internal void NotifyRoutineWorkBoundary(Pawn worker, JobEndSnapshot ended, JobCondition condition)
         {
-            if (condition != JobCondition.Succeeded || worker == null || job == null ||
-                job.playerForced || !IsRoutineBoundaryJob(job) || !WorkerOperational(worker) ||
+            if (condition != JobCondition.Succeeded || worker == null ||
+                !ended.WasAutomaticRoutineWork || !WorkerOperational(worker) ||
                 !IsFieldResponder(worker) ||
-                activeByTarget.Values.Any(active => active.Worker == worker) ||
+                activeClaims.HasPrimaryWorker(worker) ||
                 activeLogisticsByWorker.ContainsKey(worker))
             {
                 return;
@@ -1394,7 +1370,7 @@ namespace SearchAndRescue
             }
 
             if (!activeByTarget.TryGetValue(patient, out ActiveAssignment assignment) ||
-                assignment.Worker != doctor || assignment.Job != job ||
+                !ActiveJobClaims.Matches(assignment, doctor, ActiveJobClaims.IdentityOf(job)) ||
                 !IsTreatmentStage(assignment.Stage))
             {
                 YieldExternalTendAtSafeBoundary(doctor, patient, job);
@@ -1433,7 +1409,7 @@ namespace SearchAndRescue
             if (job.playerForced || job.endAfterTendedOnce || !WorkerOperational(doctor) ||
                 !doctor.health.capacities.CapableOf(PawnCapacityDefOf.Manipulation) ||
                 !Compatibility.CanPerformTreatmentWork(doctor) ||
-                activeByTarget.Values.Any(active => active.Worker == doctor) ||
+                activeClaims.HasPrimaryWorker(doctor) ||
                 activeLogisticsByWorker.ContainsKey(doctor))
             {
                 return;
@@ -1701,7 +1677,7 @@ namespace SearchAndRescue
             {
                 Pawn patient = pair.Key;
                 ActiveAssignment assignment = pair.Value;
-                activeByTarget.Remove(patient);
+                activeClaims.ReleasePrimary(patient);
                 medicalResources.ReleaseWorker(assignment.Worker);
                 if (assignment.Worker != null)
                 {
@@ -1730,7 +1706,7 @@ namespace SearchAndRescue
                 if (target == null || target.Destroyed || target.Dead ||
                     target.Spawned && target.Map != map)
                 {
-                    activeByTarget.Remove(target);
+                    activeClaims.ReleasePrimary(target);
                     medicalResources.ReleaseWorker(assignment.Worker);
                     InterruptAssignmentWorker(assignment);
                     continue;
@@ -1738,7 +1714,7 @@ namespace SearchAndRescue
 
                 if (!WorkerOperational(assignment.Worker))
                 {
-                    activeByTarget.Remove(target);
+                    activeClaims.ReleasePrimary(target);
                     medicalResources.ReleaseWorker(assignment.Worker);
                     ClearStageRetry(target, assignment.Stage);
                     InterruptAssignmentWorker(assignment);
@@ -1748,7 +1724,7 @@ namespace SearchAndRescue
 
                 if (!ActiveAssignmentAuthorized(target, assignment))
                 {
-                    activeByTarget.Remove(target);
+                    activeClaims.ReleasePrimary(target);
                     medicalResources.ReleaseWorker(assignment.Worker);
                     ClearDesignationRetries(target, assignment.Stage);
                     InterruptAssignmentWorker(assignment);
@@ -1757,7 +1733,7 @@ namespace SearchAndRescue
 
                 if (!ActiveTargetControlValid(target, assignment.Stage, assignment))
                 {
-                    activeByTarget.Remove(target);
+                    activeClaims.ReleasePrimary(target);
                     medicalResources.ReleaseWorker(assignment.Worker);
                     ClearStageRetry(target, assignment.Stage);
                     InterruptAssignmentWorker(assignment);
@@ -1772,7 +1748,7 @@ namespace SearchAndRescue
                         continue;
                     }
 
-                    activeByTarget.Remove(target);
+                    activeClaims.ReleasePrimary(target);
                     medicalResources.ReleaseWorker(assignment.Worker);
                     InterruptAssignmentWorker(assignment);
                     continue;
@@ -1795,7 +1771,7 @@ namespace SearchAndRescue
                     continue;
                 }
 
-                activeByTarget.Remove(target);
+                activeClaims.ReleasePrimary(target);
                 medicalResources.ReleaseWorker(assignment.Worker);
                 CompleteActiveAssignment(target, assignment, now);
             }
@@ -1949,7 +1925,7 @@ namespace SearchAndRescue
                                 now - assignment.StartedAt >= JobStartGraceTicks;
                 if (invalidWorker || invalidPatient || jobEnded)
                 {
-                    activeLogisticsByWorker.Remove(worker);
+                    activeClaims.ReleaseLogistics(worker);
                     medicalResources.ReleaseWorker(worker);
                     if ((invalidWorker || invalidPatient) && AssignmentJobStillRunning(assignment) &&
                         worker.Spawned && worker.jobs != null)
@@ -1995,7 +1971,7 @@ namespace SearchAndRescue
                     continue;
                 }
 
-                standbyByTarget.Remove(target);
+                activeClaims.ReleaseStandby(target);
                 if (StandbyJobStillRunning(standby))
                 {
                     standby.Worker.jobs.EndCurrentJob(JobCondition.Succeeded);
@@ -2009,8 +1985,7 @@ namespace SearchAndRescue
         {
             int now = Find.TickManager.TicksGame;
             return patient != null && standbyByTarget.TryGetValue(patient, out ActiveStandby standby) &&
-                   standby.Worker == worker && standby.Job == standbyJob &&
-                   standbyJob?.def == standby.JobDef &&
+                   ActiveJobClaims.Matches(standby, worker, ActiveJobClaims.IdentityOf(standbyJob)) &&
                    ActiveStandbyStillValid(standby, now);
         }
 
@@ -2021,7 +1996,7 @@ namespace SearchAndRescue
                 return;
             }
 
-            standbyByTarget.Remove(target);
+            activeClaims.ReleaseStandby(target);
             if (StandbyJobStillRunning(standby))
             {
                 standby.Worker.jobs.EndCurrentJob(JobCondition.Succeeded, startNewJob);
@@ -2165,7 +2140,7 @@ namespace SearchAndRescue
                 // emergency. During an actual tend bar we still wait for the wound boundary;
                 // this branch only preempts doctors who are travelling.
 
-                activeByTarget.Remove(currentPatient);
+                activeClaims.ReleasePrimary(currentPatient);
                 medicalResources.ReleaseWorker(doctor);
                 SetStageRetry(currentPatient, assignment.Stage, now,
                     progressive: false, fixedDelay: TreatmentReevaluationDelay);
@@ -2641,7 +2616,7 @@ namespace SearchAndRescue
             }
             foreach (Pawn worker in workers.Where(worker =>
                          !pendingByWorker.ContainsKey(worker) &&
-                         !activeByTarget.Values.Any(active => active.Worker == worker) &&
+                         !activeClaims.HasPrimaryWorker(worker) &&
                          lastSchedulerDecision.TryGetValue(worker, out string decision) &&
                          decision == $"candidate in rebuild at {now}"))
             {
@@ -4055,8 +4030,7 @@ namespace SearchAndRescue
                        out Pawn doctor,
                        out Job treatmentJob,
                        out _) &&
-                   doctor == standby.Doctor && treatmentJob == standby.TreatmentJob &&
-                   treatmentJob?.def == standby.TreatmentJobDef;
+                   doctor == standby.Doctor && standby.TreatmentIdentity.Matches(ActiveJobClaims.IdentityOf(treatmentJob));
         }
 
         private bool TryInterruptRescueForTreatment(
@@ -4068,7 +4042,7 @@ namespace SearchAndRescue
             Pawn rescuer = rescue.Worker;
             if (rescuer == null)
             {
-                activeByTarget.Remove(patient);
+                activeClaims.ReleasePrimary(patient);
                 ClearStageRetry(patient, SearchAndRescueStage.Rescue);
                 return patient != null && patient.Spawned;
             }
@@ -4101,7 +4075,7 @@ namespace SearchAndRescue
             }
 
             preferredRescuerByTarget[patient] = rescuer;
-            activeByTarget.Remove(patient);
+            activeClaims.ReleasePrimary(patient);
             ClearStageRetry(patient, SearchAndRescueStage.Rescue);
             rescuer.jobs.EndCurrentJob(JobCondition.InterruptForced);
 
@@ -4540,15 +4514,16 @@ namespace SearchAndRescue
             SearchAndRescueStage stage,
             bool allowActiveStandby)
         {
-            if (!WorkerOperational(worker) || !IsFieldResponder(worker) ||
-                worker.CurJob?.playerForced == true ||
-                activeByTarget.Values.Any(assignment => assignment.Worker == worker) ||
-                activeLogisticsByWorker.ContainsKey(worker) ||
-                (!allowActiveStandby && standbyByTarget.Values.Any(standby => standby.Worker == worker)) ||
-                WorkerEligibility.IsProvidingBedsideCare(worker))
-            {
-                return false;
-            }
+            // Preserve short-circuiting of live provider queries for ineligible workers.
+            bool operational = WorkerOperational(worker);
+            bool responder = operational && IsFieldResponder(worker);
+            WorkerReadiness readiness = WorkerReadinessRules.Evaluate(
+                operational, responder, worker?.CurJob?.playerForced == true,
+                activeClaims.HasPrimaryWorker(worker),
+                worker != null && activeLogisticsByWorker.ContainsKey(worker),
+                activeClaims.HasStandbyWorker(worker), allowActiveStandby,
+                responder && WorkerEligibility.IsProvidingBedsideCare(worker));
+            if (readiness != WorkerReadiness.Ready) return false;
 
             return WorkerEligibility.CanPerformStage(worker, stage);
         }
@@ -5136,15 +5111,13 @@ namespace SearchAndRescue
         private static bool AssignmentJobStillRunning(ActiveAssignment assignment)
         {
             Job current = assignment?.Worker?.CurJob;
-            return JobOwnershipRules.IsSameRunningJob(
-                current, assignment?.Job, current?.def, assignment?.JobDef);
+            return assignment != null && assignment.Identity.Matches(ActiveJobClaims.IdentityOf(current));
         }
 
         private static bool StandbyJobStillRunning(ActiveStandby standby)
         {
             Job current = standby?.Worker?.CurJob;
-            return JobOwnershipRules.IsSameRunningJob(
-                current, standby?.Job, current?.def, standby?.JobDef);
+            return standby != null && standby.Identity.Matches(ActiveJobClaims.IdentityOf(current));
         }
 
         private bool IsCarriedByAnyPawn(Pawn patient)
@@ -5163,7 +5136,6 @@ namespace SearchAndRescue
                        Compatibility.IsTreatmentJob(job.def);
             });
         }
-
 
         private static bool IsInSafePatientBed(Pawn pawn)
         {
@@ -5586,7 +5558,6 @@ namespace SearchAndRescue
 
             careAdmissions.Remove(pawn);
 
-
             foreach (Pawn worker in pendingByWorker
                          .Where(pair => pair.Value.Target == pawn &&
                                          (pair.Value.Stage == stage ||
@@ -5613,7 +5584,7 @@ namespace SearchAndRescue
                 foreach (KeyValuePair<Pawn, ActiveAssignment> logistics in activeLogisticsByWorker
                              .Where(pair => pair.Value.Target == pawn).ToList())
                 {
-                    activeLogisticsByWorker.Remove(logistics.Key);
+                    activeClaims.ReleaseLogistics(logistics.Key);
                     if (AssignmentJobStillRunning(logistics.Value))
                     {
                         logistics.Key.jobs.EndCurrentJob(JobCondition.InterruptForced);
@@ -5633,11 +5604,13 @@ namespace SearchAndRescue
         private void RemoveAllStages(Pawn pawn)
         {
             recentMarkerMemories?.RemoveAll(memory => memory?.Target == pawn);
-            if (activeByTarget.TryGetValue(pawn, out ActiveAssignment assignment))
-            {
-                InterruptAssignmentWorker(assignment);
-            }
-            StopStandby(pawn);
+            activeClaims.DetachPatient(pawn, out ActiveAssignment assignment,
+                out List<ActiveAssignment> deliveries, out ActiveStandby standby);
+            // Removing marks can invoke patches, and ending a Job can invoke its ThinkTree.
+            // Retire all ownership first and let the next map tick choose replacement work.
+            if (assignment != null) InterruptAssignmentWorker(assignment, startNewJob: false);
+            if (StandbyJobStillRunning(standby))
+                standby.Worker.jobs.EndCurrentJob(JobCondition.Succeeded, startNewJob: false);
 
             foreach (DesignationDef def in new[]
                      {
@@ -5653,25 +5626,20 @@ namespace SearchAndRescue
                 }
             }
 
-
             pendingByWorker.RemoveAll(pair => pair.Value.Target == pawn);
-            foreach (KeyValuePair<Pawn, ActiveAssignment> logistics in activeLogisticsByWorker
-                         .Where(pair => pair.Value.Target == pawn).ToList())
+            foreach (ActiveAssignment logistics in deliveries)
             {
-                activeLogisticsByWorker.Remove(logistics.Key);
-                medicalResources.ReleaseWorker(logistics.Key);
-                if (AssignmentJobStillRunning(logistics.Value))
-                {
-                    logistics.Key.jobs.EndCurrentJob(JobCondition.InterruptForced);
-                }
+                medicalResources.ReleaseWorker(logistics.Worker);
+                if (AssignmentJobStillRunning(logistics))
+                    logistics.Worker.jobs.EndCurrentJob(JobCondition.InterruptForced, startNewJob: false);
             }
-            activeByTarget.Remove(pawn);
             ClearTargetRetries(pawn);
             carePlans.Remove(pawn);
             deliveredSupplyReevaluation.Remove(pawn);
             medicalResources.ReleasePatient(pawn);
             careAffinityClaims.Remove(pawn);
             preferredRescuerByTarget.Remove(pawn);
+            RequestScheduleRebuild(maintenance: true);
         }
 
         private static DesignationDef DesignationForStage(SearchAndRescueStage stage)
@@ -5752,36 +5720,6 @@ namespace SearchAndRescue
                 Kit = kit;
                 SupplyResource = supplyResource;
                 SupplyCount = supplyCount;
-            }
-        }
-
-        private sealed class ActiveStandby
-        {
-            public readonly Pawn Worker;
-            public readonly Pawn Target;
-            public readonly Job Job;
-            public readonly JobDef JobDef;
-            public readonly Pawn Doctor;
-            public readonly Job TreatmentJob;
-            public readonly JobDef TreatmentJobDef;
-            public readonly int ExpectedTreatmentEndTick;
-
-            public ActiveStandby(
-                Pawn worker,
-                Pawn target,
-                Job job,
-                Pawn doctor,
-                Job treatmentJob,
-                int expectedTreatmentEndTick)
-            {
-                Worker = worker;
-                Target = target;
-                Job = job;
-                JobDef = job?.def;
-                Doctor = doctor;
-                TreatmentJob = treatmentJob;
-                TreatmentJobDef = treatmentJob?.def;
-                ExpectedTreatmentEndTick = expectedTreatmentEndTick;
             }
         }
 
@@ -5916,68 +5854,6 @@ namespace SearchAndRescue
             {
                 RetryAfter = retryAfter;
                 FailureCount = failureCount;
-            }
-        }
-
-        private sealed class ActiveAssignment
-        {
-            public readonly Pawn Worker;
-            public readonly Pawn Target;
-            public readonly Job Job;
-            // RimWorld pools Job instances. Once an old job ends, the same object can be
-            // cleared and reused for a wander/wait job while this fallback record still
-            // holds its reference. Preserve the original def to detect that reuse.
-            public readonly JobDef JobDef;
-            public readonly SearchAndRescueStage Stage;
-            public readonly IntVec3 Destination;
-            public readonly Building_Bed DestinationBed;
-            public readonly bool DestinationIsBed;
-            public readonly int StartedAt;
-            public readonly int InitialUntendedHediffs;
-            public readonly float InitialBleedRate;
-            public readonly float InitialEmergencySeverity;
-            public readonly float InitialBloodLossSeverity;
-            public readonly float InitialHemodilutionSeverity;
-            public readonly CareOrigin Origin;
-            public readonly int TreatmentRoundBudget;
-            public bool RoundEffectSeen;
-            public int CommittedTreatmentRounds;
-            public bool ActualStartObserved;
-            public JobCondition EndCondition;
-
-            public ActiveAssignment(
-                Pawn worker,
-                Pawn target,
-                Job job,
-                SearchAndRescueStage stage,
-                IntVec3 destination,
-                int startedAt,
-                int initialUntendedHediffs,
-                float initialBleedRate,
-                float initialEmergencySeverity,
-                CareOrigin origin)
-            {
-                Worker = worker;
-                Target = target;
-                Job = job;
-                JobDef = job?.def;
-                Stage = stage;
-                Destination = destination;
-                DestinationBed = stage == SearchAndRescueStage.Rescue
-                    ? job.targetB.Thing as Building_Bed
-                    : null;
-                DestinationIsBed = DestinationBed != null;
-                StartedAt = startedAt;
-                InitialUntendedHediffs = initialUntendedHediffs;
-                InitialBleedRate = initialBleedRate;
-                InitialEmergencySeverity = initialEmergencySeverity;
-                Origin = origin;
-                InitialBloodLossSeverity = GetBloodLossSeverity(target);
-                InitialHemodilutionSeverity = GetHediffSeverity(target, "Hemodilution");
-                TreatmentRoundBudget = IsTreatmentStage(stage) && job.def == JobDefOf.TendPatient &&
-                                       job.targetB.Thing != null
-                    ? Math.Max(1, job.count)
-                    : int.MaxValue;
             }
         }
 

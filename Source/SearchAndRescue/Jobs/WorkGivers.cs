@@ -4,16 +4,6 @@ using Verse.AI;
 
 namespace SearchAndRescue
 {
-    internal enum SearchAndRescueStage
-    {
-        Capture,
-        Treat,
-        FollowupTreat,
-        Restock,
-        Supply,
-        Rescue
-    }
-
     internal enum RescueWorkProvider
     {
         None,

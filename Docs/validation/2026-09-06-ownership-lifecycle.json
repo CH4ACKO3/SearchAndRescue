@@ -1,0 +1,176 @@
+{
+  "date": "2026-09-06",
+  "dllSha256": "B0C45CF6149F35407D18FA35DBA89632387F174397725C7DF82586FE80077F06",
+  "build": "Release net48, warnings as errors; zero warnings/errors",
+  "productionChecks": 68,
+  "simulationScenarios": 40,
+  "randomGraphs": 200,
+  "live": {
+    "save": "SAR_Promo_Hospital",
+    "activeMods": 13,
+    "passed": 38,
+    "checks": [
+      {
+        "message": "[SAR live regression] PASS: restock owns treatment lane",
+        "timestampUtc": "2026-09-05T17:44:51.792905+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: restock does not own transport lane",
+        "timestampUtc": "2026-09-05T17:44:51.792905+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: job identity does not bypass worker identity",
+        "timestampUtc": "2026-09-05T17:44:51.792905+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: fixture uses a new native Job generation",
+        "timestampUtc": "2026-09-05T17:44:51.7934251+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: same-def pooled job is not the old SAR assignment",
+        "timestampUtc": "2026-09-05T17:44:51.7934251+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: captured completion retires original after Job.Clear",
+        "timestampUtc": "2026-09-05T17:44:51.793941+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: delayed old completion cannot retire replacement",
+        "timestampUtc": "2026-09-05T17:44:51.793941+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: supply occupies transport lane",
+        "timestampUtc": "2026-09-05T17:44:51.793941+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: standby occupies transport lane",
+        "timestampUtc": "2026-09-05T17:44:51.793941+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: standby does not occupy treatment lane",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: patient detach returns all three active lanes",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: all lanes are detached before caller runs callbacks",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: patient detach preserves another patient's claim",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: patient detach is idempotent",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: external end snapshot retains original patient after pooling",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: routine completion classification survives pooling",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: manual routine order is not an automatic work boundary",
+        "timestampUtc": "2026-09-05T17:44:51.7944572+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: manual takeover detaches all active lanes",
+        "timestampUtc": "2026-09-05T17:44:51.8005466+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: manual takeover ends old jobs without synchronous replacement",
+        "timestampUtc": "2026-09-05T17:44:51.8005466+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: manual takeover preserves the patient's treatment mark",
+        "timestampUtc": "2026-09-05T17:44:51.8005466+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: manual takeover preserves other patients",
+        "timestampUtc": "2026-09-05T17:44:51.8005466+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: NOLB Kidnap is recognized as patient transport",
+        "timestampUtc": "2026-09-05T17:44:51.8667613+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: maintenance preserves externally carried marked patient",
+        "timestampUtc": "2026-09-05T17:44:51.8667613+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: maintenance still drops orphaned carry without transport job",
+        "timestampUtc": "2026-09-05T17:44:51.867283+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: marked guest rescue job construction is blocked",
+        "timestampUtc": "2026-09-05T17:44:51.8677917+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: forced rescue job construction remains available",
+        "timestampUtc": "2026-09-05T17:44:51.8740857+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: third-party positive scanner result respects SAR mark",
+        "timestampUtc": "2026-09-05T17:44:51.8740857+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: forced scanner result remains available",
+        "timestampUtc": "2026-09-05T17:44:51.8740857+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: unmarked rescue remains available",
+        "timestampUtc": "2026-09-05T17:44:51.8746043+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: ordinary bed is selected by production search",
+        "timestampUtc": "2026-09-05T17:44:51.9226874+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: ordinary bed satisfies production delivery contract",
+        "timestampUtc": "2026-09-05T17:44:51.9226874+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: medical bed remains valid",
+        "timestampUtc": "2026-09-05T17:44:51.9226874+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: no repeated route at existing rescue point",
+        "timestampUtc": "2026-09-05T17:44:51.9242395+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: changed rescue point enables transport",
+        "timestampUtc": "2026-09-05T17:44:51.9242395+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: new bed enables onward transport from rescue point",
+        "timestampUtc": "2026-09-05T17:44:51.9242395+00:00"
+      },
+      {
+        "message": "[SAR live regression] prepared held-supply; advance 1200 ticks then Check supply regression. source=MedicineIndustrial49190",
+        "timestampUtc": "2026-09-05T17:44:51.9642403+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: supply observation covers 1200 ticks",
+        "timestampUtc": "2026-09-05T17:45:12.7616394+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: supply driver terminates",
+        "timestampUtc": "2026-09-05T17:45:12.7616394+00:00"
+      },
+      {
+        "message": "[SAR live regression] PASS: held inventory split delivered exactly two units",
+        "timestampUtc": "2026-09-05T17:45:12.7616394+00:00"
+      },
+      {
+        "message": "[SAR live regression] delivery detail: ground=2 source=2 job=GotoWander",
+        "timestampUtc": "2026-09-05T17:45:12.7626401+00:00"
+      }
+    ],
+    "scope": "Native Job/JobTracker boundary fixtures plus 1200-tick held-inventory supply driver. No full third-party compatibility matrix or performance benchmark."
+  }
+}

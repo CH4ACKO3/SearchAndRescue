@@ -539,18 +539,18 @@ namespace SearchAndRescue
     [HarmonyPatch(typeof(Pawn_JobTracker), nameof(Pawn_JobTracker.EndCurrentJob))]
     internal static class PawnJobTracker_SearchAndRescueSchedulePatch
     {
-        private static void Prefix(Pawn ___pawn, JobCondition condition, out Job __state)
+        private static void Prefix(Pawn ___pawn, JobCondition condition, out JobEndSnapshot __state)
         {
-            __state = ___pawn?.CurJob;
-            ___pawn?.Map?.GetComponent<SearchAndRescueCoordinator>()
-                ?.NotifyManagedJobEnding(___pawn, __state, condition);
+            SearchAndRescueCoordinator coordinator = ___pawn?.Map?.GetComponent<SearchAndRescueCoordinator>();
+            __state = coordinator?.CaptureJobEnd(___pawn) ?? default;
+            coordinator?.NotifyManagedJobEnding(___pawn, ___pawn?.CurJob, condition);
         }
 
-        private static void Postfix(Pawn ___pawn, JobCondition condition, Job __state)
+        private static void Postfix(Pawn ___pawn, JobCondition condition, JobEndSnapshot __state)
         {
             SearchAndRescueCoordinator coordinator = ___pawn?.Map?.GetComponent<SearchAndRescueCoordinator>();
             coordinator?.NotifyManagedJobEnded(___pawn, __state, condition);
-            coordinator?.NotifyExternalPatientJobEnded(___pawn, __state);
+            coordinator?.NotifyExternalPatientJobEnded(__state);
             coordinator?.NotifyRoutineWorkBoundary(___pawn, __state, condition);
         }
     }

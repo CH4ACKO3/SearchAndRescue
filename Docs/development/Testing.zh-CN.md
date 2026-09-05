@@ -10,6 +10,14 @@
 
 两项补给测试走实际 inventory-holder 路径。Vehicle Framework 特有的 cargo 事件/质量缓存需要另外启用该模组验证，不能由普通 Pawn 背包测试代替。不要保存测试后的地图；重新载入原始存档可清除测试生成内容。
 
+## 所有权与任务生命周期
+
+`Run ownership lifecycle regressions` 直接操作生产声明表、真实 Job 和 JobTracker，检查同定义 Job 回收复用、旧结束回调、阶段隔离、整组撤销，以及玩家接管后保留标记和其他伤员任务。测试会创建临时 Pawn，只应在一次性地图运行，不保存结果。
+
+`Run external transport regressions` 检查注册运输 Job、孤立搬运清理和手动命令边界；不代替第三方模组完整游玩测试。纯规则由 `Tools/SchedulerSimulation` 直接链接生产文件，覆盖任务身份、阶段映射和工作者占用排除。
+
+本轮结果见 [2026-09-06 所有权回归](../validation/2026-09-06-ownership-lifecycle.json)：68 项生产规则检查、原有 40 场景与 200 组随机图、38 项实机检查通过。实机补给检查含 1,200 tick 推进；未重新测量性能。
+
 ## 大规模战地救援
 
 基准存档：`SAR_Test_MassCasualty_18x6x6`

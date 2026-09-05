@@ -8,5 +8,8 @@
   <ItemGroup>
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\WeightedBipartiteMatcher.cs" Link="WeightedBipartiteMatcher.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\JobOwnershipRules.cs" Link="JobOwnershipRules.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Scheduling\JobIdentity.cs" Link="JobIdentity.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Scheduling\AssignmentStageRules.cs" Link="AssignmentStageRules.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Scheduling\WorkerReadinessRules.cs" Link="WorkerReadinessRules.cs" />
   </ItemGroup>
 </Project>

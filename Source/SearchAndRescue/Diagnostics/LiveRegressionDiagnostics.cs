@@ -23,6 +23,122 @@ namespace SearchAndRescue
         private static int initialGroundCount;
         private static Map supplyMap;
 
+        [DebugAction("Search and Rescue", "Run ownership lifecycle regressions",
+            allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void OwnershipLifecycle()
+        {
+            Map map = Find.CurrentMap;
+            Pawn worker = Spawn(map, -8);
+            Pawn supplier = Spawn(map, -6);
+            Pawn carrier = Spawn(map, -4);
+            Pawn patient = Spawn(map, 0);
+            Pawn otherPatient = Spawn(map, 4);
+            var coordinator = map.GetComponent<SearchAndRescueCoordinator>();
+            var claims = (ActiveJobClaims)AccessTools.Field(typeof(SearchAndRescueCoordinator), "activeClaims")
+                .GetValue(coordinator);
+            Job previous = worker.CurJob;
+            ActiveAssignment MakeClaim(Pawn actor, Pawn target, Job job, SearchAndRescueStage stage) =>
+                new ActiveAssignment(actor, target, job, stage, IntVec3.Invalid, Find.TickManager.TicksGame,
+                    0, 0f, 0f, CareOrigin.None, 0f, 0f);
+            try
+            {
+                Job job = JobMaker.MakeJob(JobDefOf.Wait, patient);
+                var original = MakeClaim(worker, patient, job, SearchAndRescueStage.Restock);
+                claims.Register(original);
+                worker.jobs.curJob = job;
+                Check(coordinator.IsActiveJob(worker, job, SearchAndRescueStage.Treat), "restock owns treatment lane");
+                Check(!coordinator.IsActiveJob(worker, job, SearchAndRescueStage.Rescue), "restock does not own transport lane");
+                Check(!coordinator.IsActiveJob(carrier, job), "job identity does not bypass worker identity");
+                JobEndSnapshot ending = coordinator.CaptureJobEnd(worker);
+                coordinator.NotifyManagedJobEnding(worker, job, JobCondition.Succeeded);
+                int oldId = job.loadID;
+                job.Clear();
+                job.def = JobDefOf.Wait;
+                job.loadID = Find.UniqueIDsManager.GetNextJobID();
+                Check(job.loadID != oldId, "fixture uses a new native Job generation");
+                Check(!coordinator.IsActiveJob(worker, job), "same-def pooled job is not the old SAR assignment");
+                coordinator.NotifyManagedJobEnded(worker, ending, JobCondition.Succeeded);
+                Check(!claims.Primary.ContainsKey(patient), "captured completion retires original after Job.Clear");
+
+                var replacement = MakeClaim(worker, patient, job, SearchAndRescueStage.Restock);
+                claims.Register(replacement);
+                coordinator.NotifyManagedJobEnded(worker, ending, JobCondition.Succeeded);
+                Check(claims.Primary.TryGetValue(patient, out var stillActive) && stillActive == replacement,
+                    "delayed old completion cannot retire replacement");
+
+                Job supplyJob = JobMaker.MakeJob(JobDefOf.Wait, patient);
+                claims.Register(MakeClaim(supplier, patient, supplyJob, SearchAndRescueStage.Supply));
+                Job waitJob = JobMaker.MakeJob(JobDefOf.Wait, patient);
+                claims.Register(new ActiveStandby(carrier, patient, waitJob, worker, job, Find.TickManager.TicksGame + 100));
+                Check(claims.Owns(supplier, ActiveJobClaims.IdentityOf(supplyJob), SearchAndRescueStage.Rescue),
+                    "supply occupies transport lane");
+                Check(claims.Owns(carrier, ActiveJobClaims.IdentityOf(waitJob), SearchAndRescueStage.Rescue),
+                    "standby occupies transport lane");
+                Check(!claims.Owns(carrier, ActiveJobClaims.IdentityOf(waitJob), SearchAndRescueStage.Treat),
+                    "standby does not occupy treatment lane");
+                Job otherJob = JobMaker.MakeJob(JobDefOf.Wait, otherPatient);
+                claims.Register(MakeClaim(otherPatient, otherPatient, otherJob, SearchAndRescueStage.Restock));
+                claims.DetachPatient(patient, out var detached, out var deliveries, out var waiting);
+                Check(detached == replacement && deliveries.Count == 1 && waiting?.Worker == carrier,
+                    "patient detach returns all three active lanes");
+                Check(!claims.Owns(worker, ActiveJobClaims.IdentityOf(job), null) &&
+                      !claims.Owns(supplier, ActiveJobClaims.IdentityOf(supplyJob), null) &&
+                      !claims.Owns(carrier, ActiveJobClaims.IdentityOf(waitJob), null),
+                    "all lanes are detached before caller runs callbacks");
+                Check(claims.Primary.ContainsKey(otherPatient), "patient detach preserves another patient's claim");
+                claims.DetachPatient(patient, out detached, out deliveries, out waiting);
+                Check(detached == null && deliveries.Count == 0 && waiting == null, "patient detach is idempotent");
+
+                // External patient and routine-work decisions must also survive Job.Clear.
+                Job external = JobMaker.MakeJob(JobDefOf.Rescue, patient);
+                worker.jobs.curJob = external;
+                JobEndSnapshot externalEnd = coordinator.CaptureJobEnd(worker);
+                external.Clear();
+                Check(!externalEnd.WasManaged && externalEnd.Patient == patient,
+                    "external end snapshot retains original patient after pooling");
+                Job routine = JobMaker.MakeJob(JobDefOf.Clean);
+                worker.jobs.curJob = routine;
+                JobEndSnapshot routineEnd = coordinator.CaptureJobEnd(worker);
+                routine.Clear();
+                Check(routineEnd.WasAutomaticRoutineWork, "routine completion classification survives pooling");
+                routine.def = JobDefOf.Clean;
+                routine.playerForced = true;
+                Check(!coordinator.CaptureJobEnd(worker).WasAutomaticRoutineWork,
+                    "manual routine order is not an automatic work boundary");
+
+                var mark = new Designation(patient, SearchAndRescueDefOf.SAR_Treat);
+                map.designationManager.AddDesignation(mark);
+                worker.jobs.curJob = previous;
+                worker.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Wait, 600), JobCondition.InterruptForced);
+                supplier.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Wait, 600), JobCondition.InterruptForced);
+                carrier.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Wait, 600), JobCondition.InterruptForced);
+                Job managed = worker.CurJob;
+                claims.Register(MakeClaim(worker, patient, managed, SearchAndRescueStage.Restock));
+                claims.Register(MakeClaim(supplier, patient, supplier.CurJob, SearchAndRescueStage.Supply));
+                claims.Register(new ActiveStandby(carrier, patient, carrier.CurJob, worker, managed,
+                    Find.TickManager.TicksGame + 100));
+                Job order = JobMaker.MakeJob(JobDefOf.TendPatient, patient);
+                order.playerForced = true;
+                coordinator.NotifyPlayerOrderedPatientJob(worker, order);
+                Check(!claims.Primary.ContainsKey(patient) && !claims.Logistics.ContainsKey(supplier) &&
+                      !claims.Standby.ContainsKey(patient), "manual takeover detaches all active lanes");
+                Check(worker.CurJob == null && supplier.CurJob == null && carrier.CurJob == null,
+                    "manual takeover ends old jobs without synchronous replacement");
+                Check(map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Treat) != null,
+                    "manual takeover preserves the patient's treatment mark");
+                Check(claims.Primary.ContainsKey(otherPatient), "manual takeover preserves other patients");
+                map.designationManager.RemoveDesignation(mark);
+            }
+            finally
+            {
+                claims.DetachPatient(patient, out _, out _, out _);
+                claims.DetachPatient(otherPatient, out _, out _, out _);
+                worker.jobs.curJob = previous;
+                foreach (Pawn pawn in new[] { worker, supplier, carrier, patient, otherPatient })
+                    if (!pawn.Destroyed) pawn.Destroy();
+            }
+        }
+
         [DebugAction("Search and Rescue", "Run external transport regressions",
             allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void ExternalTransport()
