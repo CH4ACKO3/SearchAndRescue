@@ -5,6 +5,7 @@
 - [Release checklist](development/ReleaseChecklist.zh-CN.md)
 - [Workshop descriptions and discussion text](workshop/)
 - [Code review](reviews/2026-09-05.zh-CN.md) and [regression evidence](validation/2026-09-05-gabs.json)
+- [Workshop compatibility audit](reviews/2026-09-06-compatibility.zh-CN.md): static findings and runtime verification gaps
 
 ## Source layout
 

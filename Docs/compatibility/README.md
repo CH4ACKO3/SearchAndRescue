@@ -69,7 +69,7 @@ These levels describe SAR's own support boundaries. They do not imply that the l
 
 | Mod | Status | Support details |
 |---|---|---|
-| Nurse Job | Integration | Offers optional **Prefer nursing** and **Nursing only** rescue modes; the default mode still uses Hauling. For designated casualties, transfusions and infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with doctors as a fallback when no nurse is available. CPR, suction, defibrillation, and ordinary tending remain assigned to doctors according to medical skill. |
+| Nurse Job | Integration | Offers optional **Prefer nursing** and **Nursing only** rescue modes; the default mode still uses Hauling. For designated casualties, transfusions and infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with a preference for nurses while doctors remain eligible; routing and urgency may favor a doctor. CPR, suction, defibrillation, and ordinary tending remain assigned to doctors according to medical skill. |
 | Work Tab | Compatible | Reads detailed WorkGiver priorities without adding another work type. |
 | Mech Work Tab | Compatible | Reads detailed work settings for colony mechs. |
 | WVC - Work Modes | Compatible | Supports additional mechanoid work modes and priority sources. |

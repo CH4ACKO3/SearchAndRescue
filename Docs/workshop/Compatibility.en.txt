@@ -141,7 +141,7 @@ Cargo in stationary, player-owned, reachable vehicles acts as a medical-supply s
 Work tab, AI, and non-human workers
 
 Nurse Job — Integration
-Provides Prefer nursing and Nursing only rescue modes; the default mode uses Hauling. For designated casualties, transfusions, infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with doctors taking over when nurses are unavailable. CPR, suction, defibrillation, and ordinary tending are matched to doctors by medical skill.
+Provides Prefer nursing and Nursing only rescue modes; the default mode uses Hauling. For designated casualties, transfusions, infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with a preference for nurses while doctors remain eligible; routing and urgency may favor a doctor. CPR, suction, defibrillation, and ordinary tending are matched to doctors by medical skill.
 
 Work Tab — Compatible
 Reads detailed WorkGiver priorities.
