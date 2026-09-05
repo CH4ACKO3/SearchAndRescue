@@ -137,4 +137,5 @@
   <SAR_Compatibility_VFEMedical>Added medical beds and medicine follow vanilla definitions and are discovered automatically.</SAR_Compatibility_VFEMedical>
   <SAR_Compatibility_SensibleBedOwnership>Patient destinations continue through vanilla medical-bed validation; personal-bed ownership changes do not bypass it.</SAR_Compatibility_SensibleBedOwnership>
   <SAR_Compatibility_YokaiVillage>Non-hostile flesh animals use standard tending, medicine, animal beds, and rescue paths. Hostile animals are not capturable and are excluded.</SAR_Compatibility_YokaiVillage>
+  <SAR_Compatibility_Hardworking>Uses the Hardworking work settings and native stop/follow permissions. Honors work restrictions, strict night schedules and rest. Chance-work mode stays outside SAR dispatch; species-specific job execution has not been validated.</SAR_Compatibility_Hardworking>
 </LanguageData>

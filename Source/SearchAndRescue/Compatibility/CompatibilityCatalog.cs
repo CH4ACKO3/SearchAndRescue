@@ -61,6 +61,8 @@ namespace SearchAndRescue
         public static readonly IReadOnlyList<CompatibilityCatalogEntry> Entries =
             new List<CompatibilityCatalogEntry>
             {
+                Entry("kemomimihouse HardworkingExt", "Hardworking", CompatibilitySupportLevel.Partial,
+                    () => HardworkingCompatibility.Ready, "Moo.Hardworking.Kz"),
                 Entry("Combat Extended", "CombatExtended", CompatibilitySupportLevel.Integration,
                     () => Compatibility.UsesCombatExtended, "CETeam.CombatExtended"),
                 Entry("More Injuries (Continued)", "MoreInjuries", CompatibilitySupportLevel.Integration,

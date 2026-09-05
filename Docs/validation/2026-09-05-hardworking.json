@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-05",
+  "framework": "Moo.Hardworking.Kz (1.6)",
+  "fixture": "Disposable Husky with real Kz.CompHardworking; no species mod or end-to-end job execution",
+  "checks": [
+    "[SAR Hardworking regression] PASS: fixture has no Rescue training",
+    "[SAR Hardworking regression] PASS: animal joins through work settings",
+    "[SAR Hardworking regression] PASS: native work permission admitted",
+    "[SAR Hardworking regression] PASS: doctor lane admitted",
+    "[SAR Hardworking regression] PASS: uses hauling provider",
+    "[SAR Hardworking regression] PASS: personal stop respected",
+    "[SAR Hardworking regression] PASS: global stop respected",
+    "[SAR Hardworking regression] PASS: interaction cooldown respected",
+    "[SAR Hardworking regression] PASS: chance work left to native AI",
+    "[SAR Hardworking regression] PASS: global chance mode respected",
+    "[SAR Hardworking regression] PASS: strict night schedule respected",
+    "[SAR Hardworking regression] PASS: rest floor respected",
+    "[SAR Hardworking regression] PASS: disabled doctor work respected",
+    "[SAR Hardworking regression] PASS: disabled hauling respected",
+    "[SAR Hardworking regression] PASS: fixture learned Rescue",
+    "[SAR Hardworking regression] PASS: Rescue training cannot bypass disabled hauling",
+    "[SAR Hardworking regression] PASS: framework work-type prohibition respected",
+    "[SAR Hardworking regression] PASS: field work opt-out respected"
+  ],
+  "passed": 18,
+  "failed": 0
+}

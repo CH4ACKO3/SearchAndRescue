@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Added optional HardworkingExt worker admission and native permission checks. Hardworking priorities take precedence over Work Tab for these animals, and Rescue training cannot bypass disabled work. Chance-work mode remains outside automatic SAR dispatch.
+- Added 18 in-game Hardworking permission regression checks; species-specific end-to-end jobs remain unverified.
+
 - Fixed held medical supplies failing the delivery driver's first movement toil; delivery now follows the spawned holder, rejects changed ownership, and tracks the extracted split.
 - Fixed ordinary human/prisoner beds being accepted as rescue destinations but rejected as completed deliveries. Outstanding treatment remains independent of transport completion.
 - Prevented repeated evacuation to a rescue point already reached by the patient. A moved point or newly available bed still enables onward transport.

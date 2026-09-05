@@ -1679,7 +1679,7 @@ namespace SearchAndRescue
 
         public static RescueWorkProvider RescueProviderFor(Pawn worker)
         {
-            if (IsTrainedRescueAnimal(worker))
+            if (IsTrainedRescueAnimal(worker) && !HardworkingCompatibility.IsWorker(worker))
             {
                 return RescueWorkProvider.Animal;
             }
@@ -2319,6 +2319,12 @@ namespace SearchAndRescue
             WorkGiverDef workGiver,
             WorkTypeDef providerWorkType)
         {
+            if (HardworkingCompatibility.IsWorker(worker) &&
+                (worker.WorkTypeIsDisabled(SearchAndRescueDefOf.SAR_FieldRescue) ||
+                 worker.WorkTypeIsDisabled(providerWorkType) ||
+                 worker.WorkTagIsDisabled(providerWorkType.workTags) ||
+                 (workGiver != null && worker.WorkTagIsDisabled(workGiver.workTags)))) return 0;
+
             int fieldPriority = FieldRescueChildPriority(worker, workGiver);
             int providerPriority = WorkTypePriority(worker, providerWorkType);
             return fieldPriority <= 0 || providerPriority <= 0
@@ -2335,7 +2341,7 @@ namespace SearchAndRescue
 
             if (worker.workSettings != null)
             {
-                if (WorkTabGetPriority != null)
+                if (WorkTabGetPriority != null && !HardworkingCompatibility.IsWorker(worker))
                 {
                     try
                     {
@@ -2370,7 +2376,7 @@ namespace SearchAndRescue
 
             if (worker.workSettings != null)
             {
-                if (WorkTabGetWorkTypePriority != null)
+                if (WorkTabGetWorkTypePriority != null && !HardworkingCompatibility.IsWorker(worker))
                 {
                     try
                     {

@@ -137,4 +137,5 @@
   <SAR_Compatibility_VFEMedical>新增醫療床和藥品沿用原版 Def，會被自動發現。</SAR_Compatibility_VFEMedical>
   <SAR_Compatibility_SensibleBedOwnership>傷員目的地仍經過原版醫療床校驗；個人床位所有權改動不會繞過它。</SAR_Compatibility_SensibleBedOwnership>
   <SAR_Compatibility_YokaiVillage>非敵對血肉動物沿用標準治療、藥品、動物床和救援路徑；敵對動物無法俘虜，因此被排除。</SAR_Compatibility_YokaiVillage>
+  <SAR_Compatibility_Hardworking>讀取勤工工作設定及原生停工、跟隨權限，遵守工作禁用、強制夜間作息和疲勞限制。機率工作模式不參與 SAR 自動調度；種族專屬 Job 執行尚未驗證。</SAR_Compatibility_Hardworking>
 </LanguageData>

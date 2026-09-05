@@ -2,6 +2,8 @@
 
 Updated: 2026-09-05
 
+kemomimihouse HardworkingExt (`Moo.Hardworking.Kz`): **Partial support**. Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table; vanilla Rescue training is not required. SAR reads Hardworking priorities and respects native stop/follow permissions, interaction cooldown, strict night schedules and rest limits. Rescue training cannot bypass disabled work. Chance-work mode stays outside automatic SAR dispatch. [18 in-game permission checks](../validation/2026-09-05-hardworking.json) passed with the real framework component; species-specific end-to-end jobs remain untested.
+
 Support levels:
 
 - **Integration**: SAR adds a mod-specific rescue stage, responder lane, or supply source instead of merely avoiding conflicts.

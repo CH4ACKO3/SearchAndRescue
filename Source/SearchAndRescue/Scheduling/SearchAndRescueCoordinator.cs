@@ -253,7 +253,7 @@ namespace SearchAndRescue
             }
 
             EnsureFieldResponderWorkTypeMigrated();
-            if (pawn.workSettings != null && pawn.RaceProps?.Humanlike == true)
+            if (pawn.workSettings != null && (pawn.RaceProps?.Humanlike == true || HardworkingCompatibility.IsWorker(pawn)))
             {
                 return Compatibility.FieldRescueWorkPriority(pawn) > 0;
             }
@@ -293,7 +293,7 @@ namespace SearchAndRescue
             return pawn != null && !pawn.Destroyed && pawn.MapHeld == map &&
                    pawn.Faction == Faction.OfPlayer &&
                    (pawn.RaceProps?.Humanlike == true && !pawn.IsPrisoner ||
-                    Compatibility.IsColonyWorkMech(pawn) ||
+                    Compatibility.IsColonyWorkMech(pawn) || HardworkingCompatibility.IsWorker(pawn) ||
                     Compatibility.IsTrainedRescueAnimal(pawn));
         }
 
@@ -305,7 +305,7 @@ namespace SearchAndRescue
                 return;
             }
 
-            if (pawn.workSettings != null && pawn.RaceProps?.Humanlike == true)
+            if (pawn.workSettings != null && (pawn.RaceProps?.Humanlike == true || HardworkingCompatibility.IsWorker(pawn)))
             {
                 Compatibility.SetWorkPriorityForMigration(
                     pawn,
@@ -536,12 +536,12 @@ namespace SearchAndRescue
 
         private static bool WorkerControlledByScheduler(Pawn worker)
         {
-            if (worker == null || worker.mindState?.duty != null)
+            if (worker == null || worker.mindState?.duty != null || !HardworkingCompatibility.CanWorkNow(worker))
             {
                 return false;
             }
 
-            bool playerControlled = worker.IsColonistPlayerControlled ||
+            bool playerControlled = worker.IsColonistPlayerControlled || HardworkingCompatibility.IsWorker(worker) ||
                                     Compatibility.IsColonyWorkMech(worker) ||
                                     Compatibility.IsTrainedRescueAnimal(worker);
             if (!playerControlled)
