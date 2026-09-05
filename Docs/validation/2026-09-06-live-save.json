@@ -1,0 +1,534 @@
+{
+  "date": "2026-09-06",
+  "commit": "fa645d8",
+  "save": "new20",
+  "activeMods": 13,
+  "method": "Existing save, existing wounds, supplies, beds, colonists and designations. Undrafted its ten drafted colonists. Then drafted Leah at +1200 ticks and undrafted at +1800. No spawned diagnostic population or healing cheats.",
+  "baseline": {
+    "colonists": 22,
+    "downed": 12,
+    "drafted": 10,
+    "startTicks": 9065
+  },
+  "samples": [
+    {
+      "phase": "normal",
+      "advancedTicks": 900,
+      "scheduler": "[Search and Rescue] Scheduler snapshot map=0 tick=9965 mode=MarkedOnly pending=0 active=6 logistics=4 standby=0 detourBacklog=540.0",
+      "colonists": 22,
+      "downed": 12,
+      "workers": [
+        {
+          "name": "Boring",
+          "pawnId": "Thing_Human28783",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 140,
+            "z": 124
+          }
+        },
+        {
+          "name": "Cass",
+          "pawnId": "Thing_Human28767",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 144,
+            "z": 129
+          }
+        },
+        {
+          "name": "Flea",
+          "pawnId": "Thing_Human94",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 129,
+            "z": 127
+          }
+        },
+        {
+          "name": "Kaleun",
+          "pawnId": "Thing_Human87",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 123,
+            "z": 118
+          }
+        },
+        {
+          "name": "Leah",
+          "pawnId": "Thing_Human91",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 126,
+            "z": 122
+          }
+        },
+        {
+          "name": "Norma",
+          "pawnId": "Thing_Human28775",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 129,
+            "z": 121
+          }
+        },
+        {
+          "name": "Roeder",
+          "pawnId": "Thing_Human28759",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 121,
+            "z": 121
+          }
+        },
+        {
+          "name": "Sanni",
+          "pawnId": "Thing_Human28762",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 133,
+            "z": 124
+          }
+        },
+        {
+          "name": "Speen",
+          "pawnId": "Thing_Human28786",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 137,
+            "z": 124
+          }
+        },
+        {
+          "name": "Willbord",
+          "pawnId": "Thing_Human28779",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 123,
+            "z": 127
+          }
+        }
+      ],
+      "patients": [
+        "target=Gavin/Human31105 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.4889 bloodLoss=0.072 bloodNeed=0/1 deathTicks=12403 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Engie/Human31108 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.4528 bloodLoss=0.042 bloodNeed=0/1 deathTicks=23440 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=BW/Human31111 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.0728 bloodLoss=0.069 bloodNeed=0/1 deathTicks=13711 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=False",
+        "target=Juniper/Human31115 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1656 bloodLoss=0.089 bloodNeed=0/1 deathTicks=17275 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Freddie/Human31118 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.8728 bloodLoss=0.049 bloodNeed=0/1 deathTicks=19863 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Wolf/Human31121 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.5328 bloodLoss=0.06 bloodNeed=0/1 deathTicks=15962 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Dankman/Human31124 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.88 bloodLoss=0.049 bloodNeed=0/1 deathTicks=19813 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Veli/Human31128 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.7 bloodLoss=0.076 bloodNeed=0/1 deathTicks=20542 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Bradshaw/Human31131 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1128 bloodLoss=0.05 bloodNeed=0/1 deathTicks=18314 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Velma/Human31134 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.1528 bloodLoss=0.034 bloodNeed=0/1 deathTicks=26910 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Onesan/Human31137 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.38 bloodLoss=0.023 bloodNeed=0/1 deathTicks=42458 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Anarchist/Human31140 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.0056 bloodLoss=0.064 bloodNeed=0/1 deathTicks=14017 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=False",
+        "target=盖多尔/Human31143 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.8256 bloodLoss=0.061 bloodNeed=0/1 deathTicks=14722 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Gnugfur/Human31148 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=0.002 bloodLoss=0 bloodNeed=0/0 deathTicks=29648497 needs=True stabilize=False urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=海狸/Human31157 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=1.1596 bloodLoss=0.019 bloodNeed=0/1 deathTicks=50770 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=米色/Human31165 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.5617 bloodLoss=0.056 bloodNeed=0/1 deathTicks=15896 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=希哥克里塞比尔/Human31171 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.9528 bloodLoss=0.088 bloodNeed=0/1 deathTicks=13849 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Toni/Human31177 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.5728 bloodLoss=0.044 bloodNeed=0/1 deathTicks=22299 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False"
+      ]
+    },
+    {
+      "phase": "normal",
+      "advancedTicks": 1200,
+      "scheduler": "[Search and Rescue] Scheduler snapshot map=0 tick=10265 mode=MarkedOnly pending=0 active=6 logistics=4 standby=0 detourBacklog=540.0",
+      "colonists": 22,
+      "downed": 12,
+      "workers": [
+        {
+          "name": "Boring",
+          "pawnId": "Thing_Human28783",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 132,
+            "z": 124
+          }
+        },
+        {
+          "name": "Cass",
+          "pawnId": "Thing_Human28767",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 128,
+            "z": 123
+          }
+        },
+        {
+          "name": "Flea",
+          "pawnId": "Thing_Human94",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 129,
+            "z": 127
+          }
+        },
+        {
+          "name": "Kaleun",
+          "pawnId": "Thing_Human87",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 123,
+            "z": 118
+          }
+        },
+        {
+          "name": "Leah",
+          "pawnId": "Thing_Human91",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 126,
+            "z": 122
+          }
+        },
+        {
+          "name": "Norma",
+          "pawnId": "Thing_Human28775",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 128,
+            "z": 124
+          }
+        },
+        {
+          "name": "Roeder",
+          "pawnId": "Thing_Human28759",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 121,
+            "z": 121
+          }
+        },
+        {
+          "name": "Sanni",
+          "pawnId": "Thing_Human28762",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 142,
+            "z": 127
+          }
+        },
+        {
+          "name": "Speen",
+          "pawnId": "Thing_Human28786",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 128,
+            "z": 116
+          }
+        },
+        {
+          "name": "Willbord",
+          "pawnId": "Thing_Human28779",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 124,
+            "z": 115
+          }
+        }
+      ],
+      "patients": [
+        "target=Gavin/Human31105 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.4817 bloodLoss=0.094 bloodNeed=0/1 deathTicks=12123 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=False",
+        "target=Engie/Human31108 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.4456 bloodLoss=0.054 bloodNeed=0/1 deathTicks=23208 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=BW/Human31111 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.0656 bloodLoss=0.09 bloodNeed=0/1 deathTicks=13435 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Juniper/Human31115 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1584 bloodLoss=0.104 bloodNeed=0/1 deathTicks=17014 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Freddie/Human31118 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.8728 bloodLoss=0.063 bloodNeed=0/1 deathTicks=19563 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Wolf/Human31121 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.5256 bloodLoss=0.078 bloodNeed=0/1 deathTicks=15694 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Dankman/Human31124 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.88 bloodLoss=0.063 bloodNeed=0/1 deathTicks=19513 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Veli/Human31128 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.7 bloodLoss=0.089 bloodNeed=0/1 deathTicks=20242 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Bradshaw/Human31131 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1128 bloodLoss=0.065 bloodNeed=0/1 deathTicks=18014 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Velma/Human31134 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.1528 bloodLoss=0.045 bloodNeed=0/1 deathTicks=26610 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Onesan/Human31137 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.3728 bloodLoss=0.03 bloodNeed=0/1 deathTicks=42379 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Anarchist/Human31140 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.0056 bloodLoss=0.084 bloodNeed=0/1 deathTicks=13717 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=盖多尔/Human31143 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.5056 bloodLoss=0.076 bloodNeed=0/1 deathTicks=22115 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Gnugfur/Human31148 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=0.002 bloodLoss=0 bloodNeed=0/0 deathTicks=29648497 needs=True stabilize=False urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=海狸/Human31157 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=1.1333 bloodLoss=0.025 bloodNeed=0/1 deathTicks=51647 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=米色/Human31165 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.0017 bloodLoss=0.068 bloodNeed=0/1 deathTicks=27938 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=希哥克里塞比尔/Human31171 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.9456 bloodLoss=0.107 bloodNeed=0/1 deathTicks=13574 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Toni/Human31177 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.2 bloodLoss=0.051 bloodNeed=0/1 deathTicks=47442 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True"
+      ]
+    },
+    {
+      "phase": "doctor drafted",
+      "advancedTicks": 1800,
+      "scheduler": "[Search and Rescue] Scheduler snapshot map=0 tick=10865 mode=MarkedOnly pending=0 active=5 logistics=4 standby=0 detourBacklog=540.0",
+      "colonists": 22,
+      "downed": 12,
+      "workers": [
+        {
+          "name": "Boring",
+          "pawnId": "Thing_Human28783",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 169,
+            "z": 129
+          }
+        },
+        {
+          "name": "Cass",
+          "pawnId": "Thing_Human28767",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 151,
+            "z": 125
+          }
+        },
+        {
+          "name": "Flea",
+          "pawnId": "Thing_Human94",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 129,
+            "z": 127
+          }
+        },
+        {
+          "name": "Kaleun",
+          "pawnId": "Thing_Human87",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 126,
+            "z": 122
+          }
+        },
+        {
+          "name": "Leah",
+          "pawnId": "Thing_Human91",
+          "drafted": true,
+          "job": "Wait_Combat",
+          "position": {
+            "x": 126,
+            "z": 122
+          }
+        },
+        {
+          "name": "Norma",
+          "pawnId": "Thing_Human28775",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 129,
+            "z": 119
+          }
+        },
+        {
+          "name": "Roeder",
+          "pawnId": "Thing_Human28759",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 131,
+            "z": 126
+          }
+        },
+        {
+          "name": "Sanni",
+          "pawnId": "Thing_Human28762",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 175,
+            "z": 133
+          }
+        },
+        {
+          "name": "Speen",
+          "pawnId": "Thing_Human28786",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 162,
+            "z": 126
+          }
+        },
+        {
+          "name": "Willbord",
+          "pawnId": "Thing_Human28779",
+          "drafted": false,
+          "job": "UseHemostaticAgent",
+          "position": {
+            "x": 124,
+            "z": 120
+          }
+        }
+      ],
+      "patients": [
+        "target=Gavin/Human31105 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=4.4745 bloodLoss=0.139 bloodNeed=0/1 deathTicks=11542 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Engie/Human31108 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.4384 bloodLoss=0.078 bloodNeed=0/1 deathTicks=22676 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=BW/Human31111 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.1444 bloodLoss=0.118 bloodNeed=0/1 deathTicks=46220 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=False",
+        "target=Juniper/Human31115 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1512 bloodLoss=0.136 bloodNeed=0/1 deathTicks=16451 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Freddie/Human31118 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.8656 bloodLoss=0.092 bloodNeed=0/1 deathTicks=19012 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Wolf/Human31121 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.5256 bloodLoss=0.113 bloodNeed=0/1 deathTicks=15094 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Dankman/Human31124 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.88 bloodLoss=0.092 bloodNeed=0/1 deathTicks=18913 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Veli/Human31128 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.2 bloodLoss=0.106 bloodNeed=0/1 deathTicks=44720 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Bradshaw/Human31131 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1128 bloodLoss=0.097 bloodNeed=0/1 deathTicks=17414 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Velma/Human31134 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.1456 bloodLoss=0.067 bloodNeed=0/1 deathTicks=26098 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Onesan/Human31137 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.3728 bloodLoss=0.044 bloodNeed=0/1 deathTicks=41779 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Anarchist/Human31140 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.3784 bloodLoss=0.123 bloodNeed=0/1 deathTicks=22134 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=盖多尔/Human31143 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.2384 bloodLoss=0.098 bloodNeed=0/1 deathTicks=43714 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Gnugfur/Human31148 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=0.002 bloodLoss=0 bloodNeed=0/0 deathTicks=29648497 needs=True stabilize=False urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=海狸/Human31157 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=1.1333 bloodLoss=0.036 bloodNeed=0/1 deathTicks=51047 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=米色/Human31165 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.9909 bloodLoss=0.088 bloodNeed=0/1 deathTicks=27487 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=希哥克里塞比尔/Human31171 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.7456 bloodLoss=0.138 bloodNeed=0/1 deathTicks=18829 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Toni/Human31177 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.2 bloodLoss=0.063 bloodNeed=0/1 deathTicks=46842 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True"
+      ]
+    },
+    {
+      "phase": "doctor returned",
+      "advancedTicks": 2400,
+      "scheduler": "[Search and Rescue] Scheduler snapshot map=0 tick=11465 mode=MarkedOnly pending=0 active=6 logistics=4 standby=0 detourBacklog=540.0",
+      "colonists": 22,
+      "downed": 12,
+      "workers": [
+        {
+          "name": "Boring",
+          "pawnId": "Thing_Human28783",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 164,
+            "z": 126
+          }
+        },
+        {
+          "name": "Cass",
+          "pawnId": "Thing_Human28767",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 169,
+            "z": 133
+          }
+        },
+        {
+          "name": "Flea",
+          "pawnId": "Thing_Human94",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 137,
+            "z": 123
+          }
+        },
+        {
+          "name": "Kaleun",
+          "pawnId": "Thing_Human87",
+          "drafted": false,
+          "job": "UseHemostaticAgent",
+          "position": {
+            "x": 125,
+            "z": 122
+          }
+        },
+        {
+          "name": "Leah",
+          "pawnId": "Thing_Human91",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 133,
+            "z": 121
+          }
+        },
+        {
+          "name": "Norma",
+          "pawnId": "Thing_Human28775",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 126,
+            "z": 117
+          }
+        },
+        {
+          "name": "Roeder",
+          "pawnId": "Thing_Human28759",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 131,
+            "z": 126
+          }
+        },
+        {
+          "name": "Sanni",
+          "pawnId": "Thing_Human28762",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 152,
+            "z": 128
+          }
+        },
+        {
+          "name": "Speen",
+          "pawnId": "Thing_Human28786",
+          "drafted": false,
+          "job": "SAR_DeliverMedicalSupply",
+          "position": {
+            "x": 177,
+            "z": 132
+          }
+        },
+        {
+          "name": "Willbord",
+          "pawnId": "Thing_Human28779",
+          "drafted": false,
+          "job": "TendPatient",
+          "position": {
+            "x": 124,
+            "z": 115
+          }
+        }
+      ],
+      "patients": [
+        "target=Gavin/Human31105 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.8545 bloodLoss=0.176 bloodNeed=0/1 deathTicks=17322 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Engie/Human31108 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.4312 bloodLoss=0.103 bloodNeed=0/1 deathTicks=22142 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=BW/Human31111 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.1444 bloodLoss=0.13 bloodNeed=0/1 deathTicks=45620 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=False",
+        "target=Juniper/Human31115 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.8012 bloodLoss=0.163 bloodNeed=0/1 deathTicks=27867 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Freddie/Human31118 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.8656 bloodLoss=0.121 bloodNeed=0/1 deathTicks=18412 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Wolf/Human31121 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.0328 bloodLoss=0.145 bloodNeed=0/1 deathTicks=25226 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Dankman/Human31124 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.88 bloodLoss=0.121 bloodNeed=0/1 deathTicks=18313 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Veli/Human31128 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.2 bloodLoss=0.118 bloodNeed=0/1 deathTicks=44120 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Bradshaw/Human31131 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=3.1056 bloodLoss=0.128 bloodNeed=0/1 deathTicks=16855 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=Velma/Human31134 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.1456 bloodLoss=0.088 bloodNeed=0/1 deathTicks=25498 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Onesan/Human31137 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.3728 bloodLoss=0.058 bloodNeed=0/1 deathTicks=41179 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Anarchist/Human31140 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=2.3712 bloodLoss=0.146 bloodNeed=0/1 deathTicks=21601 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=盖多尔/Human31143 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.2312 bloodLoss=0.11 bloodNeed=0/1 deathTicks=43366 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=Gnugfur/Human31148 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=0.002 bloodLoss=0 bloodNeed=0/0 deathTicks=29648497 needs=True stabilize=False urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=海狸/Human31157 origin=ManualTreatment, ManualRescue, ManualCapture spawned=True downed=True bleed=1.1069 bloodLoss=0.047 bloodNeed=0/1 deathTicks=51651 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=False followupReady=False rescueReady=False",
+        "target=米色/Human31165 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.9837 bloodLoss=0.108 bloodNeed=0/1 deathTicks=26985 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True",
+        "target=希哥克里塞比尔/Human31171 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.5528 bloodLoss=0.156 bloodNeed=0/1 deathTicks=32601 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=False",
+        "target=Toni/Human31177 origin=ManualTreatment, ManualRescue spawned=True downed=True bleed=1.1928 bloodLoss=0.075 bloodNeed=0/1 deathTicks=46523 needs=True stabilize=True urgentSurgery=False externalOwner=False treatReady=True followupReady=False rescueReady=True"
+      ]
+    }
+  ],
+  "warningsErrorsDuringRun": [],
+  "limits": "One save, three consecutive phases (not three independent saves). Patients still needed care at +2400; no claim of complete rescue, long-term survival, or full compatibility coverage.",
+  "tooling": "Initial draft command used XML ID instead of bridge Thing_ ID; corrected after listing colonists. Preliminary 1200-tick request timed out at +651, excluded from the three-phase run."
+}
