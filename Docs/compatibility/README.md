@@ -1,8 +1,10 @@
 # Search and Rescue 1.6 Compatibility List
 
-Updated: 2026-09-05
+Updated: 2026-09-06
 
 kemomimihouse HardworkingExt (`Moo.Hardworking.Kz`): **Partial support**. Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table; vanilla Rescue training is not required. SAR reads Hardworking priorities and respects native stop/follow permissions, interaction cooldown, strict night schedules and rest limits. Rescue training cannot bypass disabled work. Chance-work mode stays outside automatic SAR dispatch. [18 in-game permission checks](../validation/2026-09-05-hardworking.json) passed with the real framework component; species-specific end-to-end jobs remain untested.
+
+Hardworking animals 1.6 ([Workshop 933324235](https://steamcommunity.com/sharedfiles/filedetails/?id=933324235)): **Awaiting runtime testing**. This separate hauling-frequency mod is not covered by the HardworkingExt adapter. Coexistence is expected from its public description and SAR's existing animal rescue path, but its implementation and runtime behavior have not been verified locally. Animals still need Rescue training and SAR membership to carry casualties; Haul training alone does not grant SAR medical supply or tending roles. Local Animals Logic metadata declares `Daniledman.HardworkingAnimals` incompatible; that declaration concerns those two mods.
 
 Support levels:
 

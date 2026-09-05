@@ -1,18 +1,28 @@
 Search and Rescue 1.6 Compatibility List
 
-Updated: 2026-09-05
+Updated: 2026-09-06
 
 Support levels
 
 Integration: SAR adds dedicated content for this mod.
 
-Compatible: SAR has been coexistence-tested with this mod and may adjust its logic to provide appropriate compatibility.
+Compatible: SAR reads settings, recognizes jobs or protects task ownership, or coexists through standard game interfaces. This does not mean every mod has received full runtime testing.
 
 Partially compatible: The basic features can coexist. Some overlapping areas remain outside SAR coordination, the mod was unavailable for local runtime testing, or an optional adapter failed to load.
 
 These levels describe SAR's support for each individual mod. When several third-party mods are enabled together, their compatibility with one another also affects the result. The in-game compatibility list checks active mods and optional adapter readiness, and dynamically shows Disabled or Partially compatible when appropriate.
 
 This list covers the Workshop mods reviewed and tested so far ːazukiː. Please leave a comment if you find an omission or encounter a compatibility issue in play.
+
+Animal work mods
+
+kemomimihouse HardworkingExt (Moo.Hardworking.Kz) — Partially compatible
+Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table; vanilla Rescue training is not required. SAR reads Hardworking priorities rather than conflicting Work Tab values, and respects native stop/follow permissions, interaction cooldown, strict night schedules and rest limits. Rescue training cannot bypass disabled work.
+Chance-work mode stays outside automatic SAR dispatch. 18 in-game permission checks passed with the real framework component; species-specific end-to-end tending and transport jobs remain untested.
+
+Hardworking animals 1.6 (Workshop 933324235) — Awaiting runtime testing
+This separate hauling-frequency mod is not covered by the HardworkingExt adapter. Coexistence is expected from its Workshop description and SAR's existing animal rescue path, but the mod is not installed locally and its implementation and runtime behavior have not been verified. Animals still need Rescue training and SAR membership to carry casualties; Haul training alone does not grant SAR medical supply or tending roles.
+The locally installed Animals Logic metadata declares Daniledman.HardworkingAnimals incompatible. This is a conflict declaration between those two mods, not evidence of a SAR conflict.
 
 Official content
 
