@@ -1,0 +1,91 @@
+{
+  "date": "2026-09-06",
+  "method": "GABS developer diagnostics invoking production permission, registry, cleanup and job construction methods",
+  "enabledOptionalMods": [
+    "Moo.Hardworking.Kz",
+    "tk421storm.PriorityTreatmentRessurected",
+    "NinaGoblin.NoOneLeftBehind",
+    "Orion.Hospitality"
+  ],
+  "results": [
+    {
+      "action": "Run external transport regressions",
+      "checks": [
+        "[SAR live regression] PASS: NOLB Kidnap is recognized as patient transport",
+        "[SAR live regression] PASS: maintenance preserves externally carried marked patient",
+        "[SAR live regression] PASS: maintenance still drops orphaned carry without transport job",
+        "[SAR live regression] PASS: marked guest rescue job construction is blocked",
+        "[SAR live regression] PASS: forced rescue job construction remains available",
+        "[SAR live regression] PASS: third-party positive scanner result respects SAR mark",
+        "[SAR live regression] PASS: forced scanner result remains available",
+        "[SAR live regression] PASS: unmarked rescue remains available"
+      ]
+    },
+    {
+      "action": "Run Hardworking permission regressions",
+      "checks": [
+        "[SAR Hardworking regression] PASS: fixture has no Rescue training",
+        "[SAR Hardworking regression] PASS: animal joins through work settings",
+        "[SAR Hardworking regression] PASS: native work permission admitted",
+        "[SAR Hardworking regression] PASS: doctor lane admitted",
+        "[SAR Hardworking regression] PASS: uses hauling provider",
+        "[SAR Hardworking regression] PASS: tiny-mode WorkGiver exclusion respected",
+        "[SAR Hardworking regression] PASS: tiny-mode treatment exclusion respected",
+        "[SAR Hardworking regression] PASS: tiny-mode WorkGiver allowlist respected",
+        "[SAR Hardworking regression] PASS: tiny-mode treatment allowlist admitted",
+        "[SAR Hardworking regression] PASS: labor work stop respected",
+        "[SAR Hardworking regression] PASS: postpartum work stop respected",
+        "[SAR Hardworking regression] PASS: personal stop respected",
+        "[SAR Hardworking regression] PASS: global stop respected",
+        "[SAR Hardworking regression] PASS: interaction cooldown respected",
+        "[SAR Hardworking regression] PASS: chance work left to native AI",
+        "[SAR Hardworking regression] PASS: global chance mode respected",
+        "[SAR Hardworking regression] PASS: strict night schedule respected",
+        "[SAR Hardworking regression] PASS: rest floor respected",
+        "[SAR Hardworking regression] PASS: disabled doctor work respected",
+        "[SAR Hardworking regression] PASS: disabled hauling respected",
+        "[SAR Hardworking regression] PASS: fixture learned Rescue",
+        "[SAR Hardworking regression] PASS: Rescue training cannot bypass disabled hauling",
+        "[SAR Hardworking regression] PASS: framework work-type prohibition respected",
+        "[SAR Hardworking regression] PASS: field work opt-out respected"
+      ]
+    },
+    {
+      "action": "Run Priority Treatment wake-up regressions",
+      "checks": [
+        "[SAR Priority Treatment regression] PASS: sleeping wait is protected when wake-up is disabled",
+        "[SAR Priority Treatment regression] PASS: asleep wait is protected when wake-up is disabled",
+        "[SAR Priority Treatment regression] PASS: resting lay-down is protected when wake-up is disabled",
+        "[SAR Priority Treatment regression] PASS: lay-down is protected when wake-up is disabled",
+        "[SAR Priority Treatment regression] PASS: wake-up setting permits a managed override",
+        "[SAR Priority Treatment regression] PASS: non-sleep work is unaffected",
+        "[SAR Priority Treatment regression] PASS: an idle responder is unaffected",
+        "[SAR Priority Treatment regression] PASS: live PTR cache removes only the SAR-managed patient",
+        "[SAR Priority Treatment regression] PASS: live false wake-up setting blocks a sleeping managed override",
+        "[SAR Priority Treatment regression] PASS: live true wake-up setting permits a sleeping managed override",
+        "[SAR Priority Treatment regression] PASS: player-forced sleeping job remains protected when wake-up is enabled"
+      ]
+    },
+    {
+      "action": "Run rescue destination regressions",
+      "checks": [
+        "[SAR live regression] PASS: ordinary bed is selected by production search",
+        "[SAR live regression] PASS: ordinary bed satisfies production delivery contract",
+        "[SAR live regression] PASS: medical bed remains valid",
+        "[SAR live regression] PASS: no repeated route at existing rescue point",
+        "[SAR live regression] PASS: changed rescue point enables transport",
+        "[SAR live regression] PASS: new bed enables onward transport from rescue point"
+      ]
+    }
+  ],
+  "passed": 49,
+  "failed": 0,
+  "limits": [
+    "NOLB test isolates maintenance on a native Kidnap carry; does not exercise fleeing AI or full map exit.",
+    "Hospitality scanner test supplies a positive third-party result to the production postfix; does not construct a full guest-bed scenario.",
+    "Hardworking uses a temporary animal with the real framework comp, not the species mod.",
+    "PTR tests real settings/cache with a temporary sleeping JobTracker, not a full treatment round.",
+    "Loading the 13-mod save with 17 mods produced one missing think-node-key warning before diagnostics; final diagnostic calls had no warnings/errors.",
+    "Vehicle Framework movement-interface failure handling was built and statically reviewed; VF was not loaded in this regression."
+  ]
+}

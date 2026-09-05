@@ -13,6 +13,8 @@ namespace SearchAndRescue
     {
         private static Type priorityTreatmentType;
         private static Type priorityTreatmentSettingsType;
+        private static Type priorityTreatmentMapComponentType;
+        private static FieldInfo tendablePawnsField;
         private static IList<string> doctorWorkDefs;
         private static object priorityTreatmentSettings;
 
@@ -30,6 +32,11 @@ namespace SearchAndRescue
             {
                 priorityTreatmentSettingsType = priorityTreatmentType.Assembly
                     .GetType("TKS_PriorityTreatment.TKS_PriorityTreatmentSettings", false);
+                priorityTreatmentMapComponentType = priorityTreatmentType.Assembly
+                    .GetType("TKS_PriorityTreatment.MapComponent_PriorityTreatment", false);
+                tendablePawnsField = priorityTreatmentMapComponentType?.GetField(
+                    "tendablePawns",
+                    BindingFlags.Public | BindingFlags.Instance);
                 doctorWorkDefs = priorityTreatmentType.GetField(
                         "doctorWorkDefs",
                         BindingFlags.Public | BindingFlags.Static)
@@ -103,6 +110,11 @@ namespace SearchAndRescue
             ref Job queuedJob,
             ref Job __result)
         {
+            // PotentialPatientsGlobal filters future PTR cache rebuilds, but a pawn may become
+            // SAR-managed between rebuilds. Remove those stale entries before PTR's original
+            // method can end the doctor's current job and select one of them.
+            RemoveManagedPatientsFromPriorityTreatmentCache(pawn?.Map);
+
             if (!CanRequestManagedOverride(pawn))
             {
                 return true;
@@ -150,6 +162,10 @@ namespace SearchAndRescue
             {
                 return !ShouldEatBeforeTreatment(pawn);
             }
+            if (BlocksManagedWakeup(current.def, PriorityTreatmentAllowsWakeUp()))
+            {
+                return false;
+            }
             if (current.playerForced ||
                 pawn.Map.GetComponent<SearchAndRescueCoordinator>()?.IsActiveJob(pawn, current) == true ||
                 doctorWorkDefs?.Contains(current.def?.defName) == true ||
@@ -162,6 +178,47 @@ namespace SearchAndRescue
             return !ShouldEatBeforeTreatment(pawn);
         }
 
+        internal static bool BlocksManagedWakeup(JobDef currentJob, bool wakeUpToTend)
+        {
+            return !wakeUpToTend && IsSleepingJob(currentJob);
+        }
+
+        private static bool IsSleepingJob(JobDef jobDef)
+        {
+            return jobDef == JobDefOf.Wait_WithSleeping || jobDef == JobDefOf.Wait_Asleep ||
+                   jobDef == JobDefOf.LayDownResting || jobDef == JobDefOf.LayDown;
+        }
+
+        private static void RemoveManagedPatientsFromPriorityTreatmentCache(Map map)
+        {
+            if (map == null || priorityTreatmentMapComponentType == null || tendablePawnsField == null)
+            {
+                return;
+            }
+
+            try
+            {
+                MapComponent component = map.GetComponent(priorityTreatmentMapComponentType);
+                if (component == null || !(tendablePawnsField.GetValue(component) is IList<Pawn> patients))
+                {
+                    return;
+                }
+
+                for (int index = patients.Count - 1; index >= 0; index--)
+                {
+                    if (SearchAndRescueJobContext.HasManagedTreatmentOrder(patients[index]))
+                    {
+                        patients.RemoveAt(index);
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Log.WarningOnce("[Search and Rescue] Could not filter Priority Treatment's cached patients. " +
+                                exception.GetBaseException().Message, 196320757);
+            }
+        }
+
         private static bool ShouldEatBeforeTreatment(Pawn pawn)
         {
             return PriorityTreatmentAllowsEating() && pawn.needs?.food != null &&
@@ -172,22 +229,7 @@ namespace SearchAndRescue
         {
             try
             {
-                if (priorityTreatmentSettings == null && priorityTreatmentSettingsType != null)
-                {
-                    MethodInfo getMod = typeof(LoadedModManager).GetMethods(
-                            BindingFlags.Public | BindingFlags.Static)
-                        .FirstOrDefault(method => method.Name == "GetMod" &&
-                                                  method.IsGenericMethodDefinition &&
-                                                  method.GetParameters().Length == 0);
-                    object mod = getMod?.MakeGenericMethod(priorityTreatmentType).Invoke(null, null);
-                    MethodInfo getSettings = typeof(Mod).GetMethods(BindingFlags.Public | BindingFlags.Instance)
-                        .FirstOrDefault(method => method.Name == "GetSettings" &&
-                                                  method.IsGenericMethodDefinition &&
-                                                  method.GetParameters().Length == 0);
-                    priorityTreatmentSettings = getSettings?.MakeGenericMethod(priorityTreatmentSettingsType)
-                        .Invoke(mod, null);
-                }
-
+                EnsurePriorityTreatmentSettings();
                 FieldInfo allowEating = priorityTreatmentSettingsType?.GetField(
                     "allowEating",
                     BindingFlags.Public | BindingFlags.Instance);
@@ -199,6 +241,42 @@ namespace SearchAndRescue
                 // settings implementation.
                 return true;
             }
+        }
+
+        private static bool PriorityTreatmentAllowsWakeUp()
+        {
+            try
+            {
+                EnsurePriorityTreatmentSettings();
+                FieldInfo wakeUpToTend = priorityTreatmentSettingsType?.GetField(
+                    "wakeUpToTend",
+                    BindingFlags.Public | BindingFlags.Instance);
+                return wakeUpToTend?.GetValue(priorityTreatmentSettings) as bool? ?? false;
+            }
+            catch
+            {
+                // Avoid waking a sleeping responder when a future PTR release changes its
+                // settings implementation and the user's preference cannot be read.
+                return false;
+            }
+        }
+
+        private static void EnsurePriorityTreatmentSettings()
+        {
+            if (priorityTreatmentSettings != null || priorityTreatmentSettingsType == null)
+            {
+                return;
+            }
+
+            MethodInfo getMod = typeof(LoadedModManager).GetMethods(BindingFlags.Public | BindingFlags.Static)
+                .FirstOrDefault(method => method.Name == "GetMod" && method.IsGenericMethodDefinition &&
+                                          method.GetParameters().Length == 0);
+            object mod = getMod?.MakeGenericMethod(priorityTreatmentType).Invoke(null, null);
+            MethodInfo getSettings = typeof(Mod).GetMethods(BindingFlags.Public | BindingFlags.Instance)
+                .FirstOrDefault(method => method.Name == "GetSettings" && method.IsGenericMethodDefinition &&
+                                          method.GetParameters().Length == 0);
+            priorityTreatmentSettings = getSettings?.MakeGenericMethod(priorityTreatmentSettingsType)
+                .Invoke(mod, null);
         }
     }
 }

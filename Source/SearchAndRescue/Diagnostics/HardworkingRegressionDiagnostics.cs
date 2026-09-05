@@ -25,6 +25,10 @@ namespace SearchAndRescue
             var races = (HashSet<ThingDef>)setup.GetField("AllHardWorkerRaceDefs").GetValue(null);
             bool added = races.Add(pawn.def);
             Type settings = AccessTools.TypeByName("Kz.HardworkingSettings");
+            var allowableWorkGivers = (HashSet<string>)settings
+                .GetProperty("AllowableWorkGiverNames")
+                .GetValue(null, null);
+            var originalAllowableWorkGivers = new HashSet<string>(allowableWorkGivers);
             var changed = new Dictionary<string, object>();
             Action<string, object> setting = (name, value) =>
             {
@@ -51,6 +55,7 @@ namespace SearchAndRescue
                 GenSpawn.Spawn(pawn, CellFinder.RandomClosewalkCellNear(Find.CurrentMap.Center, Find.CurrentMap, 8), Find.CurrentMap);
                 setting("enableGlobalHardWorkerCanWork", true);
                 setting("enableGlobalChanceWorkMode", false);
+                setting("enableHardworkingTinyMode", false);
                 setting("setGlobalWorkLimiterMinRest", 0.35f);
                 Action<string, object> state = (name, value) => comp.GetType().GetField(name).SetValue(comp, value);
                 var coordinator = Find.CurrentMap.GetComponent<SearchAndRescueCoordinator>();
@@ -59,6 +64,25 @@ namespace SearchAndRescue
                 Check(HardworkingCompatibility.CanWorkNow(pawn), "native work permission admitted");
                 Check(Compatibility.CanPerformTreatmentWork(pawn), "doctor lane admitted");
                 Check(Compatibility.RescueProviderFor(pawn) == RescueWorkProvider.Hauling, "uses hauling provider");
+                setting("enableHardworkingTinyMode", true);
+                allowableWorkGivers.Remove(SearchAndRescueDefOf.SAR_TreatMarked.defName);
+                Check(!HardworkingCompatibility.IsWorkGiverAllowed(
+                    pawn, SearchAndRescueDefOf.SAR_TreatMarked), "tiny-mode WorkGiver exclusion respected");
+                Check(!Compatibility.CanPerformTreatmentWork(pawn), "tiny-mode treatment exclusion respected");
+                allowableWorkGivers.Add(SearchAndRescueDefOf.SAR_TreatMarked.defName);
+                Check(HardworkingCompatibility.IsWorkGiverAllowed(
+                    pawn, SearchAndRescueDefOf.SAR_TreatMarked), "tiny-mode WorkGiver allowlist respected");
+                Check(Compatibility.CanPerformTreatmentWork(pawn), "tiny-mode treatment allowlist admitted");
+                setting("enableHardworkingTinyMode", false);
+                if (ModsConfig.BiotechActive)
+                {
+                    Hediff labor = pawn.health.AddHediff(HediffDefOf.PregnancyLabor);
+                    Check(!HardworkingCompatibility.CanWorkNow(pawn), "labor work stop respected");
+                    pawn.health.RemoveHediff(labor);
+                    Hediff postpartum = pawn.health.AddHediff(HediffDefOf.PostpartumExhaustion);
+                    Check(!HardworkingCompatibility.CanWorkNow(pawn), "postpartum work stop respected");
+                    pawn.health.RemoveHediff(postpartum);
+                }
                 state("curStopWork", true);
                 Check(!HardworkingCompatibility.CanWorkNow(pawn), "personal stop respected");
                 state("curStopWork", false);
@@ -102,6 +126,8 @@ namespace SearchAndRescue
             finally
             {
                 foreach (var pair in changed) settings.GetField(pair.Key).SetValue(null, pair.Value);
+                allowableWorkGivers.Clear();
+                allowableWorkGivers.UnionWith(originalAllowableWorkGivers);
                 pawn.Destroy();
                 if (added) races.Remove(pawn.def);
                 AccessTools.Method("Kz.HardworkingData:ClearCache").Invoke(null, null);

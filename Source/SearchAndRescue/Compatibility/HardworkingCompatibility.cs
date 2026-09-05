@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using HarmonyLib;
@@ -15,10 +16,15 @@ namespace SearchAndRescue
         private static readonly Type SettingsType = AccessTools.TypeByName("Kz.HardworkingSettings");
         private static readonly MethodInfo WorkAtNight = AccessTools.Method(
             "Kz.HardworkingUtility:IsWorkTimeAtNight", new[] { typeof(Pawn) });
+        private static readonly FieldInfo TinyMode = SettingsType?.GetField(
+            "enableHardworkingTinyMode", BindingFlags.Public | BindingFlags.Static);
+        private static readonly PropertyInfo AllowableWorkGivers = SettingsType?.GetProperty(
+            "AllowableWorkGiverNames", BindingFlags.Public | BindingFlags.Static);
         private static readonly ThinkNode EmergencyWork = CreateWorkNode();
 
         internal static bool Ready => CompType != null && SettingsType != null &&
-                                      WorkAtNight != null && EmergencyWork != null;
+                                      WorkAtNight != null && TinyMode != null &&
+                                      AllowableWorkGivers != null && EmergencyWork != null;
 
         internal static bool IsWorker(Pawn pawn) => pawn?.Faction == Faction.OfPlayer &&
             CompType != null && pawn.AllComps.Any(comp => CompType.IsInstanceOfType(comp));
@@ -47,6 +53,9 @@ namespace SearchAndRescue
             if (!Ready) return false;
             try
             {
+                // The native Hardworking work node rejects both active labor and its
+                // postpartum exhaustion period before scanning any WorkGiver.
+                if (pawn.health?.hediffSet?.InLabor(true) == true) return false;
                 object comp = pawn.AllComps.First(CompType.IsInstanceOfType);
                 // Native checks include global/personal stop, following a drafted master,
                 // interaction cooldown and EverWork. Do not bypass these with animal training.
@@ -60,6 +69,26 @@ namespace SearchAndRescue
                     !(bool)WorkAtNight.Invoke(null, new object[] { pawn })) return false;
                 return pawn.needs?.rest == null ||
                        pawn.needs.rest.CurLevelPercentage >= Setting<float>("setGlobalWorkLimiterMinRest");
+            }
+            catch (Exception exception)
+            {
+                Warn(exception);
+                return false;
+            }
+        }
+
+        internal static bool IsWorkGiverAllowed(Pawn pawn, WorkGiverDef workGiver)
+        {
+            if (!IsWorker(pawn)) return true;
+            if (!Ready || workGiver == null) return false;
+            try
+            {
+                if (!(bool)TinyMode.GetValue(null)) return true;
+
+                // Read the live set on every permission query. Hardworking replaces or
+                // mutates this collection while loading settings and editing the whitelist.
+                var allowed = AllowableWorkGivers.GetValue(null, null) as IEnumerable<string>;
+                return allowed != null && allowed.Contains(workGiver.defName);
             }
             catch (Exception exception)
             {

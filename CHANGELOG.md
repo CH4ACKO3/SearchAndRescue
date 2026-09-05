@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Preserve No One Left Behind's Kidnap transport during orphan-carry maintenance, and gate Hospitality rescue scanning and job construction for SAR-owned patients.
+- Honor Hardworking tiny-mode WorkGiver permissions and labor restrictions. Respect Priority Treatment's sleep setting for SAR targets, including stale patient caches.
+- Reject Vehicle Framework cargo sources when required movement-state interfaces are unavailable.
+- Synchronize Workshop copy to the author's revised sections and wording.
+
 - Added optional HardworkingExt worker admission and native permission checks. Hardworking priorities take precedence over Work Tab for these animals, and Rescue training cannot bypass disabled work. Chance-work mode remains outside automatic SAR dispatch.
 - Added 18 in-game Hardworking permission regression checks; species-specific end-to-end jobs remain unverified.
 

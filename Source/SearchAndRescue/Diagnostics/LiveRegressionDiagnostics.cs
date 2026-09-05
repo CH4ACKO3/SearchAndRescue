@@ -23,6 +23,67 @@ namespace SearchAndRescue
         private static int initialGroundCount;
         private static Map supplyMap;
 
+        [DebugAction("Search and Rescue", "Run external transport regressions",
+            allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void ExternalTransport()
+        {
+            Map map = Find.CurrentMap;
+            Pawn carrier = Spawn(map, -6);
+            Pawn patient = Spawn(map, 0);
+            var mark = new Designation(patient, SearchAndRescueDefOf.SAR_Rescue);
+            map.designationManager.AddDesignation(mark);
+            Job previous = carrier.CurJob;
+            try
+            {
+                HealthUtility.TryAnesthetize(patient);
+                Job kidnap = JobMaker.MakeJob(JobDefOf.Kidnap, patient, Cell(map, 16));
+                // Isolate the actual maintenance method, without running the exit-map toil.
+                carrier.jobs.curJob = kidnap;
+                patient.DeSpawn();
+                carrier.carryTracker.TryStartCarry(patient);
+                Check(CompatibilityRegistry.PatientFor(carrier, kidnap, PatientJobRole.Transport) == patient,
+                    "NOLB Kidnap is recognized as patient transport");
+                var cleanup = AccessTools.Method(typeof(SearchAndRescueCoordinator), "CleanupOrphanedManagedCarries");
+                cleanup.Invoke(map.GetComponent<SearchAndRescueCoordinator>(), null);
+                Check(carrier.carryTracker.CarriedThing == patient,
+                    "maintenance preserves externally carried marked patient");
+                carrier.jobs.curJob = JobMaker.MakeJob(JobDefOf.Wait);
+                cleanup.Invoke(map.GetComponent<SearchAndRescueCoordinator>(), null);
+                Check(carrier.carryTracker.CarriedThing == null && patient.Spawned,
+                    "maintenance still drops orphaned carry without transport job");
+
+                var giver = new WorkGiver_RescueDowned();
+                Check(giver.JobOnThing(carrier, patient) == null,
+                    "marked guest rescue job construction is blocked");
+                Check(giver.JobOnThing(carrier, patient, true) != null,
+                    "forced rescue job construction remains available");
+                // Hospitality can supply true from a prefix while skipping vanilla.
+                // Exercise our final scanner boundary with exactly that result.
+                var gate = AccessTools.Method(typeof(WorkGiverRescueDowned_SearchAndRescueOrderPatch), "Postfix");
+                object[] args = { patient, false, true };
+                gate.Invoke(null, args);
+                Check(!(bool)args[2], "third-party positive scanner result respects SAR mark");
+                args = new object[] { patient, true, true };
+                gate.Invoke(null, args);
+                Check((bool)args[2], "forced scanner result remains available");
+                map.designationManager.RemoveDesignation(mark);
+                mark = null;
+                args = new object[] { patient, false, true };
+                gate.Invoke(null, args);
+                Check((bool)args[2] && giver.JobOnThing(carrier, patient) != null,
+                    "unmarked rescue remains available");
+            }
+            finally
+            {
+                carrier.jobs.curJob = previous;
+                if (mark != null) map.designationManager.RemoveDesignation(mark);
+                if (carrier.carryTracker.CarriedThing == patient)
+                    carrier.carryTracker.TryDropCarriedThing(carrier.Position, ThingPlaceMode.Near, out _);
+                if (!patient.Destroyed) patient.Destroy();
+                if (!carrier.Destroyed) carrier.Destroy();
+            }
+        }
+
         [DebugAction("Search and Rescue", "Run rescue destination regressions",
             allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void RescueDestinations()

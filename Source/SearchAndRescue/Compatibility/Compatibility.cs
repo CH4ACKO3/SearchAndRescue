@@ -298,7 +298,9 @@ namespace SearchAndRescue
                     196320753 + operation.GetHashCode());
             }
         }
-        public static bool UsesVehiclesFramework => VehiclePawnType != null;
+        public static bool UsesVehiclesFramework => VehiclePawnType != null &&
+            VehicleTakeFromInventoryMethod != null && VehicleAddOrTransferMethod != null &&
+            VehiclePatherField != null && VehiclePatherMovingProperty?.PropertyType == typeof(bool);
 
         public static bool IsVehiclePawn(Pawn pawn)
         {
@@ -307,7 +309,7 @@ namespace SearchAndRescue
 
         public static bool VehicleCargoSourceAvailable(Pawn vehicle, Pawn worker = null)
         {
-            if (!IsVehiclePawn(vehicle) || VehicleTakeFromInventoryMethod == null ||
+            if (!UsesVehiclesFramework || !IsVehiclePawn(vehicle) || VehicleTakeFromInventoryMethod == null ||
                 VehicleAddOrTransferMethod == null || vehicle.Destroyed || vehicle.Dead ||
                 !vehicle.Spawned || vehicle.inventory == null || vehicle.Faction != Faction.OfPlayer)
             {
@@ -323,7 +325,8 @@ namespace SearchAndRescue
             try
             {
                 object pather = VehiclePatherField?.GetValue(vehicle);
-                return !(VehiclePatherMovingProperty?.GetValue(pather, null) is bool moving) || !moving;
+                // Unknown movement state is not evidence that cargo is safe to unload.
+                return pather != null && VehiclePatherMovingProperty.GetValue(pather, null) is bool moving && !moving;
             }
             catch (Exception exception)
             {
@@ -2319,6 +2322,8 @@ namespace SearchAndRescue
             WorkGiverDef workGiver,
             WorkTypeDef providerWorkType)
         {
+            if (!HardworkingCompatibility.IsWorkGiverAllowed(worker, workGiver)) return 0;
+
             if (HardworkingCompatibility.IsWorker(worker) &&
                 (worker.WorkTypeIsDisabled(SearchAndRescueDefOf.SAR_FieldRescue) ||
                  worker.WorkTypeIsDisabled(providerWorkType) ||

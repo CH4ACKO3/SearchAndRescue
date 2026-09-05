@@ -449,7 +449,9 @@ namespace SearchAndRescue
                     new[] { "TendPatient", "TendPatientWithoutMedicine", "TendEntity", "DoBill" },
                     driverBaseType: typeof(JobDriver_TendPatient))
                 .Jobs(PatientJobRole.Transport,
-                    new[] { "Rescue", "TakeWoundedPrisonerToBed", "SAR_EvacuateToPoint" },
+                    // NOLB uses vanilla Kidnap to evacuate its own wounded. Transport
+                    // ownership describes who carries the patient, not their allegiance.
+                    new[] { "Rescue", "TakeWoundedPrisonerToBed", "SAR_EvacuateToPoint", "Kidnap" },
                     driverBaseType: typeof(JobDriver_TakeToBed))
                 .Jobs(PatientJobRole.Capture | PatientJobRole.Transport,
                     new[] { "Capture", "Arrest" })

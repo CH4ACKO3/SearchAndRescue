@@ -203,6 +203,33 @@ namespace SearchAndRescue
         }
     }
 
+    // Hospitality replaces the guest branch without calling CanRescueNow. Gate the
+    // scanner result as well, including when a third-party prefix skips the original.
+    [HarmonyPatch(typeof(WorkGiver_RescueDowned), nameof(WorkGiver_RescueDowned.HasJobOnThing))]
+    internal static class WorkGiverRescueDowned_SearchAndRescueOrderPatch
+    {
+        private static void Postfix(Thing t, bool forced, ref bool __result)
+        {
+            if (__result && !forced && t is Pawn patient &&
+                SearchAndRescueJobContext.HasManagedTransportOrder(patient))
+            {
+                __result = false;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(WorkGiver_RescueDowned), nameof(WorkGiver_RescueDowned.JobOnThing))]
+    internal static class WorkGiverRescueDownedJob_SearchAndRescueOrderPatch
+    {
+        private static bool Prefix(Thing t, bool forced, ref Job __result)
+        {
+            if (forced || !(t is Pawn patient) ||
+                !SearchAndRescueJobContext.HasManagedTransportOrder(patient)) return true;
+            __result = null;
+            return false;
+        }
+    }
+
     [HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), nameof(WorkGiver_Warden_TakeToBed.TryMakeJob))]
     [HarmonyPriority(Priority.First)]
     internal static class WorkGiverWardenTakeToBed_SearchAndRescueStageOrderPatch

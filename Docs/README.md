@@ -4,6 +4,7 @@
 - [Live testing](development/Testing.zh-CN.md) and [compatibility test matrix](compatibility/TestMatrix.zh-CN.md)
 - [Release checklist](development/ReleaseChecklist.zh-CN.md)
 - [Workshop descriptions and discussion text](workshop/)
+  Workshop copy follows the user's 2026-09-06 revision: retain its existing sections and concise per-mod entries; update those entries in place instead of adding sections. Keep implementation and test detail in the development/review records.
 - [Code review](reviews/2026-09-05.zh-CN.md) and [regression evidence](validation/2026-09-05-gabs.json)
 - [Workshop compatibility audit](reviews/2026-09-06-compatibility.zh-CN.md): static findings and runtime verification gaps
 
