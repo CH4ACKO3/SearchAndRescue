@@ -76,7 +76,11 @@ static async Task<int> Run(string[] args)
             using var http = new System.Net.Http.HttpClient(handler);
             var page = await http.GetStringAsync("https://steamcommunity.com/sharedfiles/filedetails/changelog/3796056278?l=english");
             foreach (System.Text.RegularExpressions.Match match in System.Text.RegularExpressions.Regex.Matches(page, @"function\s+\w*(?:ChangeLog|ChangeNote)\w*\s*\([^)]*\)[\s\S]*?(?=\nfunction|</script>)", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
-                Console.WriteLine(match.Value);
+            {
+                var code = System.Text.RegularExpressions.Regex.Replace(match.Value, @"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+", "<redacted>");
+                code = System.Text.RegularExpressions.Regex.Replace(code, @"[a-fA-F0-9]{24,}", "<redacted>");
+                Console.WriteLine(code);
+            }
             Console.WriteLine("Inspected the owned change-note editor without writing.");
             return 0;
         }
