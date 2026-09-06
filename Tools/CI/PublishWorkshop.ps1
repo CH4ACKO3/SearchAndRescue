@@ -1,4 +1,4 @@
-param([Parameter(Mandatory=$true)][string]$ArtifactRoot, [switch]$DryRun, [switch]$CheckOnly)
+param([Parameter(Mandatory=$true)][string]$ArtifactRoot, [switch]$DryRun, [switch]$CheckOnly, [switch]$VerifyPublished)
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $root=(Resolve-Path -LiteralPath $ArtifactRoot).Path
@@ -24,9 +24,9 @@ if (@(Get-ChildItem -LiteralPath $stage -File -Recurse).Count -ne $seen.Count) {
 $about=[xml](Get-Content -LiteralPath "$stage/About/About.xml" -Raw)
 if ($about.ModMetaData.modVersion -cne $m.version -or
     (Get-Content "$stage/About/PublishedFileId.txt" -Raw).Trim() -cne '3796056278') { throw 'Package identity mismatch.' }
-function Escape-Vdf([string]$value) { $value.Replace('\','\\').Replace('"','\"').Replace("`r",'').Replace("`n",'\n') }
+function Escape-Vdf([string]$value) { $value.Replace('\','\\').Replace('"','\"').Replace("`r",'') }
 $vdf = '"workshopitem"' + "`n{`n" + '  "appid" "294100"' + "`n" + '  "publishedfileid" "3796056278"' + "`n" +
-    '  "contentfolder" "' + (Escape-Vdf $stage) + '"' + "`n" +
+    '  "contentfolder" "' + (Escape-Vdf $stage.Replace('\','/')) + '"' + "`n" +
     '  "changenote" "' + (Escape-Vdf (Get-Content "$root/release-notes.md" -Raw)) + '"' + "`n}`n"
 $vdfPath=Join-Path $root 'workshop-upload.vdf'
 [IO.File]::WriteAllText($vdfPath,$vdf,[Text.UTF8Encoding]::new($false))
@@ -48,7 +48,8 @@ try {
     [IO.File]::WriteAllBytes("$steam/config/config.vdf",[Convert]::FromBase64String($env:STEAM_CONFIG_VDF_BASE64))
     # Capture output instead of streaming login/session details into public Actions logs.
     $arguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME,$env:STEAM_PASSWORD)
-    if (!$CheckOnly) { $arguments+=@('+workshop_build_item',$vdfPath) }
+    if (!$CheckOnly -and !$VerifyPublished) { $arguments+=@('+workshop_build_item',$vdfPath) }
+    if ($VerifyPublished) { $arguments+=@('+workshop_download_item','294100','3796056278','validate') }
     $arguments+='+quit'
     Push-Location -LiteralPath $steam
     try {
@@ -67,12 +68,19 @@ try {
         Write-Host 'PASS: SteamCMD login and bilingual ownership verified. No Workshop writes performed.'
         return
     }
-    if ($exitCode -ne 0 -or $text -notmatch '(?im)^Success\.\s+(?:Published|Updated)[^\r\n]*\b3796056278\b') {
+    if ($VerifyPublished) {
+        if ($exitCode -ne 0) { throw 'Published content download failed.' }
+        $download=Join-Path $steam 'steamapps/workshop/content/294100/3796056278'
+        foreach ($f in $m.files) {
+            if ((Get-FileHash -LiteralPath (Join-Path $download $f.path)).Hash -cne $f.sha256) { throw "Published file checksum mismatch: $($f.path)" }
+        }
+        Write-Host 'PASS: downloaded Workshop files match the release manifest.'
+    } elseif ($exitCode -ne 0 -or $text -notmatch '(?i)\bSuccess\.\s+(?:Published|Updated)[^\r\n]*\b3796056278\b') {
         throw 'Steam did not confirm the Workshop update. Validate login/Steam Guard locally and refresh the environment secrets; raw authentication output is withheld.'
     }
     dotnet $publisher publish $root
     if ($LASTEXITCODE) { throw 'Workshop files uploaded, but bilingual description verification failed. Inspect both languages before retrying.' }
-    Write-Host "Steam confirmed update of Workshop item 3796056278 for $($m.tag)."
+    Write-Host "Steam confirmed published Workshop item 3796056278 for $($m.tag)."
 } finally {
     # Only this script-created temporary directory is removed; no credentials enter artifacts/caches.
     if ($steam.StartsWith([IO.Path]::GetTempPath(),[StringComparison]::OrdinalIgnoreCase) -and

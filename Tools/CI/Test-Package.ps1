@@ -48,7 +48,7 @@ try {
     $manifest | ConvertTo-Json -Depth 5 | Set-Content $manifestPath
     & $publisher -ArtifactRoot $testRoot -DryRun
     $vdf=Get-Content (Join-Path $testRoot 'workshop-upload.vdf') -Raw
-    if ($vdf -notmatch '\\"quote\\"' -or $vdf -notmatch 'C:\\\\test' -or $vdf -notmatch '\\nEnglish') { throw 'VDF escaping failed.' }
+    if ($vdf -notmatch '\\"quote\\"' -or $vdf -notmatch 'C:\\\\test' -or $vdf -notmatch "`nEnglish") { throw 'VDF escaping failed.' }
     if ($vdf -match '"(title|description|visibility|tags|previewfile)"') { throw 'Unexpected Workshop metadata update.' }
     Write-Host 'PASS: invalid identity/tag/path, modified/extra files, VDF escaping and metadata preservation.'
 } finally {
