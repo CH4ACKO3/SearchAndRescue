@@ -5,7 +5,7 @@
     <labelShort>field rescue</labelShort>
     <pawnLabel>Field responder</pawnLabel>
     <gerundLabel>field rescue</gerundLabel>
-    <description>Coordinate battlefield triage, stabilization, medical supply, capture and evacuation. Hospital tending and surgery remain Doctor work.</description>
+    <description>Coordinates battlefield triage, stabilization, medical supply, capture and evacuation. This work type sets the overall priority of battlefield rescue. Also enable Doctor, Hauling and other relevant work types to perform the individual tasks.</description>
     <verb>Rescue</verb>
     <!-- Between Patient (1350) and Doctor (1300): at the same configured priority,
          battlefield emergencies are considered before ordinary hospital care. -->

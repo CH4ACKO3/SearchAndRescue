@@ -56,12 +56,12 @@ Features
 
 • Three stackable designations: field treatment, rescue, and capture. The default shortcut applies every valid stage to the selected targets at once.
 • Two ways to issue orders: choose a command and drag over casualties, or select casualties first and use the command in their bottom action bar.
-• A dedicated Field Rescue work type: placed before the vanilla Doctor work type, separating battlefield response from routine hospital care.
-• Unified triage and matching: assigns patients to doctors, nurses, and carriers using injury severity, blood loss, distance, skill, work priority, current jobs, and switching costs.
+• A dedicated Field Rescue work type: sets the overall priority of battlefield rescue, with Doctor, Hauling and other relevant work types enabling individual tasks.
+• Unified triage and matching: assigns patients to doctors, nurses, and carriers using injury severity, blood loss, infection and immunity progress, distance, skill, work priority, current jobs, and switching costs.
 • Stabilize first, finish later: emergency care addresses immediate lethal threats. Treatment reactivates if the patient deteriorates, while ordinary wounds on stable patients are handled at a lower priority.
 • Coordinated rescue: when doctors are scarce, casualties can be evacuated first. An arriving doctor may intercept a casualty for treatment, while carriers decide whether to wait or help someone else based on the estimated treatment time.
 • Battlefield medical logistics: calculates medicine, blood, and special-device budgets from each casualty&apos;s actual shortage. Doctors weigh whether a supply detour is worthwhile, while carriers can deliver missing supplies.
-• Player control: manually ordered treatment, carrying, and capture take priority. SAR will not redirect those jobs midway.
+• Player control: manually ordered treatment, carrying, and capture take priority and retain the player’s chosen targets.
 • Supports treatment and rescue for friendly humanlikes and non-hostile animals. Capture applies to humanlikes only.
 
 

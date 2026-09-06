@@ -3,6 +3,6 @@
   <SAR_FieldRescue.labelShort>戰地救援</SAR_FieldRescue.labelShort>
   <SAR_FieldRescue.pawnLabel>戰地救援員</SAR_FieldRescue.pawnLabel>
   <SAR_FieldRescue.gerundLabel>執行戰地救援</SAR_FieldRescue.gerundLabel>
-  <SAR_FieldRescue.description>負責戰場分診、穩定傷勢、醫療補給、俘虜和撤離。病房治療與手術仍屬於醫生工作。</SAR_FieldRescue.description>
+  <SAR_FieldRescue.description>負責戰場分診、穩定傷勢、醫療補給、俘虜與撤離。這個工作類別表示戰場救援的整體優先度，需要同時開啟醫生、搬運等工作來執行具體操作。</SAR_FieldRescue.description>
   <SAR_FieldRescue.verb>救援</SAR_FieldRescue.verb>
 </LanguageData>

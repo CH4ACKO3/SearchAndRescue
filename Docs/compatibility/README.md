@@ -6,9 +6,9 @@ Updated: 2026-09-06
 
 Integration: SAR adds dedicated content for this mod.
 
-Compatible: SAR reads settings, recognizes jobs or protects task ownership, or coexists through standard game interfaces. This does not mean every mod has received full runtime testing.
+Compatible: SAR reads settings, recognizes jobs or protects task ownership, or coexists through standard game interfaces. Runtime-test coverage varies by mod; consult the validation records for specific results.
 
-Partially compatible: The basic features can coexist. Some overlapping areas remain outside SAR coordination, the mod was unavailable for local runtime testing, or an optional adapter failed to load.
+Partially compatible: The basic features can coexist. Full support requires additional coordination of overlapping features, local runtime validation, or a successfully loaded optional adapter.
 
 These levels describe SAR's support for each individual mod. When several third-party mods are enabled together, their compatibility with one another also affects the result. The in-game compatibility list checks active mods and optional adapter readiness, and dynamically shows Disabled or Partially compatible when appropriate.
 
@@ -90,7 +90,7 @@ The Workshop item is currently delisted, although existing subscribers may still
 ## Transport, beds, and external rescuers
 
 **Trauma Team Complete — Compatible**
-While a trauma team is in its treatment phase and has a capable, reachable medic, it acquires patient ownership before the first concrete job is produced, and SAR yields at job boundaries. Its private ThinkTree participates in the shared ownership gate. A 350-tick medic watchdog accepts every registered treatment or transport job targeting the same patient, including CE and More Injuries jobs. SAR resumes coordination after the treatment phase ends or the whole team becomes incapacitated or cut off. Trauma Team retains control of its members and carried supplies, which stay outside SAR matching and colony medical-supply quotas.
+While a trauma team is in its treatment phase and has a capable, reachable medic, it acquires patient ownership before the first concrete job is produced, and SAR yields at job boundaries. Its private ThinkTree participates in the shared ownership gate. A 350-tick medic watchdog accepts every registered treatment or transport job targeting the same patient, including CE and More Injuries jobs. SAR resumes coordination after the treatment phase ends or the whole team becomes incapacitated or cut off. Trauma Team coordinates its own members and carried supplies. SAR plans rescue using the colony’s own workers and medical resources.
 
 **Move the Patient — Compatible**
 Uses the mod's patient component to select a suitable medical bed first, then falls back to vanilla bed selection.
@@ -158,4 +158,4 @@ Non-hostile flesh-and-blood animals can receive treatment and rescue using anima
 New wounds enter urgency calculations through the shared Hediff and bleeding assessment. Grievous Wounds calculates overflow damage.
 
 **kemomimihouse HardworkingExt (Moo.Hardworking.Kz) — Partially compatible**
-Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table; vanilla Rescue training is not required. Chance-work mode stays outside automatic SAR dispatch.
+Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table and select a deterministic work mode to join automatic SAR dispatch.

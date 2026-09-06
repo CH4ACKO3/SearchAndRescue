@@ -8,6 +8,8 @@
 - [Code review](reviews/2026-09-05.zh-CN.md) and [regression evidence](validation/2026-09-05-gabs.json)
 - [Workshop compatibility audit](reviews/2026-09-06-compatibility.zh-CN.md): static findings and runtime verification gaps
 
+Player-facing copy describes capabilities, purpose and actionable setup conditions in positive terms. Prefer “sets overall rescue priority; enable Doctor/Hauling for individual tasks” over “separate from Doctor work.” State compatibility limits as supported conditions and validation status, and keep the English, Simplified Chinese and Traditional Chinese messages aligned.
+
 ## Source layout
 
 Under `Source/SearchAndRescue/`; all types retain the `SearchAndRescue` namespace.
