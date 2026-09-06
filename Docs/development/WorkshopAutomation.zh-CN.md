@@ -2,7 +2,7 @@
 
 工作流：`.github/workflows/release.yml`。普通 main 提交、PR 和手动运行会构建、回归测试、打包，并验证工坊上传参数。推送 `v*` 标签还会创建 GitHub Release；Steam 上传由仓库变量单独控制。
 
-当前已配置四项 Secrets 并启用标签发布。2026-09-06 的 [云端只读验证](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34030863356) 已通过 SteamCMD 登录、双语读取和条目所有权检查；真实文件上传与双语写入仍待首次版本发布验证。兼容性说明维护在 [中文清单](../compatibility/README.zh-CN.md) / [English](../compatibility/README.md)，工坊主页链接到 GitHub。
+当前已配置四项 Secrets 并启用标签发布。2026-09-06 的 [云端只读验证](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34030863356) 已通过 SteamCMD 登录、双语读取和条目所有权检查；`v0.1.0-alpha.2` 已发布到工坊；[远端下载与双语描述补验](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34031451219) 全部通过，下载文件逐项匹配发布清单。原标签任务因成功输出匹配过严而显示失败，文件实际上传成功，后续补验完成了发布流程。兼容性说明维护在 [中文清单](../compatibility/README.zh-CN.md) / [English](../compatibility/README.md)，工坊主页链接到 GitHub。
 
 ## 发布版本
 
@@ -26,11 +26,11 @@ git push origin v0.1.0-alpha.2
 - `STEAM_REFRESH_TOKEN`：通过下面的本机登录工具完成 Steam Guard 后获得的持久登录令牌，供双语发布器使用。
 - `STEAM_CONFIG_VDF_BASE64`：在本机 SteamCMD 完成 Steam Guard 验证后，`config/config.vdf` 的 Base64 内容。
 
-凭据通过 GitHub Secrets 保存。配置文件包含登录信息，按密码保管；它的有效性及在云端的可用性需要首次授权实测。云端出现 Steam Guard 手机设备确认时，需要批准本次登录。若缓存过期或登录失败，在本机重新登录并更新 Secret；已通过的登录验证不保证以后每次都免确认。
+凭据通过 GitHub Secrets 保存。配置文件包含登录信息，按密码保管；它的有效性及在云端的可用性需要首次授权实测。云端优先复用最近一次成功登录的 SteamCMD 配置，采用无密码登录。登录成功后自动更新加密缓存；[第二台新机器复用验证](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34031960685) 已通过。缓存过期、令牌被撤销或账号安全设置改变时，可能需要重新完成 Steam Guard。
 
 准备就绪后，将仓库 Actions Variable `STEAM_PUBLISH_ENABLED` 设为 `true`。关闭时设为 `false`，构建与 GitHub Release 仍可使用。发布使用 GitHub 托管 Windows runner，原始 Steam 登录输出不会进入公开日志，登录文件只存在于临时目录。
 
-双语发布器使用固定版本 SteamKit2 的 PublishedFile 服务，包含显式 `language` 参数。该接口属于 Steam 客户端协议适配，并非 SteamCMD 的官方 VDF 扩展；已完成编译、离线请求序列化、载荷验证以及云端登录、条目所有权和双语读取验证；实际写入权限与更新后的回读仍待首次发布实测。
+双语发布器使用固定版本 SteamKit2 的 PublishedFile 服务，包含显式 `language` 参数。该接口属于 Steam 客户端协议适配，并非 SteamCMD 的官方 VDF 扩展；已完成编译、离线请求序列化、载荷验证以及云端登录、条目所有权和双语读取验证；首次发布后的英/中文描述回读已通过；描述与目标版本一致时会跳过写入。
 
 本机生成令牌（在自己的终端输入密码和 Steam Guard，令牌文件放到仓库外）：
 
@@ -64,6 +64,20 @@ gh workflow run release.yml --ref main -f verify_steam=true
 `check <产物目录>` 可在配置环境变量后验证登录和条目所有权，且不会写入描述。生产上传会先运行这项检查，成功后才上传文件；文件成功后再发布双语描述。两种语言与文件更新是独立提交，任一步失败都会使任务失败，错误消息会指出已完成的阶段。再次运行时，相同描述会跳过写入。
 
 首次启用应选择准备发布的真实版本验证。Steam 失败时工作流失败，已创建的 GitHub Release 仍然保留；修复授权后可重新运行失败任务。确认线上条目后再决定是否重试，避免重复变更记录。手动运行工作流用于构建验证，上传由标签 push 事件触发。
+
+## 登录状态缓存
+
+`steam-session-state` Actions artifact 保存 AES-256-GCM 加密后的 SteamCMD `config/config.vdf`，保留 90 天。密钥从高熵 `STEAM_REFRESH_TOKEN` 派生，认证数据绑定当前 Steam 账号和工坊条目。明文配置只存在于 runner 临时目录，任务结束即清理。刷新令牌变化时自动回退到初始配置重新建立缓存。
+
+缓存从本仓库最近一轮产物读取，跨版本标签复用。三个 Steam 任务共享并发锁，保证前一轮保存状态后再开始下一轮。普通构建和 PR 不使用这些 Secrets。密码认证作为缓存不可用时的回退，成功后会保存新状态。
+
+对于文件已经上传、后续核验中断的版本，可以传入原发布 run ID，只下载核验远端文件并补齐描述同步：
+
+```powershell
+gh workflow run release.yml --ref main -f verify_release_run=34031180075
+```
+
+原始 `v0.1.0-alpha.2` 更新说明的换行显示为字面 `\n`；上传器已改为保留真实换行，应用于后续版本，当前条目的修复包和更新说明内容均已发布。
 
 ## 构建与验证
 

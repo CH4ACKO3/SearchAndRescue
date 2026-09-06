@@ -54,7 +54,8 @@ try {
         $probe=& "$steam/steamcmd.exe" '+@ShutdownOnFailedCommand' '1' '+@NoPromptForPassword' '1' '+login' $env:STEAM_USERNAME '+quit' 2>&1
         $cachedLogin=$LASTEXITCODE -eq 0 -and ($probe -join "`n") -match 'Waiting for user info\.\.\.\s*OK'
     } finally { Pop-Location }
-    Write-Host "SteamCMD cached login accepted: $cachedLogin"
+    $probeGuard=($probe -join "`n") -match '(?i)Steam Guard|two.factor|AccountLogonDenied|auth.*code|confirm.*sign.in'
+    Write-Host "SteamCMD cached login accepted: $cachedLogin; guardRequested=$probeGuard"
     # Capture output instead of streaming login/session details into public Actions logs.
     $arguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME)
     if (!$cachedLogin) { $arguments+=$env:STEAM_PASSWORD }
