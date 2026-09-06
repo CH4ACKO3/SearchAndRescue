@@ -40,7 +40,7 @@ static async Task<int> Run(string[] args)
             Console.WriteLine("Saved refresh token. Upload it as STEAM_REFRESH_TOKEN, then remove the local file.");
             return 0;
         }
-        if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check"))
+        if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check" && args[0] != "inspect-notes"))
             throw new PublisherException("Usage: validate|check|publish <artifact-root>, or auth <new-token-file>.");
         var descriptions = LoadDescriptions(args[1], args[0] == "publish");
         if (args[0] == "validate")
@@ -68,6 +68,18 @@ static async Task<int> Run(string[] args)
         // Read both languages and verify ownership before sending any description writes.
         var previous = new List<PublishedFileDetails>();
         foreach (var item in descriptions) previous.Add(await Read(service, item.Language, live.Client.SteamID!.ConvertToUInt64()));
+        if (args[0] == "inspect-notes")
+        {
+            var access = await live.Client.Authentication.GenerateAccessTokenForAppAsync(live.Client.SteamID!, refreshToken);
+            using var handler = new System.Net.Http.HttpClientHandler { CookieContainer = new System.Net.CookieContainer() };
+            handler.CookieContainer.Add(new System.Net.Cookie("steamLoginSecure", Uri.EscapeDataString(live.Client.SteamID!.ConvertToUInt64() + "||" + access.AccessToken), "/", "steamcommunity.com") { Secure = true });
+            using var http = new System.Net.Http.HttpClient(handler);
+            var page = await http.GetStringAsync("https://steamcommunity.com/sharedfiles/filedetails/changelog/3796056278?l=english");
+            foreach (System.Text.RegularExpressions.Match match in System.Text.RegularExpressions.Regex.Matches(page, @"function\s+\w*(?:ChangeLog|ChangeNote)\w*\s*\([^)]*\)[\s\S]*?(?=\nfunction|</script>)", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+                Console.WriteLine(match.Value);
+            Console.WriteLine("Inspected the owned change-note editor without writing.");
+            return 0;
+        }
         if (args[0] == "check")
         {
             Console.WriteLine("PASS: authenticated ownership and bilingual read access. No descriptions changed.");
