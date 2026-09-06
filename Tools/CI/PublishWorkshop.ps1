@@ -1,6 +1,7 @@
 param([Parameter(Mandatory=$true)][string]$ArtifactRoot, [switch]$DryRun, [switch]$CheckOnly, [switch]$VerifyPublished)
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
+. "$PSScriptRoot/SteamSession.ps1"
 $root=(Resolve-Path -LiteralPath $ArtifactRoot).Path
 $m=Get-Content -LiteralPath "$root/manifest.json" -Raw | ConvertFrom-Json
 if ($m.appid -cne '294100' -or $m.publishedfileid -cne '3796056278' -or
@@ -46,8 +47,17 @@ try {
     $bootstrap = & "$steam/steamcmd.exe" '+quit' 2>&1
     if ($LASTEXITCODE -notin @(0,7)) { throw "SteamCMD initialization failed (exit $LASTEXITCODE). No login attempted." }
     [IO.File]::WriteAllBytes("$steam/config/config.vdf",[Convert]::FromBase64String($env:STEAM_CONFIG_VDF_BASE64))
+    Restore-SteamSession $steam
+    # Try the persisted login token before password authentication. This probe performs no writes to Workshop.
+    Push-Location -LiteralPath $steam
+    try {
+        $probe=& "$steam/steamcmd.exe" '+@ShutdownOnFailedCommand' '1' '+@NoPromptForPassword' '1' '+login' $env:STEAM_USERNAME '+quit' 2>&1
+        $cachedLogin=$LASTEXITCODE -eq 0 -and ($probe -join "`n") -match 'Waiting for user info\.\.\.\s*OK'
+    } finally { Pop-Location }
+    Write-Host "SteamCMD cached login accepted: $cachedLogin"
     # Capture output instead of streaming login/session details into public Actions logs.
-    $arguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME,$env:STEAM_PASSWORD)
+    $arguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME)
+    if (!$cachedLogin) { $arguments+=$env:STEAM_PASSWORD }
     if (!$CheckOnly -and !$VerifyPublished) { $arguments+=@('+workshop_build_item',$vdfPath) }
     if ($VerifyPublished) { $arguments+=@('+workshop_download_item','294100','3796056278','validate') }
     $arguments+='+quit'
@@ -57,6 +67,7 @@ try {
         $exitCode=$LASTEXITCODE
     } finally { Pop-Location }
     $text=$output -join "`n"
+    if ($exitCode -eq 0 -and $text -match 'Waiting for user info\.\.\.\s*OK') { Save-SteamSession $steam }
     # Emit only fixed diagnostic categories; raw authentication output remains private.
     Write-Host ("SteamCMD diagnostics: exit={0}; userInfoComplete={1}; guardRequested={2}; invalidPassword={3}; networkFailure={4}" -f
         $exitCode, ($text -match 'Waiting for user info\.\.\.\s*OK'),
