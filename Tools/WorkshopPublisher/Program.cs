@@ -75,9 +75,9 @@ static async Task<int> Run(string[] args)
             handler.CookieContainer.Add(new System.Net.Cookie("steamLoginSecure", Uri.EscapeDataString(live.Client.SteamID!.ConvertToUInt64() + "||" + access.AccessToken), "/", "steamcommunity.com") { Secure = true });
             using var http = new System.Net.Http.HttpClient(handler);
             var page = await http.GetStringAsync("https://steamcommunity.com/sharedfiles/filedetails/changelog/3796056278?l=english");
-            foreach (System.Text.RegularExpressions.Match match in System.Text.RegularExpressions.Regex.Matches(page, @"function\s+\w*(?:ChangeLog|ChangeNote)\w*\s*\([^)]*\)[\s\S]*?(?=\nfunction|</script>)", System.Text.RegularExpressions.RegexOptions.IgnoreCase))
+            foreach (var line in page.Split('\n').Where(line => line.Contains("changelog", StringComparison.OrdinalIgnoreCase) || line.Contains("changenote", StringComparison.OrdinalIgnoreCase) || line.Contains("<script") || line.Contains("g_steamID")))
             {
-                var code = System.Text.RegularExpressions.Regex.Replace(match.Value, @"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+", "<redacted>");
+                var code = System.Text.RegularExpressions.Regex.Replace(line, @"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+", "<redacted>");
                 code = System.Text.RegularExpressions.Regex.Replace(code, @"[a-fA-F0-9]{24,}", "<redacted>");
                 Console.WriteLine(code);
             }
