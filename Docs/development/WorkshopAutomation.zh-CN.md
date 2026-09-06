@@ -2,7 +2,7 @@
 
 工作流：`.github/workflows/release.yml`。普通 main 提交、PR 和手动运行会构建、回归测试、打包，并验证工坊上传参数。推送 `v*` 标签还会创建 GitHub Release；Steam 上传由仓库变量单独控制。
 
-当前 Steam 上传保持关闭，登录授权和真实上传尚待验证。兼容性说明维护在 [中文清单](../compatibility/README.zh-CN.md) / [English](../compatibility/README.md)，工坊主页链接到 GitHub。
+当前已配置四项 Secrets 并启用标签发布。2026-09-06 的 [云端只读验证](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34030863356) 已通过 SteamCMD 登录、双语读取和条目所有权检查；真实文件上传与双语写入仍待首次版本发布验证。兼容性说明维护在 [中文清单](../compatibility/README.zh-CN.md) / [English](../compatibility/README.md)，工坊主页链接到 GitHub。
 
 ## 发布版本
 
@@ -26,11 +26,11 @@ git push origin v0.1.0-alpha.2
 - `STEAM_REFRESH_TOKEN`：通过下面的本机登录工具完成 Steam Guard 后获得的持久登录令牌，供双语发布器使用。
 - `STEAM_CONFIG_VDF_BASE64`：在本机 SteamCMD 完成 Steam Guard 验证后，`config/config.vdf` 的 Base64 内容。
 
-凭据通过 GitHub Secrets 保存。配置文件包含登录信息，按密码保管；它的有效性及在云端的可用性需要首次授权实测。Steam Guard 要求重新验证时，在本机重新登录并更新 Secret。
+凭据通过 GitHub Secrets 保存。配置文件包含登录信息，按密码保管；它的有效性及在云端的可用性需要首次授权实测。云端出现 Steam Guard 手机设备确认时，需要批准本次登录。若缓存过期或登录失败，在本机重新登录并更新 Secret；已通过的登录验证不保证以后每次都免确认。
 
 准备就绪后，将仓库 Actions Variable `STEAM_PUBLISH_ENABLED` 设为 `true`。关闭时设为 `false`，构建与 GitHub Release 仍可使用。发布使用 GitHub 托管 Windows runner，原始 Steam 登录输出不会进入公开日志，登录文件只存在于临时目录。
 
-双语发布器使用固定版本 SteamKit2 的 PublishedFile 服务，包含显式 `language` 参数。该接口属于 Steam 客户端协议适配，并非 SteamCMD 的官方 VDF 扩展；当前完成了编译、离线请求序列化和载荷验证，账号登录、写入权限与线上回读需要授权后实测。
+双语发布器使用固定版本 SteamKit2 的 PublishedFile 服务，包含显式 `language` 参数。该接口属于 Steam 客户端协议适配，并非 SteamCMD 的官方 VDF 扩展；已完成编译、离线请求序列化、载荷验证以及云端登录、条目所有权和双语读取验证；实际写入权限与更新后的回读仍待首次发布实测。
 
 本机生成令牌（在自己的终端输入密码和 Steam Guard，令牌文件放到仓库外）：
 
