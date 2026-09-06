@@ -41,9 +41,11 @@ if ([string]$about.ModMetaData.modVersion -ne $Version) {
 }
 
 New-Item -ItemType Directory -Path $stage | Out-Null
-foreach ($directory in @("About", "Assemblies", "Defs", "Languages", "Patches", "Textures")) {
+foreach ($directory in @("About", "Defs", "Languages", "Patches", "Textures")) {
     Copy-Item -LiteralPath (Join-Path $modRoot $directory) -Destination $stage -Recurse
 }
+New-Item -ItemType Directory -Path (Join-Path $stage "Assemblies") | Out-Null
+Copy-Item -LiteralPath (Join-Path $modRoot "Assemblies/SearchAndRescue.dll") -Destination (Join-Path $stage "Assemblies")
 Copy-Item -LiteralPath (Join-Path $modRoot "LoadFolders.xml") -Destination $stage
 Copy-Item -LiteralPath (Join-Path $modRoot "LICENSE") -Destination $stage
 
