@@ -5028,7 +5028,8 @@ namespace SearchAndRescue
 
         private static bool NeedsFieldStabilization(Pawn patient)
         {
-            if (Compatibility.HasFieldTreatableEmergency(patient) ||
+            if (InfectionPriority.NeedsUrgentTend(patient) ||
+                Compatibility.HasFieldTreatableEmergency(patient) ||
                 Compatibility.HasMoreInjuriesTransfusionNeed(patient) ||
                 Compatibility.HasHemogenTransfusionNeed(patient))
             {

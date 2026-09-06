@@ -23,6 +23,46 @@ namespace SearchAndRescue
         private static int initialGroundCount;
         private static Map supplyMap;
 
+        [DebugAction("Search and Rescue", "Run infection priority regressions",
+            allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void InfectionPriorities()
+        {
+            Pawn patient = Spawn(Find.CurrentMap, -8);
+            try
+            {
+                Hediff infection = HediffMaker.MakeHediff(HediffDefOf.WoundInfection, patient,
+                    patient.RaceProps.body.corePart);
+                infection.Severity = 0.2f;
+                patient.health.AddHediff(infection);
+                patient.health.immunity.TryAddImmunityRecord(infection.def, infection.def);
+                ImmunityRecord record = patient.health.immunity.GetImmunityRecord(infection.def);
+                record.immunity = 0f;
+                Check(InfectionPriority.NeedsUrgentTend(patient), "early infection enters urgent tending");
+                var stabilize = AccessTools.Method(typeof(SearchAndRescueCoordinator), "NeedsFieldStabilization");
+                Check((bool)stabilize.Invoke(null, new object[] { patient }),
+                    "production scheduler admits nonbleeding infection to urgent treatment");
+                double early = Compatibility.MedicalEmergencyUrgency(patient);
+                infection.Severity = 0.8f;
+                double severe = Compatibility.MedicalEmergencyUrgency(patient);
+                Check(severe > early, "production priority rises as infection advances");
+                record.immunity = 0.9f;
+                Check(Compatibility.MedicalEmergencyUrgency(patient) < severe,
+                    "immunity ahead of infection reduces production risk score");
+                record.immunity = 0.4f;
+                infection.Tended(1f, 1f);
+                Check(!InfectionPriority.NeedsUrgentTend(patient), "treatment cooldown does not request another infection tend");
+                Check(InfectionPriority.Urgency(patient) > 0 && InfectionPriority.Urgency(patient) < severe,
+                    "treated infection retains reduced evacuation priority");
+                record.immunity = 1f;
+                Check(InfectionPriority.Urgency(patient) == 0 && !InfectionPriority.NeedsUrgentTend(patient),
+                    "fully immune infection releases urgency");
+            }
+            finally
+            {
+                if (!patient.Destroyed) patient.Destroy();
+            }
+        }
+
         [DebugAction("Search and Rescue", "Run ownership lifecycle regressions",
             allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void OwnershipLifecycle()

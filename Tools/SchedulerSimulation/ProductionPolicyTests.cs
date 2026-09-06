@@ -20,6 +20,7 @@ static class ProductionPolicyTests
         JobIdentity ending = original;
         Check(original.Matches(ending), "captured end identity survives pool reuse");
         Check(!new JobIdentity(job, definition, 11).Matches(ending), "old completion cannot settle replacement");
+        InfectionBoundaries();
         ReadinessBoundaries();
         StageBoundaries();
 
@@ -34,7 +35,21 @@ static class ProductionPolicyTests
         foreach (var row in cleanup)
             Check(JobOwnershipRules.PreserveManagedCarry(row.rescue, row.transport) == row.preserve,
                 $"cleanup: rescue={row.rescue}, transport={row.transport}");
-        Console.WriteLine($"PASS: {checks} direct production identity/ownership/readiness/stage checks");
+        Console.WriteLine($"PASS: {checks} direct production clinical/ownership/readiness/stage checks");
+    }
+
+    private static void InfectionBoundaries()
+    {
+        double mild = InfectionPriorityRules.Urgency(0.1, 1, 0, true);
+        double severe = InfectionPriorityRules.Urgency(0.8, 1, 0.4, true);
+        Check(mild > 0, "early infection is prioritized before life-threatening stage");
+        Check(severe > mild, "advanced infection has higher priority");
+        Check(severe > InfectionPriorityRules.Urgency(0.8, 1, 0.9, true), "lagging immunity raises priority");
+        Check(InfectionPriorityRules.Urgency(0.8, 1, 1, true) == 0, "fully immune infection adds no urgency");
+        Check(InfectionPriorityRules.Urgency(0, 1, 0, true) == 0, "resolved infection adds no urgency");
+        Check(InfectionPriorityRules.Urgency(0.8, 1, 0.4, false) < severe, "treated infection has reduced transport urgency");
+        Check(InfectionPriorityRules.Urgency(8, 10, 0.4, true) == severe, "severity uses the definition's lethal scale");
+        Check(InfectionPriorityRules.Urgency(2, 1, 0, true) <= 3.8 + 1e-9, "infection contribution remains bounded");
     }
 
     private static void ReadinessBoundaries()

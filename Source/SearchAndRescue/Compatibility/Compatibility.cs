@@ -2140,10 +2140,10 @@ namespace SearchAndRescue
                 return 0d;
             }
 
-            double urgency = 0d;
+            double urgency = InfectionPriority.Urgency(patient);
             foreach (Hediff hediff in patient.health.hediffSet.hediffs)
             {
-                if (hediff.CurStage?.lifeThreatening != true)
+                if (InfectionPriority.IsInfection(hediff) || hediff.CurStage?.lifeThreatening != true)
                 {
                     continue;
                 }

@@ -154,7 +154,8 @@ namespace SearchAndRescue
             }
 
             int significantUntended = patient.health.hediffSet.hediffs.Count(hediff =>
-                hediff.TendableNow() && (hediff.BleedRate >= 0.04f || hediff.CurStage?.lifeThreatening == true));
+                hediff.TendableNow() && (hediff.BleedRate >= 0.04f || hediff.CurStage?.lifeThreatening == true ||
+                                       InfectionPriority.IsInfection(hediff)));
             int medicineRounds = Compatibility.EffectiveMedicalCare(patient) <= MedicalCareCategory.NoMeds
                 ? 0
                 : significantUntended == 0

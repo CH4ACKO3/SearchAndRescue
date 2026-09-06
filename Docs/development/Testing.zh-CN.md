@@ -10,6 +10,8 @@
 
 两项补给测试走实际 inventory-holder 路径。Vehicle Framework 特有的 cargo 事件/质量缓存需要另外启用该模组验证，不能由普通 Pawn 背包测试代替。不要保存测试后的地图；重新载入原始存档可清除测试生成内容。
 
+感染优先级：`Run infection priority regressions` 检查原版伤口感染进入紧急治疗、严重度与免疫进度评分、治疗冷却及完全免疫退出。只在一次性测试地图运行；[本轮 7 项实机结果](../validation/2026-09-06-infection-priority.json)全部通过。自定义感染 Def 需要单独适配验证。
+
 ## 所有权与任务生命周期
 
 `Run ownership lifecycle regressions` 直接操作生产声明表、真实 Job 和 JobTracker，检查同定义 Job 回收复用、旧结束回调、阶段隔离、整组撤销，以及玩家接管后保留标记和其他伤员任务。测试会创建临时 Pawn，只应在一次性地图运行，不保存结果。
