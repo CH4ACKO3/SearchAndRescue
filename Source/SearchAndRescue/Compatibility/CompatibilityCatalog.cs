@@ -61,6 +61,12 @@ namespace SearchAndRescue
         public static readonly IReadOnlyList<CompatibilityCatalogEntry> Entries =
             new List<CompatibilityCatalogEntry>
             {
+                Entry("Paniel the Automata", "Paniel", CompatibilitySupportLevel.Partial,
+                    null, "ahndemi.panieltheautomata", "kalospacer.AhnDemi.PanieltheAutomata"),
+                Entry("Androids for RW 1.6", "Androids", CompatibilitySupportLevel.Partial,
+                    null, "ChJees.Androids14"),
+                Entry("Androids Expanded", "AndroidsExpanded", CompatibilitySupportLevel.Partial,
+                    null, "peptide.androidsexpanded14"),
                 Entry("kemomimihouse HardworkingExt", "Hardworking", CompatibilitySupportLevel.Partial,
                     () => HardworkingCompatibility.Ready, "Moo.Hardworking.Kz"),
                 Entry("Combat Extended", "CombatExtended", CompatibilitySupportLevel.Integration,

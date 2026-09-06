@@ -8,9 +8,9 @@
   <SAR_Command_All>All: capture + treat + rescue</SAR_Command_All>
   <SAR_ClearAllOrders>Clear all Search and Rescue orders ({0})</SAR_ClearAllOrders>
   <SAR_Treat_Label>Field treatment</SAR_Treat_Label>
-  <SAR_Treat_Desc>Monitor humanlike pawns and non-hostile animals for battlefield care. Life-threatening injuries are stabilized first, then remaining wounds use a lower lane within Field Rescue. The Work tab controls Field Rescue versus Doctor ordering; Field Rescue wins when their configured priorities match. When paired with rescue, monitoring continues until safe delivery and can interrupt transport if the casualty deteriorates.</SAR_Treat_Desc>
+  <SAR_Treat_Desc>Monitor humanlike pawns and non-hostile animals for battlefield care. Life-threatening injuries are stabilized first, then remaining wounds use a lower lane within Field Rescue. The Work tab controls Field Rescue versus Doctor ordering; Field Rescue wins when their configured priorities match. When paired with rescue, monitoring continues until safe delivery and can interrupt transport if the casualty deteriorates. Repairable colony mechs receive native repairs from mechanitors with Field Rescue and Smithing enabled, following the auto-repair toggle.</SAR_Treat_Desc>
   <SAR_Rescue_Label>Battlefield rescue</SAR_Rescue_Label>
-  <SAR_Rescue_Desc>Mark downed humanlike pawns and non-hostile animals for evacuation after earlier marked stages finish. Uses a suitable bed, including animal beds, or the rescue point set from this tool's right-click menu.</SAR_Rescue_Desc>
+  <SAR_Rescue_Desc>Mark downed humanlike pawns and non-hostile animals for evacuation after earlier marked stages finish. Uses a suitable bed, including animal beds, or the rescue point set from this tool's right-click menu. Downed colony mechs are delivered to the rescue point.</SAR_Rescue_Desc>
   <SAR_Capture_Label>Capture here</SAR_Capture_Label>
   <SAR_Capture_Desc>Mark downed hostile humanlike pawns to be captured in place before treatment or evacuation.</SAR_Capture_Desc>
   <SAR_SetRescuePoint>Set rescue point</SAR_SetRescuePoint>
@@ -18,7 +18,7 @@
   <SAR_RescuePoint_Label>Rescue point</SAR_RescuePoint_Label>
   <SAR_RescuePoint_Desc>Choose a fallback safe cell. Rescuers carry marked pawns here only when no suitable bed is available.</SAR_RescuePoint_Desc>
   <SAR_OnlyHumanlike>Only living, spawned humanlike flesh pawns can be marked.</SAR_OnlyHumanlike>
-  <SAR_OnlyHumanlikeOrAnimal>Only living, spawned humanlike or animal flesh pawns can be marked.</SAR_OnlyHumanlikeOrAnimal>
+  <SAR_OnlyHumanlikeOrAnimal>Select a living humanlike, non-hostile animal, or repairable colony mech on this map.</SAR_OnlyHumanlikeOrAnimal>
   <SAR_HostileAnimalUnsupported>Select a humanlike pawn or a non-hostile animal for battlefield treatment and rescue.</SAR_HostileAnimalUnsupported>
   <SAR_NoTreatmentNeeded>This pawn has no injury that currently needs treatment.</SAR_NoTreatmentNeeded>
   <SAR_TreatmentRequiresCapture>Hostile pawns must be marked for capture before they can be marked for field treatment.</SAR_TreatmentRequiresCapture>
@@ -138,4 +138,7 @@
   <SAR_Compatibility_SensibleBedOwnership>Checks medical-bed suitability and current bed ownership before each transfer to select an appropriate destination.</SAR_Compatibility_SensibleBedOwnership>
   <SAR_Compatibility_YokaiVillage>Non-hostile flesh animals can receive tending and rescue with standard medicine and animal beds. Capture applies to humanlike targets.</SAR_Compatibility_YokaiVillage>
   <SAR_Compatibility_Hardworking>Reads Hardworking settings and respects stop, follow, schedule and rest permissions. Use deterministic work modes for SAR automatic dispatch; species-specific job execution awaits runtime testing.</SAR_Compatibility_Hardworking>
+  <SAR_Compatibility_Paniel>Paniel keeps its native medicine selection and tending. Biological emergency procedures are excluded. Full repair uses PN_Repair and its repair kit at a bed; race-level playtesting is pending.</SAR_Compatibility_Paniel>
+  <SAR_Compatibility_Androids>Mechanical droids use native repair-parts selection and TendPatient; ChjAndroid keeps ordinary medicine. Biological emergency procedures are excluded. Full repair uses the native surgery flow; race-level playtesting is pending.</SAR_Compatibility_Androids>
+  <SAR_Compatibility_AndroidsExpanded>Uses Androids pawn and repair interfaces. Expanded races and special abilities are awaiting in-game testing.</SAR_Compatibility_AndroidsExpanded>
 </LanguageData>

@@ -8,9 +8,9 @@
   <SAR_Command_All>快速命令：俘虜 + 治療 + 救援</SAR_Command_All>
   <SAR_ClearAllOrders>清除所有搜尋與救援命令（{0}）</SAR_ClearAllOrders>
   <SAR_Treat_Label>戰地治療</SAR_Treat_Label>
-  <SAR_Treat_Desc>監視人形生物和非敵對動物的戰地醫療需求。優先穩定危及生命的傷勢，再以戰地救援內部的較低優先度處理其餘傷口。戰地救援與醫生的先後由工作頁籤決定；兩者同級時戰地救援在前。與戰地救援同時標記時，監視會持續到安全送達；傷員在轉移途中惡化時，可中斷轉移並就地治療。</SAR_Treat_Desc>
+  <SAR_Treat_Desc>監視人形生物和非敵對動物的戰地醫療需求。優先穩定危及生命的傷勢，再以戰地救援內部的較低優先度處理其餘傷口。戰地救援與醫生的先後由工作頁籤決定；兩者同級時戰地救援在前。與戰地救援同時標記時，監視會持續到安全送達；傷員在轉移途中惡化時，可中斷轉移並就地治療。 己方可維修機械體由開啟戰地救援和鍛造的機械師執行原版維修，並遵守自動維修開關。</SAR_Treat_Desc>
   <SAR_Rescue_Label>戰地救援</SAR_Rescue_Label>
-  <SAR_Rescue_Desc>標記倒地的人形生物和非敵對動物，在已標記的前置階段完成後將其轉移。優先送往合適的床位（包括動物床）；沒有合適床位時，送往右鍵選單設定的救援集合點。</SAR_Rescue_Desc>
+  <SAR_Rescue_Desc>標記倒地的人形生物和非敵對動物，在已標記的前置階段完成後將其轉移。優先送往合適的床位（包括動物床）；沒有合適床位時，送往右鍵選單設定的救援集合點。 倒地的己方機械體送至救援點。</SAR_Rescue_Desc>
   <SAR_Capture_Label>就地俘虜</SAR_Capture_Label>
   <SAR_Capture_Desc>標記倒地的敵對人形生物，在治療或轉移前就地完成俘虜。</SAR_Capture_Desc>
   <SAR_SetRescuePoint>設定救援集合點</SAR_SetRescuePoint>
@@ -18,7 +18,7 @@
   <SAR_RescuePoint_Label>救援集合點</SAR_RescuePoint_Label>
   <SAR_RescuePoint_Desc>選擇一個備用安全位置。只有在找不到合適床位時，救援者才會把目標搬運到這裡。</SAR_RescuePoint_Desc>
   <SAR_OnlyHumanlike>只能標記已出現在地圖上、仍然存活的血肉人形生物。</SAR_OnlyHumanlike>
-  <SAR_OnlyHumanlikeOrAnimal>只能標記已出現在地圖上、仍然存活的血肉人形生物或動物。</SAR_OnlyHumanlikeOrAnimal>
+  <SAR_OnlyHumanlikeOrAnimal>請選擇目前地圖上存活的人形、非敵對動物或可維修的己方機械體。</SAR_OnlyHumanlikeOrAnimal>
   <SAR_HostileAnimalUnsupported>請選擇人形目標或非敵對動物進行戰地治療和救援。</SAR_HostileAnimalUnsupported>
   <SAR_NoTreatmentNeeded>此目標目前沒有需要治療的傷勢。</SAR_NoTreatmentNeeded>
   <SAR_TreatmentRequiresCapture>必須先為敵對目標標記「就地俘虜」，才能標記「戰地治療」。</SAR_TreatmentRequiresCapture>
@@ -138,4 +138,7 @@
   <SAR_Compatibility_SensibleBedOwnership>每次轉運前確認醫療床條件和目前床位歸屬，為傷員選擇合適的目的地。</SAR_Compatibility_SensibleBedOwnership>
   <SAR_Compatibility_YokaiVillage>非敵對血肉動物可使用標準藥品和動物床接受治療與救援；俘虜操作適用於人形目標。</SAR_Compatibility_YokaiVillage>
   <SAR_Compatibility_Hardworking>讀取勤工工作設定，遵守停工、跟隨、作息和休息安排。請啟用確定性工作模式參與 SAR 自動調度；種族專屬任務的執行情況待實測。</SAR_Compatibility_Hardworking>
+  <SAR_Compatibility_Paniel>Paniel 沿用原模組的選藥與包紮規則，生物急救項目會按種族過濾。完整維修透過床邊 PN_Repair 和維修包完成，種族本體待實機驗證。</SAR_Compatibility_Paniel>
+  <SAR_Compatibility_Androids>機械機器人沿用原模組的維修零件選擇和 TendPatient；ChjAndroid 保留普通藥品。生物急救項目會按種族過濾。完整維修沿用原生手術流程，種族本體待實機驗證。</SAR_Compatibility_Androids>
+  <SAR_Compatibility_AndroidsExpanded>沿用 Androids 的小人及維修介面。擴展種族與特殊能力待實機驗證。</SAR_Compatibility_AndroidsExpanded>
 </LanguageData>

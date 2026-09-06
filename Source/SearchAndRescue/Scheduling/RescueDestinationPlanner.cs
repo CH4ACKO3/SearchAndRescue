@@ -22,7 +22,7 @@ namespace SearchAndRescue
                 return false;
             }
 
-            bed = Compatibility.FindBestRescueBed(patient, rescuer);
+            bed = MechanicalCare.IsPatient(patient) ? null : Compatibility.FindBestRescueBed(patient, rescuer);
             if (bed != null)
             {
                 if (!Compatibility.RescueBedHasReservationCapacity(bed, patient, rescuer) ||

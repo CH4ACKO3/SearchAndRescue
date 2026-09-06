@@ -1,0 +1,329 @@
+{
+  "date": "2026-09-06",
+  "game": "RimWorld 1.6",
+  "save": "new20",
+  "saveWritten": false,
+  "modsChanged": false,
+  "dllSha256": "55D369B664808B96DB411185316504C0C9BE0F03EEC4F9090A5687DF59204536",
+  "workerChecks": [
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] COMPLETE: 15 passed",
+      "repeatCount": 1,
+      "sequence": 31,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6684045+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: queued player command blocks scheduler",
+      "repeatCount": 1,
+      "sequence": 30,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6678723+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: Escort mode blocks scheduler",
+      "repeatCount": 1,
+      "sequence": 29,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6167817+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: SelfShutdown mode blocks scheduler",
+      "repeatCount": 1,
+      "sequence": 28,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6147736+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: Recharge mode blocks scheduler",
+      "repeatCount": 1,
+      "sequence": 27,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6147736+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: vanilla Work mode admits scheduler",
+      "repeatCount": 1,
+      "sequence": 26,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.611244+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: disabled doctor blocks treatment and paramedic rescue",
+      "repeatCount": 1,
+      "sequence": 25,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6092443+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: fixture native doctor priority changed to zero",
+      "repeatCount": 1,
+      "sequence": 24,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6092443+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: opted-in paramedic uses native doctor provider",
+      "repeatCount": 1,
+      "sequence": 23,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6092443+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: roster opt-out blocks enabled hauling provider",
+      "repeatCount": 1,
+      "sequence": 22,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6092443+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: disabled hauling blocks supply and rescue despite roster opt-in",
+      "repeatCount": 1,
+      "sequence": 21,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6067361+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: fixture native hauling priority changed to zero",
+      "repeatCount": 1,
+      "sequence": 20,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6067361+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: opted-in lifter uses native hauling provider",
+      "repeatCount": 1,
+      "sequence": 19,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6067361+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: lifter roster opt-in is retained",
+      "repeatCount": 1,
+      "sequence": 18,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6067361+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: lifter roster defaults off",
+      "repeatCount": 1,
+      "sequence": 17,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6067361+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mech worker regression] PASS: fixtures are controlled colony work mechs",
+      "repeatCount": 1,
+      "sequence": 16,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.6067361+00:00"
+    }
+  ],
+  "careChecks": [
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] COMPLETE: 15 passed",
+      "repeatCount": 1,
+      "sequence": 47,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7478804+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: enemy mech excluded from automatic repair",
+      "repeatCount": 1,
+      "sequence": 46,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7478804+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: native repair progress observable by scheduler",
+      "repeatCount": 1,
+      "sequence": 45,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7453753+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: repair target participates in treatment ownership",
+      "repeatCount": 1,
+      "sequence": 44,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7453753+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: native automatic repair job constructed",
+      "repeatCount": 1,
+      "sequence": 43,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7453753+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: mechanical patient only receives repair intervention",
+      "repeatCount": 1,
+      "sequence": 42,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7453753+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: auto repair toggle respected",
+      "repeatCount": 1,
+      "sequence": 41,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7433461+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: field rescue disabled blocks repair",
+      "repeatCount": 1,
+      "sequence": 40,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7433461+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: smithing disabled blocks repair",
+      "repeatCount": 1,
+      "sequence": 39,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7433461+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: mechanitor uses native repair provider",
+      "repeatCount": 1,
+      "sequence": 38,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7433461+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: ordinary doctor cannot replace mechanitor",
+      "repeatCount": 1,
+      "sequence": 37,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7423279+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: repair reserves no medicine or blood",
+      "repeatCount": 1,
+      "sequence": 36,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7423279+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: damage activates repair",
+      "repeatCount": 1,
+      "sequence": 35,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7423279+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: intact mech needs no repair",
+      "repeatCount": 1,
+      "sequence": 34,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7423279+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: mech excluded from prisoner capture",
+      "repeatCount": 1,
+      "sequence": 33,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7418133+00:00"
+    },
+    {
+      "level": "info",
+      "message": "[SAR mechanical regression] PASS: colony mech accepted as patient",
+      "repeatCount": 1,
+      "sequence": 32,
+      "source": "unity",
+      "timestampUtc": "2026-09-06T06:41:49.7418133+00:00"
+    }
+  ],
+  "repair": {
+    "start": [
+      {
+        "level": "info",
+        "message": "[SAR mechanical workflow] START: managed RepairMech; worker=Human58121; patient=Mech_Lifter58124; damage=10",
+        "repeatCount": 1,
+        "sequence": 16,
+        "source": "unity",
+        "timestampUtc": "2026-09-06T06:37:09.0388563+00:00"
+      }
+    ],
+    "advancedTicks": 300,
+    "finish": [
+      {
+        "level": "info",
+        "message": "[SAR mechanical workflow] PASS: manual repair takes patient ownership",
+        "repeatCount": 1,
+        "sequence": 18,
+        "source": "unity",
+        "timestampUtc": "2026-09-06T06:37:24.1578157+00:00"
+      },
+      {
+        "level": "info",
+        "message": "[SAR mechanical workflow] PASS: native job reduced damage 10 -> 8",
+        "repeatCount": 1,
+        "sequence": 17,
+        "source": "unity",
+        "timestampUtc": "2026-09-06T06:37:24.1505184+00:00"
+      }
+    ]
+  },
+  "evacuation": {
+    "start": [
+      {
+        "level": "info",
+        "message": "[SAR mechanical evacuation] START: Mech_Lifter58133 -> (116, 0, 130)",
+        "repeatCount": 1,
+        "sequence": 48,
+        "source": "unity",
+        "timestampUtc": "2026-09-06T06:41:49.7936058+00:00"
+      }
+    ],
+    "advancedTicks": 300,
+    "finish": [
+      {
+        "level": "info",
+        "message": "[SAR mechanical evacuation] PASS: downed mech delivered and released at rescue point",
+        "repeatCount": 1,
+        "sequence": 49,
+        "source": "unity",
+        "timestampUtc": "2026-09-06T06:42:05.6310941+00:00"
+      }
+    ]
+  },
+  "limitations": [
+    "Paniel and Androids/Expanded native assemblies were audited; no race-specific in-game test was performed.",
+    "WVC-specific work modes were statically inspected; live tests covered vanilla Work, Recharge, SelfShutdown and Escort.",
+    "Evacuation verified target admission, destination selection and actual job delivery; it was directly started, not a multi-worker matching stress test.",
+    "Final community-robot inventory selection fix was compiled and statically reviewed after the Biotech runtime checks; community robot runtime validation remains pending."
+  ],
+  "releaseDllSha256": "7590AD9BFA7A05DA7235620AE4F2C38B0D73AF262956AA5A0752F3957E5C558D"
+}

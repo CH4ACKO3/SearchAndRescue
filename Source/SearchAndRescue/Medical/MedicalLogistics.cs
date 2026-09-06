@@ -25,7 +25,9 @@ namespace SearchAndRescue
         Bandage,
         Saline,
         Blood,
-        HemogenTransfusion
+        HemogenTransfusion,
+        MechRepair,
+        NativeRobotTend
     }
 
     internal interface IFieldMedicalResourceProvider
@@ -148,7 +150,7 @@ namespace SearchAndRescue
         public static MedicalCarePlan Build(Pawn patient, int now)
         {
             List<MedicalResourceDemand> demands = new List<MedicalResourceDemand>();
-            if (patient?.health == null)
+            if (patient?.health == null || MechanicalCare.IsPatient(patient) || RobotMedicalProfile.OwnsMedicineSelection(patient))
             {
                 return new MedicalCarePlan(patient, now, int.MaxValue, 0, demands);
             }
@@ -193,6 +195,7 @@ namespace SearchAndRescue
 
         internal static void AddMoreInjuriesDemands(Pawn patient, ICollection<MedicalResourceDemand> demands)
         {
+            if (!RobotMedicalProfile.AllowsBiologicalEmergency(patient)) return;
             // More Injuries treats every consumable/reusable treatment device as requiring
             // at least the NoMeds+ policy. CPR remains an equipment-free option and is added
             // later by Compatibility.FindTreatmentOptions.

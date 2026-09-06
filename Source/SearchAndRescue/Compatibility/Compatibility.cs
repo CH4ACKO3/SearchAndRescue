@@ -556,6 +556,7 @@ namespace SearchAndRescue
 
         public static bool AllowsMedicalDevices(Pawn patient)
         {
+            if (!RobotMedicalProfile.AllowsBiologicalEmergency(patient)) return false;
             // More Injuries' automatic device WorkGivers consistently reject both NoCare
             // and NoMeds. Preserve that policy even though its devices are not ThingDef
             // medicines and would otherwise bypass AllowsMedicine.
@@ -787,6 +788,7 @@ namespace SearchAndRescue
             Pawn patient,
             MedicalIntervention intervention)
         {
+            if (intervention == MedicalIntervention.MechRepair) return 1d;
             if (IsSupportiveIntervention(intervention))
             {
                 // More Injuries blood/saline, hemostatic agents, bandages and tourniquets, plus
@@ -874,6 +876,19 @@ namespace SearchAndRescue
             Pawn patient,
             MedicalTreatmentOption selectedOption)
         {
+            if (MechanicalCare.IsPatient(patient)) return MechanicalCare.MakeJob(doctor, patient);
+            if (RobotMedicalProfile.OwnsMedicineSelection(patient))
+            {
+                MedicalTreatmentOption native = RobotMedicalProfile.TreatmentOption(doctor, patient);
+                if (!native.IsValid || !CanStartAutomaticTreatmentJob(doctor, patient, JobDefOf.TendPatient)) return null;
+                // Resource claims were made against this exact selection in the matching pass.
+                if (selectedOption?.IsValid == true && native.Resource != selectedOption.Resource) return null;
+                Job nativeJob = JobMaker.MakeJob(JobDefOf.TendPatient, patient, native.Resource);
+                if (native.Resource != null && native.Resource.SpawnedParentOrMe != native.Resource)
+                    nativeJob.targetC = native.Resource.SpawnedParentOrMe;
+                ConfigureTreatmentRoundJob(nativeJob, patient, 1);
+                return nativeJob;
+            }
             if (selectedOption != null && selectedOption.IsValid)
             {
                 Job selectedJob = MakeSelectedTreatmentJob(doctor, patient, selectedOption);
@@ -1012,6 +1027,19 @@ namespace SearchAndRescue
             }
 
             List<MedicalTreatmentOption> options = new List<MedicalTreatmentOption>();
+            if (RobotMedicalProfile.OwnsMedicineSelection(patient))
+            {
+                MedicalTreatmentOption native = RobotMedicalProfile.TreatmentOption(doctor, patient);
+                if (native.IsValid) options.Add(native);
+                return options;
+            }
+            if (MechanicalCare.IsPatient(patient))
+            {
+                if (MechanicalCare.CanRepair(doctor, patient))
+                    options.Add(new MedicalTreatmentOption(MedicalIntervention.MechRepair, null, 0,
+                        false, false, 1d, doctor.Position.DistanceTo(patient.Position)));
+                return options;
+            }
             bool ceStabilizeAvailable = UsesCombatExtended &&
                                         CombatExtendedCanStabilize(patient) &&
                                         doctor.RaceProps?.IsMechanoid != true;
@@ -1166,7 +1194,7 @@ namespace SearchAndRescue
             // CPR is the equipment-free fallback for choking and cardiac arrest. It remains
             // deliberately less valuable than a suitable device, so scarce equipment can be
             // priced and routed without making the patient untreatable when none is available.
-            if (CanPerformTreatmentWork(doctor) && UsesMoreInjuries &&
+            if (CanPerformTreatmentWork(doctor) && UsesMoreInjuries && RobotMedicalProfile.AllowsBiologicalEmergency(patient) &&
                 IsMedicalInterventionUnlocked(MedicalIntervention.Cpr) &&
                 patient.health.hediffSet.hediffs.Any(hediff =>
                     hediff.def.defName == "ChokingOnBlood" || hediff.def.defName == "CardiacArrest"))
@@ -2004,6 +2032,7 @@ namespace SearchAndRescue
 
         public static bool NeedsAnyFieldTreatment(Pawn patient)
         {
+            if (MechanicalCare.IsPatient(patient)) return MechanicalCare.NeedsRepair(patient);
             return patient?.health != null &&
                    EffectiveMedicalCare(patient) > MedicalCareCategory.NoCare &&
                    (patient.health.HasHediffsNeedingTend() || HasFieldTreatableEmergency(patient) ||
@@ -2080,6 +2109,7 @@ namespace SearchAndRescue
 
         public static bool HasFieldTreatableEmergency(Pawn patient)
         {
+            if (!RobotMedicalProfile.AllowsBiologicalEmergency(patient)) return false;
             if (!UsesMoreInjuries || patient?.health == null)
             {
                 return false;
@@ -2108,6 +2138,7 @@ namespace SearchAndRescue
 
         public static float FieldEmergencySeverity(Pawn patient)
         {
+            if (MechanicalCare.IsPatient(patient)) return MechanicalCare.Damage(patient);
             if (patient?.health == null)
             {
                 return 0f;
@@ -2196,6 +2227,7 @@ namespace SearchAndRescue
 
         private static JobDef MoreInjuriesTreatmentJobFor(Pawn patient)
         {
+            if (!RobotMedicalProfile.AllowsBiologicalEmergency(patient)) return null;
             if (!UsesMoreInjuries || patient?.RaceProps?.Humanlike != true || !patient.Downed ||
                 MoreInjuriesCprResearch?.IsFinished != true)
             {
@@ -2309,8 +2341,21 @@ namespace SearchAndRescue
             return WorkTypePriority(worker, SearchAndRescueDefOf.SAR_FieldRescue);
         }
 
+        internal static int MechanicalRepairWorkPriority(Pawn worker, WorkGiverDef nativeProvider)
+        {
+            WorkGiverDef field = DefDatabase<WorkGiverDef>.GetNamedSilentFail("SAR_RepairMarkedMech");
+            int fieldPriority = FieldRescueChildPriority(worker, field);
+            int repairPriority = DetailedWorkPriority(worker, nativeProvider, nativeProvider.workType);
+            return fieldPriority > 0 && repairPriority > 0 ? Math.Max(fieldPriority, repairPriority) : 0;
+        }
+
         private static int FieldRescueChildPriority(Pawn worker, WorkGiverDef workGiver)
         {
+            if (Compatibility.IsColonyWorkMech(worker))
+            {
+                return MechWorkerCompatibility.IsFieldResponderOptedIn(worker) ? 3 : 0;
+            }
+
             return DetailedWorkPriority(
                 worker,
                 workGiver,
@@ -2379,8 +2424,25 @@ namespace SearchAndRescue
                 return 0;
             }
 
+            // The roster substitutes only for SAR_FieldRescue. Provider work remains
+            // governed by the mech race and its live vanilla/Work Tab priority.
+            bool colonyWorkMech = IsColonyWorkMech(worker);
+            if (colonyWorkMech && !MechWorkerCompatibility.SupportsNativeWorkType(worker, workType))
+            {
+                return 0;
+            }
+
             if (worker.workSettings != null)
             {
+                int nativePriority = worker.workSettings.GetPriority(workType);
+                if (colonyWorkMech && nativePriority <= 0)
+                {
+                    // Mech Work Tab keeps an hourly schedule separate from the native
+                    // Pawn_WorkSettings value. Both are permissions: its enabled hourly
+                    // value must never revive a provider the player disabled natively.
+                    return 0;
+                }
+
                 if (WorkTabGetWorkTypePriority != null && !HardworkingCompatibility.IsWorker(worker))
                 {
                     try
@@ -2396,17 +2458,12 @@ namespace SearchAndRescue
                     }
                 }
 
-                return worker.workSettings.GetPriority(workType);
+                return nativePriority;
             }
 
-            if (!IsColonyWorkMech(worker))
-            {
-                return 0;
-            }
-
-            MechWorkTypePriority configured = worker.RaceProps.mechWorkTypePriorities?
-                .FirstOrDefault(entry => entry.def == workType);
-            return configured?.priority ?? 3;
+            return colonyWorkMech
+                ? MechWorkerCompatibility.DefaultNativeWorkTypePriority(worker, workType)
+                : 0;
         }
 
         private static bool TryMakeSmartMedicineJob(Pawn doctor, Pawn patient, out Job job)

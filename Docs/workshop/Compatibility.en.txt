@@ -26,7 +26,7 @@ Ideology — Compatible
 Colonist, slave, prisoner, guest, and medical-permission rules follow vanilla behavior.
 
 Biotech — Compatible
-Colony work mechs can participate according to their enabled work types. CE stabilization that depends on human medical skill is assigned to suitable human doctors. Hemogen-pack transfusion is supported. Casualty filtering covers flesh-and-blood beings that use ordinary wound and medical flows.
+Colony work mechs opt in through the rescue toggle and use their medical or hauling permissions, work modes, charging rules and player orders. Repairable colony mechs support repair and downed evacuation: mechanitors with Field Rescue and Smithing enabled use native repair jobs and respect the auto-repair toggle; evacuation uses the designated rescue point. Repair jobs participate in treatment ownership. Enemy-mech acquisition and resurrection use their respective systems. Suitable human doctors perform CE stabilization; hemogen transfusions are supported.
 
 Anomaly — Compatible
 Eligible mutants can receive care. Entities that require containment platforms continue through the containment flow. Vanilla TendEntity jobs count as external treatment ownership.
@@ -159,3 +159,12 @@ New wounds enter urgency calculations through the shared Hediff and bleeding ass
 
 kemomimihouse HardworkingExt (Moo.Hardworking.Kz) — Partially compatible
 Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table and select a deterministic work mode to join automatic SAR dispatch.
+
+Paniel the Automata — Partially compatible
+Humanlike rescue and capture are retained. Medicine selection and tending use Paniel’s native flow. Biological emergency procedures are filtered by race; full repair uses bedside PN_Repair and PN_RepairKit. Source reviewed; race-level playtesting is pending.
+
+Androids for RW 1.6 — Partially compatible
+Mechanical droids use native ChjDroidRepairParts selection and TendPatient; ChjAndroid keeps ordinary medicine. Biological emergency procedures are filtered by race. Full repair uses native surgery and ChjDroidRepairKit; race-level playtesting is pending.
+
+Androids Expanded — Partially compatible
+Uses Androids pawn and repair interfaces; expanded races and special abilities await in-game testing.

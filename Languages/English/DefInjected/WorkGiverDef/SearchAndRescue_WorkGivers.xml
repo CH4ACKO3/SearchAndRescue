@@ -31,4 +31,13 @@
   <SAR_RescueMarkedNursing.label>evacuate marked battlefield casualties</SAR_RescueMarkedNursing.label>
   <SAR_RescueMarkedNursing.verb>evacuate</SAR_RescueMarkedNursing.verb>
   <SAR_RescueMarkedNursing.gerund>evacuating</SAR_RescueMarkedNursing.gerund>
+  <SAR_RepairMarkedMech.label>repair marked mechs</SAR_RepairMarkedMech.label>
+  <SAR_RepairMarkedMech.verb>repair</SAR_RepairMarkedMech.verb>
+  <SAR_RepairMarkedMech.gerund>repairing</SAR_RepairMarkedMech.gerund>
+  <SAR_MechFieldRescueHauling.label>field rescue hauling</SAR_MechFieldRescueHauling.label>
+  <SAR_MechFieldRescueHauling.verb>rescue</SAR_MechFieldRescueHauling.verb>
+  <SAR_MechFieldRescueHauling.gerund>rescuing</SAR_MechFieldRescueHauling.gerund>
+  <SAR_MechFieldRescueDoctor.label>field rescue medicine</SAR_MechFieldRescueDoctor.label>
+  <SAR_MechFieldRescueDoctor.verb>rescue</SAR_MechFieldRescueDoctor.verb>
+  <SAR_MechFieldRescueDoctor.gerund>rescuing</SAR_MechFieldRescueDoctor.gerund>
 </LanguageData>

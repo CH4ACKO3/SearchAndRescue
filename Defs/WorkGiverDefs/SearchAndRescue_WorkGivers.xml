@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+  <WorkGiverDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>SAR_RepairMarkedMech</defName>
+    <label>repair marked mechs</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueTreat</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>repair</verb>
+    <gerund>repairing</gerund>
+    <priorityInType>120</priorityInType>
+    <requiredCapacities><li>Manipulation</li></requiredCapacities>
+    <directOrderable>false</directOrderable>
+  </WorkGiverDef>
   <WorkGiverDef>
     <defName>SAR_CaptureMarked</defName>
     <label>capture marked battlefield casualties</label>

@@ -3133,6 +3133,7 @@ namespace SearchAndRescue
             MedicalIntervention intervention,
             SearchAndRescueStage stage)
         {
+            if (intervention == MedicalIntervention.MechRepair) return MechanicalCare.WorkPriority(worker);
             if (Compatibility.IsSupportiveIntervention(intervention))
             {
                 return Compatibility.SupportiveTreatmentWorkPriority(worker);
@@ -3204,6 +3205,8 @@ namespace SearchAndRescue
             Pawn primaryPatient,
             MedicalTreatmentOption option)
         {
+            // These finders consume map resources through their own native Tend driver.
+            if (RobotMedicalProfile.OwnsMedicineSelection(primaryPatient)) return null;
             if (option?.Resource == null || option.Resource.Destroyed || option.FromInventory)
             {
                 return null;
@@ -3886,6 +3889,11 @@ namespace SearchAndRescue
                 return SafeBloodLossHorizonTicks;
             }
 
+            if (MechanicalCare.IsPatient(patient))
+                return Mathf.CeilToInt(Math.Max(1f, MechanicalCare.Damage(patient)) * 120f /
+                    Math.Max(0.05f, doctor.GetStatValue(StatDefOf.MechRepairSpeed))) +
+                    ExpectedTravelTicks(doctor, patient);
+
             float tendSpeed = Math.Max(0.05f, doctor.GetStatValue(StatDefOf.MedicalTendSpeed));
             int baseDuration = doctor.CurJobDef?.defName == "UseBloodBag"
                 ? 720
@@ -4396,6 +4404,8 @@ namespace SearchAndRescue
             SearchAndRescueStage stage,
             ActiveAssignment assignment)
         {
+            if (assignment?.JobDef == JobDefOf.RepairMech &&
+                !MechanicalCare.CanRepair(assignment.Worker, patient)) return false;
             if (patient == null || patient.Destroyed || patient.Dead || patient.InMentalState)
             {
                 return false;
@@ -5028,6 +5038,7 @@ namespace SearchAndRescue
 
         private static bool NeedsFieldStabilization(Pawn patient)
         {
+            if (MechanicalCare.IsPatient(patient)) return MechanicalCare.NeedsRepair(patient);
             if (InfectionPriority.NeedsUrgentTend(patient) ||
                 Compatibility.HasFieldTreatableEmergency(patient) ||
                 Compatibility.HasMoreInjuriesTransfusionNeed(patient) ||
@@ -5274,7 +5285,7 @@ namespace SearchAndRescue
                 ? TargetEligibility.CanReceiveFieldCare(patient)
                 : carriedOnMap && TargetEligibility.CanReceiveFieldCareAfterDrop(patient);
             if (!careEligible || patient.InMentalState ||
-                !HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(patient) ||
+                (!MechanicalCare.IsPatient(patient) && !HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(patient)) ||
                 patient.HostileTo(Faction.OfPlayer) && !patient.IsPrisonerOfColony)
             {
                 return false;

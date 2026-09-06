@@ -63,7 +63,7 @@ Features
 • Coordinated rescue: when doctors are scarce, casualties can be evacuated first. An arriving doctor may intercept a casualty for treatment, while carriers decide whether to wait or help someone else based on the estimated treatment time.
 • Battlefield medical logistics: calculates medicine, blood, and special-device budgets from each casualty&apos;s actual shortage. Doctors weigh whether a supply detour is worthwhile, while carriers can deliver missing supplies.
 • Player control: manually ordered treatment, carrying, and capture take priority and retain the player’s chosen targets.
-• Supports treatment and rescue for friendly humanlikes and non-hostile animals. Capture applies to humanlikes only.
+• Supports treatment and rescue for friendly humanlikes and non-hostile animals. Capture applies to humanlikes only. Colony mechs support repair and evacuation to the rescue point; mechanitors enable Field Rescue and Smithing.
 
 
 Compatibility

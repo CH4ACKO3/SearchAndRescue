@@ -11,7 +11,7 @@ namespace SearchAndRescue
             return worker != null && !worker.Destroyed && worker.Spawned && worker.Map == map &&
                    !worker.Dead && !worker.Downed && !worker.InMentalState && worker.jobs != null &&
                    worker.health?.capacities?.CapableOf(PawnCapacityDefOf.Manipulation) == true &&
-                   WorkerControlledByScheduler(worker);
+                   WorkerControlledByScheduler(worker) && MechWorkerCompatibility.CanRunSchedulerNow(worker);
         }
 
         internal static bool WorkerControlledByScheduler(Pawn worker)
@@ -53,7 +53,8 @@ namespace SearchAndRescue
             {
                 case SearchAndRescueStage.Treat:
                 case SearchAndRescueStage.Restock:
-                    return Compatibility.CanPerformAnyTreatmentWork(worker);
+                    return Compatibility.CanPerformAnyTreatmentWork(worker) ||
+                           MechanicalCare.CanRepairWork(worker);
                 case SearchAndRescueStage.FollowupTreat:
                     return Compatibility.CanPerformFollowupTreatmentWork(worker);
                 case SearchAndRescueStage.Capture:

@@ -31,4 +31,13 @@
   <SAR_RescueMarkedNursing.label>由护士转移已标记的战场伤员</SAR_RescueMarkedNursing.label>
   <SAR_RescueMarkedNursing.verb>转移</SAR_RescueMarkedNursing.verb>
   <SAR_RescueMarkedNursing.gerund>正在转移</SAR_RescueMarkedNursing.gerund>
+  <SAR_RepairMarkedMech.label>维修标记的机械体</SAR_RepairMarkedMech.label>
+  <SAR_RepairMarkedMech.verb>维修</SAR_RepairMarkedMech.verb>
+  <SAR_RepairMarkedMech.gerund>维修中</SAR_RepairMarkedMech.gerund>
+  <SAR_MechFieldRescueHauling.label>机械体战地搬运</SAR_MechFieldRescueHauling.label>
+  <SAR_MechFieldRescueHauling.verb>救援</SAR_MechFieldRescueHauling.verb>
+  <SAR_MechFieldRescueHauling.gerund>救援中</SAR_MechFieldRescueHauling.gerund>
+  <SAR_MechFieldRescueDoctor.label>机械体战地医疗</SAR_MechFieldRescueDoctor.label>
+  <SAR_MechFieldRescueDoctor.verb>救援</SAR_MechFieldRescueDoctor.verb>
+  <SAR_MechFieldRescueDoctor.gerund>救援中</SAR_MechFieldRescueDoctor.gerund>
 </LanguageData>

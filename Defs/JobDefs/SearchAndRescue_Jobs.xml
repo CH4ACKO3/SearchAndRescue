@@ -2,7 +2,7 @@
 <Defs>
   <JobDef>
     <defName>SAR_EvacuateToPoint</defName>
-    <driverClass>RimWorld.JobDriver_DeliverPawnToCell</driverClass>
+    <driverClass>SearchAndRescue.JobDriver_EvacuateToPoint</driverClass>
     <reportString>evacuating TargetA.</reportString>
     <casualInterruptible>false</casualInterruptible>
     <!-- Interrupted evacuation must never leak the patient into a later mental,

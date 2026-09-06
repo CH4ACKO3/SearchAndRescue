@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- Work mechs cannot enable SAR_FieldRescue itself. These provider-scoped entry
+       points let the ordinary mech Work think tree materialize an existing SAR claim
+       without granting the race any additional work type. -->
+  <WorkGiverDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>SAR_MechFieldRescueHauling</defName>
+    <label>coordinate mech field evacuation</label>
+    <giverClass>SearchAndRescue.WorkGiver_MechFieldRescueHauling</giverClass>
+    <workType>Hauling</workType>
+    <emergency>true</emergency>
+    <verb>evacuate</verb>
+    <gerund>evacuating</gerund>
+    <priorityInType>100</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <prioritizeSustains>true</prioritizeSustains>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+
+  <WorkGiverDef MayRequire="Ludeon.RimWorld.Biotech">
+    <defName>SAR_MechFieldRescueDoctor</defName>
+    <label>coordinate mech field care</label>
+    <giverClass>SearchAndRescue.WorkGiver_MechFieldRescueDoctor</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <verb>stabilize</verb>
+    <gerund>stabilizing</gerund>
+    <!-- Vanilla DoctorTendEmergency remains first at 110. -->
+    <priorityInType>105</priorityInType>
+    <requiredCapacities>
+      <li>Manipulation</li>
+    </requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <prioritizeSustains>true</prioritizeSustains>
+    <canBeDoneByMechs>true</canBeDoneByMechs>
+  </WorkGiverDef>
+</Defs>

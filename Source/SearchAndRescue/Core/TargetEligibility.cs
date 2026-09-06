@@ -12,11 +12,12 @@ namespace SearchAndRescue
 
         public static bool CanReceiveFieldCare(Pawn pawn)
         {
-            return IsLivingFleshPawn(pawn) && CanReceiveFieldCareAfterDrop(pawn);
+            return pawn?.Spawned == true && CanReceiveFieldCareAfterDrop(pawn);
         }
 
         public static bool CanReceiveFieldCareAfterDrop(Pawn pawn)
         {
+            if (MechanicalCare.IsPatient(pawn)) return true;
             if (pawn == null || pawn.Dead || !pawn.RaceProps.IsFlesh ||
                 (!pawn.RaceProps.Humanlike && !pawn.RaceProps.Animal))
             {

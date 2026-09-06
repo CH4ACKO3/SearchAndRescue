@@ -173,6 +173,8 @@ namespace SearchAndRescue
         protected AcceptanceReport BasicPawnCheck(Thing thing, bool allowAnimals, out Pawn pawn)
         {
             pawn = thing as Pawn;
+            if (allowAnimals && MechanicalCare.IsPatient(pawn) && pawn.Spawned && pawn.Map == Map)
+                return Map.designationManager.DesignationOn(pawn, StageDesignation) == null;
             if (!TargetEligibility.IsLivingFleshPawn(pawn) || pawn.Map != Map ||
                 (!pawn.RaceProps.Humanlike && (!allowAnimals || !pawn.RaceProps.Animal)))
             {

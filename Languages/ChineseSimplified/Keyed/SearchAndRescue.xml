@@ -8,9 +8,9 @@
   <SAR_Command_All>快捷命令：俘虏 + 治疗 + 救援</SAR_Command_All>
   <SAR_ClearAllOrders>清除全部搜索与救援命令（{0}）</SAR_ClearAllOrders>
   <SAR_Treat_Label>战地治疗</SAR_Treat_Label>
-  <SAR_Treat_Desc>监视人形生物和非敌对动物的战地医疗需求。优先稳定危及生命的伤势，再以战地救援内部的较低优先级处理剩余伤口。战地救援与医生的先后由工作选项卡决定；两者同级时战地救援在前。与战地救援同时标记时，监视会持续到安全送达；伤员在转移途中恶化时，可中断转移并就地治疗。</SAR_Treat_Desc>
+  <SAR_Treat_Desc>监视人形生物和非敌对动物的战地医疗需求。优先稳定危及生命的伤势，再以战地救援内部的较低优先级处理剩余伤口。战地救援与医生的先后由工作选项卡决定；两者同级时战地救援在前。与战地救援同时标记时，监视会持续到安全送达；伤员在转移途中恶化时，可中断转移并就地治疗。 己方可维修机械体由开启战地救援和锻造的机械师执行原版维修，并遵守自动维修开关。</SAR_Treat_Desc>
   <SAR_Rescue_Label>战地救援</SAR_Rescue_Label>
-  <SAR_Rescue_Desc>标记倒地的人形生物和非敌对动物，在已标记的前序阶段完成后将其转移。优先送往合适的床位（包括动物床）；没有合适床位时，送往右键菜单设置的救援集合点。</SAR_Rescue_Desc>
+  <SAR_Rescue_Desc>标记倒地的人形生物和非敌对动物，在已标记的前序阶段完成后将其转移。优先送往合适的床位（包括动物床）；没有合适床位时，送往右键菜单设置的救援集合点。 倒地的己方机械体送至救援点。</SAR_Rescue_Desc>
   <SAR_Capture_Label>就地俘虏</SAR_Capture_Label>
   <SAR_Capture_Desc>标记倒地敌对人形单位，在治疗或转移前就地完成俘虏。</SAR_Capture_Desc>
   <SAR_SetRescuePoint>设置救援集合点</SAR_SetRescuePoint>
@@ -18,7 +18,7 @@
   <SAR_RescuePoint_Label>救援集合点</SAR_RescuePoint_Label>
   <SAR_RescuePoint_Desc>选择一个备用安全格。只有找不到合适床位时，救援者才会把目标搬运到这里。</SAR_RescuePoint_Desc>
   <SAR_OnlyHumanlike>只能标记已出现在地图上、仍然存活的血肉人形生物。</SAR_OnlyHumanlike>
-  <SAR_OnlyHumanlikeOrAnimal>只能标记已出现在地图上、仍然存活的血肉人形生物或动物。</SAR_OnlyHumanlikeOrAnimal>
+  <SAR_OnlyHumanlikeOrAnimal>请选择当前地图上存活的人形、非敌对动物或可维修的己方机械体。</SAR_OnlyHumanlikeOrAnimal>
   <SAR_HostileAnimalUnsupported>请选择人形目标或非敌对动物进行战地治疗和救援。</SAR_HostileAnimalUnsupported>
   <SAR_NoTreatmentNeeded>该单位当前没有需要治疗的伤势。</SAR_NoTreatmentNeeded>
   <SAR_TreatmentRequiresCapture>敌对单位必须先标记“就地俘虏”，才能标记“战地治疗”。</SAR_TreatmentRequiresCapture>
@@ -138,4 +138,7 @@
   <SAR_Compatibility_SensibleBedOwnership>每次转运前确认医疗床条件和当前床位归属，为伤员选择合适的目的地。</SAR_Compatibility_SensibleBedOwnership>
   <SAR_Compatibility_YokaiVillage>非敌对血肉动物可使用标准药品和动物床接受治疗与救援；俘虏操作适用于人形目标。</SAR_Compatibility_YokaiVillage>
   <SAR_Compatibility_Hardworking>读取勤工工作设置，遵守停工、跟随、作息和休息安排。请启用确定性工作模式参与 SAR 自动调度；种族专属任务的执行情况待实测。</SAR_Compatibility_Hardworking>
+  <SAR_Compatibility_Paniel>Paniel 沿用原模组的选药与包扎规则，生物急救项目会按种族过滤。完整维修通过床边 PN_Repair 和维修包完成，种族本体待实机验证。</SAR_Compatibility_Paniel>
+  <SAR_Compatibility_Androids>机械机器人沿用原模组的维修零件选择和 TendPatient；ChjAndroid 保留普通药品。生物急救项目会按种族过滤。完整维修沿用原生手术流程，种族本体待实机验证。</SAR_Compatibility_Androids>
+  <SAR_Compatibility_AndroidsExpanded>沿用 Androids 的小人及维修接口。扩展种族与特殊能力待实机验证。</SAR_Compatibility_AndroidsExpanded>
 </LanguageData>

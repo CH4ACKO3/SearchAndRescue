@@ -445,8 +445,9 @@ namespace SearchAndRescue
             FacilityBedTypes.Clear();
 
             Profiles.Add(new Profile("core", "RimWorld", true)
+                .WorkGiverBase("RimWorld.WorkGiver_RepairMech", PatientJobRole.Treatment)
                 .Jobs(PatientJobRole.Treatment,
-                    new[] { "TendPatient", "TendPatientWithoutMedicine", "TendEntity", "DoBill" },
+                    new[] { "TendPatient", "TendPatientWithoutMedicine", "TendEntity", "DoBill", "RepairMech", "RepairMechRemote" },
                     driverBaseType: typeof(JobDriver_TendPatient))
                 .Jobs(PatientJobRole.Transport,
                     // NOLB uses vanilla Kidnap to evacuate its own wounded. Transport
