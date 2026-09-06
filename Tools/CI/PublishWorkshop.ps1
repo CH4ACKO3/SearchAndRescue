@@ -42,14 +42,26 @@ New-Item -ItemType Directory -Path "$steam/config" -Force | Out-Null
 try {
     Invoke-WebRequest -Uri 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd.zip' -OutFile "$steam/steamcmd.zip"
     Expand-Archive -LiteralPath "$steam/steamcmd.zip" -DestinationPath $steam
+    # Finish first-run self-update before installing the saved login state.
+    $bootstrap = & "$steam/steamcmd.exe" '+quit' 2>&1
+    if ($LASTEXITCODE -notin @(0,7)) { throw "SteamCMD initialization failed (exit $LASTEXITCODE). No login attempted." }
     [IO.File]::WriteAllBytes("$steam/config/config.vdf",[Convert]::FromBase64String($env:STEAM_CONFIG_VDF_BASE64))
     # Capture output instead of streaming login/session details into public Actions logs.
     $arguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME,$env:STEAM_PASSWORD)
     if (!$CheckOnly) { $arguments+=@('+workshop_build_item',$vdfPath) }
     $arguments+='+quit'
-    $output = & "$steam/steamcmd.exe" @arguments 2>&1
-    $exitCode=$LASTEXITCODE
+    Push-Location -LiteralPath $steam
+    try {
+        $output = & "$steam/steamcmd.exe" @arguments 2>&1
+        $exitCode=$LASTEXITCODE
+    } finally { Pop-Location }
     $text=$output -join "`n"
+    # Emit only fixed diagnostic categories; raw authentication output remains private.
+    Write-Host ("SteamCMD diagnostics: exit={0}; userInfoComplete={1}; guardRequested={2}; invalidPassword={3}; networkFailure={4}" -f
+        $exitCode, ($text -match 'Waiting for user info\.\.\.\s*OK'),
+        ($text -match '(?i)Steam Guard|two.factor|AccountLogonDenied|auth.*code|confirm.*sign.in'),
+        ($text -match '(?i)InvalidPassword|Invalid Password'),
+        ($text -match '(?i)NoConnection|No Connection|Failed to connect|timeout'))
     if ($CheckOnly) {
         if ($exitCode -ne 0 -or $text -notmatch 'Waiting for user info\.\.\.\s*OK') { throw 'SteamCMD login check failed. Refresh Steam Guard locally; no Workshop content was changed.' }
         Write-Host 'PASS: SteamCMD login and bilingual ownership verified. No Workshop writes performed.'
