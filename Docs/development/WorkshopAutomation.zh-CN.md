@@ -15,7 +15,7 @@ git tag -a v0.1.0-alpha.2 -m 'Search and Rescue 0.1.0-alpha.2'
 git push origin v0.1.0-alpha.2
 ```
 
-标签版本不符或缺少变更说明会阻止发布。GitHub Release 附带 ZIP 和 SHA-256 清单；含预发布后缀的版本标记为 prerelease。Steam 使用同一构建产物，固定更新 appid `294100`、条目 `3796056278`。SteamCMD 上传内容目录和英文更新说明；随后双语发布器读取对应标签的 `Docs/workshop/Description.en.bbcode` 和 `Description.zh-CN.bbcode`，分别更新英文（0）和简体中文（6）。发布前回读两种语言并核对账号所有权，保留原有标题、可见性和标签，发布后再次回读确认描述一致。两份描述均附在 GitHub Release 中，并进入 SHA-256 校验。
+标签版本不符或缺少变更说明会阻止发布。GitHub Release 附带 ZIP、英中文更新说明和 SHA-256 清单；含预发布后缀的版本标记为 prerelease。Steam 使用同一构建产物，固定更新 appid `294100`、条目 `3796056278`。SteamCMD 上传内容目录并创建英文更新记录；发布器在上传前记录旧时间戳，上传后仅编辑新生成的记录，分别写入英文（0）和简体中文（6）更新说明，再按同一时间戳回读核验。发布器还读取对应标签的 `Docs/workshop/Description.en.bbcode` 和 `Description.zh-CN.bbcode` 同步双语描述。发布前核对账号所有权，保留原有标题、可见性和标签，发布后再次回读确认。所有文本均进入 SHA-256 校验。
 
 ## Steam 授权
 
@@ -71,13 +71,13 @@ gh workflow run release.yml --ref main -f verify_steam=true
 
 缓存从本仓库最近一轮产物读取，跨版本标签复用。三个 Steam 任务共享并发锁，保证前一轮保存状态后再开始下一轮。普通构建和 PR 不使用这些 Secrets。密码认证作为缓存不可用时的回退，成功后会保存新状态。
 
-对于文件已经上传、后续核验中断的版本，可以传入原发布 run ID，只下载核验远端文件并补齐描述同步：
+对于文件已经上传、后续核验中断的版本，可以传入原发布 run ID，只下载核验远端文件，并在文件哈希完全匹配后补齐描述及该记录的双语更新说明：
 
 ```powershell
 gh workflow run release.yml --ref main -f verify_release_run=34031180075
 ```
 
-`v0.1.0-alpha.2` 的更新说明已经由作者手动分语言修正；本地两份语言文件以该线上内容为准。工坊更新说明按同一时间戳的英文/中文版本核验，GitHub Release 使用构建时合并生成的双语文案。
+`v0.1.0-alpha.2` 的更新说明已经由作者手动分语言修正；本地两份语言文件以该线上内容为准。后续版本会自动同步并按同一时间戳核验英文/中文版本，GitHub Release 使用构建时合并生成的双语文案。社区编辑器认证只在内存中使用；程序不会输出 Cookie、JWT、sessionid、网页正文或远端错误正文。
 
 ## 构建与验证
 

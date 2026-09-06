@@ -40,9 +40,10 @@ static async Task<int> Run(string[] args)
             Console.WriteLine("Saved refresh token. Upload it as STEAM_REFRESH_TOKEN, then remove the local file.");
             return 0;
         }
-        if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check"))
-            throw new PublisherException("Usage: validate|check|publish <artifact-root>, or auth <new-token-file>.");
-        var descriptions = LoadDescriptions(args[1], args[0] == "publish");
+        if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check" &&
+            args[0] != "prepare-notes" && args[0] != "publish-notes" && args[0] != "repair-notes" && args[0] != "verify-notes"))
+            throw new PublisherException("Usage: validate|check|publish|prepare-notes|publish-notes|repair-notes|verify-notes <artifact-root>, or auth <new-token-file>.");
+        var descriptions = LoadDescriptions(args[1], args[0] is "publish" or "prepare-notes" or "publish-notes" or "repair-notes");
         if (args[0] == "validate")
         {
             // Round-trip the actual protobuf requests used for each language without a Steam connection.
@@ -56,6 +57,7 @@ static async Task<int> Run(string[] args)
                 if (copy.language != item.Language || copy.file_description != item.Text || copy.publishedfileid != 3796056278UL)
                     throw new PublisherException("Localized request serialization failed.");
             }
+            WorkshopChangeNotes.Validate(args[1]);
             Console.WriteLine("PASS: pinned English/Chinese descriptions, hashes and localized update requests (no login).");
             return 0;
         }
@@ -68,6 +70,26 @@ static async Task<int> Run(string[] args)
         // Read both languages and verify ownership before sending any description writes.
         var previous = new List<PublishedFileDetails>();
         foreach (var item in descriptions) previous.Add(await Read(service, item.Language, live.Client.SteamID!.ConvertToUInt64()));
+        if (args[0] == "prepare-notes")
+        {
+            await WorkshopChangeNotes.Prepare(service,args[1]);
+            return 0;
+        }
+        if (args[0] == "publish-notes")
+        {
+            await WorkshopChangeNotes.Publish(live.Client,refreshToken,args[1]);
+            return 0;
+        }
+        if (args[0] == "repair-notes")
+        {
+            await WorkshopChangeNotes.Repair(live.Client,refreshToken,args[1]);
+            return 0;
+        }
+        if (args[0] == "verify-notes")
+        {
+            await WorkshopChangeNotes.Verify(service,args[1]);
+            return 0;
+        }
         if (args[0] == "check")
         {
             await WorkshopChangeNotes.CheckEditorContract(live.Client, refreshToken);
@@ -100,7 +122,7 @@ static async Task<int> Run(string[] args)
     catch (Exception ex)
     {
         // SDK exception messages can carry authentication responses; expose only our controlled messages.
-        Console.Error.WriteLine(ex is PublisherException ? ex.Message : $"Steam description operation failed ({ex.GetType().Name}); verify authorization locally.");
+        Console.Error.WriteLine(ex is PublisherException ? ex.Message : $"Steam Workshop operation failed ({ex.GetType().Name}); verify authorization locally.");
         return 1;
     }
 }

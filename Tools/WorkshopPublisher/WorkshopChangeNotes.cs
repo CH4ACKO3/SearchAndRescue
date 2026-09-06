@@ -10,6 +10,7 @@ static class WorkshopChangeNotes
 {
     const ulong Item = 3796056278;
     static readonly Uri Community = new("https://steamcommunity.com/");
+    static readonly string[] FormFields = ["change_description","id","language","sessionid","timestamp"];
     public sealed record Note(string Code, int Language, string Text);
     public static List<Note> Load(string root)
     {
@@ -27,6 +28,13 @@ static class WorkshopChangeNotes
             notes.Add(new(code,language,text));
         }
         return notes;
+    }
+    public static void Validate(string root)
+    {
+        _=Load(root);
+        var form=CreateForm("session",1,0,"note");
+        if (!form.Select(pair=>pair.Key).Order().SequenceEqual(FormFields))
+            throw new PublisherException("Localized change-note form validation failed.");
     }
     public static async Task<uint> Latest(PublishedFile service)
     {
@@ -50,6 +58,40 @@ static class WorkshopChangeNotes
         await File.WriteAllTextAsync(Path.Combine(root,"note-marker.json"),JsonSerializer.Serialize(new { tag, timestamp=await Latest(service) }));
         Console.WriteLine("Recorded pre-upload change-history marker. No notes changed.");
     }
+    public static async Task Publish(SteamClient client,string refreshToken,string root)
+    {
+        var service=client.GetHandler<SteamUnifiedMessages>()!.CreateService<PublishedFile>();
+        var markerPath=Path.Combine(root,"note-marker.json");
+        using var marker=JsonDocument.Parse(File.ReadAllText(markerPath));
+        using var manifest=JsonDocument.Parse(File.ReadAllText(Path.Combine(root,"manifest.json")));
+        if (marker.RootElement.GetProperty("tag").GetString() != manifest.RootElement.GetProperty("tag").GetString())
+            throw new PublisherException("Change-note marker does not match the release tag.");
+        var previous=marker.RootElement.GetProperty("timestamp").GetUInt32();
+        uint timestamp=0;
+        for (var attempt=0;attempt<10;attempt++)
+        {
+            timestamp=await Latest(service);
+            if (timestamp>previous) break;
+            await Task.Delay(2000);
+        }
+        if (timestamp<=previous) throw new PublisherException("Steam did not create a new change-history entry for this upload.");
+        using var http=await CreateCommunityClient(client,refreshToken);
+        foreach (var note in Load(root)) await Update(http,timestamp,note);
+        for (var attempt=0;attempt<5;attempt++)
+        {
+            try { await Verify(service,root,timestamp); return; }
+            catch (PublisherException) when (attempt<4) { await Task.Delay(2000); }
+        }
+    }
+    public static async Task Repair(SteamClient client,string refreshToken,string root)
+    {
+        var service=client.GetHandler<SteamUnifiedMessages>()!.CreateService<PublishedFile>();
+        var timestamp=await Latest(service);
+        if (timestamp == 0) throw new PublisherException("Workshop change history is empty.");
+        using var http=await CreateCommunityClient(client,refreshToken);
+        foreach (var note in Load(root)) await Update(http,timestamp,note);
+        await Verify(service,root,timestamp);
+    }
     public static async Task CheckEditorContract(SteamClient client,string refreshToken)
     {
         using var http=await CreateCommunityClient(client,refreshToken);
@@ -65,7 +107,8 @@ static class WorkshopChangeNotes
         var fields=Regex.Matches(script,"['\\\"](?<key>[a-z_]{1,40})['\\\"]\\s*:")
             .Select(match=>match.Groups["key"].Value).Distinct(StringComparer.Ordinal).Order().ToArray();
         if (fields.Length == 0) throw new PublisherException("Workshop change-note editor fields were not found.");
-        Console.WriteLine("Workshop editor contract fields: "+string.Join(",",fields));
+        if (!fields.SequenceEqual(FormFields)) throw new PublisherException("Workshop change-note editor fields changed.");
+        Console.WriteLine("PASS: Workshop change-note editor contract verified without exposing session data.");
     }
     public static async Task Verify(PublishedFile service,string root,uint timestamp=0)
     {
@@ -79,6 +122,21 @@ static class WorkshopChangeNotes
         }
     }
     static string Normalize(string text) => text.Replace("\r\n","\n").TrimEnd();
+    static async Task Update(HttpClient http,uint timestamp,Note note)
+    {
+        var page=await http.GetStringAsync($"sharedfiles/editchangelogentry/{Item}/{timestamp}/?language={note.Language}");
+        var match=Regex.Match(page,"name=[\"']sessionid[\"'][^>]*value=[\"'](?<value>[^\"']+)[\"']",RegexOptions.IgnoreCase);
+        if (!match.Success) throw new PublisherException("Workshop editor session could not be established.");
+        var session=System.Net.WebUtility.HtmlDecode(match.Groups["value"].Value);
+        using var response=await http.PostAsync("sharedfiles/ajaxsetchangelogentry",new FormUrlEncodedContent(CreateForm(session,timestamp,note.Language,note.Text)));
+        if (!response.IsSuccessStatusCode) throw new PublisherException($"Localized change-note update rejected: {note.Code}.");
+        Console.WriteLine($"Submitted localized change note: {note.Code}, timestamp {timestamp}.");
+    }
+    static Dictionary<string,string> CreateForm(string session,uint timestamp,int language,string text) => new(StringComparer.Ordinal)
+    {
+        ["id"]=Item.ToString(), ["timestamp"]=timestamp.ToString(), ["sessionid"]=session,
+        ["change_description"]=text, ["language"]=language.ToString()
+    };
     static async Task<HttpClient> CreateCommunityClient(SteamClient client,string refreshToken)
     {
         var steamId=client.SteamID ?? throw new PublisherException("Steam web session has no account identity.");

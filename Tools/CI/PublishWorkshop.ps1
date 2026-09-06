@@ -45,6 +45,10 @@ foreach ($key in @('STEAM_USERNAME','STEAM_PASSWORD','STEAM_CONFIG_VDF_BASE64','
 $publisher=Join-Path $root 'publisher/WorkshopPublisher.dll'
 dotnet $publisher check $root
 if ($LASTEXITCODE) { throw 'Bilingual authorization/ownership preflight failed; no files uploaded.' }
+if (!$CheckOnly -and !$VerifyPublished) {
+    dotnet $publisher prepare-notes $root
+    if ($LASTEXITCODE) { throw 'Change-history pre-upload marker failed; no files uploaded.' }
+}
 $steam=Join-Path ([IO.Path]::GetTempPath()) ('sar-steam-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path "$steam/config" -Force | Out-Null
 try {
@@ -99,6 +103,10 @@ try {
     }
     dotnet $publisher publish $root
     if ($LASTEXITCODE) { throw 'Workshop files uploaded, but bilingual description verification failed. Inspect both languages before retrying.' }
+    if ($hasLocalizedNotes) {
+        dotnet $publisher $(if ($VerifyPublished) { 'repair-notes' } else { 'publish-notes' }) $root
+        if ($LASTEXITCODE) { throw 'Workshop files and descriptions are current, but localized change-note verification failed.' }
+    }
     Write-Host "Steam confirmed published Workshop item 3796056278 for $($m.tag)."
 } finally {
     # Only this script-created temporary directory is removed; no credentials enter artifacts/caches.
