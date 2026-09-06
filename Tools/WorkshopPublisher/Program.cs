@@ -40,7 +40,7 @@ static async Task<int> Run(string[] args)
             Console.WriteLine("Saved refresh token. Upload it as STEAM_REFRESH_TOKEN, then remove the local file.");
             return 0;
         }
-        if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check" && args[0] != "inspect-notes"))
+        if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check"))
             throw new PublisherException("Usage: validate|check|publish <artifact-root>, or auth <new-token-file>.");
         var descriptions = LoadDescriptions(args[1], args[0] == "publish");
         if (args[0] == "validate")
@@ -68,22 +68,6 @@ static async Task<int> Run(string[] args)
         // Read both languages and verify ownership before sending any description writes.
         var previous = new List<PublishedFileDetails>();
         foreach (var item in descriptions) previous.Add(await Read(service, item.Language, live.Client.SteamID!.ConvertToUInt64()));
-        if (args[0] == "inspect-notes")
-        {
-            var access = await live.Client.Authentication.GenerateAccessTokenForAppAsync(live.Client.SteamID!, refreshToken);
-            using var handler = new System.Net.Http.HttpClientHandler { CookieContainer = new System.Net.CookieContainer() };
-            handler.CookieContainer.Add(new System.Net.Cookie("steamLoginSecure", Uri.EscapeDataString(live.Client.SteamID!.ConvertToUInt64() + "||" + access.AccessToken), "/", "steamcommunity.com") { Secure = true });
-            using var http = new System.Net.Http.HttpClient(handler);
-            var page = await http.GetStringAsync("https://steamcommunity.com/sharedfiles/editchangelogentry/3796056278/1788695317/?l=english");
-            foreach (var line in page.Split('\n').Where(line => line.Contains("changelog", StringComparison.OrdinalIgnoreCase) || line.Contains("changenote", StringComparison.OrdinalIgnoreCase) || line.Contains("<script") || line.Contains("g_steamID") || line.Contains("form") || line.Contains("input") || line.Contains("textarea") || line.Contains("language") || line.Contains("ajax") || line.Contains("url:")))
-            {
-                var code = System.Text.RegularExpressions.Regex.Replace(line, @"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+", "<redacted>");
-                code = System.Text.RegularExpressions.Regex.Replace(code, @"[a-fA-F0-9]{24,}", "<redacted>");
-                Console.WriteLine(code);
-            }
-            Console.WriteLine("Inspected the owned change-note editor without writing.");
-            return 0;
-        }
         if (args[0] == "check")
         {
             Console.WriteLine("PASS: authenticated ownership and bilingual read access. No descriptions changed.");

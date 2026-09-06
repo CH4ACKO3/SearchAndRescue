@@ -11,10 +11,6 @@ on:
         description: Existing release run ID to verify remote files and finish description synchronization (no file upload)
         type: string
         default: ''
-      inspect_notes:
-        description: Inspect the owned change-note editor without writing
-        type: boolean
-        default: false
       verify_steam:
         description: Verify Steam login and Workshop ownership without publishing
         type: boolean
@@ -147,7 +143,7 @@ jobs:
           retention-days: 90
   verify-steam:
     needs: build
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && (inputs.verify_steam || inputs.inspect_notes)
+    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.verify_steam
     runs-on: windows-latest
     timeout-minutes: 10
     permissions:
@@ -168,13 +164,6 @@ jobs:
         with:
           name: workshop-package
           path: package
-      - name: Inspect change-note editor without writing
-        if: inputs.inspect_notes
-        shell: pwsh
-        env:
-          STEAM_USERNAME: ${{ secrets.STEAM_USERNAME }}
-          STEAM_REFRESH_TOKEN: ${{ secrets.STEAM_REFRESH_TOKEN }}
-        run: dotnet package/publisher/WorkshopPublisher.dll inspect-notes package
       - name: Verify credentials without publishing
         if: inputs.verify_steam
         shell: pwsh
