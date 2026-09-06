@@ -12,9 +12,42 @@ static class Simulation
 {
     private const double Base = 1_000_000d;
 
+    private static void CompletedCareWinsOverSpeculativeAffinity()
+    {
+        double fresh = TreatmentContinuityRules.Weight(TreatmentContinuityRules.DurationTicks);
+        Assert(fresh == 70000d, "completed care starts with its full continuity weight");
+        Assert(TreatmentContinuityRules.ShouldReplace(true, false, true, 70000d, fresh),
+            "actual treatment supersedes another doctor's fresh pickup plan");
+        Assert(TreatmentContinuityRules.ShouldReplace(true, false, true, 500000d, fresh),
+            "latest actual treatment supersedes even a stronger speculative handoff");
+        Assert(!TreatmentContinuityRules.ShouldReplace(true, true, false, 30000d, 70000d),
+            "fresh restock plan cannot erase an unexpired completed-care affinity");
+        Assert(TreatmentContinuityRules.ShouldReplace(true, true, true, fresh, fresh),
+            "a different doctor who actually treated becomes the new incumbent");
+        Assert(TreatmentContinuityRules.ShouldReplace(false, true, false, 0d, 70000d),
+            "expired continuity does not hold the patient");
+        Assert(TreatmentContinuityRules.Weight(0) == 0d,
+            "continuity expires instead of retaining a permanent base bonus");
+        string[] workers = { "incumbent", "new-doctor" };
+        string[] patients = { "current", "other" };
+        var stable = WeightedBipartiteMatcher.MaximumWeight(workers, patients,
+            (w, p) => Base + (w == "incumbent" && p == "current" ? fresh : 0d) +
+                (w == "new-doctor" && p == "current" ? 10000d : 0d));
+        Assert(stable.Single(m => m.Target == "current").Worker == "incumbent",
+            "small skill or route changes retain the last treating doctor after rematching");
+        var urgent = WeightedBipartiteMatcher.MaximumWeight(workers, patients,
+            (w, p) => Base + (w == "incumbent" && p == "current" ? fresh : 0d) +
+                (w == "incumbent" && p == "other" ? 150000d : 0d));
+        Assert(urgent.Single(m => m.Target == "other").Worker == "incumbent",
+            "a materially more valuable urgent pairing still overrides continuity");
+        Console.WriteLine("PASS: completed-care affinity precedence, expiry and global rematching (9 checks)");
+    }
+
+
     public static int Main()
     {
         ProductionPolicyTests.Run();
+        CompletedCareWinsOverSpeculativeAffinity();
         BetterDoctorGetsSeverePatient();
         NurseTakesTransfusionWhileDoctorTakesSkilledCare();
         DoctorFallsBackToTransfusionWithoutNurse();

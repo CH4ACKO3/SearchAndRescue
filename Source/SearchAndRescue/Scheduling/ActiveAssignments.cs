@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using RimWorld;
 using Verse;
 using Verse.AI;
@@ -57,6 +58,7 @@ namespace SearchAndRescue
         public readonly float InitialEmergencySeverity;
         public readonly float InitialBloodLossSeverity;
         public readonly float InitialHemodilutionSeverity;
+        public readonly int InitialTourniquetCount;
         public readonly CareOrigin Origin;
         public readonly int TreatmentRoundBudget;
         public bool RoundEffectSeen;
@@ -96,6 +98,8 @@ namespace SearchAndRescue
             Origin = origin;
             InitialBloodLossSeverity = initialBloodLossSeverity;
             InitialHemodilutionSeverity = initialHemodilutionSeverity;
+            InitialTourniquetCount = target.health.hediffSet.hediffs.Count(hediff =>
+                hediff.def.defName == "TourniquetApplied");
             TreatmentRoundBudget = AssignmentStageRules.IsTreatment(stage) && job.def == JobDefOf.TendPatient &&
                                    job.targetB.Thing != null
                 ? Math.Max(1, job.count)

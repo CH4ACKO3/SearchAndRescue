@@ -34,7 +34,7 @@ namespace SearchAndRescue
         private static int SupplyNearbyRadiusSquared =>
             SearchAndRescueMod.Settings?.FieldSupplyRadiusSquared ?? 64;
         private const int PendingContinuityDecayTicks = 300;
-        private const int PostTreatmentContinuityTicks = 600;
+        private const int PostTreatmentContinuityTicks = TreatmentContinuityRules.DurationTicks;
         private const int PostCaptureTreatmentContinuityTicks = 1200;
         // Four in-game hours. Completed manual orders remain dormant for this window and
         // are restored if the same pawn recovers, then becomes downed again.
@@ -667,6 +667,7 @@ namespace SearchAndRescue
         public override void MapComponentTick()
         {
             base.MapComponentTick();
+            EngineBenchmarkDiagnostics.Tick(map);
             bool profile = SearchAndRescuePerformanceDiagnostics.Enabled;
             long mapTickStart = profile
                 ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.MapTick)
@@ -1277,7 +1278,7 @@ namespace SearchAndRescue
                     active == assignment)
                 {
                     if (IsTreatmentStage(assignment.Stage) &&
-                        (assignment.JobDef != JobDefOf.TendPatient ||
+                        (assignment.JobDef != JobDefOf.TendPatient && assignment.JobDef?.defName != "UseTourniquet" ||
                          assignment.CommittedTreatmentRounds > 0))
                     {
                         // Vanilla TendPatient can also succeed empty when its target becomes
@@ -1321,7 +1322,7 @@ namespace SearchAndRescue
             activeClaims.ReleasePrimary(assignment.Target);
             medicalResources.ReleaseWorker(worker);
             if (IsTreatmentStage(assignment.Stage) &&
-                (assignment.JobDef != JobDefOf.TendPatient ||
+                (assignment.JobDef != JobDefOf.TendPatient && assignment.JobDef?.defName != "UseTourniquet" ||
                  assignment.CommittedTreatmentRounds > 0))
             {
                 assignment.RoundEffectSeen = true;
@@ -1363,12 +1364,14 @@ namespace SearchAndRescue
 
         internal void NotifyTreatmentCommitted(Pawn doctor, Pawn patient)
         {
+            EngineBenchmarkDiagnostics.Observe(doctor, patient);
             Job job = doctor?.CurJob;
             if (doctor == null || patient == null || job?.def != JobDefOf.TendPatient)
             {
                 return;
             }
 
+            TreatmentContinuityDiagnostics.Observe(doctor, patient);
             if (!activeByTarget.TryGetValue(patient, out ActiveAssignment assignment) ||
                 !ActiveJobClaims.Matches(assignment, doctor, ActiveJobClaims.IdentityOf(job)) ||
                 !IsTreatmentStage(assignment.Stage))
@@ -1435,6 +1438,7 @@ namespace SearchAndRescue
                 // An ordinary native TendPatient may have started before the automatic
                 // patient index admitted this pawn. Yield only after the current wound is
                 // committed, then let the same global graph compare every doctor/patient edge.
+                RememberCompletedTreatment(doctor, currentPatient, now);
                 job.endAfterTendedOnce = true;
                 lastSchedulerDecision[doctor] =
                     $"yielded external TendPatient after wound for automatic coordination:" +
@@ -2043,15 +2047,18 @@ namespace SearchAndRescue
                 // Keep a short, soft affinity after a wound boundary. The global matcher may
                 // still move the doctor to a substantially more urgent casualty, but small
                 // score changes no longer send them across the map and back between wounds.
-                SetCareAffinity(patient, new SoftCareClaim(
-                    assignment.Worker,
-                    now + PostTreatmentContinuityTicks,
-                    PendingContinuityBaseWeight,
-                    50000d,
-                    SoftClaimLeaseTicks * 3), now);
+                RememberCompletedTreatment(assignment.Worker, patient, now);
             }
             ClearDesignationRetries(patient, SearchAndRescueStage.Treat);
             RequestScheduleRebuild(maintenance: true, delayTicks: 0);
+        }
+
+        private void RememberCompletedTreatment(Pawn doctor, Pawn patient, int now)
+        {
+            if (!IsFieldResponder(doctor) || !WorkerOperational(doctor) ||
+                !Compatibility.NeedsAnyFieldTreatment(patient)) return;
+            SetCareAffinity(patient, new SoftCareClaim(doctor,
+                now + PostTreatmentContinuityTicks, 0d, completedTreatment: true), now);
         }
 
         private void MonitorActiveTreatmentRounds()
@@ -2822,14 +2829,12 @@ namespace SearchAndRescue
 
         private void SetCareAffinity(Pawn patient, SoftCareClaim claim, int now)
         {
-            if (patient == null || claim == null ||
-                careAffinityClaims.TryGetValue(patient, out SoftCareClaim existing) &&
-                existing.ExpiresAt > now && existing.WeightAt(now) > claim.WeightAt(now))
-            {
-                return;
-            }
-
-            careAffinityClaims[patient] = claim;
+            if (patient == null || claim == null) return;
+            careAffinityClaims.TryGetValue(patient, out SoftCareClaim existing);
+            if (TreatmentContinuityRules.ShouldReplace(existing?.ExpiresAt > now,
+                    existing?.CompletedTreatment == true, claim.CompletedTreatment,
+                    existing?.WeightAt(now) ?? 0d, claim.WeightAt(now)))
+                careAffinityClaims[patient] = claim;
         }
 
         private bool TryClaimStageChoice(Pawn worker, Pawn patient, StageChoice choice, int now)
@@ -3268,6 +3273,7 @@ namespace SearchAndRescue
             private readonly double freshnessWeight;
             private readonly int freshnessTicks;
             public readonly bool ConsumeOnTreatmentStart;
+            public readonly bool CompletedTreatment;
 
             public SoftCareClaim(
                 Pawn worker,
@@ -3275,7 +3281,8 @@ namespace SearchAndRescue
                 double baseWeight,
                 double freshnessWeight = 0d,
                 int freshnessTicks = 1,
-                bool consumeOnTreatmentStart = false)
+                bool consumeOnTreatmentStart = false,
+                bool completedTreatment = false)
             {
                 Worker = worker;
                 ExpiresAt = expiresAt;
@@ -3283,10 +3290,12 @@ namespace SearchAndRescue
                 this.freshnessWeight = freshnessWeight;
                 this.freshnessTicks = Math.Max(1, freshnessTicks);
                 ConsumeOnTreatmentStart = consumeOnTreatmentStart;
+                CompletedTreatment = completedTreatment;
             }
 
             public double WeightAt(int now)
             {
+                if (CompletedTreatment) return TreatmentContinuityRules.Weight(ExpiresAt - now);
                 float freshness = Mathf.Clamp01((ExpiresAt - now) / (float)freshnessTicks);
                 return baseWeight + freshness * freshnessWeight;
             }
@@ -4675,6 +4684,10 @@ namespace SearchAndRescue
             foreach (Pawn patient in targets)
             {
                 TryGetCareAdmission(patient, out CareAdmission admission);
+                if (careAffinityClaims.TryGetValue(patient, out SoftCareClaim affinity))
+                    report.AppendLine($" continuity patient={patient.ThingID} worker={affinity.Worker?.ThingID}" +
+                        $" completed={affinity.CompletedTreatment} weight={affinity.WeightAt(now):0}" +
+                        $" remainingTicks={affinity.ExpiresAt - now}");
                 bool needs = Compatibility.NeedsAnyFieldTreatment(patient);
                 bool stabilize = NeedsFieldStabilization(patient);
                 int deathTicks = HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
@@ -5083,6 +5096,12 @@ namespace SearchAndRescue
 
         private static bool TreatmentProgressMade(Pawn patient, ActiveAssignment assignment)
         {
+            // More Injuries reports Succeeded for an already-treated limb too.
+            // Count the actual device effect before granting continuity or clearing retries.
+            if (assignment.JobDef?.defName == "UseTourniquet")
+                return patient.health.hediffSet.hediffs.Count(hediff =>
+                    hediff.def.defName == "TourniquetApplied") > assignment.InitialTourniquetCount;
+
             bool epinephrineApplied = assignment.JobDef?.defName == "UseEpinephrine" &&
                                       patient.health.hediffSet.hediffs.Any(hediff =>
                                           hediff.def.defName == "AdrenalineRush" && hediff.Severity >= 0.25f);

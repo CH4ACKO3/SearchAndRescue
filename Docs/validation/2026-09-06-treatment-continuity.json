@@ -1,0 +1,168 @@
+{
+  "date": "2026-09-06",
+  "dllSha256": "ACED14DD253D886C84E032D18A4922C8A4C22D4BEECA522AB6757DF4D4971BBD",
+  "perRoundRematchingRetained": true,
+  "multiResourceChanges": false,
+  "build": {
+    "warnings": 0,
+    "errors": 0
+  },
+  "continuityRegressionChecks": 9,
+  "existingProductionChecks": 76,
+  "existingSimulationScenarios": 40,
+  "randomGraphs": 200,
+  "liveValidation": {
+    "activeModCount": 13,
+    "allTending": {
+      "ticks": 4200,
+      "patients": [
+        {
+          "rounds": 8,
+          "distinctJobs": 8,
+          "distinctDoctors": 1
+        },
+        {
+          "rounds": 8,
+          "distinctJobs": 8,
+          "distinctDoctors": 1
+        },
+        {
+          "rounds": 7,
+          "distinctJobs": 7,
+          "distinctDoctors": 1
+        }
+      ],
+      "result": "PASS: distinct treatment jobs retained the same doctor per patient"
+    },
+    "emergencyNoMedicine": {
+      "ticks": 3600,
+      "roundsPerPatient": [
+        6,
+        6,
+        6
+      ],
+      "distinctJobsPerPatient": [
+        1,
+        1,
+        1
+      ],
+      "result": "Stable doctor continuity; existing continuous dry-tend path, not evidence of per-round rematching"
+    },
+    "emergencyWithMedicine": {
+      "ticks": 3600,
+      "roundsPerPatient": [
+        2,
+        2,
+        2
+      ],
+      "distinctJobsPerPatient": [
+        1,
+        1,
+        1
+      ],
+      "result": "Patients treated; native fallback also participated, so not an isolated managed-rematching assertion"
+    },
+    "urgentArrival": {
+      "beforeInjectionTicks": 1200,
+      "afterInjectionTicks": 1800,
+      "newPatient": "Human80442",
+      "redirectedDoctor": "Human80386",
+      "criticalTreatmentRounds": 3,
+      "otherPairRoundCounts": [
+        5,
+        5
+      ],
+      "result": "PASS: previous incumbent treated critical arrival; other pairs continued; native doctor covered vacated routine patient"
+    },
+    "userSaveRestored": "SAR_PreContinuity_User_20260906",
+    "restoredPaused": true,
+    "modConfigurationUnchanged": true
+  },
+  "liveLogLines": {
+    "round1.log": [
+      "[SAR continuity live] START mode=AllTending; 3 doctors, 3 downed patients, 8 wounds each; no manual treatment marks",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=13 round=1",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=15 round=1",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=14 round=1",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=273 round=2",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=292 round=2",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=319 round=2",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=467 round=3",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=481 round=3",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=553 round=3",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=663 round=4",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=678 round=4",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=788 round=4",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=885 round=5",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=903 round=5",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=1092 round=6",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=1054 round=5",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=1112 round=6",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=1291 round=7",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=1312 round=7",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=1296 round=6",
+      "[SAR continuity live] ROUND patient=Human47763 doctor=Human47776 job=1510 round=8",
+      "[SAR continuity live] ROUND patient=Human47773 doctor=Human47757 job=1526 round=8",
+      "[SAR continuity live] ROUND patient=Human47779 doctor=Human47770 job=1562 round=7",
+      "[SAR continuity live] PASS patient=Human47763 rounds=8 jobs=8 doctors=Human47776,Human47776,Human47776,Human47776,Human47776,Human47776,Human47776,Human47776",
+      "[SAR continuity live] PASS patient=Human47773 rounds=8 jobs=8 doctors=Human47757,Human47757,Human47757,Human47757,Human47757,Human47757,Human47757,Human47757",
+      "[SAR continuity live] PASS patient=Human47779 rounds=7 jobs=7 doctors=Human47770,Human47770,Human47770,Human47770,Human47770,Human47770,Human47770",
+      "[SAR continuity live] START mode=EmergencyAuto; 3 doctors, 3 downed patients, 8 wounds each; no manual treatment marks",
+      "[SAR continuity live] ROUND patient=Human80393 doctor=Human80389 job=69 round=1",
+      "[SAR continuity live] ROUND patient=Human80399 doctor=Human80402 job=71 round=1",
+      "[SAR continuity live] ROUND patient=Human80405 doctor=Human80396 job=70 round=1",
+      "[SAR continuity live] ROUND patient=Human80393 doctor=Human80389 job=69 round=2",
+      "[SAR continuity live] ROUND patient=Human80405 doctor=Human80396 job=70 round=2",
+      "[SAR continuity live] ROUND patient=Human80399 doctor=Human80402 job=71 round=2",
+      "[SAR continuity live] ROUND patient=Human80393 doctor=Human80389 job=69 round=3",
+      "[SAR continuity live] ROUND patient=Human80405 doctor=Human80396 job=70 round=3",
+      "[SAR continuity live] ROUND patient=Human80399 doctor=Human80402 job=71 round=3",
+      "[SAR continuity live] ROUND patient=Human80393 doctor=Human80389 job=69 round=4",
+      "[SAR continuity live] ROUND patient=Human80405 doctor=Human80396 job=70 round=4",
+      "[SAR continuity live] ROUND patient=Human80399 doctor=Human80402 job=71 round=4",
+      "[SAR continuity live] ROUND patient=Human80393 doctor=Human80389 job=69 round=5",
+      "[SAR continuity live] ROUND patient=Human80405 doctor=Human80396 job=70 round=5",
+      "[SAR continuity live] ROUND patient=Human80399 doctor=Human80402 job=71 round=5",
+      "[SAR continuity live] ROUND patient=Human80393 doctor=Human80389 job=69 round=6",
+      "[SAR continuity live] ROUND patient=Human80405 doctor=Human80396 job=70 round=6",
+      "[SAR continuity live] ROUND patient=Human80399 doctor=Human80402 job=71 round=6",
+      "[SAR continuity live] REVIEW patient=Human80393 rounds=6 jobs=1 doctors=Human80389,Human80389,Human80389,Human80389,Human80389,Human80389",
+      "[SAR continuity live] REVIEW patient=Human80399 rounds=6 jobs=1 doctors=Human80402,Human80402,Human80402,Human80402,Human80402,Human80402",
+      "[SAR continuity live] REVIEW patient=Human80405 rounds=6 jobs=1 doctors=Human80396,Human80396,Human80396,Human80396,Human80396,Human80396"
+    ],
+    "round2.log": [
+      "[SAR continuity live] START mode=EmergencyAuto; 3 doctors, 3 downed patients, 8 wounds each; no manual treatment marks",
+      "[SAR continuity live] ROUND patient=Human80397 doctor=Human80393 job=21 round=1",
+      "[SAR continuity live] ROUND patient=Human80407 doctor=Human80403 job=22 round=1",
+      "[SAR continuity live] ROUND patient=Human80390 doctor=Human698 job=12 round=1",
+      "[SAR continuity live] ROUND patient=Human80397 doctor=Human80393 job=21 round=2",
+      "[SAR continuity live] ROUND patient=Human80407 doctor=Human80403 job=22 round=2",
+      "[SAR continuity live] ROUND patient=Human80390 doctor=Human698 job=12 round=2",
+      "[SAR continuity live] REVIEW patient=Human80390 rounds=2 jobs=1 doctors=Human698,Human698",
+      "[SAR continuity live] REVIEW patient=Human80397 rounds=2 jobs=1 doctors=Human80393,Human80393",
+      "[SAR continuity live] REVIEW patient=Human80407 rounds=2 jobs=1 doctors=Human80403,Human80403",
+      "[SAR continuity live] START mode=AllTending; 3 doctors, 3 downed patients, 8 wounds each; no manual treatment marks",
+      "[SAR continuity live] ROUND patient=Human80401 doctor=Human80398 job=66 round=1",
+      "[SAR continuity live] ROUND patient=Human80389 doctor=Human80392 job=65 round=1",
+      "[SAR continuity live] ROUND patient=Human80395 doctor=Human80386 job=67 round=1",
+      "[SAR continuity live] ROUND patient=Human80401 doctor=Human80398 job=339 round=2",
+      "[SAR continuity live] ROUND patient=Human80389 doctor=Human80392 job=353 round=2",
+      "[SAR continuity live] INJECT critical patient=Human80442; prior treating doctors=Human80392,Human80386,Human80398",
+      "[SAR continuity live] ROUND patient=Human80395 doctor=Human80386 job=379 round=2",
+      "[SAR continuity live] ROUND patient=Human80401 doctor=Human80398 job=603 round=3",
+      "[SAR continuity live] ROUND patient=Human80389 doctor=Human80392 job=623 round=3",
+      "[SAR continuity live] ROUND patient=Human80442 doctor=Human80386 job=666 round=1",
+      "[SAR continuity live] ROUND patient=Human80401 doctor=Human80398 job=857 round=4",
+      "[SAR continuity live] ROUND patient=Human80389 doctor=Human80392 job=878 round=4",
+      "[SAR continuity live] ROUND patient=Human80442 doctor=Human80386 job=666 round=2",
+      "[SAR continuity live] ROUND patient=Human80395 doctor=Human698 job=888 round=3",
+      "[SAR continuity live] ROUND patient=Human80401 doctor=Human80398 job=1099 round=5",
+      "[SAR continuity live] ROUND patient=Human80389 doctor=Human80392 job=1122 round=5",
+      "[SAR continuity live] ROUND patient=Human80442 doctor=Human80386 job=666 round=3",
+      "[SAR continuity live] PASS patient=Human80389 rounds=5 jobs=5 doctors=Human80392,Human80392,Human80392,Human80392,Human80392",
+      "[SAR continuity live] REVIEW patient=Human80395 rounds=3 jobs=3 doctors=Human80386,Human80386,Human698",
+      "[SAR continuity live] PASS patient=Human80401 rounds=5 jobs=5 doctors=Human80398,Human80398,Human80398,Human80398,Human80398",
+      "[SAR continuity live] PASS critical arrival treated by previous incumbent; doctors=Human80386,Human80386,Human80386"
+    ]
+  }
+}

@@ -31,7 +31,7 @@ Biotech — 兼容
 殖民地工作机仆通过救援开关加入，按医疗或搬运权限执行，并遵守工作模式、充电与玩家命令。己方可维修机械体支持维修和倒地撤离：开启战地救援与锻造的机械师使用原版维修任务，遵守自动维修开关；撤离送至指定救援点。维修任务纳入治疗所有权。敌方机械体接管与复活沿用对应系统。CE 稳定由合适的人类医生执行，支持血原包输血。
 
 Anomaly — 兼容
-具有医疗权利的变异体可接受处理。需要收容平台的实体沿用收容流程。原版 TendEntity 计入外部治疗所有权。
+支持巨石激活前后为倒地敌对人形标记俘虏、治疗与救援，已验证旧存档中的快捷按钮和框选。具有医疗权利的变异体可接受处理。需要收容平台的实体沿用收容流程，原生蹒跚怪继续按收容对象处理。原版 TendEntity 计入外部治疗所有权。
 
 Odyssey — 兼容
 调度器按当前地图工作，可用于重力船地图。跨地图撤离和载具内部运输沿用对应系统。
@@ -159,14 +159,32 @@ Yokai Village — 兼容
 Grievous Wounds — 兼容
 新增伤口通过通用 Hediff 和出血评估进入紧急度。溢出伤害由 Grievous Wounds 计算。
 
-兽耳屋勤工 / kemomimihouse HardworkingExt（Moo.Hardworking.Kz）— 部分兼容
+兽耳屋勤工 / kemomimihouse HardworkingExt — 部分兼容
 在勤工面板启用已解锁的战地救援及对应医疗/搬运工作，使用确定性工作模式即可参与 SAR 自动调度。
 
 Paniel the Automata — 部分兼容
-保留人形救援与俘虏，选药和包扎沿用 Paniel 原生流程。生物急救按种族过滤；完整维修通过床边 PN_Repair 和 PN_RepairKit 完成。源码已核对，种族本体待实机验证。
+保留人形救援与俘虏，选药和包扎沿用 Paniel 原生流程。生物急救按种族过滤；完整维修通过床边 PN_Repair 和 PN_RepairKit 完成。已实测原生包扎；完整床边维修待专项验证。
 
 Androids for RW 1.6 — 部分兼容
-机械机器人通过原模组选择 ChjDroidRepairParts 并执行 TendPatient；ChjAndroid 保留普通药品。生物急救按种族过滤。完整维修通过原生手术和 ChjDroidRepairKit 完成，种族本体待实机验证。
+机械机器人通过原模组选择 ChjDroidRepairParts 并执行 TendPatient；ChjAndroid 保留普通药品。生物急救按种族过滤。已实测 ChjDroid 使用维修零件处理伤口，以及 ChjAndroid 使用普通药品进行 CE 稳定；完整维修沿用原生手术和 ChjDroidRepairKit。
 
 Androids Expanded — 部分兼容
-沿用 Androids 的小人与维修接口；扩展种族与特殊能力待实机验证。
+已实测 ChjSpacerDroid 使用维修零件处理伤口；其他扩展种族与特殊能力待专项验证。
+
+The Dead Man’s Switch — 部分兼容
+己方可维修机关使用原版维修与救援点撤离。治疗任务纳入所有权管理；失活机体的接管与复活沿用原模组流程。
+
+The Dead Man’s Switch - Synthetic — 部分兼容
+合成人形按机械体维修；具备医疗或搬运工作的受控单位可通过救援开关加入，并遵守工作模式和能源状态。
+
+The Dead Man’s Switch - MobileDragoon — 部分兼容
+人类驾驶员沿用常规治疗与救援；外骨骼维护由 Exosuit Framework 处理，装备组合待专项实测。
+
+The Dead Man’s Switch - AncientCorps — 部分兼容
+可维修的己方单位沿用机械体患者规则。大型军用机关与装备组合待专项实测。
+
+The Dead Man’s Switch - Motorized — 部分兼容
+停驻的己方载具通过 Vehicle Framework 提供医疗库存；车辆维护、乘员上下车与车内治疗沿用载具系统。
+
+The Dead Man’s Switch - Joint Operations — 部分兼容
+专用战地维修任务纳入治疗所有权。Tinker 继续由原模组分配维修工作；SAR 为符合条件的己方机关安排机械师维修。

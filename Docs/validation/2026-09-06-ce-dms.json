@@ -1,0 +1,292 @@
+{
+  "date": "2026-09-06",
+  "gameVersion": "1.6.4871 rev591",
+  "dllSha256": "3f34cd8682ca251375b803806445753325ce9c2447d243cef0ec053025ba889b",
+  "activeModCount": 25,
+  "mods": [
+    {
+      "packageId": "brrainz.harmony",
+      "name": "Harmony",
+      "workshopId": null,
+      "aboutSha256": "280984ac4a391c12288d670b7f37dcebbe8d0bd9fa2f576fc3b2424fed911a0a"
+    },
+    {
+      "packageId": "ludeon.rimworld",
+      "name": null,
+      "workshopId": null,
+      "aboutSha256": "62c5b721f0a562075a0109ba558af22791d2b20b7a5e677592c1e7c138a21336"
+    },
+    {
+      "packageId": "ludeon.rimworld.royalty",
+      "name": null,
+      "workshopId": null,
+      "aboutSha256": "a32609e0d1babf43451876ad3fb32583ceaa83d1d3324fcdb500b9b69dc58b0f"
+    },
+    {
+      "packageId": "ludeon.rimworld.ideology",
+      "name": null,
+      "workshopId": null,
+      "aboutSha256": "b01c25de47b9d801f11bb2bee14fc13577ed6223e38cf533510f14b72fd7fcb2"
+    },
+    {
+      "packageId": "ludeon.rimworld.biotech",
+      "name": null,
+      "workshopId": null,
+      "aboutSha256": "e8ba1e7344b483ac10b237fe830b46eb8bedc920633349406efdbbd9502efe29"
+    },
+    {
+      "packageId": "ludeon.rimworld.odyssey",
+      "name": null,
+      "workshopId": null,
+      "aboutSha256": "3e66b9aab7797fe187dfbc92e7837edf4fa750ea30dbf952c609e6f3d90f1eda"
+    },
+    {
+      "packageId": "unlimitedhugs.hugslib",
+      "name": "HugsLib",
+      "workshopId": "818773962",
+      "aboutSha256": "ae88a805065c164a612844d4164bca56a8bcdd3ea8d45aee5d55bdeb88c4af8e"
+    },
+    {
+      "packageId": "brrainz.rimbridgeserver",
+      "name": "RimBridgeServer",
+      "workshopId": null,
+      "aboutSha256": "f934ef31f2c6061a022bb3098766dc03730039f33cb97afbdf874ca66427a9e0"
+    },
+    {
+      "packageId": "erdelf.humanoidalienraces",
+      "name": "Humanoid Alien Races",
+      "workshopId": "839005762",
+      "aboutSha256": "07a0c4a5bddda2bf04cf78b6d03b479f679e9072d16667b4bb8da3b28fdf3508"
+    },
+    {
+      "packageId": "ceteam.combatextended",
+      "name": "Combat Extended",
+      "workshopId": "2890901044",
+      "aboutSha256": "565bfc7d863989a779c58b697e8d3c0f5c5a153f38ddbb3d15514beef218ea08"
+    },
+    {
+      "packageId": "aoba.framework",
+      "name": "Fortified Features Framework",
+      "workshopId": "3498575851",
+      "aboutSha256": "843608abf4e38431a40fa106bca5a406d16fab7d85bab82a5166f094ee986112"
+    },
+    {
+      "packageId": "aoba.exosuit.framework",
+      "name": "Exosuit Framework",
+      "workshopId": "3352894993",
+      "aboutSha256": "d3d8d1908b9ff31f51ddff728b8a84ea656ed545d71a70329e5a483b98873a8b"
+    },
+    {
+      "packageId": "smashphil.vehicleframework",
+      "name": "Vehicle Framework",
+      "workshopId": "3014915404",
+      "aboutSha256": "fa0e5a37af805b398005023fbfaec3362e2c2e3dd5002ca4632e54e18ec68d25"
+    },
+    {
+      "packageId": "aoba.deadmanswitch.core",
+      "name": "The Dead Man's Switch",
+      "workshopId": "3121742525",
+      "aboutSha256": "9510f05c016741c1f2189e5295773c2d01c7e2325b03c68313770e3cfee79000"
+    },
+    {
+      "packageId": "aoba.deadmanswitch.synthetic",
+      "name": "The Dead Man's Switch - Synthetic",
+      "workshopId": "3374615241",
+      "aboutSha256": "699a7f1470e5920f37b28b4a3668c760af7a7b0250ff7b4e81e43ffe47560717"
+    },
+    {
+      "packageId": "aoba.deadmanswitch.mobiledragoon",
+      "name": "The Dead Man's Switch - MobileDragoon",
+      "workshopId": "3377130226",
+      "aboutSha256": "361466a309ec25a4b18cd2d14ed13bbb8717a2539c393b93963885fc76daf1a2"
+    },
+    {
+      "packageId": "aoba.deadmanswitch.ancientcorps",
+      "name": "The Dead Man's Switch - AncientCorps",
+      "workshopId": "3469398006",
+      "aboutSha256": "b77c312b25444a35b6d7b1fcfb050f211ecd2f9d2e66138357073ec0e66eace9"
+    },
+    {
+      "packageId": "aoba.deadmanswitch.motorized",
+      "name": "The Dead Man's Switch - Motorized",
+      "workshopId": "3288321439",
+      "aboutSha256": "826b96a5453409078ad88e125120631495530c00ad188f38568fc73defcc9b3a"
+    },
+    {
+      "packageId": "dms.proton.jointoperations",
+      "name": "The Dead Man's Switch - Joint Operations",
+      "workshopId": "3636378753",
+      "aboutSha256": "4603383b75920e52ecf9611702f3489b71833abd16ac98d5a5665846a700b1be"
+    },
+    {
+      "packageId": "chjees.androids14",
+      "name": "Androids for RW 1.6",
+      "workshopId": "2889326293",
+      "aboutSha256": "2c119d3fea8abb23e642cb62e7e2541faad04f5bfba28077ee360e9cdae4499b"
+    },
+    {
+      "packageId": "peptide.androidsexpanded14",
+      "name": "Androids Expanded for RW 1.6",
+      "workshopId": "2890036704",
+      "aboutSha256": "a2e8b42cbbd47e3d59535457d93f1ef7c7965f0cf2c3d8d9b119b11352ea3ada"
+    },
+    {
+      "packageId": "kalospacer.ahndemi.panieltheautomata",
+      "name": "Paniel the Automata[1.6]",
+      "workshopId": "3305504186",
+      "aboutSha256": "eca5cc07e27d23be9f7d9109e95418adecc7658834b5d7cc6150db323d8b1d47"
+    },
+    {
+      "packageId": "darthsergeant.nursejob",
+      "name": "Nurse Job",
+      "workshopId": "1820501433",
+      "aboutSha256": "5ef5caf35d405959b8508005ca1e3bc2e9192eda7c9030fe576a5eb87b3e74ef"
+    },
+    {
+      "packageId": "th3fr3d.extendedinjuries",
+      "name": "More Injuries (Continued)",
+      "workshopId": "3348840185",
+      "aboutSha256": "45658a86c729524695fc6ae9e40466f3697723ffe1c6812679f25ade7e07e52d"
+    },
+    {
+      "packageId": "ch4acko3.searchandrescue",
+      "name": "Search and Rescue",
+      "workshopId": null,
+      "aboutSha256": "55e3d6f3950d64047625ecf46dea4b198f358806a661539b0c23b23dd182d669"
+    }
+  ],
+  "finalRound": {
+    "elapsedGameTicks": 4800,
+    "reloadFollowupTicks": 600,
+    "reloadSucceeded": true,
+    "newErrorsAfterReload": false,
+    "ceStabilizationEffect": true,
+    "medicineBefore": 2,
+    "medicineAfterTreatment": 1,
+    "medicineAfterRefill": 2,
+    "miInventoryAndJobConstruction": [
+      "WholeBloodBag",
+      "SalineBag",
+      "HemostaticAgent",
+      "Bandage",
+      "Defibrillator"
+    ],
+    "dmsRepairInitialDamage": 10,
+    "dmsRepairAfter1200Ticks": 2,
+    "dmsResponderWinner": "DMS_Mech_Lady",
+    "dmsResponderEffect": "Bruise tended",
+    "robotCases": {
+      "Paniel_Race": "native tending",
+      "ChjDroid": "repair parts consumed; wound removed",
+      "ChjAndroid": "CE-stabilized with ordinary medicine",
+      "ChjSpacerDroid": "repair parts consumed; wound removed"
+    },
+    "repairPartsBefore": 40,
+    "repairPartsAfter": 38
+  },
+  "limitations": [
+    "MI device/blood tests verify resource selection and native Job construction, not every complete procedure.",
+    "DMS responder check was called at 1200 ticks while TendPatient was still active; the same job passed after another 2400 ticks.",
+    "Tinker remains uncontrolled in the fixture because its bandwidth cost is 6 and Lady/Maiden already use 4 of 6. Native Tinker/FFF concurrent repair JobDriver execution remains untested.",
+    "MobileDragoon, AncientCorps, Motorized were loaded and audited; their individual specialized flows were not all executed.",
+    "Full robotic surgery, deactivated-body control/resurrection, and all third-party addon combinations remain untested."
+  ],
+  "saves": [
+    {
+      "name": "SAR_CE_DMS_00_Base_20260906",
+      "bytes": 8076294,
+      "sha256": "c8db40af7ddc34f3133489e8a6105fd9c137e1ed13216aa8a9308d586b87bffb"
+    },
+    {
+      "name": "SAR_CE_DMS_01_Ready_20260906",
+      "bytes": 11885636,
+      "sha256": "2358adf204ab30d20fdf6b85ebf3e4390a8ba546480e2f6d9f800fa1c4fb6049"
+    },
+    {
+      "name": "SAR_CE_DMS_02_Tested_20260906",
+      "bytes": 11989316,
+      "sha256": "e05cf3092263622fc804922644b1982602d31f867c9335ac20d363e4cea03129"
+    }
+  ],
+  "sarLogLines": [
+    "[SAR CE loadout regression] PASS: SAR sees medicine carried for CE loadout",
+    "[SAR CE loadout regression] PASS: SAR selects carried More Injuries blood",
+    "[SAR CE loadout regression] PASS: SAR selects carried More Injuries device",
+    "[SAR CE loadout regression] PASS: MI Blood option keeps carried CE loadout resource",
+    "[SAR CE loadout regression] PASS: MI Blood dispatcher accepts carried CE loadout resource",
+    "[SAR CE loadout regression] PASS: MI Defibrillate option keeps carried CE loadout resource",
+    "[SAR CE loadout regression] PASS: MI Defibrillate dispatcher accepts carried CE loadout resource",
+    "[SAR CE loadout regression] PASS: CE unload keeps exact loadout medical quota",
+    "[SAR CE loadout regression] PASS: fixture claims nearest medicine for SAR",
+    "[SAR CE loadout regression] PASS: nearest CE candidate is SAR protected",
+    "[SAR CE loadout regression] PASS: CE skips protected nearest supply and selects farther ordinary stock",
+    "[SAR CE loadout regression] PASS: SAR treatment option uses carried CE loadout medicine",
+    "[SAR CE loadout regression] PASS: SAR constructs native CE stabilization from carried medicine",
+    "[SAR CE loadout regression] Fixture retained for save/load. Advance at least 600 ticks, then run 'Check CE loadout treatment consumption'. Pawns: Human78463, Human78467; selectedResource=MedicineIndustrial78471; loadout=CombatExtended.Loadout",
+    "[SAR CE loadout regression] PASS: Th3Fr3d More Injuries blood resource resolves to WholeBloodBag",
+    "[SAR CE loadout regression] PASS: blood, saline, hemostatic agent, and bandage defs are loaded",
+    "[SAR CE loadout regression] PASS: MI Blood selects the CE loadout item from the doctor's inventory",
+    "[SAR CE loadout regression] PASS: MI Blood dispatcher targets that inventory item via UseBloodBag",
+    "[SAR CE loadout regression] PASS: MI Saline selects the CE loadout item from the doctor's inventory",
+    "[SAR CE loadout regression] PASS: MI Saline dispatcher targets that inventory item via UseSalineBag",
+    "[SAR CE loadout regression] PASS: MI HemostaticAgent selects the CE loadout item from the doctor's inventory",
+    "[SAR CE loadout regression] PASS: MI HemostaticAgent dispatcher targets that inventory item via UseHemostaticAgent",
+    "[SAR CE loadout regression] PASS: MI Bandage selects the CE loadout item from the doctor's inventory",
+    "[SAR CE loadout regression] PASS: MI Bandage dispatcher targets that inventory item via UseBandage",
+    "[SAR CE loadout regression] PASS: CE unload protects every exact MI loadout quota",
+    "[SAR CE loadout regression] COMPLETE: MI blood/saline/hemostatic/bandage inventory selection and native dispatch checked; inspect the PASS/FAIL lines above.",
+    "[SAR DMS fixture] qualified mechanitor after attempts=1; repairPriority=3",
+    "[SAR DMS fixture] spawned human mechanitor: Human78492",
+    "[SAR DMS fixture] spawned DMS core Lady: DMS_Mech_Lady78496",
+    "[SAR DMS fixture] spawned Synthetic Maiden: DMS_Mech_Maiden78499",
+    "[SAR DMS fixture] left DMS_Mech_Tinker uncontrolled to preserve bandwidth; cost=6; used/total=4/6",
+    "[SAR DMS fixture] spawned Joint Operations Tinker: DMS_Mech_Tinker78500",
+    "[SAR DMS fixture] spawned human casualty: Human78501",
+    "[SAR DMS fixture] 女士=DMS_Mech_Lady78496; race=DMS_Mech_Lady; flesh=Mechanoid; isMechanoid=True; repairComp=True; autoRepair=True; mechanicalPatient=True; needsRepair=True; captureAccepted=False; doctor=True; hauling=True; fieldResponder=True; workMode=Work; schedulerOperational=True",
+    "[SAR DMS fixture] 侍女=DMS_Mech_Maiden78499; race=DMS_Mech_Maiden; flesh=Mechanoid; isMechanoid=True; repairComp=True; autoRepair=True; mechanicalPatient=True; needsRepair=True; captureAccepted=False; doctor=True; hauling=True; fieldResponder=True; workMode=Work; schedulerOperational=True",
+    "[SAR DMS fixture] 钳工=DMS_Mech_Tinker78500; race=DMS_Mech_Tinker; flesh=Mechanoid; isMechanoid=True; repairComp=True; autoRepair=True; mechanicalPatient=True; needsRepair=True; captureAccepted=False; doctor=False; hauling=False; fieldResponder=True; workMode=; schedulerOperational=False",
+    "[SAR DMS fixture] human casualty=Human78501; downed=True; mechanicalPatient=False",
+    "[SAR DMS fixture] ownership RepairMech=Treatment; treatmentRegistered=True",
+    "[SAR DMS fixture] ownership FFF_RepairMech_Overseer=Treatment; treatmentRegistered=True",
+    "[SAR DMS fixture] ownership Tinker_RepairAutomatroid=Treatment; treatmentRegistered=True",
+    "[SAR DMS fixture] START managed RepairMech; worker=Human78492; patient=DMS_Mech_Lady78496; initialDamage=10; SAR_Treat=true; run 'Finish persistent DMS repair check' after several ticks",
+    "[SAR DMS fixture] PASS hostile downed DMS mech excluded from prisoner Capture; race=DMS_Mech_Lady; flesh=Mechanoid",
+    "[SAR DMS fixture] COMPLETE: generated pawns were retained; save/reload and interactive job checks may proceed. successfulMechs=3; mechanitor=True; humanCasualty=True",
+    "[SAR robot workflow] supply=MedicineIndustrial/MedicineIndustrial78508 x20@(122, 0, 125)",
+    "[SAR robot workflow] supply=ChjDroidRepairParts/ChjDroidRepairParts78509 x20@(126, 0, 126)",
+    "[SAR robot workflow] supply=PN_RepairKit/PN_RepairKit78510 x20@(127, 0, 125)",
+    "[SAR robot workflow] REPAIR CANDIDATE Paniel_Race: PN_RepairKit/PN_RepairKit78520 x10@(95, 0, 126); medicineRounds=1; haulableListed=True; droidRepairExtension=False; forbidden=False; medCareAllows=True; reservable=True; reachable=True",
+    "[SAR robot workflow] START Paniel: doctor=Human78511; patient=Paniel_Race78515; race=Paniel_Race; intervention=NativeRobotTend; resource=none; ordinaryMedicine=MedicineIndustrial/MedicineIndustrial78519 x2@inventory; biologicalEmergency=false; job=TendPatient",
+    "[SAR robot workflow] REPAIR CANDIDATE ChjDroid: ChjDroidRepairParts/ChjDroidRepairParts78527 x10@(115, 0, 124); medicineRounds=1; haulableListed=True; droidRepairExtension=True; forbidden=False; medCareAllows=True; reservable=True; reachable=True",
+    "[SAR robot workflow] START Androids Droid: doctor=Human78521; patient=ChjDroid78525; race=ChjDroid; intervention=NativeRobotTend; resource=ChjDroidRepairParts/ChjDroidRepairParts78527 x10@(115, 0, 124); ordinaryMedicine=MedicineIndustrial/MedicineIndustrial78526 x2@inventory; biologicalEmergency=false; job=TendPatient",
+    "[SAR robot workflow] START Androids Android: doctor=Human78528; patient=ChjAndroid78532; race=ChjAndroid; intervention=CombatExtendedStabilize; resource=MedicineIndustrial/MedicineIndustrial78537 x1@inventory; ordinaryMedicine=MedicineIndustrial/MedicineIndustrial78537 x1@inventory; biologicalEmergency=false; job=Stabilize",
+    "[SAR robot workflow] REPAIR CANDIDATE ChjSpacerDroid: ChjDroidRepairParts/ChjDroidRepairParts78545 x10@(152, 0, 124); medicineRounds=1; haulableListed=True; droidRepairExtension=True; forbidden=False; medCareAllows=True; reservable=True; reachable=True",
+    "[SAR robot workflow] START Androids Expanded Spacer Droid: doctor=Human78539; patient=ChjSpacerDroid78543; race=ChjSpacerDroid; intervention=NativeRobotTend; resource=ChjDroidRepairParts/ChjDroidRepairParts78545 x10@(152, 0, 124); ordinaryMedicine=MedicineIndustrial/MedicineIndustrial78544 x2@inventory; biologicalEmergency=false; job=TendPatient",
+    "[SAR robot workflow] START COMPLETE: native TendPatient jobs started=4/4. Advance until the jobs finish, then run 'Finish robot native-tend workflow'. Fixture pawns remain available for saving.",
+    "[SAR CE loadout regression] PASS: fixture observed after treatment window",
+    "[SAR CE loadout regression] PASS: native CE stabilization affected the selected wound",
+    "[SAR CE loadout regression] PASS: one selected loadout medicine was consumed before refill",
+    "[SAR CE loadout regression] PASS: recorded resource stack lost exactly one unit: MedicineIndustrial78471",
+    "[SAR CE loadout regression] PASS: drafted observation boundary prevented automatic CE refill",
+    "[SAR CE loadout regression] PASS: CE creates an exact one-unit refill after SAR treatment consumption",
+    "[SAR CE loadout regression] Refill started. Advance at least 300 ticks, then run 'Finish CE loadout refill fixture'.",
+    "[SAR DMS fixture] PASS managed RepairMech reduced Lady damage 10 -> 2; pawns and designations retained",
+    "[SAR robot workflow] PASS Paniel: race=Paniel_Race; wound=tended; biologicalEmergency=false; doctorJob=GotoWander",
+    "[SAR robot workflow] PASS Androids Droid: race=ChjDroid; wound=removed-by-native-finalizer; biologicalEmergency=false; doctorJob=GotoWander",
+    "[SAR robot workflow] PASS Androids Android: race=ChjAndroid; wound=CE-stabilized; biologicalEmergency=false; doctorJob=GotoWander",
+    "[SAR robot workflow] PASS Androids Expanded Spacer Droid: race=ChjSpacerDroid; wound=removed-by-native-finalizer; biologicalEmergency=false; doctorJob=GotoWander",
+    "[SAR robot workflow] FINISH COMPLETE: passed=4/4. All fixture pawns were retained on the map for save/reload inspection.",
+    "[SAR DMS fixture] START DMS responder TendPatient; winner=DMS_Mech_Lady; doctor=DMS_Mech_Lady78496; patient=Human78501; medicine=医药 x2; run 'Finish DMS responder treatment' after completion",
+    "[SAR CE loadout regression] PASS: CE refill restored configured medicine count",
+    "[SAR CE loadout regression] PASS: CE reports no remaining medical loadout deficit",
+    "[SAR CE loadout regression] COMPLETE: actual treatment consumption and refill checked. Fixture pawns remain on the map and may be saved.",
+    "[SAR DMS fixture] FAIL finish DMS responder treatment: System.InvalidOperationException: Bruise not finished; tended=False; removed=False; currentJob=TendPatient",
+    "[SAR DMS fixture] PASS DMS responder completed native TendPatient; winner=DMS_Mech_Lady; wound=tended; pawns retained"
+  ],
+  "restoration": {
+    "originalModCount": 13,
+    "configurationRestoredByteForByte": true,
+    "originalConfigurationSha256": "8193DDED1AAC4B3FE3376110A9A7F0B7803200352777E92B948F551FE952EA36",
+    "restartedWithOriginalConfiguration": true
+  }
+}

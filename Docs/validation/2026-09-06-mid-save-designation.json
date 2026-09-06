@@ -1,0 +1,39 @@
+{
+  "date": "2026-09-06",
+  "dllSha256": "8CE2C9B8EC8405F84A4C7BACE1A40F4BB5274A03EAAC313B9F698C9D71815222",
+  "before": "phase=before sarLoaded=False\r\nenemy=Human22390 downed=True hostile=True selected=True medCare=\r\ncoordinator=False\r\n",
+  "after": "phase=after sarLoaded=True\r\nenemy=Human22390 downed=True hostile=True selected=True medCare=\r\ncoordinator=True\r\nexistingMarks=\r\nDesignator_Capture=True reason= cell=True\r\nDesignator_Treat=False reason=敌对单位必须先标记“就地俘虏”，才能标记“战地治疗”。 cell=False\r\nDesignator_Rescue=False reason=敌对单位必须先标记“就地俘虏”，才能标记“战地救援”。 cell=False\r\nDesignator_SearchAndRescue=True reason= cell=True\r\npawnCommand=True\r\nappliedMarks=SAR_Treat,SAR_Rescue,SAR_Capture\r\n",
+  "reload": "phase=reload sarLoaded=True\r\nenemy=Human22390 downed=True hostile=True selected=True medCare=\r\ncoordinator=True\r\nexistingMarks=SAR_Treat,SAR_Rescue,SAR_Capture\r\nDesignator_Capture=True reason= cell=True\r\nDesignator_Treat=False reason=敌对单位必须先标记“就地俘虏”，才能标记“战地治疗”。 cell=False\r\nDesignator_Rescue=False reason=敌对单位必须先标记“就地俘虏”，才能标记“战地救援”。 cell=False\r\nDesignator_SearchAndRescue=True reason= cell=True\r\npawnCommand=True\r\nappliedMarks=SAR_Treat,SAR_Rescue,SAR_Capture\r\n",
+  "newGame": "phase=new sarLoaded=True\r\nenemy=Human11653 downed=True hostile=True selected=True medCare=\r\ncoordinator=True\r\nexistingMarks=\r\nDesignator_Capture=True reason= cell=True\r\nDesignator_Treat=False reason=敌对单位必须先标记“就地俘虏”，才能标记“战地治疗”。 cell=False\r\nDesignator_Rescue=False reason=敌对单位必须先标记“就地俘虏”，才能标记“战地救援”。 cell=False\r\nDesignator_SearchAndRescue=True reason= cell=True\r\npawnCommand=True\r\nappliedMarks=SAR_Treat,SAR_Rescue,SAR_Capture\r\n",
+  "beforeSaveSha256": "E6FAA70DC8272A68AEA09E86B8E1369645BB69183B5589F3406FCBBFE801FAB9",
+  "result": "Generic mid-save failure not reproduced; reporter-specific cause unknown",
+  "anomaly_capture_gate_followup": {
+    "scope": "Actual engine component fixture; full Anomaly DLC and reporter save unavailable.",
+    "records": {
+      "before": "Component fixture; full Anomaly DLC is not installed.\nordinary human: nativeCapturable=True platformStudy=False capture=False combined=False cell=False command=False\nsame human: monolithLevel0Capture=True monolithLevel1Capture=False\nPASS\n",
+      "after": "Component fixture; full Anomaly DLC is not installed.\nordinary human: nativeCapturable=True platformStudy=False capture=True combined=True cell=True command=True\nsame human: monolithLevel0Capture=True monolithLevel1Capture=True\nmarks=SAR_Treat,SAR_Rescue,SAR_Capture\ncontainment mutant: platformStudy=True prisonerCapture=False\nPASS\n"
+    },
+    "old_dll_sha256": "ad1bdeacdbb8584b65c8c294f170848af08c75cdf5aaef84117878dee7528a19",
+    "fixed_dll_sha256": "ac95f6ed4d2cc14eab09bbc68aec252d91ae7d56dd5c51af32c7af7cdf349fe4",
+    "fixed_predicate": "CompHoldingPlatformTarget.StudiedAtHoldingPlatform",
+    "normal_game_restarted": false,
+    "normal_installed_dll_updated": false,
+    "build": "Release: 0 warnings/errors",
+    "simulation": "76 direct checks, 9 continuity checks, 40 scenarios, 200 randomized graphs passed"
+  },
+  "full_anomaly_dlc_regression": {
+    "records": {
+      "before": "Full Anomaly DLC; native components and progression API.\npawn=Human37282 studyType=RimWorld.CompStudiable minLevel=1\nlevel=0 thing=True cell=True nativeGizmosCommand=True\nlevel=1 thing=False cell=False nativeGizmosCommand=False\nPASS\n",
+      "after": "Full Anomaly DLC; native components and progression API.\npawn=Human37282 studyType=RimWorld.CompStudiable minLevel=1\nlevel=1 thing=True cell=True nativeGizmosCommand=True\nmarks=SAR_Treat,SAR_Rescue,SAR_Capture\nnative Shambler: platformStudy=True prisonerCapture=False\nPASS\n"
+    },
+    "scope": "Installed Anomaly content, native Human comps, SetLevel progression, actual Pawn.GetGizmos, same saved pawn; native Shambler conversion. No component or knowledge fixtures.",
+    "save_sha256": {
+      "SAR_Anomaly_Fixed.rws": "700819e422b27cba920d9fdf89accf45382c98e85271c6cf2b6557a79ce44ef3",
+      "SAR_Anomaly_Progressed.rws": "ef1ba15d61a026328f34878a9c43a3403e4745c61d07baa5e64f56ca0c09c91c"
+    },
+    "config_sha256": "329a2ac63a5c4c697ceda2a0b339adbc961f9bac4ce41d2c8894e96e627e4640",
+    "normal_game_restarted": false,
+    "normal_installed_dll_updated": true,
+    "deployment": "Verified no RimWorld processes remained before copying fixed DLL to normal mod install. SHA256 AC95F6ED4D2CC14EAB09BBC68AEC252D91AE7D56DD5C51AF32C7AF7CDF349FE4."
+  }
+}

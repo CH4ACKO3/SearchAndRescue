@@ -29,7 +29,7 @@ Colonist, slave, prisoner, guest, and medical-permission rules follow vanilla be
 Colony work mechs opt in through the rescue toggle and use their medical or hauling permissions, work modes, charging rules and player orders. Repairable colony mechs support repair and downed evacuation: mechanitors with Field Rescue and Smithing enabled use native repair jobs and respect the auto-repair toggle; evacuation uses the designated rescue point. Repair jobs participate in treatment ownership. Enemy-mech acquisition and resurrection use their respective systems. Suitable human doctors perform CE stabilization; hemogen transfusions are supported.
 
 **Anomaly — Compatible**
-Eligible mutants can receive care. Entities that require containment platforms continue through the containment flow. Vanilla TendEntity jobs count as external treatment ownership.
+Supports capture, treatment, and rescue designations for downed hostile humanlikes before and after monolith activation, with the shortcut and drag selection verified in an existing save. Eligible mutants can receive care. Entities that require containment platforms, including native shamblers, continue through the containment flow. Vanilla TendEntity jobs count as external treatment ownership.
 
 **Odyssey — Compatible**
 The coordinator operates on the current map and supports gravship maps. Cross-map evacuation and transport inside vehicles continue through their respective systems.
@@ -161,10 +161,28 @@ New wounds enter urgency calculations through the shared Hediff and bleeding ass
 Enable the unlocked Field Rescue and Doctor/Hauling work types in the Hardworking table and select a deterministic work mode to join automatic SAR dispatch.
 
 **Paniel the Automata — Partially compatible**
-Humanlike rescue and capture are retained. Medicine selection and tending use Paniel’s native flow. Biological emergency procedures are filtered by race; full repair uses bedside PN_Repair and PN_RepairKit. Source reviewed; race-level playtesting is pending.
+Humanlike rescue and capture are retained. Medicine selection and tending use Paniel’s native flow. Biological emergency procedures are filtered by race; full repair uses bedside PN_Repair and PN_RepairKit. Native tending has been playtested; full bedside repair awaits focused testing.
 
 **Androids for RW 1.6 — Partially compatible**
-Mechanical droids use native ChjDroidRepairParts selection and TendPatient; ChjAndroid keeps ordinary medicine. Biological emergency procedures are filtered by race. Full repair uses native surgery and ChjDroidRepairKit; race-level playtesting is pending.
+Mechanical droids use native ChjDroidRepairParts selection and TendPatient; ChjAndroid keeps ordinary medicine. Biological emergency procedures are filtered by race. ChjDroid repair-parts treatment and ChjAndroid CE stabilization with ordinary medicine have been playtested. Full repair uses native surgery and ChjDroidRepairKit.
 
 **Androids Expanded — Partially compatible**
-Uses Androids pawn and repair interfaces; expanded races and special abilities await in-game testing.
+ChjSpacerDroid repair-parts treatment has been playtested; other expanded races and special abilities await focused testing.
+
+**The Dead Man’s Switch — Partially compatible**
+Player-owned repairable automatroids use native repair and evacuation points. Repair jobs share patient ownership; deactivated bodies retain native control and resurrection flows.
+
+**The Dead Man’s Switch - Synthetic — Partially compatible**
+Synthetic automatroids use mech repair. Controlled units with Doctor or Hauling work can join through the rescue toggle, subject to their work mode and energy state.
+
+**The Dead Man’s Switch - MobileDragoon — Partially compatible**
+Human pilots use normal treatment and rescue. Exosuit maintenance stays with Exosuit Framework; equipment combinations await focused testing.
+
+**The Dead Man’s Switch - AncientCorps — Partially compatible**
+Repairable player-owned units use mech patient rules. Large combat automatroids and equipment combinations await focused testing.
+
+**The Dead Man’s Switch - Motorized — Partially compatible**
+Parked player vehicles expose medical cargo through Vehicle Framework. Vehicle maintenance, boarding and onboard treatment use the vehicle systems.
+
+**The Dead Man’s Switch - Joint Operations — Partially compatible**
+Dedicated field repair jobs participate in treatment ownership. Native work scheduling assigns Tinker repairs; SAR assigns mechanitors to eligible player-owned automatroids.

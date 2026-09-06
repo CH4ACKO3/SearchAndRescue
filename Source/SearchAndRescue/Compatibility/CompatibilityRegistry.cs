@@ -529,6 +529,18 @@ namespace SearchAndRescue
                     new[] { "EmergencyTransfusion.JobDriver_EmergencyTransfusion" }));
 
             Profiles.Add(new Profile(
+                    "fortified-features-framework", "Fortified Features Framework", false,
+                    "AOBA.Framework")
+                .Jobs(PatientJobRole.Treatment, DmsCompatibility.FrameworkRepairJobs));
+            Profiles.Add(new Profile(
+                    "dms-joint-operations", "Dead Man's Switch: Joint Operations", false,
+                    "DMS.Proton.JointOperations")
+                .Jobs(PatientJobRole.Treatment, DmsCompatibility.JointOperationsRepairJobs)
+                .WorkGiverBase(
+                    DmsCompatibility.JointOperationsRepairWorkGiver,
+                    PatientJobRole.Treatment));
+
+            Profiles.Add(new Profile(
                     "dubs-rimkit", "Dubs Rimkit", false, "Dubwise.DubsRimkit")
                 .Jobs(PatientJobRole.Treatment,
                     new[] { "TendSelf", "Bandage" },

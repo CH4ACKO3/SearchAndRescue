@@ -12,5 +12,6 @@
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\AssignmentStageRules.cs" Link="AssignmentStageRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\WorkerReadinessRules.cs" Link="WorkerReadinessRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Medical\InfectionPriorityRules.cs" Link="InfectionPriorityRules.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Scheduling\TreatmentContinuityRules.cs" Link="TreatmentContinuityRules.cs" />
   </ItemGroup>
 </Project>

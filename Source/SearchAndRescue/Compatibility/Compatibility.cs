@@ -1291,6 +1291,7 @@ namespace SearchAndRescue
 
         internal static BodyPartRecord MoreInjuriesTourniquetLimbFor(Hediff hediff)
         {
+            if (hediff == null || !hediff.TendableNow()) return null;
             // Mirror More Injuries' BleedRateByLimbEnumerable: a tourniquet is anchored at
             // the shoulder or leg containing the wound, not at an arbitrary outside part
             // such as the torso, head, hand, or foot. Deliberately omit its low-skill neck
@@ -1299,7 +1300,11 @@ namespace SearchAndRescue
             {
                 if (part.def == BodyPartDefOf.Shoulder || part.def == BodyPartDefOf.Leg)
                 {
-                    return part;
+                    // The native driver succeeds immediately when this limb already has
+                    // a tourniquet. Residual bleeding still needs ordinary wound care.
+                    return hediff.pawn.health.hediffSet.hediffs.Any(existing =>
+                        existing.def.defName == "TourniquetApplied" && existing.Part == part)
+                        ? null : part;
                 }
             }
 

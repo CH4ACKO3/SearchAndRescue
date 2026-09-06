@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Fix Anomaly monolith progress hiding SAR commands and rejecting capture marks on ordinary downed enemies. Use holding-platform study eligibility to identify containment targets.
+
+- Fix repeated More Injuries tourniquet jobs on an already treated limb. Verify actual tourniquet application before recording treatment progress, allowing subsequent hemostasis, tending, and evacuation.
+
+- Preserve the last treating doctor’s continuity bonus across per-round rematching and automatic handoff. Completed care takes precedence over speculative pickup affinity; fix its initial bonus decay.
+
+- Let CE loadout replenishment skip protected SAR supplies and find other stock. Register DMS/FFF repair ownership and gate Tinker repair scanning.
+- Add persistent CE/DMS/robot test fixtures and document the verified native treatment, repair, and loadout refill paths.
+
 - Preserve No One Left Behind's Kidnap transport during orphan-carry maintenance, and gate Hospitality rescue scanning and job construction for SAR-owned patients.
 - Honor Hardworking tiny-mode WorkGiver permissions and labor restrictions. Respect Priority Treatment's sleep setting for SAR targets, including stale patient caches.
 - Reject Vehicle Framework cargo sources when required movement-state interfaces are unavailable.

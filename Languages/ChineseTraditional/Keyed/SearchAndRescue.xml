@@ -138,7 +138,13 @@
   <SAR_Compatibility_SensibleBedOwnership>每次轉運前確認醫療床條件和目前床位歸屬，為傷員選擇合適的目的地。</SAR_Compatibility_SensibleBedOwnership>
   <SAR_Compatibility_YokaiVillage>非敵對血肉動物可使用標準藥品和動物床接受治療與救援；俘虜操作適用於人形目標。</SAR_Compatibility_YokaiVillage>
   <SAR_Compatibility_Hardworking>讀取勤工工作設定，遵守停工、跟隨、作息和休息安排。請啟用確定性工作模式參與 SAR 自動調度；種族專屬任務的執行情況待實測。</SAR_Compatibility_Hardworking>
-  <SAR_Compatibility_Paniel>Paniel 沿用原模組的選藥與包紮規則，生物急救項目會按種族過濾。完整維修透過床邊 PN_Repair 和維修包完成，種族本體待實機驗證。</SAR_Compatibility_Paniel>
-  <SAR_Compatibility_Androids>機械機器人沿用原模組的維修零件選擇和 TendPatient；ChjAndroid 保留普通藥品。生物急救項目會按種族過濾。完整維修沿用原生手術流程，種族本體待實機驗證。</SAR_Compatibility_Androids>
-  <SAR_Compatibility_AndroidsExpanded>沿用 Androids 的小人及維修介面。擴展種族與特殊能力待實機驗證。</SAR_Compatibility_AndroidsExpanded>
+  <SAR_Compatibility_Paniel>Paniel 沿用原模組的選藥與包紮規則，生物急救項目會按種族過濾。完整維修透過床邊 PN_Repair 和維修包完成，原生傷口處理已實測，完整床邊維修待專項驗證。</SAR_Compatibility_Paniel>
+  <SAR_Compatibility_Androids>機械機器人沿用原模組的維修零件選擇和 TendPatient；ChjAndroid 保留普通藥品。生物急救項目會按種族過濾。完整維修沿用原生手術流程，原生傷口處理已實測，完整床邊維修待專項驗證。</SAR_Compatibility_Androids>
+  <SAR_Compatibility_AndroidsExpanded>沿用 Androids 的小人及維修介面。ChjSpacerDroid 的零件維修已實測，其他種族與特殊能力待專項驗證。</SAR_Compatibility_AndroidsExpanded>
+  <SAR_Compatibility_DmsCore>己方可維修機關使用原版維修與救援點撤離。治療任務納入所有權管理；失活機體的接管與復活沿用原模組流程。</SAR_Compatibility_DmsCore>
+  <SAR_Compatibility_DmsSynthetic>合成人形按機械體維修；具備醫療或搬運工作的受控單位可透過救援開關加入，並遵守工作模式和能源狀態。</SAR_Compatibility_DmsSynthetic>
+  <SAR_Compatibility_DmsMobileDragoon>人類駕駛員沿用常規治療與救援；外骨骼維護由 Exosuit Framework 處理，裝備組合待專項實測。</SAR_Compatibility_DmsMobileDragoon>
+  <SAR_Compatibility_DmsAncientCorps>可維修的己方單位沿用機械體患者規則。大型軍用機關與裝備組合待專項實測。</SAR_Compatibility_DmsAncientCorps>
+  <SAR_Compatibility_DmsMotorized>停駐的己方載具透過 Vehicle Framework 提供醫療庫存；車輛維護、乘員上下車與車內治療沿用載具系統。</SAR_Compatibility_DmsMotorized>
+  <SAR_Compatibility_DmsJointOperations>專用戰地維修任務納入治療所有權。Tinker 繼續由原模組分配維修工作；SAR 為符合條件的己方機關安排機械師維修。</SAR_Compatibility_DmsJointOperations>
 </LanguageData>

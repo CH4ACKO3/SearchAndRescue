@@ -1,0 +1,8 @@
+<ModMetaData>
+  <name>SAR hot-add regression probe</name>
+  <author>Search and Rescue development</author>
+  <packageId>ch4acko3.sarhotaddprobe</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies><li><packageId>brrainz.harmony</packageId><displayName>Harmony</displayName></li></modDependencies>
+  <description>Command-line regression helper. Run only in an isolated test profile.</description>
+</ModMetaData>

@@ -61,6 +61,18 @@ namespace SearchAndRescue
         public static readonly IReadOnlyList<CompatibilityCatalogEntry> Entries =
             new List<CompatibilityCatalogEntry>
             {
+                Entry("The Dead Man’s Switch", "DmsCore", CompatibilitySupportLevel.Partial,
+                    null, "Aoba.DeadManSwitch.Core"),
+                Entry("The Dead Man’s Switch - Synthetic", "DmsSynthetic", CompatibilitySupportLevel.Partial,
+                    null, "Aoba.DeadManSwitch.Synthetic"),
+                Entry("The Dead Man’s Switch - MobileDragoon", "DmsMobileDragoon", CompatibilitySupportLevel.Partial,
+                    null, "Aoba.DeadManSwitch.MobileDragoon"),
+                Entry("The Dead Man’s Switch - AncientCorps", "DmsAncientCorps", CompatibilitySupportLevel.Partial,
+                    null, "Aoba.DeadManSwitch.AncientCorps"),
+                Entry("The Dead Man’s Switch - Motorized", "DmsMotorized", CompatibilitySupportLevel.Partial,
+                    null, "Aoba.DeadManSwitch.Motorized"),
+                Entry("The Dead Man’s Switch - Joint Operations", "DmsJointOperations", CompatibilitySupportLevel.Partial,
+                    null, "DMS.Proton.JointOperations"),
                 Entry("Paniel the Automata", "Paniel", CompatibilitySupportLevel.Partial,
                     null, "ahndemi.panieltheautomata", "kalospacer.AhnDemi.PanieltheAutomata"),
                 Entry("Androids for RW 1.6", "Androids", CompatibilitySupportLevel.Partial,

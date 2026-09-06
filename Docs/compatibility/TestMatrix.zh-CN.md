@@ -6,7 +6,7 @@
 
 补充验证：兽耳屋勤工 `Moo.Hardworking.Kz` 已完成 18 项 Gabs 实机权限检查，使用真实框架组件和临时动物，覆盖成员资格、工作优先级、停工、作息及训练绕过限制；未覆盖种族本体完整 Job 流程。见 [验证记录](../validation/2026-09-05-hardworking.json)。Hardworking animals 1.6 未安装，仅依据公开描述评估，仍待本体代码核对和实机测试。
 
-机械体补充验证：[30 项游戏内权限与维修诊断](../validation/2026-09-06-mechanical-care.json)通过；SAR 调度的原生维修运行 300 tick，损伤从 10 降到 8，手动维修成功接管所有权；救援点任务另运行 300 tick，倒地机械体成功送达并放下。后者验证目标筛选、目的地与实际搬运 Driver，尚未覆盖机械体多搬运者竞争。Paniel、Androids 和 Expanded 已完成源码审计，种族本体待实机验证。
+机械体补充验证：[30 项游戏内权限与维修诊断](../validation/2026-09-06-mechanical-care.json)通过；SAR 调度的原生维修运行 300 tick，损伤从 10 降到 8，手动维修成功接管所有权；救援点任务另运行 300 tick，倒地机械体成功送达并放下。后者验证目标筛选、目的地与实际搬运 Driver，尚未覆盖机械体多搬运者竞争。Paniel 原生包扎、ChjDroid/ChjSpacerDroid 零件维修，以及 ChjAndroid 使用普通药品的 CE 稳定已在 25 模组组合中实测；完整手术维修与其余扩展种族待专项验证。
 
 这份文件区分三类证据，避免把“代码里识别了”误写成“已经完整实测”：
 
@@ -40,8 +40,7 @@ Wounds、Sensible Bed Ownership、VFE Medical，以及 SAR。最终 pending/acti
 Pharmacist: Represcribed、Medical Tab 本体、Treat Dying First、Stabilize Bleeding、Smarter Capture
 Them、Emergency Transfusions、MedPod、Dubs Rimkit、Trauma Team Complete、Yokai Village。
 
-官方 DLC 中 Royalty、Ideology、Biotech、Odyssey 随组合启动；本机未安装 Anomaly，因此 Anomaly
-目前只有静态路径审查。完整行为边界见 [兼容性清单](README.zh-CN.md)。
+上述组合批次启用了 Royalty、Ideology、Biotech、Odyssey。2026-09-06 安装 Anomaly 后，另以 Harmony + Core + Anomaly + SAR 完成专项回归：旧 DLL 在同一敌人巨石等级 0/1 下分别接受/拒绝标记；修复 DLL 加载同一存档后，快捷按钮、Thing/Cell 接受和三阶段标记全部恢复。原生蹒跚怪保持收容分流。此项覆盖标记与资格判断，完整异象事件和治疗长跑仍需扩展。见 [调查报告](../reviews/2026-09-06-mid-save-designation.zh-CN.md) 与 [结构化证据](../validation/2026-09-06-mid-save-designation.json)。完整行为边界见 [兼容性清单](README.zh-CN.md)。
 
 ## 创意工坊复查后未新增专用补丁的项目
 

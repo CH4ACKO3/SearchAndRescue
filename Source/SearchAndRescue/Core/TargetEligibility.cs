@@ -46,8 +46,10 @@ namespace SearchAndRescue
             // Anomaly entities/mutants that belong on a holding platform must not be fed
             // through the prisoner-bed Capture driver. Containment can be added later as a
             // distinct stage with its own destination and reservations.
+            // Ordinary humans also have this comp with Anomaly enabled. CanBeCaptured
+            // describes its current state, not whether this pawn belongs on a platform.
             return !ModsConfig.AnomalyActive ||
-                   pawn.TryGetComp<CompHoldingPlatformTarget>()?.CanBeCaptured != true;
+                   pawn.TryGetComp<CompHoldingPlatformTarget>()?.StudiedAtHoldingPlatform != true;
         }
     }
 }

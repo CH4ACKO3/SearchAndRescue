@@ -128,6 +128,7 @@ namespace SearchAndRescue
 
         public SearchAndRescueMod(ModContentPack content) : base(content)
         {
+            EngineBenchmarkHeadless.Install();
             Settings = GetSettings<SearchAndRescueSettings>();
             Settings.ClampValues();
         }

@@ -2,6 +2,7 @@
 .vs/
 **/bin/
 **/obj/
+**/__pycache__/
 SourceAssets/References/
 artifacts/
 Assemblies/*.dll

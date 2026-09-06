@@ -574,13 +574,30 @@ namespace SearchAndRescue
         }
     }
 
+    internal static class CombatExtendedLoadoutSearchContext
+    {
+        [ThreadStatic]
+        private static int depth;
+
+        internal static bool Active => depth > 0;
+
+        internal static void Enter() => depth++;
+
+        internal static void Exit()
+        {
+            if (depth > 0) depth--;
+        }
+    }
+
     [HarmonyPatch]
     internal static class CombatExtendedLoadoutPickup_SearchAndRescueSupplyPatch
     {
         private static MethodBase TargetMethod()
         {
             Type giverType = AccessTools.TypeByName("CombatExtended.JobGiver_UpdateLoadout");
-            return giverType == null ? null : AccessTools.Method(giverType, "TryGiveJob");
+            return giverType == null
+                ? null
+                : AccessTools.Method(giverType, "GetUpdateLoadoutJob", new[] { typeof(Pawn) });
         }
 
         private static bool Prepare()
@@ -588,13 +605,38 @@ namespace SearchAndRescue
             return TargetMethod() != null;
         }
 
-        private static void Postfix(ref Job __result)
+        private static void Prefix()
         {
-            Thing pickup = __result?.targetA.Thing;
-            if (pickup != null && SearchAndRescueJobContext.IsProtectedOrClaimedMedicalSupply(pickup))
+            CombatExtendedLoadoutSearchContext.Enter();
+        }
+
+        private static Exception Finalizer(Exception __exception)
+        {
+            CombatExtendedLoadoutSearchContext.Exit();
+            return __exception;
+        }
+    }
+
+    [HarmonyPatch(typeof(ReservationUtility), nameof(ReservationUtility.CanReserve), new[]
+    {
+        typeof(Pawn), typeof(LocalTargetInfo), typeof(int), typeof(int),
+        typeof(ReservationLayerDef), typeof(bool)
+    })]
+    internal static class CombatExtendedLoadoutReservation_SearchAndRescueSupplyPatch
+    {
+        private static bool Prefix(LocalTargetInfo target, ref bool __result)
+        {
+            if (!CombatExtendedLoadoutSearchContext.Active ||
+                !SearchAndRescueJobContext.IsProtectedOrClaimedMedicalSupply(target.Thing))
             {
-                __result = null;
+                return true;
             }
+
+            // CE's finder asks the vanilla reservation API about every candidate. Rejecting
+            // only inside its loadout search lets CE continue to its next normal source,
+            // preserving CE's distance, capacity, food-policy and carrier selection rules.
+            __result = false;
+            return false;
         }
     }
 
