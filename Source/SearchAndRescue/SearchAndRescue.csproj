@@ -15,7 +15,12 @@
 		<HarmonyAssemblyPath Condition="'$(HarmonyAssemblyPath)' == ''">$(MSBuildProjectDirectory)\..\..\..\..\..\..\App\Steam\steamapps\workshop\content\294100\2009463077\Current\Assemblies\0Harmony.dll</HarmonyAssemblyPath>
 	</PropertyGroup>
 
-	<ItemGroup>
+	<ItemGroup Condition="'$(UseReferencePackages)' == 'true'">
+		<PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871" PrivateAssets="all" />
+		<PackageReference Include="Lib.Harmony" Version="2.4.2" PrivateAssets="all" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(UseReferencePackages)' != 'true'">
 		<Reference Include="0Harmony">
 			<HintPath>$(HarmonyAssemblyPath)</HintPath>
 			<Private>false</Private>

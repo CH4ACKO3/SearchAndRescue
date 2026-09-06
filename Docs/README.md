@@ -2,9 +2,14 @@
 
 - Compatibility: [English](compatibility/README.md) / [中文](compatibility/README.zh-CN.md)
 - [Live testing](development/Testing.zh-CN.md) and [compatibility test matrix](compatibility/TestMatrix.zh-CN.md)
-- [Release checklist](development/ReleaseChecklist.zh-CN.md)
-- [Workshop descriptions and discussion text](workshop/)
+- [Random scenarios and weight search](../Tools/SchedulerOptimizer/README.zh-CN.md): reproducible offline screening, fixed scoring, held-out evaluation and replay
+- [Engine workers and TPE](../Tools/SchedulerOptimizer/ENGINE.zh-CN.md): headless workers, survival-first overload scenarios and completion-based routine regression
+- [Headless and overload validation](reviews/2026-09-06-engine-overload.zh-CN.md): six-worker vanilla tests, graphical controls and CE smoke tests
+- [Mid-save enemy designation investigation](reviews/2026-09-06-mid-save-designation.zh-CN.md): real before/after/reload comparison and remaining report-specific unknowns
+- [Release checklist](development/ReleaseChecklist.zh-CN.md) and [tag-driven CI/CD](development/WorkshopAutomation.zh-CN.md)
+- [Workshop descriptions and text exports](workshop/)
   Workshop copy follows the user's 2026-09-06 revision: retain its existing sections and concise per-mod entries; update those entries in place instead of adding sections. Keep implementation and test detail in the development/review records.
+- [CE loadout, DMS and robot playtest](reviews/2026-09-06-ce-dms-runtime.zh-CN.md): persistent saves and verified runtime scope
 - [Code review](reviews/2026-09-05.zh-CN.md) and [regression evidence](validation/2026-09-05-gabs.json)
 - [Workshop compatibility audit](reviews/2026-09-06-compatibility.zh-CN.md): static findings and runtime verification gaps
 
