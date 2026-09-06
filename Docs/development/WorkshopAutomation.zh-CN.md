@@ -40,6 +40,27 @@ Get-Content "$env:TEMP/sar-steam-token.txt" -Raw | gh secret set STEAM_REFRESH_T
 Remove-Item -LiteralPath "$env:TEMP/sar-steam-token.txt"
 ```
 
+首次在本机配置另外三项 Secrets，可在仓库根目录自己的 PowerShell 终端执行：
+
+```powershell
+gh secret set STEAM_USERNAME --env steam-workshop
+gh secret set STEAM_PASSWORD --env steam-workshop
+```
+
+两个命令分别在交互提示中输入 Steam 登录名和密码。然后运行 SteamCMD，在其终端输入 `login 你的登录名`，完成密码与 Steam Guard 提示后输入 `quit`。本机已下载的入口是 `D:/Projects/rimworld/work/steam-authorization/steamcmd/steamcmd.exe`。
+
+```powershell
+[Convert]::ToBase64String([IO.File]::ReadAllBytes('D:/Projects/rimworld/work/steam-authorization/steamcmd/config/config.vdf')) | gh secret set STEAM_CONFIG_VDF_BASE64 --env steam-workshop
+```
+
+四项 Secrets 配置好后，运行仅验证授权的云端任务：
+
+```powershell
+gh workflow run release.yml --ref main -f verify_steam=true
+```
+
+这个任务使用新 Windows runner 验证 SteamCMD 登录和双语描述读取/所有权，保持工坊内容不变；成功后再启用发布开关。云端构建产物无需版本标签也可以进行只读授权验证。
+
 `check <产物目录>` 可在配置环境变量后验证登录和条目所有权，且不会写入描述。生产上传会先运行这项检查，成功后才上传文件；文件成功后再发布双语描述。两种语言与文件更新是独立提交，任一步失败都会使任务失败，错误消息会指出已完成的阶段。再次运行时，相同描述会跳过写入。
 
 首次启用应选择准备发布的真实版本验证。Steam 失败时工作流失败，已创建的 GitHub Release 仍然保留；修复授权后可重新运行失败任务。确认线上条目后再决定是否重试，避免重复变更记录。手动运行工作流用于构建验证，上传由标签 push 事件触发。

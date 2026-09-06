@@ -1,11 +1,11 @@
-param([Parameter(Mandatory=$true)][string]$ArtifactRoot, [switch]$DryRun)
+param([Parameter(Mandatory=$true)][string]$ArtifactRoot, [switch]$DryRun, [switch]$CheckOnly)
 $ErrorActionPreference = 'Stop'
 Set-StrictMode -Version Latest
 $root=(Resolve-Path -LiteralPath $ArtifactRoot).Path
 $m=Get-Content -LiteralPath "$root/manifest.json" -Raw | ConvertFrom-Json
 if ($m.appid -cne '294100' -or $m.publishedfileid -cne '3796056278' -or
     $m.version -notmatch '^\d+\.\d+\.\d+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?$' -or
-    ($m.tag -cne "v$($m.version)" -and !($DryRun -and !$m.tag))) { throw 'Manifest must identify an explicit release tag and the existing SAR Workshop item.' }
+    ($m.tag -cne "v$($m.version)" -and !(($DryRun -or $CheckOnly) -and !$m.tag))) { throw 'Manifest must identify an explicit release tag and the existing SAR Workshop item.' }
 $stage=Join-Path $root "SearchAndRescue-$($m.version)"
 $archive=Join-Path $root "SearchAndRescue-$($m.version).zip"
 if ((Get-FileHash $archive).Hash -cne $m.archiveSha256 -or
@@ -44,9 +44,17 @@ try {
     Expand-Archive -LiteralPath "$steam/steamcmd.zip" -DestinationPath $steam
     [IO.File]::WriteAllBytes("$steam/config/config.vdf",[Convert]::FromBase64String($env:STEAM_CONFIG_VDF_BASE64))
     # Capture output instead of streaming login/session details into public Actions logs.
-    $output = & "$steam/steamcmd.exe" '+@ShutdownOnFailedCommand' '1' '+@NoPromptForPassword' '1' '+login' $env:STEAM_USERNAME $env:STEAM_PASSWORD '+workshop_build_item' $vdfPath '+quit' 2>&1
+    $arguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME,$env:STEAM_PASSWORD)
+    if (!$CheckOnly) { $arguments+=@('+workshop_build_item',$vdfPath) }
+    $arguments+='+quit'
+    $output = & "$steam/steamcmd.exe" @arguments 2>&1
     $exitCode=$LASTEXITCODE
     $text=$output -join "`n"
+    if ($CheckOnly) {
+        if ($exitCode -ne 0 -or $text -notmatch 'Waiting for user info\.\.\.\s*OK') { throw 'SteamCMD login check failed. Refresh Steam Guard locally; no Workshop content was changed.' }
+        Write-Host 'PASS: SteamCMD login and bilingual ownership verified. No Workshop writes performed.'
+        return
+    }
     if ($exitCode -ne 0 -or $text -notmatch '(?im)^Success\.\s+(?:Published|Updated)[^\r\n]*\b3796056278\b') {
         throw 'Steam did not confirm the Workshop update. Validate login/Steam Guard locally and refresh the environment secrets; raw authentication output is withheld.'
     }

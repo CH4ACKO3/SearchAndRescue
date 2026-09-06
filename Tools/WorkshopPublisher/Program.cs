@@ -42,7 +42,7 @@ static async Task<int> Run(string[] args)
         }
         if (args.Length != 2 || (args[0] != "validate" && args[0] != "publish" && args[0] != "check"))
             throw new PublisherException("Usage: validate|check|publish <artifact-root>, or auth <new-token-file>.");
-        var descriptions = LoadDescriptions(args[1], args[0] != "validate");
+        var descriptions = LoadDescriptions(args[1], args[0] == "publish");
         if (args[0] == "validate")
         {
             // Round-trip the actual protobuf requests used for each language without a Steam connection.
@@ -59,9 +59,11 @@ static async Task<int> Run(string[] args)
             Console.WriteLine("PASS: pinned English/Chinese descriptions, hashes and localized update requests (no login).");
             return 0;
         }
+        var username = Secret("STEAM_USERNAME");
+        var refreshToken = Secret("STEAM_REFRESH_TOKEN");
         using var live = new Session();
         await live.Connect();
-        await live.Login(Secret("STEAM_USERNAME"), Secret("STEAM_REFRESH_TOKEN"));
+        await live.Login(username, refreshToken);
         var service = live.Client.GetHandler<SteamUnifiedMessages>()!.CreateService<PublishedFile>();
         // Read both languages and verify ownership before sending any description writes.
         var previous = new List<PublishedFileDetails>();
