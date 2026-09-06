@@ -134,7 +134,7 @@ namespace SearchAndRescue
 
         public override string SettingsCategory()
         {
-            return "SAR_Settings_Category".Translate();
+            return "Search and Rescue";
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

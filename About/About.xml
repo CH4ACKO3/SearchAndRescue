@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
 	<name>Search and Rescue</name>
+	<modIconPath>Things/Item/Resource/Medicine/MedicineIndustrial/MedicineIndustrial_a</modIconPath>
 	<author>CH4AcKO3</author>
 	<packageId>CH4AcKO3.SearchAndRescue</packageId>
 	<modVersion>0.1.0-alpha.1</modVersion>

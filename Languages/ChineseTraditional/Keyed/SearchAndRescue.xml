@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <ModName>搜尋與救援</ModName>
+  <ModName>Search and Rescue</ModName>
   <ModDescription>批次安排戰地治療、救援和俘虜。標記多個人形生物或非敵對動物，讓救援人員依安全、可預測的順序執行相應階段。</ModDescription>
 
   <SAR_Command_Label>搜尋與救援</SAR_Command_Label>
@@ -28,7 +28,7 @@
   <SAR_CaptureRequiresHostile>只能就地俘虜尚未成為囚犯的倒地敵對目標。</SAR_CaptureRequiresHostile>
   <SAR_InvalidRescuePoint>救援集合點必須是未被戰爭迷霧遮蔽且可站立的位置。</SAR_InvalidRescuePoint>
   <SAR_CE_NoMedicine>已略過 {0} 的戰地治療：Combat Extended 的傷勢穩定處置需要藥品。</SAR_CE_NoMedicine>
-  <SAR_Settings_Category>搜尋與救援</SAR_Settings_Category>
+  <SAR_Settings_Category>Search and Rescue</SAR_Settings_Category>
   <SAR_Settings_RescueWorkMode>救援人員</SAR_Settings_RescueWorkMode>
   <SAR_Settings_RescueWorkMode_Desc>「搬運」使用搬運工作；「護士優先」優先安排 Nurse Job 的護士，並由搬運工補位；「僅限護士」使用護理工作。請為救援人員啟用所選模式對應的工作。</SAR_Settings_RescueWorkMode_Desc>
   <SAR_Settings_RescueWorkMode_Hauling>搬運</SAR_Settings_RescueWorkMode_Hauling>
