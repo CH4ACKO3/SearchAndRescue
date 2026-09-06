@@ -9,7 +9,9 @@ $semver = '^\d+\.\d+\.\d+(?:-[0-9A-Za-z]+(?:[.-][0-9A-Za-z]+)*)?$'
 if ($version -notmatch $semver) { throw 'Invalid About.xml modVersion.' }
 if ($Tag -and ($Tag -cne "v$version")) { throw "Tag '$Tag' must equal About.xml version 'v$version'." }
 $notes = "Docs/releases/$version.md"
-if ($Tag -and !(Test-Path -LiteralPath $notes)) { throw "Missing release notes: $notes" }
+foreach ($language in @('en','zh-CN')) {
+    if ($Tag -and !(Test-Path -LiteralPath "Docs/releases/$version.$language.md")) { throw "Missing localized release notes: $version.$language.md" }
+}
 foreach ($xml in Get-ChildItem About,Defs,Languages,Patches -Filter '*.xml' -Recurse) { [void][xml](Get-Content -LiteralPath $xml.FullName -Raw) }
 $baseKeys = @(([xml](Get-Content Languages/English/Keyed/SearchAndRescue.xml -Raw)).LanguageData.ChildNodes | Where-Object NodeType -eq 'Element' | ForEach-Object Name | Sort-Object)
 foreach ($language in @('ChineseSimplified','ChineseTraditional')) {
@@ -28,7 +30,17 @@ Set-Content -LiteralPath "$stage/About/PublishedFileId.txt" -Value '3796056278' 
 # BuildRelease created the zip before the pinned item ID was written; replace only that generated archive.
 $zip = Join-Path $out "SearchAndRescue-$version.zip"
 Compress-Archive -LiteralPath $stage -DestinationPath $zip -Force
-$noteText = if (Test-Path -LiteralPath $notes) { Get-Content -LiteralPath $notes -Raw } else { "Development build $version (not for Workshop publishing)." }
+$localizedNotes=@{}
+$noteTexts=@{}
+foreach ($language in @('en','zh-CN')) {
+    $source="Docs/releases/$version.$language.md"
+    $text=if (Test-Path $source) { Get-Content $source -Raw } else { "Development build $version" }
+    if ([string]::IsNullOrWhiteSpace($text) -or $text.Contains('\n')) { throw "Empty or literal-escaped localized release notes: $language" }
+    $noteTexts[$language]=$text.TrimEnd()
+    Set-Content -LiteralPath "$out/release-notes.$language.md" -Value $text -NoNewline
+    $localizedNotes[$language]=(Get-FileHash "$out/release-notes.$language.md").Hash
+}
+$noteText=$noteTexts['en']+"`n`n"+$noteTexts['zh-CN']+"`n"
 Set-Content -LiteralPath "$out/release-notes.md" -Value $noteText -NoNewline
 $descriptions = @{}
 foreach ($language in @('en','zh-CN')) {
@@ -44,7 +56,7 @@ $files = @(Get-ChildItem -LiteralPath $stage -Recurse -File | ForEach-Object {
 })
 [ordered]@{ version=$version; tag=$Tag; appid='294100'; publishedfileid='3796056278';
     commit=(git rev-parse HEAD); archive=[IO.Path]::GetFileName($zip); archiveSha256=(Get-FileHash $zip).Hash;
-    descriptions=$descriptions; notesSha256=(Get-FileHash "$out/release-notes.md").Hash; files=$files } |
+    descriptions=$descriptions; localizedNotes=$localizedNotes; notesSha256=(Get-FileHash "$out/release-notes.md").Hash; files=$files } |
     ConvertTo-Json -Depth 5 | Set-Content -LiteralPath "$out/manifest.json"
 dotnet publish Tools/WorkshopPublisher/WorkshopPublisher.csproj -c Release -warnaserror -o "$out/publisher"
 if ($LASTEXITCODE) { throw 'Bilingual publisher build failed.' }

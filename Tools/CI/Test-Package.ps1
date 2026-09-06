@@ -41,10 +41,11 @@ try {
     Set-Content (Join-Path $stage 'unexpected.txt') 'unexpected'
     Assert-Rejected 'Unexpected files'
     Remove-Item -LiteralPath (Join-Path $stage 'unexpected.txt')
-    $notes=Join-Path $testRoot 'release-notes.md'
+    $localized=$manifest.PSObject.Properties.Name -contains 'localizedNotes'
+    $notes=Join-Path $testRoot $(if ($localized) { 'release-notes.en.md' } else { 'release-notes.md' })
     Set-Content $notes "引号 `"quote`" / path C:\test`nEnglish update"
     $manifest=$original | ConvertFrom-Json
-    $manifest.notesSha256=(Get-FileHash $notes).Hash
+    if ($localized) { $manifest.localizedNotes.en=(Get-FileHash $notes).Hash } else { $manifest.notesSha256=(Get-FileHash $notes).Hash }
     $manifest | ConvertTo-Json -Depth 5 | Set-Content $manifestPath
     & $publisher -ArtifactRoot $testRoot -DryRun
     $vdf=Get-Content (Join-Path $testRoot 'workshop-upload.vdf') -Raw

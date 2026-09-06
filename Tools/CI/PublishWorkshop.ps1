@@ -15,6 +15,13 @@ foreach ($language in @('en','zh-CN')) {
     $description=Join-Path $root "Description.$language.bbcode"
     if ((Get-FileHash -LiteralPath $description).Hash -cne $m.descriptions.$language) { throw "Description checksum mismatch: $language" }
 }
+$hasLocalizedNotes=$m.PSObject.Properties.Name -contains 'localizedNotes'
+if ($hasLocalizedNotes) {
+    foreach ($language in @('en','zh-CN')) {
+        if ((Get-FileHash "$root/release-notes.$language.md").Hash -cne $m.localizedNotes.$language) { throw "Localized release notes checksum mismatch: $language" }
+    }
+} elseif (!$DryRun -and !$CheckOnly -and !$VerifyPublished) { throw 'Publishing requires separate English and Chinese release notes.' }
+$changeNote=if ($hasLocalizedNotes) { Get-Content "$root/release-notes.en.md" -Raw } else { Get-Content "$root/release-notes.md" -Raw }
 $seen=@{}
 foreach ($f in $m.files) {
     if ($f.path -match '(^/|:|\\|(^|/)\.\.(/|$))' -or $seen.ContainsKey($f.path)) { throw 'Invalid/duplicate manifest path.' }
@@ -28,7 +35,7 @@ if ($about.ModMetaData.modVersion -cne $m.version -or
 function Escape-Vdf([string]$value) { $value.Replace('\','\\').Replace('"','\"').Replace("`r",'') }
 $vdf = '"workshopitem"' + "`n{`n" + '  "appid" "294100"' + "`n" + '  "publishedfileid" "3796056278"' + "`n" +
     '  "contentfolder" "' + (Escape-Vdf $stage.Replace('\','/')) + '"' + "`n" +
-    '  "changenote" "' + (Escape-Vdf (Get-Content "$root/release-notes.md" -Raw)) + '"' + "`n}`n"
+    '  "changenote" "' + (Escape-Vdf $changeNote) + '"' + "`n}`n"
 $vdfPath=Join-Path $root 'workshop-upload.vdf'
 [IO.File]::WriteAllText($vdfPath,$vdf,[Text.UTF8Encoding]::new($false))
 if ($DryRun) { Write-Host 'PASS: checksums, release identity and content VDF and bilingual payload validated. No Steam login/upload performed.'; return }

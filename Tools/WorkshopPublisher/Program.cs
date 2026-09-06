@@ -70,6 +70,7 @@ static async Task<int> Run(string[] args)
         foreach (var item in descriptions) previous.Add(await Read(service, item.Language, live.Client.SteamID!.ConvertToUInt64()));
         if (args[0] == "check")
         {
+            await WorkshopChangeNotes.CheckEditorContract(live.Client, refreshToken);
             Console.WriteLine("PASS: authenticated ownership and bilingual read access. No descriptions changed.");
             return 0;
         }
