@@ -15,6 +15,10 @@ on:
         description: Verify Steam login and Workshop ownership without publishing
         type: boolean
         default: false
+      refresh_release_notes:
+        description: Replace the verified release's change notes with its current Docs/releases text
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -211,6 +215,10 @@ jobs:
           path: package
           run-id: ${{ inputs.verify_release_run }}
           github-token: ${{ github.token }}
+      - name: Refresh release notes from the repository
+        if: inputs.refresh_release_notes
+        shell: pwsh
+        run: ./Tools/CI/Refresh-ReleaseNotes.ps1 -ArtifactRoot package
       - name: Verify published files and synchronize descriptions
         shell: pwsh
         env:
@@ -222,6 +230,15 @@ jobs:
           STEAM_REFRESH_TOKEN: ${{ secrets.STEAM_REFRESH_TOKEN }}
           STEAM_CONFIG_VDF_BASE64: ${{ secrets.STEAM_CONFIG_VDF_BASE64 }}
         run: ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot package -VerifyPublished
+      - name: Preserve verified release metadata
+        if: inputs.refresh_release_notes
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: revised-release-metadata
+          path: |
+            package/manifest.json
+            package/release-notes*.md
+          if-no-files-found: error
       - name: Save encrypted Steam session
         if: always()
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
