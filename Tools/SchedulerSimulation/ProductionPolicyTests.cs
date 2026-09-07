@@ -22,6 +22,7 @@ static class ProductionPolicyTests
         Check(!new JobIdentity(job, definition, 11).Matches(ending), "old completion cannot settle replacement");
         InfectionBoundaries();
         ReadinessBoundaries();
+        PendingAndTourniquetBoundaries();
         StageBoundaries();
 
         // Explicit truth tables preserve the two intentionally different carry boundaries.
@@ -54,20 +55,32 @@ static class ProductionPolicyTests
 
     private static void ReadinessBoundaries()
     {
-        Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, false, false, false) == WorkerReadiness.Ready, "free responder");
-        Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, true, false, false) == WorkerReadiness.ActiveStandby, "standby is occupied");
-        Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, true, true, false) == WorkerReadiness.Ready, "transport rebuild can reuse standby");
+        Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, false, false, false, false) == WorkerReadiness.Ready, "free responder");
+        Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, false, true, false, false) == WorkerReadiness.ActiveStandby, "standby is occupied");
+        Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, false, true, true, false) == WorkerReadiness.Ready, "transport rebuild can reuse standby");
         // Standby exceptions never relax another ownership boundary.
         foreach (bool allow in new[] { false, true })
         {
-            Check(WorkerReadinessRules.Evaluate(false, true, false, false, false, false, allow, false) == WorkerReadiness.NotOperational, "disabled responder");
-            Check(WorkerReadinessRules.Evaluate(true, false, false, false, false, false, allow, false) == WorkerReadiness.NotFieldResponder, "field work disabled");
-            Check(WorkerReadinessRules.Evaluate(true, true, true, false, false, true, allow, false) == WorkerReadiness.PlayerOrder, "player order outranks standby reuse");
-            Check(WorkerReadinessRules.Evaluate(true, true, false, true, false, false, allow, false) == WorkerReadiness.ActiveAssignment, "primary assignment occupies worker");
-            Check(WorkerReadinessRules.Evaluate(true, true, false, false, true, false, allow, false) == WorkerReadiness.ActiveLogistics, "logistics occupies worker");
-            Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, false, allow, true) == WorkerReadiness.BedsideCare, "bedside treatment owns worker");
+            Check(WorkerReadinessRules.Evaluate(false, true, false, false, false, false, false, allow, false) == WorkerReadiness.NotOperational, "disabled responder");
+            Check(WorkerReadinessRules.Evaluate(true, false, false, false, false, false, false, allow, false) == WorkerReadiness.NotFieldResponder, "field work disabled");
+            Check(WorkerReadinessRules.Evaluate(true, true, true, false, false, false, true, allow, false) == WorkerReadiness.PlayerOrder, "current player order outranks standby reuse");
+            Check(WorkerReadinessRules.Evaluate(true, true, false, true, false, false, true, allow, false) == WorkerReadiness.PlayerOrder, "queued player order outranks standby reuse");
+            Check(WorkerReadinessRules.Evaluate(true, true, false, false, true, false, false, allow, false) == WorkerReadiness.ActiveAssignment, "primary assignment occupies worker");
+            Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, true, false, allow, false) == WorkerReadiness.ActiveLogistics, "logistics occupies worker");
+            Check(WorkerReadinessRules.Evaluate(true, true, false, false, false, false, false, allow, true) == WorkerReadiness.BedsideCare, "bedside treatment owns worker");
         }
-        Check(WorkerReadinessRules.Evaluate(true, true, true, true, true, true, true, true) == WorkerReadiness.PlayerOrder, "player rejection reason has priority");
+        Check(WorkerReadinessRules.Evaluate(true, true, true, true, true, true, true, true, true) == WorkerReadiness.PlayerOrder, "player rejection reason has priority");
+    }
+
+    private static void PendingAndTourniquetBoundaries()
+    {
+        Check(PendingAssignmentRules.IsLive(0, 100), "unbounded pending assignment remains live");
+        Check(PendingAssignmentRules.IsLive(101, 100), "pending assignment remains live before expiry");
+        Check(!PendingAssignmentRules.IsLive(100, 100), "pending assignment expires on its boundary");
+        Check(!PendingAssignmentRules.IsLive(99, 100), "stale pending assignment is not ownership");
+        Check(!TourniquetPolicyRules.AllowsAutomaticApplication(0.49f, 0.5f), "tourniquet rejected below threshold");
+        Check(!TourniquetPolicyRules.AllowsAutomaticApplication(0.5f, 0.5f), "tourniquet threshold is strict");
+        Check(TourniquetPolicyRules.AllowsAutomaticApplication(0.51f, 0.5f), "tourniquet allowed above threshold");
     }
 
     private static void StageBoundaries()

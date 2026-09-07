@@ -631,7 +631,7 @@ namespace SearchAndRescue
             maintenanceDirty |= maintenance;
         }
 
-        private void CleanupInvalidPendingWorkers()
+        private void CleanupInvalidPendingWorkers(int now)
         {
             if (pendingByWorker.Count == 0)
             {
@@ -640,9 +640,10 @@ namespace SearchAndRescue
 
             bool removedAny = false;
             pendingWorkerScratch.Clear();
-            foreach (Pawn worker in pendingByWorker.Keys)
+            foreach (KeyValuePair<Pawn, PendingAssignment> pair in pendingByWorker)
             {
-                if (!WorkerOperational(worker) || worker.CurJob?.playerForced == true)
+                Pawn worker = pair.Key;
+                if (!PendingAssignmentValid(worker, pair.Value, now))
                 {
                     pendingWorkerScratch.Add(worker);
                 }
@@ -657,7 +658,8 @@ namespace SearchAndRescue
             pendingWorkerScratch.Clear();
 
             deferredWakeWorkers.RemoveWhere(worker =>
-                !WorkerOperational(worker) || worker.CurJob?.playerForced == true);
+                !pendingByWorker.TryGetValue(worker, out PendingAssignment pending) ||
+                !PendingAssignmentValid(worker, pending, now));
             if (removedAny)
             {
                 RequestScheduleRebuild(maintenance: true, delayTicks: 0);
@@ -686,7 +688,7 @@ namespace SearchAndRescue
                 long phaseStart = profile
                     ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.PendingAndWake)
                     : 0L;
-                CleanupInvalidPendingWorkers();
+                CleanupInvalidPendingWorkers(now);
                 WakeDeferredPendingWorkers();
                 if (profile)
                 {
@@ -4119,7 +4121,7 @@ namespace SearchAndRescue
 
         private bool PendingAssignmentValid(Pawn worker, PendingAssignment pending, int now)
         {
-            if (pending.ExpiresAt > 0 && now >= pending.ExpiresAt)
+            if (!PendingAssignmentRules.IsLive(pending.ExpiresAt, now))
             {
                 return false;
             }
@@ -4206,7 +4208,7 @@ namespace SearchAndRescue
             {
                 return "none";
             }
-            if (pending.ExpiresAt > 0 && now >= pending.ExpiresAt)
+            if (!PendingAssignmentRules.IsLive(pending.ExpiresAt, now))
             {
                 return "expired";
             }
@@ -4538,6 +4540,7 @@ namespace SearchAndRescue
             bool responder = operational && IsFieldResponder(worker);
             WorkerReadiness readiness = WorkerReadinessRules.Evaluate(
                 operational, responder, worker?.CurJob?.playerForced == true,
+                worker?.jobs?.jobQueue?.AnyPlayerForced == true,
                 activeClaims.HasPrimaryWorker(worker),
                 worker != null && activeLogisticsByWorker.ContainsKey(worker),
                 activeClaims.HasStandbyWorker(worker), allowActiveStandby,
@@ -5366,9 +5369,11 @@ namespace SearchAndRescue
             bool activeTreatment = activeByTarget.TryGetValue(patient, out ActiveAssignment active) &&
                                    (IsTreatmentStage(active.Stage) ||
                                     active.Stage == SearchAndRescueStage.Restock);
-            bool pendingTreatment = pendingByWorker.Values.Any(pending => pending.Target == patient &&
-                (IsTreatmentStage(pending.Stage) || pending.Stage == SearchAndRescueStage.Restock) &&
-                admission.AllowsStage(pending.Stage));
+            int now = Find.TickManager.TicksGame;
+            bool pendingTreatment = pendingByWorker.Any(pair => pair.Value.Target == patient &&
+                (IsTreatmentStage(pair.Value.Stage) || pair.Value.Stage == SearchAndRescueStage.Restock) &&
+                admission.AllowsStage(pair.Value.Stage) &&
+                PendingAssignmentValid(pair.Key, pair.Value, now));
             return activeTreatment || pendingTreatment;
         }
 
@@ -5385,8 +5390,10 @@ namespace SearchAndRescue
             // released, preserving native and third-party fallback when SAR cannot act.
             bool activeRescue = activeByTarget.TryGetValue(patient, out ActiveAssignment active) &&
                                 active.Stage == SearchAndRescueStage.Rescue;
-            bool pendingRescue = pendingByWorker.Values.Any(pending => pending.Target == patient &&
-                pending.Stage == SearchAndRescueStage.Rescue && admission.AllowsStage(pending.Stage));
+            int now = Find.TickManager.TicksGame;
+            bool pendingRescue = pendingByWorker.Any(pair => pair.Value.Target == patient &&
+                pair.Value.Stage == SearchAndRescueStage.Rescue && admission.AllowsStage(pair.Value.Stage) &&
+                PendingAssignmentValid(pair.Key, pair.Value, now));
             return activeRescue || pendingRescue;
         }
 

@@ -206,6 +206,13 @@ namespace SearchAndRescue
                     ? null
                     : (Func<Hediff, bool>)Delegate.CreateDelegate(typeof(Func<Hediff, bool>), method);
             });
+        private static readonly Lazy<FieldInfo> MoreInjuriesTourniquetThresholdField =
+            new Lazy<FieldInfo>(() => FindLoadedType("MoreInjuries.MoreInjuriesSettings")
+                ?.GetFields(BindingFlags.NonPublic | BindingFlags.Instance)
+                .FirstOrDefault(field => field.FieldType == typeof(float) &&
+                    field.Name.StartsWith(
+                        "_minBleedRateForAutoTourniquet_",
+                        StringComparison.Ordinal)));
         private static readonly Lazy<ThingDef> MoreInjuriesBloodDevice =
             new Lazy<ThingDef>(ResolveMoreInjuriesBloodDevice);
 
@@ -1107,11 +1114,11 @@ namespace SearchAndRescue
                     Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))));
             }
 
-            // Medicine is a substitutable resource class rather than a fixed ThingDef. Prefer
-            // inventory first, then potency, while respecting the patient's medical-care policy.
-            // Patient-referenced field stacks remain additional candidates: otherwise a nearby
-            // herbal delivery could be hidden by a more potent stack back at the hospital, and
-            // the doctor would continue dry tending despite the completed supply run.
+            // Medicine is a substitutable resource class rather than a fixed ThingDef. Smart
+            // Medicine owns its policy surface (per-hediff care, permitted inventories, distance
+            // and minimum-quality rules); SAR only filters that exact result through its shared
+            // cross-patient ledger. Without Smart Medicine, preserve the normal inventory/potency
+            // ordering and expose patient-referenced field deliveries as additional candidates.
             if (plan.EssentialMedicineRounds > 0 && CanPerformTreatmentWork(doctor))
             {
                 IEnumerable<Thing> availableMedicines = ledger.AvailableMedicines(doctor, patient)
@@ -1120,47 +1127,78 @@ namespace SearchAndRescue
                                         doctor,
                                         patient,
                                         thing));
-                Thing medicine = UsesChooseYourMedicine
-                    ? HealthAIUtility.FindBestMedicine(doctor, patient)
-                    : availableMedicines
-                        .OrderByDescending(thing => doctor.inventory?.innerContainer.Contains(thing) == true)
-                        .ThenByDescending(thing => MedicinePreference(patient, thing))
-                        .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
-                            ? 0
-                            : doctor.Position.DistanceToSquared(thing.PositionHeld) +
-                              thing.PositionHeld.DistanceToSquared(patient.Position))
-                        .FirstOrDefault();
-                if (medicine != null &&
-                    (ledger.AvailableForTreatment(medicine, doctor, patient) <= 0 ||
-                     ceStabilizeAvailable &&
-                     !CombatExtendedCanCollectMedicineDirectly(doctor, patient, medicine)))
+                List<ThingCount> medicineCandidates;
+                if (UsesSmartMedicine && TryFindSmartMedicineSelection(
+                        doctor,
+                        patient,
+                        onlyUseInventory: false,
+                        out IReadOnlyList<ThingCount> smartSelection))
                 {
-                    medicine = null;
+                    medicineCandidates = smartSelection
+                        .Where(candidate => candidate.Thing != null && candidate.Count > 0 &&
+                                            candidate.Thing.def.IsMedicine &&
+                                            (!ceStabilizeAvailable ||
+                                             CombatExtendedCanCollectMedicineDirectly(
+                                                 doctor,
+                                                 patient,
+                                                 candidate.Thing)))
+                        .GroupBy(candidate => candidate.Thing)
+                        .Select(group => new ThingCount(
+                            group.Key,
+                            group.Sum(candidate => candidate.Count)))
+                        .ToList();
                 }
-                if (medicine == null && UsesChooseYourMedicine)
+                else
                 {
-                    // Its first choice may already be soft-claimed by another Search and Rescue
-                    // worker. Preserve the configured category order while selecting the next
-                    // ledger-available candidate instead of falling straight to dry tending.
-                    medicine = availableMedicines
-                        .OrderByDescending(thing => MedicinePreference(patient, thing))
-                        .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
-                            ? 0
-                            : doctor.Position.DistanceToSquared(thing.PositionHeld) +
-                              thing.PositionHeld.DistanceToSquared(patient.Position))
-                        .FirstOrDefault();
+                    Thing medicine = UsesChooseYourMedicine
+                        ? HealthAIUtility.FindBestMedicine(doctor, patient)
+                        : availableMedicines
+                            .OrderByDescending(thing => doctor.inventory?.innerContainer.Contains(thing) == true)
+                            .ThenByDescending(thing => MedicinePreference(patient, thing))
+                            .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
+                                ? 0
+                                : doctor.Position.DistanceToSquared(thing.PositionHeld) +
+                                  thing.PositionHeld.DistanceToSquared(patient.Position))
+                            .FirstOrDefault();
+                    if (medicine != null &&
+                        (ledger.AvailableForTreatment(medicine, doctor, patient) <= 0 ||
+                         ceStabilizeAvailable &&
+                         !CombatExtendedCanCollectMedicineDirectly(doctor, patient, medicine)))
+                    {
+                        medicine = null;
+                    }
+                    if (medicine == null && UsesChooseYourMedicine)
+                    {
+                        // Its first choice may already be soft-claimed by another Search and Rescue
+                        // worker. Preserve the configured category order while selecting the next
+                        // ledger-available candidate instead of falling straight to dry tending.
+                        medicine = availableMedicines
+                            .OrderByDescending(thing => MedicinePreference(patient, thing))
+                            .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
+                                ? 0
+                                : doctor.Position.DistanceToSquared(thing.PositionHeld) +
+                                  thing.PositionHeld.DistanceToSquared(patient.Position))
+                            .FirstOrDefault();
+                    }
+                    medicineCandidates = (medicine != null
+                            ? new[] { medicine }
+                            : Enumerable.Empty<Thing>())
+                        .Concat(ledger.AvailableFieldSupplies(doctor, patient)
+                            .Where(thing => thing.def.IsMedicine && AllowsMedicine(patient, thing)))
+                        .Distinct()
+                        .Select(thing => new ThingCount(thing, thing.stackCount))
+                        .ToList();
                 }
-                IEnumerable<Thing> medicineCandidates = (medicine != null
-                        ? new[] { medicine }
-                        : Enumerable.Empty<Thing>())
-                    .Concat(ledger.AvailableFieldSupplies(doctor, patient)
-                        .Where(thing => thing.def.IsMedicine && AllowsMedicine(patient, thing)))
-                    .Distinct();
-                foreach (Thing candidateMedicine in medicineCandidates)
+                foreach (ThingCount candidate in medicineCandidates)
                 {
+                    Thing candidateMedicine = candidate.Thing;
                     int availableMedicine = Math.Min(
-                        candidateMedicine.stackCount,
+                        candidate.Count,
                         ledger.AvailableForTreatment(candidateMedicine, doctor, patient));
+                    if (availableMedicine <= 0)
+                    {
+                        continue;
+                    }
                     int medicineRoundBudget = Math.Max(
                         1,
                         Math.Min(plan.EssentialMedicineRounds, availableMedicine));
@@ -1309,6 +1347,36 @@ namespace SearchAndRescue
             }
 
             return null;
+        }
+
+        internal static BodyPartRecord MoreInjuriesAutomaticTourniquetLimb(Pawn patient)
+        {
+            if (patient?.health?.hediffSet == null)
+            {
+                return null;
+            }
+
+            float threshold = MoreInjuriesAutomaticTourniquetThreshold();
+            return patient.health.hediffSet.hediffs
+                .Where(hediff => hediff.BleedRate > 0f)
+                .Select(hediff => new
+                {
+                    Hediff = hediff,
+                    Limb = MoreInjuriesTourniquetLimbFor(hediff)
+                })
+                .Where(candidate => candidate.Limb != null)
+                .GroupBy(candidate => candidate.Limb)
+                .Select(group => new
+                {
+                    Limb = group.Key,
+                    BleedRate = group.Sum(candidate => candidate.Hediff.BleedRate)
+                })
+                .Where(candidate => TourniquetPolicyRules.AllowsAutomaticApplication(
+                    candidate.BleedRate,
+                    threshold))
+                .OrderByDescending(candidate => candidate.BleedRate)
+                .Select(candidate => candidate.Limb)
+                .FirstOrDefault();
         }
 
         internal static int MoreInjuriesRequiredTransfusions(
@@ -1506,18 +1574,7 @@ namespace SearchAndRescue
                 return null;
             }
 
-            BodyPartRecord part = patient.health.hediffSet.hediffs
-                .Where(hediff => !hediff.IsTended() && hediff.BleedRate > 0f)
-                .Select(hediff => new
-                {
-                    Hediff = hediff,
-                    Limb = MoreInjuriesTourniquetLimbFor(hediff)
-                })
-                .Where(candidate => candidate.Limb != null)
-                .GroupBy(candidate => candidate.Limb)
-                .OrderByDescending(group => group.Sum(candidate => candidate.Hediff.BleedRate))
-                .Select(group => group.Key)
-                .FirstOrDefault();
+            BodyPartRecord part = MoreInjuriesAutomaticTourniquetLimb(patient);
             if (part == null)
             {
                 return null;
@@ -1645,6 +1702,36 @@ namespace SearchAndRescue
             catch
             {
                 return true;
+            }
+        }
+
+        private static float MoreInjuriesAutomaticTourniquetThreshold()
+        {
+            const float fallback = 0.5f;
+            try
+            {
+                object settings = FindLoadedType("MoreInjuries.MoreInjuriesMod")
+                    ?.GetProperty("Settings", BindingFlags.Public | BindingFlags.Static)
+                    ?.GetValue(null);
+                FieldInfo thresholdField = MoreInjuriesTourniquetThresholdField.Value;
+                if (settings == null || thresholdField == null)
+                {
+                    Log.WarningOnce(
+                        "[Search and Rescue] More Injuries' automatic tourniquet threshold endpoint " +
+                        "was not found; using its default of 0.5.",
+                        196320749);
+                    return fallback;
+                }
+
+                return thresholdField.GetValue(settings) is float threshold ? threshold : fallback;
+            }
+            catch (Exception exception)
+            {
+                Log.WarningOnce(
+                    "[Search and Rescue] Could not read More Injuries' automatic tourniquet threshold; " +
+                    "using its default of 0.5. " + exception.GetBaseException().Message,
+                    196320749);
+                return fallback;
             }
         }
 
@@ -2004,7 +2091,8 @@ namespace SearchAndRescue
                          {
                              "CP_FirstAid", "Stabilize", "ProvideFirstAid", "UseSuctionDevice",
                              "PerformCpr", "UseDefibrillator", "UseEpinephrine", "UseTourniquet",
-                             "UseHemostaticAgent", "UseBandage", "UseBloodBag", "UseSalineBag",
+                             "RemoveTourniquetSafely", "UseHemostaticAgent", "UseBandage",
+                             "UseBloodBag", "UseSalineBag", "HD_AdministerHemogen", "ET_TransfuseBlood",
                              "SAR_EvacuateToPoint", "SAR_CaptureInPlace", "SAR_WaitForFieldTreatment",
                              "SAR_RestockMedicalKit", "SAR_DeliverMedicalSupply"
                          })
@@ -2491,6 +2579,26 @@ namespace SearchAndRescue
             out Thing primaryMedicine)
         {
             primaryMedicine = null;
+            if (!TryFindSmartMedicineSelection(
+                    doctor,
+                    patient,
+                    onlyUseInventory,
+                    out IReadOnlyList<ThingCount> medicines))
+            {
+                return false;
+            }
+
+            primaryMedicine = medicines.Count > 0 ? medicines[0].Thing : null;
+            return true;
+        }
+
+        private static bool TryFindSmartMedicineSelection(
+            Pawn doctor,
+            Pawn patient,
+            bool onlyUseInventory,
+            out IReadOnlyList<ThingCount> medicines)
+        {
+            medicines = Array.Empty<ThingCount>();
             if (SmartMedicineFindMethod == null)
             {
                 return false;
@@ -2500,13 +2608,13 @@ namespace SearchAndRescue
             {
                 object[] arguments = { doctor, patient, 0, onlyUseInventory };
                 object result = SmartMedicineFindMethod.Invoke(null, arguments);
-                List<ThingCount> medicines = (result as IEnumerable<ThingCount>)?.ToList() ?? new List<ThingCount>();
-                primaryMedicine = medicines.Count > 0 ? medicines[0].Thing : null;
+                medicines = (result as IEnumerable<ThingCount>)?.ToList() ??
+                            new List<ThingCount>();
                 return true;
             }
             catch (Exception exception)
             {
-                Log.WarningOnce("[Search and Rescue] Smart Medicine selection failed; using its patched vanilla medicine search. " +
+                Log.WarningOnce("[Search and Rescue] Smart Medicine selection failed; using the vanilla-compatible medicine search. " +
                     exception.GetBaseException().Message, 196320742);
                 return false;
             }

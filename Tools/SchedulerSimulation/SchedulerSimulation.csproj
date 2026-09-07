@@ -11,7 +11,9 @@
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\JobIdentity.cs" Link="JobIdentity.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\AssignmentStageRules.cs" Link="AssignmentStageRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\WorkerReadinessRules.cs" Link="WorkerReadinessRules.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Scheduling\PendingAssignmentRules.cs" Link="PendingAssignmentRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Medical\InfectionPriorityRules.cs" Link="InfectionPriorityRules.cs" />
+    <Compile Include="..\..\Source\SearchAndRescue\Medical\TourniquetPolicyRules.cs" Link="TourniquetPolicyRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\TreatmentContinuityRules.cs" Link="TreatmentContinuityRules.cs" />
   </ItemGroup>
 </Project>

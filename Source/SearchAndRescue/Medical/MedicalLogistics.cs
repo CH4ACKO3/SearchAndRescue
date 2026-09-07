@@ -277,19 +277,19 @@ namespace SearchAndRescue
                         3.5d));
                 }
 
-                bool limbCanUseTourniquet = majorBleeds.Any(hediff =>
-                    Compatibility.MoreInjuriesTourniquetLimbFor(hediff) != null);
-                if (limbCanUseTourniquet && Compatibility.MoreInjuriesTourniquet != null &&
-                    Compatibility.IsMedicalInterventionUnlocked(MedicalIntervention.Tourniquet))
-                {
-                    demands.Add(new MedicalResourceDemand(
-                        Compatibility.MoreInjuriesTourniquet,
-                        MedicalIntervention.Tourniquet,
-                        1,
-                        false,
-                        false,
-                        4.2d));
-                }
+            }
+
+            if (Compatibility.MoreInjuriesAutomaticTourniquetLimb(patient) != null &&
+                Compatibility.MoreInjuriesTourniquet != null &&
+                Compatibility.IsMedicalInterventionUnlocked(MedicalIntervention.Tourniquet))
+            {
+                demands.Add(new MedicalResourceDemand(
+                    Compatibility.MoreInjuriesTourniquet,
+                    MedicalIntervention.Tourniquet,
+                    1,
+                    false,
+                    false,
+                    4.2d));
             }
 
             int salineRequired = Compatibility.MoreInjuriesSalineBag != null &&

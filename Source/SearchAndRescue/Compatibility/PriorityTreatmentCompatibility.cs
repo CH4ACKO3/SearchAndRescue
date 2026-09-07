@@ -18,8 +18,11 @@ namespace SearchAndRescue
         private static IList<string> doctorWorkDefs;
         private static object priorityTreatmentSettings;
 
+        internal static bool Ready { get; private set; }
+
         internal static void Install(Harmony harmony)
         {
+            Ready = false;
             priorityTreatmentType = AppDomain.CurrentDomain.GetAssemblies()
                 .Select(assembly => assembly.GetType("TKS_PriorityTreatment.TKS_PriorityTreatment", false))
                 .FirstOrDefault(type => type != null);
@@ -75,6 +78,9 @@ namespace SearchAndRescue
                     makePriorityJob,
                     prefix: new HarmonyMethod(typeof(PriorityTreatmentCompatibility),
                         nameof(RouteManagedTreatmentPrefix)));
+                Ready = priorityTreatmentSettingsType != null &&
+                        priorityTreatmentMapComponentType != null &&
+                        tendablePawnsField != null && doctorWorkDefs != null;
                 Log.Message("[Search and Rescue] Priority Treatment scheduler bridge installed.");
             }
             catch (Exception exception)

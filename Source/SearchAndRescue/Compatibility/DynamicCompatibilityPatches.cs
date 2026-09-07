@@ -994,15 +994,15 @@ namespace SearchAndRescue
             return TargetMethod() != null;
         }
 
-        private static void Postfix(Pawn __instance)
+        private static void Postfix([HarmonyArgument(0)] Pawn pawn)
         {
-            JobQueue queue = __instance?.jobs?.jobQueue;
+            JobQueue queue = pawn?.jobs?.jobQueue;
             if (queue == null)
             {
                 return;
             }
 
-            queue.RemoveAll(__instance, job =>
+            queue.RemoveAll(pawn, job =>
             {
                 if (job?.def == null || job.playerForced)
                 {
@@ -1016,7 +1016,7 @@ namespace SearchAndRescue
                     return false;
                 }
 
-                Pawn patient = CompatibilityRegistry.PatientFor(__instance, job, roles);
+                Pawn patient = CompatibilityRegistry.PatientFor(pawn, job, roles);
                 return patient != null &&
                        PatientWorkOwnership.HasManagedOrderForRole(patient, roles);
             });
