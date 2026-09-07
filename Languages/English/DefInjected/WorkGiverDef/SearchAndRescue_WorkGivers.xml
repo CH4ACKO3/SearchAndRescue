@@ -40,4 +40,10 @@
   <SAR_MechFieldRescueDoctor.label>field rescue medicine</SAR_MechFieldRescueDoctor.label>
   <SAR_MechFieldRescueDoctor.verb>rescue</SAR_MechFieldRescueDoctor.verb>
   <SAR_MechFieldRescueDoctor.gerund>rescuing</SAR_MechFieldRescueDoctor.gerund>
+  <SAR_EmergencyMedicalCare.label>provide emergency medical care</SAR_EmergencyMedicalCare.label>
+  <SAR_EmergencyMedicalCare.verb>stabilize</SAR_EmergencyMedicalCare.verb>
+  <SAR_EmergencyMedicalCare.gerund>stabilizing</SAR_EmergencyMedicalCare.gerund>
+  <SAR_AutomaticCasevac.label>coordinate battlefield CASEVAC</SAR_AutomaticCasevac.label>
+  <SAR_AutomaticCasevac.verb>evacuate</SAR_AutomaticCasevac.verb>
+  <SAR_AutomaticCasevac.gerund>evacuating</SAR_AutomaticCasevac.gerund>
 </LanguageData>

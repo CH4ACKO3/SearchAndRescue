@@ -116,7 +116,7 @@
   <SAR_Compatibility_TraumaTeam>在其首個工作產生前辨識小隊所有權，辨識治療和運輸工作；沒有可用救援者時會釋放失效所有權。</SAR_Compatibility_TraumaTeam>
   <SAR_Compatibility_MovePatient>優先詢問患者的轉床元件所選擇的醫療床，再回退到原版床位搜尋。</SAR_Compatibility_MovePatient>
   <SAR_Compatibility_MedPod>辨識醫療艙搬入、救援、自行入艙及設施占用狀態，與 MedPod 的入艙和治療流程協同工作。</SAR_Compatibility_MedPod>
-  <SAR_Compatibility_Casevac>CASEVAC 救援和俘虜運輸工作會被註冊為外部所有權；其手動命令仍擁有控制權。</SAR_Compatibility_Casevac>
+  <SAR_Compatibility_Casevac>同時開啟戰地救援和 CASEVAC 的人員優先撤離無人搬運的患者，之後加入已有隊伍或升級附近的 SAR 普通搬運。手動命令保留控制權。</SAR_Compatibility_Casevac>
   <SAR_Compatibility_SmarterCapture>其自動俘虜 WorkGiver 使用統一所有權門控；玩家強制俘虜仍優先。</SAR_Compatibility_SmarterCapture>
   <SAR_Compatibility_PickUpAndHaul>保留患者和目前醫療計畫需要的器材，使其持續用於戰地補給。</SAR_Compatibility_PickUpAndHaul>
   <SAR_Compatibility_Hospitality>透過標準床位、賓客身分和陣營關係配合救援。接待、收費和訪客活動使用 Hospitality 的設定與流程。</SAR_Compatibility_Hospitality>

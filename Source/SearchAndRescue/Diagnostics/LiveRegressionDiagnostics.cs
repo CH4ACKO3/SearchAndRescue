@@ -270,7 +270,29 @@ namespace SearchAndRescue
                     "ordinary bed satisfies production delivery contract");
                 bed.Medical = true;
                 Check(Compatibility.IsSafeRescueBed(bed, patient), "medical bed remains valid");
+                Pawn bedReserver = Spawn(map, -10);
+                Job reservedJob = JobMaker.MakeJob(JobDefOf.Wait, 600);
+                try
+                {
+                    bedReserver.Reserve(bed, reservedJob, 1, 0);
+                    Check(!HasRoute(map, worker, patient), "fully reserved bed does not produce a rescue route");
+                }
+                finally
+                {
+                    map.reservationManager.ReleaseAllClaimedBy(bedReserver);
+                    bedReserver.Destroy();
+                }
                 bed.DeSpawn();
+
+                Check(!HasRoute(map, worker, patient), "no bed and no rescue point leaves transport unassigned");
+                if (DefDatabase<JobDef>.GetNamedSilentFail("CP_CasevacRescue") != null)
+                {
+                    Check(Compatibility.MakeCasevacJob(patient, bed) == null &&
+                        !Compatibility.CasevacBedUsable(worker, patient, bed),
+                        "CASEVAC rejects a despawned destination before joining or upgrading");
+                    Compatibility.SetWorkPriorityForMigration(worker, SearchAndRescueDefOf.SAR_FieldRescue, 1);
+                    Compatibility.SetWorkPriorityForMigration(worker, DefDatabase<WorkTypeDef>.GetNamed("CP_CasevacRescue"), 1);
+                }
 
                 testPoint = new Designation(patient.Position, SearchAndRescueDefOf.SAR_RescuePoint);
                 map.designationManager.AddDesignation(testPoint);
@@ -279,11 +301,18 @@ namespace SearchAndRescue
                 testPoint = new Designation(Cell(map, 16), SearchAndRescueDefOf.SAR_RescuePoint);
                 map.designationManager.AddDesignation(testPoint);
                 Check(HasRoute(map, worker, patient), "changed rescue point enables transport");
+                object[] jobArgs = { worker, patient, null, IntVec3.Invalid };
+                bool madePointJob = (bool)AccessTools.Method(typeof(SearchAndRescueCoordinator), "TryMakeRescueJob")
+                    .Invoke(map.GetComponent<SearchAndRescueCoordinator>(), jobArgs);
+                Check(madePointJob && ((Job)jobArgs[2]).def == SearchAndRescueDefOf.SAR_EvacuateToPoint,
+                    "CASEVAC-enabled worker falls back to single-pawn rescue-point job without a bed");
                 map.designationManager.RemoveDesignation(testPoint);
                 testPoint = new Designation(patient.Position, SearchAndRescueDefOf.SAR_RescuePoint);
                 map.designationManager.AddDesignation(testPoint);
                 GenSpawn.Spawn(bed, Cell(map, 10), map);
                 Check(HasRoute(map, worker, patient), "new bed enables onward transport from rescue point");
+                bed.ForPrisoners = true;
+                Check(!Compatibility.CasevacBedUsable(worker, patient, bed), "CASEVAC rejects bed reassigned to incompatible prisoner use");
             }
             finally
             {

@@ -2,6 +2,24 @@
 
 ## Unreleased
 
+## 0.1.0-alpha.4
+
+- Fix CASEVAC bed reservation cleanup and stale cross-patient team membership; preserve unrelated bed reservations. Use native unboosted speed when admitting helpers and verify actual following/acceleration.
+- Prevent CASEVAC finish actions from reserving beds for ending, soon-to-be-pooled jobs; transfer ownership only to surviving teammates. Recheck patient reservations before pickup when medical workers can intervene.
+- Revalidate CASEVAC destinations before joining or upgrading transport and before transferring reservations; verify single-pawn rescue-point fallback when no bed is available or the destination is destroyed during transport.
+
+- Automatically start native CASEVAC evacuations, join teams, and upgrade nearby SAR bed transports after unattended casualties have been assigned. Require Field Rescue and CASEVAC work; preserve manual orders.
+- Add Doctor's high-priority emergency medical care subtask. With Work Tab, emergency-only medics can keep routine tending and surgery disabled.
+- Restrict SAR field tending to bleeding, fatal immunity races, tendable life-threatening conditions, and early More Injuries hypovolemic shock. Defer minor wounds until a safe bed or designated rescue point; preserve specialized interventions, mechanical repair, and ordinary medical work.
+- Prioritize choking neck tourniquet removal and urgent evacuation of More Injuries wet gangrene. Add live condition, medicine-consumption, work-assignment and CASEVAC checks.
+
+- Unify SAR medicine budgets and selection with CYM or Smart Medicine's per-wound policy, including Pharmacist advice through Smart Medicine. Recheck selected medicine when creating a job.
+- Share resuscitation stock budgets across providers, preserve provider-specific pickup alternatives, and refresh More Injuries' blood resource when its Biotech setting changes.
+- Yield patient-work gates during registered facility/Lord ownership and resume after the external provider releases the patient. Allow RH2 medicine-free aid alongside Smart Medicine for lying patients when CE is absent.
+- Add isolated combination probes for native policy, blood-resource and ownership boundaries; keep the compatibility panel one-to-one.
+
+## Earlier alpha updates
+
 - Fix Anomaly monolith progress hiding SAR commands and rejecting capture marks on ordinary downed enemies. Use holding-platform study eligibility to identify containment targets.
 
 - Fix repeated More Injuries tourniquet jobs on an already treated limb. Verify actual tourniquet application before recording treatment progress, allowing subsequent hemostasis, tending, and evacuation.

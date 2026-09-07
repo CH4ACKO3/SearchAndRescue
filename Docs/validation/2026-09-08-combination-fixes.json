@@ -1,0 +1,44 @@
+{
+  "date": "2026-09-08",
+  "game": "RimWorld 1.6.4871",
+  "dllSha256": "AEEEA1A4E301BECF3608B3CE575734BB7290A712C1E394C982BBD3E1A087BE1F",
+  "latestProbe": {
+    "profile": "CE + SM + MI + Hemogen Direct + CYM",
+    "passed": 19,
+    "results": [
+      "Mods: brrainz.harmony,ludeon.rimworld,ludeon.rimworld.biotech,ceteam.combatextended,memegoddess.smartmedicine,th3fr3d.extendedinjuries,aoba.hemogendirect,kopp.chooseyourmedicine,ch4acko3.sarcombinationprobe.e5ca8ca8b3584ee0bddace96424bc384",
+      "PASS: native per-wound policy overrides baseline; CYM wins conflicting SM policy",
+      "PASS: dose permission matches per-wound budget",
+      "PASS: per-wound policy budgets medicine",
+      "PASS: actual production selector retains legal high-quality dose",
+      "PASS: policy change revokes dose permission",
+      "PASS: stale selected medicine rejected at Job boundary",
+      "PASS: MI native transfusion demand available",
+      "PASS: MI blood and direct hemogen share one HemogenPack budget",
+      "PASS: direct provider remains available for its distinct inventory access",
+      "PASS: MI runtime setting change refreshes blood resource",
+      "PASS: MI runtime setting restored without stale resource cache",
+      "PASS: explicit treatment initially owned by SAR",
+      "PASS: facility fixture has a real bed occupant",
+      "PASS: registered facility owns patient before tending Job",
+      "PASS: facility provider is not blocked by SAR treatment gate",
+      "PASS: facility provider is not blocked by SAR transport gate",
+      "PASS: warden gate also yields during facility handoff",
+      "PASS: SAR treatment gate resumes after external lease ends",
+      "PASS: SAR transport gate resumes after external lease ends"
+    ],
+    "rawDirectory": "D:\\Projects\\rimworld\\work\\sar-combinations-20260908\\verified"
+  },
+  "offline": {
+    "productionRules": 92,
+    "continuityChecks": 9,
+    "scenarios": 40,
+    "randomizedGraphs": 200,
+    "status": "passed"
+  },
+  "limitations": [
+    "Interface and ownership boundary checks, not a full treatment long-run",
+    "Facility type injected for boundary test; no real MedPod/Trauma Team workflow",
+    "No new Vehicle Framework or mechanical repair logistics flow"
+  ]
+}

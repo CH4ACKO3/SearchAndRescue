@@ -18,6 +18,7 @@ namespace SearchAndRescue
         public static WorkTypeDef SAR_FieldRescue;
         public static WorkGiverDef SAR_CaptureMarked;
         public static WorkGiverDef SAR_TreatMarked;
+        public static WorkGiverDef SAR_EmergencyMedicalCare;
         public static WorkGiverDef SAR_FollowupTreatMarked;
         public static WorkGiverDef SAR_AutomaticRoutineTreat;
         public static WorkGiverDef SAR_RescueMarkedHauling;

@@ -32,7 +32,7 @@ namespace SearchAndRescue
         public static bool HasManagedBattlefieldOrder(Pawn patient)
         {
             Map map = patient?.MapHeld;
-            return map != null &&
+            return map != null && !HasExternalCareProvider(patient, PatientJobRole.Any) &&
                    (map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Capture) != null ||
                     map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Treat) != null ||
                     map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Rescue) != null);
@@ -41,7 +41,7 @@ namespace SearchAndRescue
         public static bool HasManagedTreatmentOrder(Pawn patient)
         {
             Map map = patient?.MapHeld;
-            if (map == null)
+            if (map == null || HasExternalCareProvider(patient, PatientJobRole.Treatment | PatientJobRole.Facility))
             {
                 return false;
             }
@@ -79,7 +79,7 @@ namespace SearchAndRescue
         public static bool HasManagedTransportOrder(Pawn patient)
         {
             Map map = patient?.MapHeld;
-            return map != null &&
+            return map != null && !HasExternalCareProvider(patient, PatientJobRole.Transport | PatientJobRole.Facility) &&
                    (map.designationManager.DesignationOn(
                         patient,
                         SearchAndRescueDefOf.SAR_Rescue) != null ||
@@ -87,6 +87,18 @@ namespace SearchAndRescue
                         patient,
                         SearchAndRescueDefOf.SAR_Capture) != null ||
                     map.GetComponent<SearchAndRescueCoordinator>()?.OwnsAutonomousTransport(patient) == true);
+        }
+
+        private static bool HasExternalCareProvider(Pawn patient, PatientJobRole roles)
+        {
+            if (patient?.MapHeld == null) return false;
+            CompatibilityRegistry.Initialize();
+            // The coordinator already yields to these providers before a Job exists.
+            // Its WorkGiver gates must yield too, otherwise a contracted team using
+            // vanilla/MI/CE work can be blocked by the very designation SAR is deferring.
+            // Do not use HasExternalOwner here: arbitrary jobs/reservations must not
+            // release all SAR gates or recursively query pending ownership.
+            return CompatibilityRegistry.HasFacilityOrLordOwner(patient.MapHeld, patient, roles);
         }
 
         public static bool IsPatientTakeToBedJob(Job job)

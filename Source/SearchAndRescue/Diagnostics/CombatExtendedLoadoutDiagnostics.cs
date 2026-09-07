@@ -42,6 +42,16 @@ namespace SearchAndRescue
             worker.skills.GetSkill(SkillDefOf.Medicine).Level = 12;
             patient.playerSettings.medCare = MedicalCareCategory.Best;
 
+            // Establish a real treatment need before querying policy. CYM legitimately
+            // rejects medicine for healthy pawns and may prefer herbal for ordinary cuts.
+            Hediff injury = HediffMaker.MakeHediff(HediffDefOf.Cut, patient,
+                patient.RaceProps.body.AllParts.First(part => part.depth == BodyPartDepth.Outside));
+            injury.Severity = 8f;
+            patient.health.AddHediff(injury);
+            AccessTools.Method(AccessTools.TypeByName("ChooseYourMedicine.DrawButton"), "MakeNewHediffEntry")
+                ?.Invoke(null, new object[] { injury, patient, MedicalCareCategory.NormalOrWorse, false });
+            selectedInjuryLoadId = injury.loadID;
+
             ThingDef medicineDef = ThingDefOf.MedicineIndustrial;
             ThingDef bloodDef = Compatibility.MoreInjuriesBloodBag;
             ThingDef deviceDef = DefDatabase<ThingDef>.GetNamedSilentFail("Defibrillator") ??
@@ -84,11 +94,6 @@ namespace SearchAndRescue
             GenSpawn.Spawn(refill, Cell(map, 12), map);
             preparedAt = Find.TickManager.TicksGame;
 
-            Hediff injury = HediffMaker.MakeHediff(HediffDefOf.Cut, patient,
-                patient.RaceProps.body.AllParts.First(part => part.depth == BodyPartDepth.Outside));
-            injury.Severity = 8f;
-            patient.health.AddHediff(injury);
-            selectedInjuryLoadId = injury.loadID;
             MedicalCarePlan plan = MedicalCarePlan.Build(patient, Find.TickManager.TicksGame);
             MedicalTreatmentOption option = Compatibility.FindTreatmentOptions(worker, patient, plan, ledger)
                 .FirstOrDefault(candidate =>
@@ -96,7 +101,8 @@ namespace SearchAndRescue
                     candidate.Resource == medicine);
             Check(option?.IsValid == true && option.FromInventory,
                 "SAR treatment option uses carried CE loadout medicine");
-            Job treatment = Compatibility.MakeTreatmentRoundJob(worker, patient, option);
+            // A null option would trigger the legacy fallback, hiding selector failures.
+            Job treatment = option == null ? null : Compatibility.MakeTreatmentRoundJob(worker, patient, option);
             Check(treatment?.def?.defName == "Stabilize" && treatment.targetB.Thing == medicine,
                 "SAR constructs native CE stabilization from carried medicine");
             selectedMedicineId = medicine.ThingID;

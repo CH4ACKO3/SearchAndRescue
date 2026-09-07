@@ -24,6 +24,7 @@ static class ProductionPolicyTests
         ReadinessBoundaries();
         PendingAndTourniquetBoundaries();
         StageBoundaries();
+        CombinationBudgets();
 
         // Explicit truth tables preserve the two intentionally different carry boundaries.
         (bool current, bool sar, bool blocked)[] planning =
@@ -37,6 +38,19 @@ static class ProductionPolicyTests
             Check(JobOwnershipRules.PreserveManagedCarry(row.rescue, row.transport) == row.preserve,
                 $"cleanup: rescue={row.rescue}, transport={row.transport}");
         Console.WriteLine($"PASS: {checks} direct production clinical/ownership/readiness/stage checks");
+    }
+
+    private static void CombinationBudgets()
+    {
+        int Budget(params (bool alternative, int count)[] demands) =>
+            CombinationResourceRules.SharedBudget(demands, d => d.alternative, d => d.count);
+        Check(Budget((true, 2), (true, 3)) == 3, "MI/ET shared blood stack is an alternative budget");
+        Check(Budget((true, 3), (true, 2)) == 3, "provider registration order preserves budget");
+        Check(Budget((false, 2), (true, 3), (true, 2)) == 5, "independent treatment still receives its dose");
+        Check(Budget((false, 2), (false, 3)) == 5, "independent consumables add normally");
+        Check(Budget((true, 3)) == 3, "single provider keeps full budget");
+        Check(Budget() == 0, "no remaining need releases budget");
+        Check(Budget((true, 0), (false, -1)) == 0, "invalid negative demand cannot subtract resources");
     }
 
     private static void InfectionBoundaries()

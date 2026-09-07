@@ -104,8 +104,8 @@ An enemy carrier owns transport while physically carrying a casualty, and No One
 MedPod — Compatible
 Enter-pod and rescue jobs count as transport ownership, and an assigned medical pod registers as an external facility. The warden's direct scan and the patient's self-entry NonScanJob yield while SAR owns the corresponding stage.
 
-RH2 — BCD: CASEVAC — Compatible
-Its specialized rescue and prisoner-transport jobs count as external ownership. Manual right-click commands retain the original mod's behavior.
+RH2 — BCD: CASEVAC — Integration
+Workers assigned to Field Rescue and CASEVAC start unattended evacuations first, then join existing teams or upgrade nearby SAR transports. Manual commands retain control. Upgrades require a nearby carrier and enough remaining route; rescue points retain ordinary evacuation.
 
 Smarter Capture Them — Compatible
 Automatic capture and transport WorkGivers participate in the shared ownership gate. Player-forced orders have priority.
@@ -134,7 +134,7 @@ Nurse Job — Integration
 Provides Prefer nursing and Nursing only rescue modes; the default mode uses Hauling. For designated casualties, transfusions, infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with doctors taking over when nurses are unavailable. CPR, suction, defibrillation, and ordinary tending are matched to doctors by medical skill.
 
 Work Tab — Compatible
-Reads detailed WorkGiver priorities.
+Reads detailed WorkGiver priorities. The new Doctor subtask "provide emergency medical care", together with Field Rescue, allows emergency-only medics while routine tending and surgery remain disabled. Routine care respects humanlike/animal subtasks. Work Tab is optional.
 
 Mech Work Tab — Compatible
 Reads detailed work settings for colony mechs.

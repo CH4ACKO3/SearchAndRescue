@@ -9,7 +9,7 @@ using Verse.AI;
 
 namespace SearchAndRescue
 {
-    public sealed class SearchAndRescueCoordinator : MapComponent
+    public sealed partial class SearchAndRescueCoordinator : MapComponent
     {
         private const int JobStartGraceTicks = 30;
         private const int MaintenanceInterval = 60;
@@ -670,6 +670,7 @@ namespace SearchAndRescue
         {
             base.MapComponentTick();
             EngineBenchmarkDiagnostics.Tick(map);
+            CasevacAndBoundaryDiagnostics.Observe(map);
             bool profile = SearchAndRescuePerformanceDiagnostics.Enabled;
             long mapTickStart = profile
                 ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.MapTick)
@@ -3593,11 +3594,17 @@ namespace SearchAndRescue
                 }
 
                 List<TransportTask> alternatives = new List<TransportTask>();
+                bool resuscitationDoseNearby = plan.Demands.Any(demand => demand.IsResuscitation &&
+                    demand.ResourceDef != null && ResourceCountNearPatient(patient, demand.ResourceDef, 1) > 0);
                 foreach (MedicalResourceDemand candidate in plan.Demands
                              .Where(candidate => candidate.ResourceDef != null)
                              .OrderByDescending(candidate => candidate.Essential)
                              .ThenByDescending(candidate => candidate.Benefit))
                 {
+                    // A clinically eligible dose already at the casualty can be used
+                    // before another provider's alternative is delivered. Replan after
+                    // the one-shot treatment, preserving saline/blood safety decisions.
+                    if (candidate.IsResuscitation && resuscitationDoseNearby) continue;
                     int required = candidate.Reusable ? 1 : Math.Max(1, candidate.Count);
                     int alreadyNear = ResourceCountNearPatient(patient, candidate.ResourceDef, required);
                     if (alreadyNear >= required)
@@ -3676,12 +3683,20 @@ namespace SearchAndRescue
 
             foreach (MedicalCarePlan plan in orderedPlans)
             {
+                bool resuscitationReferenced = false;
                 foreach (IGrouping<ThingDef, MedicalResourceDemand> demandGroup in plan.Demands
                              .Where(demand => demand.ResourceDef != null)
-                             .GroupBy(demand => demand.ResourceDef))
+                             .GroupBy(demand => demand.ResourceDef)
+                             .OrderByDescending(group => group.Max(demand => demand.Benefit)))
                 {
-                    int required = demandGroup.Sum(demand => demand.Reusable ? 1 : Math.Max(1, demand.Count));
-                    ReconcileResourceCountNearPatient(plan.Patient, demandGroup.Key, required);
+                    int required = CombinationResourceRules.SharedBudget(demandGroup.Where(demand =>
+                            !resuscitationReferenced || !demand.IsResuscitation),
+                        demand => demand.IsResuscitation,
+                        demand => demand.Reusable ? 1 : Math.Max(1, demand.Count));
+                    if (required <= 0) continue;
+                    int referenced = ReconcileResourceCountNearPatient(plan.Patient, demandGroup.Key, required);
+                    if (referenced > 0 && demandGroup.Any(demand => demand.IsResuscitation))
+                        resuscitationReferenced = true;
                 }
                 if (plan.EssentialMedicineRounds > 0)
                 {
@@ -5007,7 +5022,9 @@ namespace SearchAndRescue
 
             if (bed != null)
             {
-                job = JobMaker.MakeJob(patient.IsPrisonerOfColony ? JobDefOf.Capture : JobDefOf.Rescue, patient, bed);
+                job = patient.RaceProps.IsFlesh && Compatibility.CanUseCasevac(rescuer)
+                    ? Compatibility.MakeCasevacJob(patient, bed)
+                    : JobMaker.MakeJob(patient.IsPrisonerOfColony ? JobDefOf.Capture : JobDefOf.Rescue, patient, bed);
                 return true;
             }
 
@@ -5055,6 +5072,7 @@ namespace SearchAndRescue
         private static bool NeedsFieldStabilization(Pawn patient)
         {
             if (MechanicalCare.IsPatient(patient)) return MechanicalCare.NeedsRepair(patient);
+            if (patient?.health?.hediffSet.hediffs.Any(FieldTreatmentBoundary.IsEmergency) == true) return true;
             if (InfectionPriority.NeedsUrgentTend(patient) ||
                 Compatibility.HasFieldTreatableEmergency(patient) ||
                 Compatibility.HasMoreInjuriesTransfusionNeed(patient) ||
@@ -5322,6 +5340,9 @@ namespace SearchAndRescue
 
         private bool TreatmentAdmitted(Pawn patient, SearchAndRescueStage stage)
         {
+            if (stage == SearchAndRescueStage.FollowupTreat && !MechanicalCare.IsPatient(patient) &&
+                !RobotMedicalProfile.OwnsMedicineSelection(patient) && !FieldTreatmentBoundary.AtCareLocation(patient))
+                return false;
             return TryGetCareAdmission(patient, out CareAdmission admission) &&
                    admission.AllowsStage(stage);
         }
@@ -5340,6 +5361,7 @@ namespace SearchAndRescue
 
         private bool WorkerReadyForFollowupLane(Pawn worker, Pawn patient)
         {
+            if (!Compatibility.RoutinePatientWorkAllowed(worker, patient)) return false;
             return UsesAutomaticRoutineLane(patient)
                 ? Compatibility.CanPerformAutomaticRoutineTreatmentWork(worker)
                 : Compatibility.CanPerformMarkedFollowupTreatmentWork(worker);

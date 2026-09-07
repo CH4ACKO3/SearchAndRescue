@@ -7,10 +7,22 @@ namespace SearchAndRescue
     internal enum RescueWorkProvider
     {
         None,
+        Casevac,
         Hauling,
         Nursing,
         Paramedic,
         Animal
+    }
+
+    public sealed class WorkGiver_SearchAndRescueCasevac : WorkGiver
+    {
+        public override Job NonScanJob(Pawn pawn)
+        {
+            var coordinator = pawn.Map?.GetComponent<SearchAndRescueCoordinator>();
+            if (!Compatibility.CanUseCasevac(pawn)) return null;
+            return coordinator?.TryIssueJob(pawn, SearchAndRescueStage.Rescue, RescueWorkProvider.Casevac)
+                ?? coordinator?.TryJoinOrUpgradeCasevac(pawn);
+        }
     }
 
     public sealed class WorkGiver_SearchAndRescueCapture : WorkGiver

@@ -1,0 +1,27 @@
+{
+  "date": "2026-09-08",
+  "assemblySha256": "6B35545334531990410C74CE46320FE1F7CC5B146DD0726FEA82BE341893256D",
+  "activeModCount": 21,
+  "build": { "errors": 0, "warnings": 0 },
+  "reservationChecks": { "passed": 10, "failed": 0, "soloCancellationCycles": 8 },
+  "automaticCasevac": {
+    "ticks": 4915,
+    "observedBoostedCoMovingSteps": 19,
+    "automaticTeam": true,
+    "deliveredAlive": true,
+    "teamExited": true,
+    "noTeamBedReservations": true,
+    "allReservationsHaveValidJobDefs": true
+  },
+  "combinedDemo": {
+    "ticks": 27122,
+    "nullReferenceOrReservationErrors": 0,
+    "endSaveReservations": 50,
+    "endSaveUnresolvedJobReferences": 0,
+    "endSaveCasevacReservations": 0,
+    "endSave": "SAR_CASEVAC_Emergency_Demo_20260908_Verified",
+    "otherWarnings": "Two discarded social-reference warnings while saving generated demo pawns. Existing translation warnings remain."
+  },
+  "log": "D:/Projects/rimworld/work/sar-interactive-demo-20260908/Player.casevac-lifecycle-pass.log",
+  "delivery": "Latest DLL deployed; demo Start save reloaded visually ready and paused; game and 21-mod config left active for user inspection. Original config preserved in Config.before."
+}

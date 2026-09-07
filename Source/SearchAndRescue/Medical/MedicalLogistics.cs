@@ -108,6 +108,9 @@ namespace SearchAndRescue
         public readonly bool Reusable;
         public readonly double Benefit;
 
+        public bool IsResuscitation => Intervention == MedicalIntervention.Saline ||
+            Intervention == MedicalIntervention.Blood || Intervention == MedicalIntervention.HemogenTransfusion;
+
         public MedicalResourceDemand(
             ThingDef resourceDef,
             MedicalIntervention intervention,
@@ -155,13 +158,13 @@ namespace SearchAndRescue
                 return new MedicalCarePlan(patient, now, int.MaxValue, 0, demands);
             }
 
-            int significantUntended = patient.health.hediffSet.hediffs.Count(hediff =>
+            int significantUntended = FieldTreatmentBoundary.Tendable(patient).Count(hediff =>
                 hediff.TendableNow() && (hediff.BleedRate >= 0.04f || hediff.CurStage?.lifeThreatening == true ||
                                        InfectionPriority.IsInfection(hediff)));
             int medicineRounds = Compatibility.EffectiveMedicalCare(patient) <= MedicalCareCategory.NoMeds
                 ? 0
                 : significantUntended == 0
-                    ? patient.health.HasHediffsNeedingTend() ? 1 : 0
+                    ? FieldTreatmentBoundary.Tendable(patient).Any() ? 1 : 0
                     : Mathf.Clamp(significantUntended, 1, 4);
 
             // CE's Stabilize driver walks every currently stabilizable wound in one job and

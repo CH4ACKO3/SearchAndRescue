@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef MayRequire="RH2.BCD.CASEVAC">
+    <defName>SAR_AutomaticCasevac</defName>
+    <label>coordinate battlefield CASEVAC</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueCasevac</giverClass>
+    <workType>CP_CasevacRescue</workType>
+    <priorityInType>100</priorityInType>
+    <verb>evacuate</verb>
+    <gerund>evacuating</gerund>
+    <requiredCapacities><li>Manipulation</li></requiredCapacities>
+    <directOrderable>false</directOrderable>
+  </WorkGiverDef>
+</Defs>

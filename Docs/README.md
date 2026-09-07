@@ -1,7 +1,9 @@
 # Project guide
 
+- [CASEVAC and emergency boundary](reviews/2026-09-08-casevac-emergency-boundary.zh-CN.md): behavior, supported emergency conditions, and live validation
 - Compatibility: [English](compatibility/README.md) / [中文](compatibility/README.zh-CN.md)
 - [Live testing](development/Testing.zh-CN.md) and [compatibility test matrix](compatibility/TestMatrix.zh-CN.md)
+- [Multi-mod combination review](reviews/2026-09-08-combination-compatibility.zh-CN.md): current policy precedence, 14 functional combinations, integration proposals and targeted runtime cases
 - [Random scenarios and weight search](../Tools/SchedulerOptimizer/README.zh-CN.md): reproducible offline screening, fixed scoring, held-out evaluation and replay
 - [Engine workers and TPE](../Tools/SchedulerOptimizer/ENGINE.zh-CN.md): headless workers, survival-first overload scenarios and completion-based routine regression
 - [Headless and overload validation](reviews/2026-09-06-engine-overload.zh-CN.md): six-worker vanilla tests, graphical controls and CE smoke tests

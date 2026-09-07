@@ -116,7 +116,7 @@
   <SAR_Compatibility_TraumaTeam>Recognizes team ownership before its first job, its treatment/transport jobs, and releases stale ownership when no operational responder remains.</SAR_Compatibility_TraumaTeam>
   <SAR_Compatibility_MovePatient>Asks the patient's transfer component for its preferred medical bed before falling back to vanilla bed search.</SAR_Compatibility_MovePatient>
   <SAR_Compatibility_MedPod>Recognizes pod delivery, rescue, self-entry and facility occupancy to coordinate with MedPod’s admission and treatment flow.</SAR_Compatibility_MedPod>
-  <SAR_Compatibility_Casevac>CASEVAC rescue and capture transport jobs are registered as external ownership; its manual commands remain authoritative.</SAR_Compatibility_Casevac>
+  <SAR_Compatibility_Casevac>Workers assigned to Field Rescue and CASEVAC start unattended evacuations first, then join existing teams or upgrade nearby SAR transports. Manual commands retain control.</SAR_Compatibility_Casevac>
   <SAR_Compatibility_SmarterCapture>Its automatic capture WorkGiver participates in the common ownership gate; player-forced capture remains authoritative.</SAR_Compatibility_SmarterCapture>
   <SAR_Compatibility_PickUpAndHaul>Keeps supplies assigned to patients and current medical plans available for battlefield care.</SAR_Compatibility_PickUpAndHaul>
   <SAR_Compatibility_Hospitality>Coordinates rescue through standard beds, guest status and faction relations. Hospitality settings and systems provide reception, fees and visitor activities.</SAR_Compatibility_Hospitality>

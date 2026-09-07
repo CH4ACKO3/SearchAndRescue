@@ -4,7 +4,7 @@
 	<modIconPath>Things/Item/Resource/Medicine/MedicineIndustrial/MedicineIndustrial_a</modIconPath>
 	<author>CH4AcKO3</author>
 	<packageId>CH4AcKO3.SearchAndRescue</packageId>
-	<modVersion>0.1.0-alpha.3</modVersion>
+	<modVersion>0.1.0-alpha.4</modVersion>
 	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278</url>
 	<supportedVersions>
 		<li>1.6</li>
@@ -59,7 +59,8 @@ Features
 • Two ways to issue orders: choose a command and drag over casualties, or select casualties first and use the command in their bottom action bar.
 • A dedicated Field Rescue work type: sets the overall priority of battlefield rescue, with Doctor, Hauling and other relevant work types enabling individual tasks.
 • Unified triage and matching: assigns patients to doctors, nurses, and carriers using injury severity, blood loss, infection and immunity progress, distance, skill, work priority, current jobs, and switching costs.
-• Stabilize first, finish later: emergency care addresses immediate lethal threats. Treatment reactivates if the patient deteriorates, while ordinary wounds on stable patients are handled at a lower priority.
+• Stabilize first, finish later: field care treats bleeding and supported urgent conditions. Minor wounds wait until a safe bed or rescue point. Work Tab can assign emergency care separately from routine tending and surgery.
+• Automatic CASEVAC integration: enable Field Rescue and CASEVAC work to evacuate unattended patients first, then join teams or upgrade nearby SAR bed transports. Without a bed, rescuers can carry patients individually to a designated rescue point.
 • Coordinated rescue: when doctors are scarce, casualties can be evacuated first. An arriving doctor may intercept a casualty for treatment, while carriers decide whether to wait or help someone else based on the estimated treatment time.
 • Battlefield medical logistics: calculates medicine, blood, and special-device budgets from each casualty&apos;s actual shortage. Doctors weigh whether a supply detour is worthwhile, while carriers can deliver missing supplies.
 • Player control: manually ordered treatment, carrying, and capture take priority and retain the player’s chosen targets.
@@ -86,6 +87,7 @@ Integration
 • Hemogen Pack - Emergency transfusion
 • Vehicle Framework
 • Nurse Job
+• RH2 — BCD: CASEVAC
 
 
 Compatible
@@ -103,7 +105,6 @@ Compatible
 • Trauma Team Complete
 • Move the Patient
 • MedPod
-• RH2 — BCD: CASEVAC
 • Smarter Capture Them
 • Pick Up And Haul
 • Work Tab

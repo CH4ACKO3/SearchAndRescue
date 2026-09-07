@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef>
+    <defName>SAR_EmergencyMedicalCare</defName>
+    <label>provide emergency medical care</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueTreat</giverClass>
+    <workType>Doctor</workType>
+    <emergency>true</emergency>
+    <priorityInType>130</priorityInType>
+    <verb>stabilize</verb>
+    <gerund>stabilizing</gerund>
+    <requiredCapacities><li>Manipulation</li></requiredCapacities>
+    <directOrderable>false</directOrderable>
+    <canBeDoneByMechs>false</canBeDoneByMechs>
+  </WorkGiverDef>
+</Defs>

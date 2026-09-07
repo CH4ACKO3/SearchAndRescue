@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="..\..\Source\SearchAndRescue\Medical\CombinationResourceRules.cs" Link="CombinationResourceRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\WeightedBipartiteMatcher.cs" Link="WeightedBipartiteMatcher.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\JobOwnershipRules.cs" Link="JobOwnershipRules.cs" />
     <Compile Include="..\..\Source\SearchAndRescue\Scheduling\JobIdentity.cs" Link="JobIdentity.cs" />

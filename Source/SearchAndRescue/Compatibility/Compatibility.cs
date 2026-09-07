@@ -8,7 +8,7 @@ using Verse.AI;
 
 namespace SearchAndRescue
 {
-    internal static class Compatibility
+    internal static partial class Compatibility
     {
         private static readonly JobDef FirstAidJob = DefDatabase<JobDef>.GetNamedSilentFail("CP_FirstAid");
         private static readonly JobDef ArrestHereJob = DefDatabase<JobDef>.GetNamedSilentFail("CP_ImprisonInPlace");
@@ -213,8 +213,10 @@ namespace SearchAndRescue
                     field.Name.StartsWith(
                         "_minBleedRateForAutoTourniquet_",
                         StringComparison.Ordinal)));
-        private static readonly Lazy<ThingDef> MoreInjuriesBloodDevice =
-            new Lazy<ThingDef>(ResolveMoreInjuriesBloodDevice);
+        private static readonly Lazy<PropertyInfo> MoreInjuriesBloodDeviceProperty =
+            new Lazy<PropertyInfo>(() => FindLoadedType(
+                "MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_UseBloodBag")
+                ?.GetProperty("JobDeviceDef", BindingFlags.Public | BindingFlags.Static));
 
         public static bool UsesCombatExtended => StabilizeJob != null &&
             LoadedModManager.RunningModsListForReading.Any(mod =>
@@ -482,9 +484,13 @@ namespace SearchAndRescue
                     return MedicalCareCategory.NoMeds;
                 }
 
-                MedicalCareCategory advice = detailed ? categories.Max() : categories[0];
-                return advice < pawnLimit ? advice : pawnLimit;
+                // CYM already clamps ordinary policies to the pawn limit. Its explicit
+                // per-hediff override intentionally bypasses that limit; preserve it.
+                return detailed ? categories.Max() : categories[0];
             }
+
+            if (UsesSmartMedicine && TryGetSmartMedicineCare(patient, out MedicalCareCategory smartCare))
+                return smartCare;
 
             if (PharmacistTendAdviceMethod == null)
             {
@@ -522,13 +528,6 @@ namespace SearchAndRescue
                     return false;
                 }
 
-                MedicalCareCategory pawnLimit =
-                    patient?.playerSettings?.medCare ?? MedicalCareCategory.HerbalOrWorse;
-                if (!pawnLimit.AllowsMedicine(medicineDef))
-                {
-                    return false;
-                }
-
                 return detailed
                     ? categories.Contains(MedicineCareCategory(medicineDef))
                     : categories[0].AllowsMedicine(medicineDef);
@@ -547,9 +546,7 @@ namespace SearchAndRescue
             if (TryGetChooseYourMedicinePolicy(patient, out List<MedicalCareCategory> categories,
                     out bool detailed))
             {
-                if (categories.Count == 0 ||
-                    !(patient?.playerSettings?.medCare ?? MedicalCareCategory.HerbalOrWorse)
-                        .AllowsMedicine(medicine.def))
+                if (categories.Count == 0)
                 {
                     return false;
                 }
@@ -601,7 +598,7 @@ namespace SearchAndRescue
             DefDatabase<ThingDef>.GetNamedSilentFail("Bandage");
         internal static ThingDef MoreInjuriesSalineBag =>
             DefDatabase<ThingDef>.GetNamedSilentFail("SalineBag");
-        internal static ThingDef MoreInjuriesBloodBag => MoreInjuriesBloodDevice.Value;
+        internal static ThingDef MoreInjuriesBloodBag => ResolveMoreInjuriesBloodDevice();
         internal static ThingDef HemogenPack => HemogenPackDef;
         public static bool CanPerformCaptureWork(Pawn worker)
         {
@@ -642,6 +639,13 @@ namespace SearchAndRescue
         {
             return CanPerformMarkedFollowupTreatmentWork(worker) ||
                    CanPerformAutomaticRoutineTreatmentWork(worker);
+        }
+
+        internal static bool RoutinePatientWorkAllowed(Pawn worker, Pawn patient)
+        {
+            if (IsColonyWorkMech(worker) || HardworkingCompatibility.IsWorker(worker)) return true;
+            return DetailedWorkPriority(worker, DefDatabase<WorkGiverDef>.GetNamedSilentFail(
+                patient.RaceProps.Animal ? "DoctorTendToAnimals" : "DoctorTendToHumanlikes"), WorkTypeDefOf.Doctor) > 0;
         }
 
         public static bool CanPerformMarkedFollowupTreatmentWork(Pawn worker)
@@ -898,6 +902,13 @@ namespace SearchAndRescue
             }
             if (selectedOption != null && selectedOption.IsValid)
             {
+                // Settings and wounds can change between matching and WorkGiver execution.
+                // Revalidate the selected dose, without replacing the claimed stack.
+                if (selectedOption.Resource?.def.IsMedicine == true &&
+                    (selectedOption.Intervention == MedicalIntervention.VanillaTend ||
+                     selectedOption.Intervention == MedicalIntervention.CombatExtendedStabilize ||
+                     selectedOption.Intervention == MedicalIntervention.Rh2FirstAid) &&
+                    !AllowsMedicine(patient, selectedOption.Resource)) return null;
                 Job selectedJob = MakeSelectedTreatmentJob(doctor, patient, selectedOption);
                 if (selectedJob == null || !CanStartAutomaticTreatmentJob(doctor, patient, selectedJob))
                 {
@@ -1054,6 +1065,9 @@ namespace SearchAndRescue
                 doctor,
                 patient,
                 JobDefOf.TendPatient);
+            bool canTend = CanPerformTreatmentWork(doctor) ||
+                FieldTreatmentBoundary.AtCareLocation(patient) && CanPerformFollowupTreatmentWork(doctor) &&
+                RoutinePatientWorkAllowed(doctor, patient);
             foreach (MedicalResourceDemand demand in plan.Demands
                          .Where(demand => demand.ResourceDef != null)
                          .Where(demand => CanPerformTreatmentIntervention(doctor, demand.Intervention))
@@ -1119,7 +1133,7 @@ namespace SearchAndRescue
             // and minimum-quality rules); SAR only filters that exact result through its shared
             // cross-patient ledger. Without Smart Medicine, preserve the normal inventory/potency
             // ordering and expose patient-referenced field deliveries as additional candidates.
-            if (plan.EssentialMedicineRounds > 0 && CanPerformTreatmentWork(doctor))
+            if (plan.EssentialMedicineRounds > 0 && canTend)
             {
                 IEnumerable<Thing> availableMedicines = ledger.AvailableMedicines(doctor, patient)
                     .Where(thing => !ceStabilizeAvailable ||
@@ -1128,7 +1142,7 @@ namespace SearchAndRescue
                                         patient,
                                         thing));
                 List<ThingCount> medicineCandidates;
-                if (UsesSmartMedicine && TryFindSmartMedicineSelection(
+                if (UsesSmartMedicine && !UsesChooseYourMedicine && TryFindSmartMedicineSelection(
                         doctor,
                         patient,
                         onlyUseInventory: false,
@@ -1136,7 +1150,7 @@ namespace SearchAndRescue
                 {
                     medicineCandidates = smartSelection
                         .Where(candidate => candidate.Thing != null && candidate.Count > 0 &&
-                                            candidate.Thing.def.IsMedicine &&
+                                            candidate.Thing.def.IsMedicine && AllowsMedicine(patient, candidate.Thing) &&
                                             (!ceStabilizeAvailable ||
                                              CombatExtendedCanCollectMedicineDirectly(
                                                  doctor,
@@ -1150,10 +1164,12 @@ namespace SearchAndRescue
                 }
                 else
                 {
-                    Thing medicine = UsesChooseYourMedicine
-                        ? HealthAIUtility.FindBestMedicine(doctor, patient)
-                        : availableMedicines
-                            .OrderByDescending(thing => doctor.inventory?.innerContainer.Contains(thing) == true)
+                    // Select from ledger-available sources using the policy that built the
+                    // budget. Calling the patched vanilla finder here lets a second policy
+                    // mod replace CYM's result depending on Harmony order.
+                    Thing medicine = availableMedicines
+                            .OrderByDescending(thing => !UsesChooseYourMedicine &&
+                                doctor.inventory?.innerContainer.Contains(thing) == true)
                             .ThenByDescending(thing => MedicinePreference(patient, thing))
                             .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
                                 ? 0
@@ -1251,10 +1267,14 @@ namespace SearchAndRescue
             // medicine stack disappears. The coordinator compares this direct route with the
             // quality/medical benefit of every equipment detour. CE stabilization is the one
             // exception because its job cannot run without medicine.
-            if (CanPerformTreatmentWork(doctor) && patient.health.HasHediffsNeedingTend() &&
+            if (canTend && FieldTreatmentBoundary.Tendable(patient).Any() &&
                 !ceStabilizeAvailable)
             {
-                MedicalIntervention fallback = FirstAidJob != null && !UsesSmartMedicine && !UsesCombatExtended
+                // RH2's medicine route has its own multi-dose pickup semantics. Its
+                // medicine-free aid can coexist with SM selection, but requires a lying
+                // patient and must not replace CE's stabilization protocol.
+                MedicalIntervention fallback = FirstAidJob != null && !UsesCombatExtended &&
+                    patient.GetPosture() != PawnPosture.Standing
                         ? MedicalIntervention.Rh2FirstAid
                         : MedicalIntervention.VanillaTend;
                 if (fallback != MedicalIntervention.VanillaTend || vanillaTendAvailable)
@@ -1270,6 +1290,14 @@ namespace SearchAndRescue
                 }
             }
 
+            // Keep provider demands as alternatives: ET supports patient-held packs
+            // which MI may not collect directly. Prefer MI's richer blood treatment
+            // only when it has a viable option for this same physical resource.
+            HashSet<Thing> nativeBloodSources = new HashSet<Thing>(options
+                .Where(option => option.Intervention == MedicalIntervention.Blood)
+                .Select(option => option.Resource));
+            options.RemoveAll(option => option.Intervention == MedicalIntervention.HemogenTransfusion &&
+                nativeBloodSources.Contains(option.Resource));
             return options;
         }
 
@@ -1510,6 +1538,7 @@ namespace SearchAndRescue
                     }
                 case MedicalIntervention.Blood:
                     {
+                        if (option.Resource?.def != MoreInjuriesBloodBag) return null;
                         bool shockDose = MoreInjuriesRequiredTransfusions(
                             patient,
                             MedicalIntervention.Blood) == 0 &&
@@ -1739,12 +1768,9 @@ namespace SearchAndRescue
         {
             try
             {
-                Type driverType = FindLoadedType(
-                    "MoreInjuries.HealthConditions.HeavyBleeding.Transfusions.JobDriver_UseBloodBag");
-                ThingDef nativeDevice = driverType?.GetProperty(
-                        "JobDeviceDef",
-                        BindingFlags.Public | BindingFlags.Static)
-                    ?.GetValue(null) as ThingDef;
+                // MI allows switching whole blood/hemogen in settings during a game.
+                // Cache the accessor, not its setting-dependent result.
+                ThingDef nativeDevice = MoreInjuriesBloodDeviceProperty.Value?.GetValue(null) as ThingDef;
                 return nativeDevice ?? DefDatabase<ThingDef>.GetNamedSilentFail("WholeBloodBag");
             }
             catch
@@ -1802,6 +1828,7 @@ namespace SearchAndRescue
 
         public static RescueWorkProvider RescueProviderFor(Pawn worker)
         {
+            if (CanUseCasevac(worker)) return RescueWorkProvider.Casevac;
             if (IsTrainedRescueAnimal(worker) && !HardworkingCompatibility.IsWorker(worker))
             {
                 return RescueWorkProvider.Animal;
@@ -1858,6 +1885,7 @@ namespace SearchAndRescue
         public static int RescueWorkPriority(Pawn worker)
         {
             RescueWorkProvider provider = RescueProviderFor(worker);
+            if (provider == RescueWorkProvider.Casevac) return CasevacPriority(worker);
             if (provider == RescueWorkProvider.Animal)
             {
                 return 3;
@@ -2146,7 +2174,10 @@ namespace SearchAndRescue
             // make it removable before every tendable bleed in this subtree is dealt with.
             return patient.health.hediffSet.hediffs
                 .Where(hediff => hediff.def.defName == "TourniquetApplied" && hediff.Part != null)
-                .FirstOrDefault(tourniquet => !patient.health.hediffSet.hediffs.Any(hediff =>
+                .OrderByDescending(tourniquet => tourniquet.Part.def.defName == "Neck")
+                .FirstOrDefault(tourniquet => tourniquet.Part.def.defName == "Neck" &&
+                    patient.health.hediffSet.hediffs.Any(h => h.def.defName == "ChokingOnTourniquet") ||
+                    !patient.health.hediffSet.hediffs.Any(hediff =>
                     hediff != tourniquet && hediff.Bleeding && hediff.TendableNow() &&
                     IsOnBodyPartOrChildren(hediff.Part, tourniquet.Part)));
         }
@@ -2353,7 +2384,7 @@ namespace SearchAndRescue
             // life-threatening conditions that field tending cannot resolve but a loaded
             // surgery recipe can.
             return hediff?.CurStage?.lifeThreatening == true && !hediff.TendableNow() &&
-                   HasSurgeryFor(hediff.def);
+                   (HasSurgeryFor(hediff.def) || UsesMoreInjuries && hediff.def.defName == "GangreneWet" && hediff.Part != null);
         }
 
         private static bool IsRunningMod(string packageId)
@@ -2470,6 +2501,22 @@ namespace SearchAndRescue
 
             int fieldPriority = FieldRescueChildPriority(worker, workGiver);
             int providerPriority = WorkTypePriority(worker, providerWorkType);
+            if (providerWorkType == WorkTypeDefOf.Doctor && !IsColonyWorkMech(worker) &&
+                !HardworkingCompatibility.IsWorker(worker))
+            {
+                WorkGiverDef provider = workGiver == SearchAndRescueDefOf.SAR_TreatMarked
+                    ? SearchAndRescueDefOf.SAR_EmergencyMedicalCare
+                    : workGiver == SearchAndRescueDefOf.SAR_FollowupTreatMarked ||
+                      workGiver == SearchAndRescueDefOf.SAR_AutomaticRoutineTreat
+                        ? DefDatabase<WorkGiverDef>.GetNamedSilentFail("DoctorTendToHumanlikes") : null;
+                if (provider != null) providerPriority = DetailedWorkPriority(worker, provider, providerWorkType);
+                if (provider?.defName == "DoctorTendToHumanlikes")
+                {
+                    int animal = DetailedWorkPriority(worker,
+                        DefDatabase<WorkGiverDef>.GetNamedSilentFail("DoctorTendToAnimals"), providerWorkType);
+                    if (animal > 0) providerPriority = providerPriority > 0 ? Math.Min(providerPriority, animal) : animal;
+                }
+            }
             return fieldPriority <= 0 || providerPriority <= 0
                 ? 0
                 : Math.Max(fieldPriority, providerPriority);
@@ -2562,6 +2609,7 @@ namespace SearchAndRescue
         private static bool TryMakeSmartMedicineJob(Pawn doctor, Pawn patient, out Job job)
         {
             job = null;
+            if (UsesChooseYourMedicine) return false;
             if (!TryFindSmartMedicinePrimary(doctor, patient, onlyUseInventory: false, out Thing primaryMedicine))
             {
                 return false;

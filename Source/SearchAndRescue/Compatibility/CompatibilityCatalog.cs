@@ -120,7 +120,7 @@ namespace SearchAndRescue
                     "konstantynopolitaneczka.movethepatient"),
                 Entry("MedPod", "MedPod", CompatibilitySupportLevel.Compatible,
                     null, "sumghai.Medpod"),
-                Entry("[RH2] BCD: CASEVAC", "Casevac", CompatibilitySupportLevel.Compatible,
+                Entry("[RH2] BCD: CASEVAC", "Casevac", CompatibilitySupportLevel.Integration,
                     null, "RH2.BCD.CASEVAC"),
                 Entry("Smarter Capture Them", "SmarterCapture", CompatibilitySupportLevel.Compatible,
                     null, "lke.Smarter.CaptureThem"),

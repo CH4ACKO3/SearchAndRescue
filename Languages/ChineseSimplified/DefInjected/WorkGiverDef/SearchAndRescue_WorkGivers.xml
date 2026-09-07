@@ -40,4 +40,10 @@
   <SAR_MechFieldRescueDoctor.label>机械体战地医疗</SAR_MechFieldRescueDoctor.label>
   <SAR_MechFieldRescueDoctor.verb>救援</SAR_MechFieldRescueDoctor.verb>
   <SAR_MechFieldRescueDoctor.gerund>救援中</SAR_MechFieldRescueDoctor.gerund>
+  <SAR_EmergencyMedicalCare.label>执行紧急医疗</SAR_EmergencyMedicalCare.label>
+  <SAR_EmergencyMedicalCare.verb>急救</SAR_EmergencyMedicalCare.verb>
+  <SAR_EmergencyMedicalCare.gerund>正在急救</SAR_EmergencyMedicalCare.gerund>
+  <SAR_AutomaticCasevac.label>协调战场 CASEVAC</SAR_AutomaticCasevac.label>
+  <SAR_AutomaticCasevac.verb>撤离</SAR_AutomaticCasevac.verb>
+  <SAR_AutomaticCasevac.gerund>正在撤离</SAR_AutomaticCasevac.gerund>
 </LanguageData>
