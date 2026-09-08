@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.0-alpha.5
+
+- Put bleeding and emergency care first in the Field Rescue tooltip, followed by evacuation and follow-up care, without changing work scanning priorities or permissions.
+
 ## 0.1.0-alpha.4
 
 - Fix CASEVAC bed reservation cleanup and stale cross-patient team membership; preserve unrelated bed reservations. Use native unboosted speed when admitting helpers and verify actual following/acceleration.

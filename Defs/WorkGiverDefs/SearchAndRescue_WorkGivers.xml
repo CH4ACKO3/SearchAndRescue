@@ -29,7 +29,7 @@
 
   <WorkGiverDef>
     <defName>SAR_TreatMarked</defName>
-    <label>coordinate emergency medical care</label>
+    <label>coordinate treatment of bleeding and other emergencies</label>
     <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueTreat</giverClass>
     <workType>SAR_FieldRescue</workType>
     <emergency>true</emergency>
