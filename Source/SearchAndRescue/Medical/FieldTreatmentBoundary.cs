@@ -44,7 +44,8 @@ namespace SearchAndRescue
             doctor?.CurJob?.targetA.Pawn == patient &&
             !MechanicalCare.IsPatient(patient) && !RobotMedicalProfile.OwnsMedicineSelection(patient) &&
             (SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob, SearchAndRescueStage.Treat) ||
-             SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob) && !AtCareLocation(patient));
+             (SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob) ||
+              RimkitCompatibility.IsManagedRound(doctor.CurJob)) && !AtCareLocation(patient));
 
         [ThreadStatic] internal static Pawn EmergencyPatient;
     }

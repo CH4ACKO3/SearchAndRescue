@@ -731,8 +731,9 @@ namespace SearchAndRescue
                    intervention == MedicalIntervention.HemogenTransfusion;
         }
 
-        internal static bool CanPerformTreatmentIntervention(Pawn worker, MedicalIntervention intervention)
+        internal static bool CanPerformTreatmentIntervention(Pawn worker, MedicalIntervention intervention, Pawn patient = null)
         {
+            if (!NativeInterventionWorkAllowed(worker, intervention, patient)) return false;
             if (intervention == MedicalIntervention.Tourniquet &&
                 !CanSafelyApplyMoreInjuriesTourniquet(worker))
             {
@@ -742,6 +743,34 @@ namespace SearchAndRescue
             return IsSupportiveIntervention(intervention)
                 ? CanPerformSupportiveTreatmentWork(worker)
                 : CanPerformTreatmentWork(worker);
+        }
+
+        internal static bool NativeInterventionWorkAllowed(Pawn worker, MedicalIntervention intervention, Pawn patient)
+        {
+            if (!UsesWorkTab || IsColonyWorkMech(worker) || HardworkingCompatibility.IsWorker(worker)) return true;
+            // Nursing is an independent provider. A disabled Doctor column must not
+            // revoke the explicitly enabled nursing specialization.
+            if (IsSupportiveIntervention(intervention) && NursingTreatmentWorkGiver != null &&
+                CombinedFieldAndProviderPriority(worker, NursingTreatmentWorkGiver, NursingWork) > 0) return true;
+            string provider = intervention == MedicalIntervention.Suction ? "DoctorManageAirways"
+                : intervention == MedicalIntervention.Defibrillate ? "DoctorUseDefibrillator"
+                : intervention == MedicalIntervention.Saline ? "DoctorUseSalineBag"
+                : intervention == MedicalIntervention.Blood ? "DoctorUseBloodBag" : null;
+            bool Allowed(string name)
+            {
+                WorkGiverDef def = DefDatabase<WorkGiverDef>.GetNamedSilentFail(name);
+                return def == null || DetailedWorkPriority(worker, def, def.workType) > 0;
+            }
+            if (intervention == MedicalIntervention.Cpr)
+            {
+                // Native airway management also supplies CPR when no suction device
+                // is available. Honor the relevant enabled lane for this patient.
+                bool choking = patient?.health?.hediffSet.hediffs.Any(h => h.def.defName == "ChokingOnBlood") == true;
+                bool cardiac = patient?.health?.hediffSet.hediffs.Any(h => h.def.defName == "CardiacArrest") == true;
+                return (cardiac || !choking) && Allowed("DoctorPerformCpr") ||
+                       choking && (Allowed("DoctorManageAirways") || Allowed("DoctorPerformCpr"));
+            }
+            return provider == null || Allowed(provider);
         }
 
         private static bool CanSafelyApplyMoreInjuriesTourniquet(Pawn worker)
@@ -902,6 +931,7 @@ namespace SearchAndRescue
             }
             if (selectedOption != null && selectedOption.IsValid)
             {
+                if (!NativeInterventionWorkAllowed(doctor, selectedOption.Intervention, patient)) return null;
                 // Settings and wounds can change between matching and WorkGiver execution.
                 // Revalidate the selected dose, without replacing the claimed stack.
                 if (selectedOption.Resource?.def.IsMedicine == true &&
@@ -927,6 +957,7 @@ namespace SearchAndRescue
             JobDef moreInjuriesJob = MoreInjuriesTreatmentJobFor(patient);
             if (moreInjuriesJob != null)
             {
+                if (!CanPerformTreatmentIntervention(doctor, MedicalIntervention.Cpr, patient)) return null;
                 Job firstAid = JobMaker.MakeJob(moreInjuriesJob, patient);
                 firstAid.count = 1;
                 firstAid.playerForced = false;
@@ -1068,9 +1099,14 @@ namespace SearchAndRescue
             bool canTend = CanPerformTreatmentWork(doctor) ||
                 FieldTreatmentBoundary.AtCareLocation(patient) && CanPerformFollowupTreatmentWork(doctor) &&
                 RoutinePatientWorkAllowed(doctor, patient);
+            if (canTend && !ceStabilizeAvailable)
+            {
+                MedicalTreatmentOption kit = RimkitCompatibility.Option(doctor, patient);
+                if (kit.IsValid) options.Add(kit);
+            }
             foreach (MedicalResourceDemand demand in plan.Demands
                          .Where(demand => demand.ResourceDef != null)
-                         .Where(demand => CanPerformTreatmentIntervention(doctor, demand.Intervention))
+                         .Where(demand => CanPerformTreatmentIntervention(doctor, demand.Intervention, patient))
                          .OrderByDescending(demand => demand.Essential)
                          .ThenByDescending(demand => demand.Benefit))
             {
@@ -1248,7 +1284,7 @@ namespace SearchAndRescue
             // CPR is the equipment-free fallback for choking and cardiac arrest. It remains
             // deliberately less valuable than a suitable device, so scarce equipment can be
             // priced and routed without making the patient untreatable when none is available.
-            if (CanPerformTreatmentWork(doctor) && UsesMoreInjuries && RobotMedicalProfile.AllowsBiologicalEmergency(patient) &&
+            if (CanPerformTreatmentIntervention(doctor, MedicalIntervention.Cpr, patient) && UsesMoreInjuries && RobotMedicalProfile.AllowsBiologicalEmergency(patient) &&
                 IsMedicalInterventionUnlocked(MedicalIntervention.Cpr) &&
                 patient.health.hediffSet.hediffs.Any(hediff =>
                     hediff.def.defName == "ChokingOnBlood" || hediff.def.defName == "CardiacArrest"))
@@ -1482,6 +1518,8 @@ namespace SearchAndRescue
         {
             switch (option.Intervention)
             {
+                case MedicalIntervention.RimkitBandage:
+                    return RimkitCompatibility.MakeJob(doctor, patient, option);
                 case MedicalIntervention.Cpr:
                     return MoreInjuriesCprJob == null ? null : JobMaker.MakeJob(MoreInjuriesCprJob, patient);
                 case MedicalIntervention.Suction:
@@ -2117,7 +2155,7 @@ namespace SearchAndRescue
 
                 foreach (string jobName in new[]
                          {
-                             "CP_FirstAid", "Stabilize", "ProvideFirstAid", "UseSuctionDevice",
+                             "CP_FirstAid", "Stabilize", "ProvideFirstAid", "BandageOthers", "UseSuctionDevice",
                              "PerformCpr", "UseDefibrillator", "UseEpinephrine", "UseTourniquet",
                              "RemoveTourniquetSafely", "UseHemostaticAgent", "UseBandage",
                              "UseBloodBag", "UseSalineBag", "HD_AdministerHemogen", "ET_TransfuseBlood",

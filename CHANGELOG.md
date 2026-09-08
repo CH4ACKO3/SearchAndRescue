@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## 0.1.0-alpha.6
+
+- Automatically use opted-in, charged Rimkit medical kits for one native treatment round, respecting medicine policy and the field emergency boundary.
+- Prioritize evacuation for Death Rattle's native no-pulse, oxygen-deprivation, organ-failure and coma states; remove the extra priority when function returns.
+
+- Allow external treatment, rescue and facility admission when explicit SAR marks have no executable assignment; preserve committed care and hostile capture ordering.
+- Honor More Injuries' native Work Tab child permissions for CPR, airway management, defibrillation and doctor transfusions, including checks when issuing a selected job.
+- Clarify Rimkit, Death Rattle, MedPod and allied-rescue integration boundaries in the compatibility panel.
+
 ## 0.1.0-alpha.5
 
 - Put bleeding and emergency care first in the Field Rescue tooltip, followed by evacuation and follow-up care, without changing work scanning priorities or permissions.

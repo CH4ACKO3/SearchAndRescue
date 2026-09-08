@@ -109,20 +109,20 @@
   <SAR_Compatibility_Defaults>Population defaults ultimately use standard pawn medical-care settings, which Search and Rescue reads directly.</SAR_Compatibility_Defaults>
   <SAR_Compatibility_EmergencyTransfusions>Creates the mod's native one-pack transfusion job and can source hemogen from the patient, responder, map, or supported carriers.</SAR_Compatibility_EmergencyTransfusions>
   <SAR_Compatibility_HemogenDirect>Provides emergency hemogen transfusion when Emergency Transfusions is unavailable, using the mod's native job.</SAR_Compatibility_HemogenDirect>
-  <SAR_Compatibility_DeathRattle>Includes life-threatening health conditions in triage. Resuscitation uses Death Rattle’s own care flow.</SAR_Compatibility_DeathRattle>
+  <SAR_Compatibility_DeathRattle>Prioritizes evacuation for native no-pulse, oxygen-deprivation, organ-failure and coma states without creating futile tending jobs. Restored function clears the extra priority. Surgery and life support remain with their own systems.</SAR_Compatibility_DeathRattle>
   <SAR_Compatibility_RH2FirstAid>Uses RH2's native field-aid job when Combat Extended is not active and registers it as external patient ownership.</SAR_Compatibility_RH2FirstAid>
   <SAR_Compatibility_RH2Arrest>Uses RH2's native arrest-in-place job for the capture stage.</SAR_Compatibility_RH2Arrest>
-  <SAR_Compatibility_DubsRimkit>Recognizes self-tending and tending-others jobs, preserving player-ordered care as the priority.</SAR_Compatibility_DubsRimkit>
+  <SAR_Compatibility_DubsRimkit>Automatically uses a worn, charged medical kit when its native automatic-tending toggle is enabled. Respects medicine policy and reassesses after one native round. CE stabilization retains priority; manual Rimkit jobs keep their original behavior.</SAR_Compatibility_DubsRimkit>
   <SAR_Compatibility_TraumaTeam>Recognizes team ownership before its first job, its treatment/transport jobs, and releases stale ownership when no operational responder remains.</SAR_Compatibility_TraumaTeam>
   <SAR_Compatibility_MovePatient>Asks the patient's transfer component for its preferred medical bed before falling back to vanilla bed search.</SAR_Compatibility_MovePatient>
-  <SAR_Compatibility_MedPod>Recognizes pod delivery, rescue, self-entry and facility occupancy to coordinate with MedPod’s admission and treatment flow.</SAR_Compatibility_MedPod>
+  <SAR_Compatibility_MedPod>Recognizes pod admission and occupancy. Unassigned SAR marks allow native admission; committed SAR care retains its phase. Pod selection and treatment remain native.</SAR_Compatibility_MedPod>
   <SAR_Compatibility_Casevac>Workers assigned to Field Rescue and CASEVAC start unattended evacuations first, then join existing teams or upgrade nearby SAR transports. Manual commands retain control.</SAR_Compatibility_Casevac>
   <SAR_Compatibility_SmarterCapture>Its automatic capture WorkGiver participates in the common ownership gate; player-forced capture remains authoritative.</SAR_Compatibility_SmarterCapture>
   <SAR_Compatibility_PickUpAndHaul>Keeps supplies assigned to patients and current medical plans available for battlefield care.</SAR_Compatibility_PickUpAndHaul>
   <SAR_Compatibility_Hospitality>Coordinates rescue through standard beds, guest status and faction relations. Hospitality settings and systems provide reception, fees and visitor activities.</SAR_Compatibility_Hospitality>
   <SAR_Compatibility_VehicleFramework>Stationary, reachable player vehicles provide cargo for medical kits and deliveries. Use the vehicle and related mods’ actions for patient boarding and in-vehicle care.</SAR_Compatibility_VehicleFramework>
   <SAR_Compatibility_NurseJob>Offers hauling, nurse-preferred, and nurse-only rescue modes. Supportive interventions use Nursing with doctors as fallback where appropriate.</SAR_Compatibility_NurseJob>
-  <SAR_Compatibility_WorkTab>Reads individual WorkGiver priorities when assigning the corresponding rescue tasks.</SAR_Compatibility_WorkTab>
+  <SAR_Compatibility_WorkTab>Reads SAR child priorities. More Injuries CPR, airway management, defibrillation and doctor transfusions also require the corresponding native child work. Nursing remains a separate authorization.</SAR_Compatibility_WorkTab>
   <SAR_Compatibility_MechWorkTab>Reads colony-mech detailed work settings when deciding which battlefield lanes a mech may enter.</SAR_Compatibility_MechWorkTab>
   <SAR_Compatibility_WVCWorkModes>Honors additional mech work modes and their effective work authority.</SAR_Compatibility_WVCWorkModes>
   <SAR_Compatibility_SearchDestroy>Search and Destroy provides drafted combat control. After undrafting, pawns can join Search and Rescue according to their work settings.</SAR_Compatibility_SearchDestroy>
@@ -130,7 +130,7 @@
   <SAR_Compatibility_PriorityTreatment>Recognizes field treatment, supply, CE, More Injuries and RH2 jobs so responders stay marked as busy during their tasks.</SAR_Compatibility_PriorityTreatment>
   <SAR_Compatibility_TreatDyingFirst>Ordinary tending uses its urgency ordering. SAR coordinates admitted patients through unified matching. Player-ordered jobs have priority.</SAR_Compatibility_TreatDyingFirst>
   <SAR_Compatibility_StabilizeBleeding>Player-ordered bleeding control has priority. Combining it with SAR designations is partially compatible, with job behavior awaiting runtime validation.</SAR_Compatibility_StabilizeBleeding>
-  <SAR_Compatibility_AlliesHelpful>Unforced ally treatment and rescue jobs yield for SAR-marked patients; the mod keeps its normal behavior for every unmarked patient.</SAR_Compatibility_AlliesHelpful>
+  <SAR_Compatibility_AlliesHelpful>Allies can take over when SAR has no executable care assignment. Committed care and capture of still-hostile marked targets retain priority; manual orders remain protected.</SAR_Compatibility_AlliesHelpful>
   <SAR_Compatibility_NoOneLeftBehind>Enemy evacuation remains authoritative once a hostile carrier starts it. A capture-marked enemy may therefore escape before a responder can claim them.</SAR_Compatibility_NoOneLeftBehind>
   <SAR_Compatibility_StayInBed>Field treatment, supply and transport can take over from its idle bed-rest job.</SAR_Compatibility_StayInBed>
   <SAR_Compatibility_GrievousWounds>Overflow damage produces ordinary injuries, which are included automatically in bleeding, severity, and treatment scoring.</SAR_Compatibility_GrievousWounds>

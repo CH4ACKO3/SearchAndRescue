@@ -1,0 +1,44 @@
+Mods: brrainz.harmony,ludeon.rimworld,ludeon.rimworld.biotech,ceteam.combatextended,memegoddess.smartmedicine,th3fr3d.extendedinjuries,aoba.hemogendirect,fluffy.worktab,ch4acko3.sarcombinationprobe.082468d320f34399856ff0dd92d110e4
+PASS: native per-wound policy overrides baseline; CYM wins conflicting SM policy
+PASS: dose permission matches per-wound budget
+PASS: per-wound policy budgets medicine
+PASS: actual production selector retains legal high-quality dose
+PASS: policy change revokes dose permission
+PASS: stale selected medicine rejected at Job boundary
+PASS: MI native transfusion demand available
+PASS: MI blood and direct hemogen share one HemogenPack budget
+PASS: direct provider remains available for its distinct inventory access
+PASS: MI runtime setting change refreshes blood resource
+PASS: MI runtime setting restored without stale resource cache
+PASS: unassigned explicit treatment permits external fallback
+PASS: unassigned explicit rescue permits external fallback
+PASS: unassigned explicit marks permit warden fallback
+PASS: committed treatment blocks competing tend
+PASS: committed treatment blocks premature transport
+PASS: facility fixture has a real bed occupant
+PASS: registered facility owns patient before tending Job
+PASS: facility provider is not blocked by SAR treatment gate
+PASS: facility provider is not blocked by SAR transport gate
+PASS: warden gate also yields during facility handoff
+PASS: SAR treatment gate resumes after external lease ends
+PASS: SAR transport gate resumes after external lease ends
+PASS: released claim immediately restores external fallback
+PASS: disabled native child blocks SAR: DoctorUseDefibrillator
+PASS: disabled native child rejects stale Job: DoctorUseDefibrillator
+PASS: reenabled native child permits SAR: DoctorUseDefibrillator
+PASS: disabled native child blocks SAR: DoctorManageAirways
+PASS: disabled native child rejects stale Job: DoctorManageAirways
+PASS: reenabled native child permits SAR: DoctorManageAirways
+PASS: disabled native child blocks SAR: DoctorUseBloodBag
+PASS: disabled native child rejects stale Job: DoctorUseBloodBag
+PASS: reenabled native child permits SAR: DoctorUseBloodBag
+PASS: disabled native child blocks SAR: DoctorUseSalineBag
+PASS: disabled native child rejects stale Job: DoctorUseSalineBag
+PASS: reenabled native child permits SAR: DoctorUseSalineBag
+PASS: disabled native child blocks SAR: DoctorPerformCpr
+PASS: disabled native child rejects stale Job: DoctorPerformCpr
+PASS: reenabled native child permits SAR: DoctorPerformCpr
+PASS: disabled CPR excluded from actual treatment candidates
+PASS: enabled CPR returns to actual treatment candidates
+PASS: 6000 ticks after ownership handoff without runtime errors
+PASS: marked patient receives actual tending after ownership handoff

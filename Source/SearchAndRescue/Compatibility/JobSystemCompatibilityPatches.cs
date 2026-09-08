@@ -33,9 +33,12 @@ namespace SearchAndRescue
         {
             Map map = patient?.MapHeld;
             return map != null && !HasExternalCareProvider(patient, PatientJobRole.Any) &&
-                   (map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Capture) != null ||
+                   (HasUncapturedHostileOrder(patient) ||
+                    ((map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Capture) != null ||
                     map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Treat) != null ||
-                    map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Rescue) != null);
+                    map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Rescue) != null) &&
+                     map.GetComponent<SearchAndRescueCoordinator>()?.HasExecutableCareClaim(patient,
+                         PatientJobRole.Treatment | PatientJobRole.Transport | PatientJobRole.Capture) == true));
         }
 
         public static bool HasManagedTreatmentOrder(Pawn patient)
@@ -48,7 +51,11 @@ namespace SearchAndRescue
 
             if (map.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Treat) != null)
             {
-                return true;
+                // A designation expresses intent, not an exclusive lease. Keep native
+                // doctors, allies and facility admission available when SAR cannot act.
+                return HasUncapturedHostileOrder(patient) ||
+                       map.GetComponent<SearchAndRescueCoordinator>()?.HasExecutableCareClaim(
+                           patient, PatientJobRole.Treatment) == true;
             }
 
             if (map.GetComponent<SearchAndRescueCoordinator>()?.OwnsAutonomousTreatment(patient) == true)
@@ -80,14 +87,21 @@ namespace SearchAndRescue
         {
             Map map = patient?.MapHeld;
             return map != null && !HasExternalCareProvider(patient, PatientJobRole.Transport | PatientJobRole.Facility) &&
-                   (map.designationManager.DesignationOn(
+                   (HasUncapturedHostileOrder(patient) ||
+                    ((map.designationManager.DesignationOn(
                         patient,
                         SearchAndRescueDefOf.SAR_Rescue) != null ||
                     map.designationManager.DesignationOn(
                         patient,
-                        SearchAndRescueDefOf.SAR_Capture) != null ||
+                        SearchAndRescueDefOf.SAR_Capture) != null) &&
+                     map.GetComponent<SearchAndRescueCoordinator>()?.HasExecutableCareClaim(patient,
+                         PatientJobRole.Transport | PatientJobRole.Treatment | PatientJobRole.Capture) == true) ||
                     map.GetComponent<SearchAndRescueCoordinator>()?.OwnsAutonomousTransport(patient) == true);
         }
+
+        private static bool HasUncapturedHostileOrder(Pawn patient) =>
+            patient?.MapHeld?.designationManager.DesignationOn(patient, SearchAndRescueDefOf.SAR_Capture) != null &&
+            !patient.IsPrisonerOfColony && patient.HostileTo(Faction.OfPlayer);
 
         private static bool HasExternalCareProvider(Pawn patient, PatientJobRole roles)
         {

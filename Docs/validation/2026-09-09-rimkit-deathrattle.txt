@@ -1,0 +1,34 @@
+Mods: brrainz.harmony,ludeon.rimworld,dubwise.dubsrimkit,troopersmith1.deathrattle,ch4acko3.sarrimkitprobe.p0a9f57735c704b5ea98f3c16c242e16a
+PASS: native Rimkit adapter ready
+PASS: native automatic-use toggle defaults off
+PASS: enabled charged worn kit becomes a bound candidate
+PASS: bound native job has one-round toils even before transient claims exist
+PASS: manual native Rimkit job retains its original looping toils
+PASS: industrial kit respects herbal-only policy
+PASS: stale kit candidate cannot bypass changed policy
+PASS: stale candidate respects kit toggle change
+PASS: 2400 ticks without runtime errors
+PASS: SAR automatically performs native kit bandaging
+PASS: minor wound remains untended in the field
+PASS: one completed round consumes exactly one kit charge
+PASS: native looping job ends after the managed round
+PASS: empty kit cannot create a candidate
+PASS: 240 ticks without runtime errors
+PASS: native Death Rattle keeps heartless casualty alive with no-pulse state
+PASS: no pulse adds urgent hospital transport pressure
+PASS: no pulse does not become a futile tend target
+PASS: kit cannot repair missing vital organs
+PASS: hospital bed is a valid player rescue destination
+PASS: 2400 ticks without runtime errors
+EVAC: dead=False downed=True position=(131, 0, 133) bed=Bed37026 expected=Bed37026 worker=Wait_Wander workerPosition=(134, 0, 131)
+[Search and Rescue] Scheduler snapshot map=0 tick=5101 mode=EmergencyAuto pending=0 active=0 logistics=0 standby=0 detourBacklog=0.0
+ responders=Escobar/Human36989,Johnald/Human37021
+ worker=Escobar/Human36989 job=Wait_Wander jobPatient=none forced=False idle=True operational=True available=True treatReady=True priority=3 pending=none active=none decision=issue Supply: rejected no pending assignment at 5066
+ worker=Johnald/Human37021 job=LayDown jobPatient=none forced=False idle=False operational=False available=False treatReady=False priority=3 pending=none active=none decision=none
+
+PASS: SAR evacuates native no-pulse casualty to hospital alive
+PASS: restored capacity immediately removes stale transport pressure
+PASS: 240 ticks without runtime errors
+PASS: native liver failure has bounded hospital urgency below no-pulse urgency
+PASS: liver failure does not create futile bandaging
+PASS: restored liver clears its transport urgency

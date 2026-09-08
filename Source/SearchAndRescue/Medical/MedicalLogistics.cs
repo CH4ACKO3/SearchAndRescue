@@ -27,7 +27,8 @@ namespace SearchAndRescue
         Blood,
         HemogenTransfusion,
         MechRepair,
-        NativeRobotTend
+        NativeRobotTend,
+        RimkitBandage
     }
 
     internal interface IFieldMedicalResourceProvider
@@ -370,6 +371,7 @@ namespace SearchAndRescue
         public readonly bool Reusable;
         public readonly double Benefit;
         public readonly double RouteDistance;
+        public readonly Thing Equipment;
 
         public bool IsValid => Intervention != MedicalIntervention.None;
 
@@ -380,7 +382,8 @@ namespace SearchAndRescue
             bool fromInventory,
             bool reusable,
             double benefit,
-            double routeDistance)
+            double routeDistance,
+            Thing equipment = null)
         {
             Intervention = intervention;
             Resource = resource;
@@ -389,6 +392,7 @@ namespace SearchAndRescue
             Reusable = reusable;
             Benefit = benefit;
             RouteDistance = routeDistance;
+            Equipment = equipment;
         }
     }
 

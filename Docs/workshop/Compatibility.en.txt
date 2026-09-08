@@ -70,7 +70,7 @@ Hemogen Pack - Emergency transfusion — Integration
 Provides the emergency hemogen-transfusion flow when Emergency Transfusions is inactive.
 
 Death Rattle Continued — Compatible
-Death Rattle Continued performs its resuscitation flow. Its life-threatening Hediffs raise SAR urgency through the shared lifeThreatening score.
+Recognizes native no-pulse, oxygen-deprivation, liver/kidney/intestinal failure and coma states, adding priority to evacuation to an available bed. No-pulse and oxygen-deprivation states receive more weight. Non-tendable conditions do not create futile treatment jobs, and restored function clears the extra weight. Surgery and life support remain native; SAR does not add surgery bills.
 
 RH2 — BCD: First Aid — Compatible
 Uses the mod's native field first-aid job when CE is inactive.
@@ -78,8 +78,8 @@ Uses the mod's native field first-aid job when CE is inactive.
 RH2 — CPERS: Arrest Here! — Compatible
 Uses the mod's on-site arrest job.
 
-Dubs Rimkit — Compatible
-In the 1.6 version, both TendSelf and BandageOthers count as external treatment ownership. SAR releases the associated claims when either job is started manually.
+Dubs Rimkit — Integration
+SAR can dispatch native BandageOthers with a worn, charged kit whose native automatic-tending toggle is enabled. Doctor permissions and medicine policy apply. The kit is rechecked on arrival; each native round consumes one charge and ends for reassessment, deferring minor field wounds until a safe care location. Eligible CE stabilization keeps its own flow. Reloading and manual bandaging remain native.
 
 Treat Dying First — Compatible
 Treat Dying First manages ordinary patient searches, while SAR matches designated casualties.
@@ -96,13 +96,13 @@ Move the Patient — Compatible
 Uses the mod's patient component to select a suitable medical bed first, then falls back to vanilla bed selection.
 
 Allies are Helpful — Compatible
-Automatically inserted treatment and rescue jobs pass through SAR ownership cleanup. Cleanup covers system-generated jobs that duplicate work on a designated casualty. Allies are Helpful continues to handle other casualties.
+Allies can take over marked patients when SAR has no executable assignment. Committed treatment or transport retains its phase; hostile capture ordering and player-forced commands remain protected.
 
 No One Left Behind — Partially compatible
 An enemy carrier owns transport while physically carrying a casualty, and No One Left Behind performs the retreat rescue. Any active SAR designation re-enters coordination after the hostile transport ends.
 
 MedPod — Compatible
-Enter-pod and rescue jobs count as transport ownership, and an assigned medical pod registers as an external facility. The warden's direct scan and the patient's self-entry NonScanJob yield while SAR owns the corresponding stage.
+Pod delivery, rescue and self-entry participate in ownership; actual pod occupancy hands care to the facility. Unassigned SAR marks allow native admission, while committed SAR care retains its phase. Pod selection and treatment remain native.
 
 RH2 — BCD: CASEVAC — Integration
 Workers assigned to Field Rescue and CASEVAC start unattended evacuations first, then join existing teams or upgrade nearby SAR transports. Manual commands retain control. Upgrades require a nearby carrier and enough remaining route; rescue points retain ordinary evacuation.
@@ -134,7 +134,7 @@ Nurse Job — Integration
 Provides Prefer nursing and Nursing only rescue modes; the default mode uses Hauling. For designated casualties, transfusions, infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with doctors taking over when nurses are unavailable. CPR, suction, defibrillation, and ordinary tending are matched to doctors by medical skill.
 
 Work Tab — Compatible
-Reads detailed WorkGiver priorities. The new Doctor subtask "provide emergency medical care", together with Field Rescue, allows emergency-only medics while routine tending and surgery remain disabled. Routine care respects humanlike/animal subtasks. Work Tab is optional.
+Reads detailed WorkGiver priorities. Emergency-only medics can enable "provide emergency medical care" and Field Rescue. With More Injuries, CPR, airway management, defibrillation and doctor transfusions also require their native child work; nursing remains separately authorized. Routine tending and surgery can stay disabled. Routine care respects humanlike/animal subtasks. Work Tab is optional.
 
 Mech Work Tab — Compatible
 Reads detailed work settings for colony mechs.

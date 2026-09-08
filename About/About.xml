@@ -4,7 +4,7 @@
 	<modIconPath>Things/Item/Resource/Medicine/MedicineIndustrial/MedicineIndustrial_a</modIconPath>
 	<author>CH4AcKO3</author>
 	<packageId>CH4AcKO3.SearchAndRescue</packageId>
-	<modVersion>0.1.0-alpha.5</modVersion>
+	<modVersion>0.1.0-alpha.6</modVersion>
 	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278</url>
 	<supportedVersions>
 		<li>1.6</li>
@@ -88,6 +88,7 @@ Integration
 • Vehicle Framework
 • Nurse Job
 • RH2 — BCD: CASEVAC
+• Dubs Rimkit
 
 
 Compatible
@@ -101,7 +102,6 @@ Compatible
 • Death Rattle Continued
 • RH2 — BCD: First Aid
 • RH2 — CPERS: Arrest Here!
-• Dubs Rimkit
 • Trauma Team Complete
 • Move the Patient
 • MedPod

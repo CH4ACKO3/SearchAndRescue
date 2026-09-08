@@ -4898,9 +4898,8 @@ namespace SearchAndRescue
 
         private static double RescueMedicalPriorityWeight(Pawn patient)
         {
-            return Compatibility.RequiresUrgentSurgery(patient)
-                ? UrgentSurgeryTransportWeight
-                : 0d;
+            return Math.Max(Compatibility.RequiresUrgentSurgery(patient) ? 1d : 0d,
+                DeathRattleCompatibility.TransportPriority(patient)) * UrgentSurgeryTransportWeight;
         }
 
         private static double TreatmentDeadlineWeight(Pawn doctor, Pawn patient, IntVec3 interactionPosition)
@@ -5376,7 +5375,7 @@ namespace SearchAndRescue
 
             if (HasDesignation(patient, SearchAndRescueDefOf.SAR_Treat))
             {
-                return true;
+                return HasExecutableCareClaim(patient, PatientJobRole.Treatment);
             }
 
             if (!TryGetCareAdmission(patient, out CareAdmission admission) ||
@@ -5417,6 +5416,22 @@ namespace SearchAndRescue
                 pair.Value.Stage == SearchAndRescueStage.Rescue && admission.AllowsStage(pair.Value.Stage) &&
                 PendingAssignmentValid(pair.Key, pair.Value, now));
             return activeRescue || pendingRescue;
+        }
+
+        internal bool HasExecutableCareClaim(Pawn patient, PatientJobRole roles)
+        {
+            bool Matches(SearchAndRescueStage stage) =>
+                ((roles & PatientJobRole.Treatment) != 0 &&
+                 (IsTreatmentStage(stage) || stage == SearchAndRescueStage.Restock)) ||
+                ((roles & PatientJobRole.Transport) != 0 && stage == SearchAndRescueStage.Rescue) ||
+                ((roles & PatientJobRole.Capture) != 0 && stage == SearchAndRescueStage.Capture);
+            if (patient == null) return false;
+            if (activeByTarget.TryGetValue(patient, out ActiveAssignment active) && Matches(active.Stage))
+                return true;
+            int now = Find.TickManager.TicksGame;
+            return pendingByWorker.Any(pair => pair.Value.Target == patient &&
+                !pair.Value.WaitForTreatment && Matches(pair.Value.Stage) &&
+                PendingAssignmentValid(pair.Key, pair.Value, now));
         }
 
         private bool HasTreatmentInterest(Pawn patient)

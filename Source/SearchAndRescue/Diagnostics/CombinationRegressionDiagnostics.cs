@@ -123,7 +123,16 @@ namespace SearchAndRescue
             // type. This is an ownership boundary test, not a MedPod playthrough.
             map.designationManager.AddDesignation(new Designation(patient, SearchAndRescueDefOf.SAR_Treat));
             map.designationManager.AddDesignation(new Designation(patient, SearchAndRescueDefOf.SAR_Rescue));
-            Check(SearchAndRescueJobContext.HasManagedTreatmentOrder(patient), "explicit treatment initially owned by SAR");
+            Check(!SearchAndRescueJobContext.HasManagedTreatmentOrder(patient), "unassigned explicit treatment permits external fallback");
+            Check(!SearchAndRescueJobContext.HasManagedTransportOrder(patient), "unassigned explicit rescue permits external fallback");
+            Check(!SearchAndRescueJobContext.HasManagedBattlefieldOrder(patient), "unassigned explicit marks permit warden fallback");
+            var claims = (ActiveJobClaims)AccessTools.Field(typeof(SearchAndRescueCoordinator), "activeClaims")
+                .GetValue(map.GetComponent<SearchAndRescueCoordinator>());
+            claims.Register(new ActiveAssignment(doctor, patient, JobMaker.MakeJob(JobDefOf.TendPatient, patient),
+                SearchAndRescueStage.Treat, patient.Position, Find.TickManager.TicksGame, 1, 1f, 1f,
+                CareOrigin.ManualTreatment, 0f, 0f));
+            Check(SearchAndRescueJobContext.HasManagedTreatmentOrder(patient), "committed treatment blocks competing tend");
+            Check(SearchAndRescueJobContext.HasManagedTransportOrder(patient), "committed treatment blocks premature transport");
             var bed = (Building_Bed)ThingMaker.MakeThing(ThingDefOf.Bed, ThingDefOf.WoodLog);
             GenSpawn.Spawn(bed, CellFinder.RandomClosewalkCellNear(patient.Position, map, 4), map);
             patient.Position = bed.GetSleepingSlotPos(0);
@@ -142,6 +151,61 @@ namespace SearchAndRescue
             finally { if (added) facilities.Remove(typeof(Building_Bed)); }
             Check(SearchAndRescueJobContext.HasManagedTreatmentOrder(patient), "SAR treatment gate resumes after external lease ends");
             Check(SearchAndRescueJobContext.HasManagedTransportOrder(patient), "SAR transport gate resumes after external lease ends");
+            claims.ReleasePrimary(patient);
+            Check(!SearchAndRescueJobContext.HasManagedTreatmentOrder(patient), "released claim immediately restores external fallback");
+
+            if (Compatibility.UsesWorkTab && Compatibility.UsesMoreInjuries)
+            {
+                var setter = AccessTools.Method(AccessTools.TypeByName("WorkTab.Pawn_Extensions"), "SetPriority",
+                    new[] { typeof(Pawn), typeof(WorkGiverDef), typeof(int), typeof(int), typeof(bool) });
+                if (setter == null) throw new InvalidOperationException("Work Tab setter missing");
+                void Set(string name, int value) => setter.Invoke(null, new object[] { doctor,
+                    DefDatabase<WorkGiverDef>.GetNamed(name), value, -1, true });
+                Set("SAR_EmergencyMedicalCare", 1);
+                foreach (var entry in new[] {
+                    ("DoctorUseDefibrillator", MedicalIntervention.Defibrillate),
+                    ("DoctorManageAirways", MedicalIntervention.Suction),
+                    ("DoctorUseBloodBag", MedicalIntervention.Blood),
+                    ("DoctorUseSalineBag", MedicalIntervention.Saline),
+                    ("DoctorPerformCpr", MedicalIntervention.Cpr) })
+                {
+                    Set(entry.Item1, 0);
+                    Check(!Compatibility.NativeInterventionWorkAllowed(doctor, entry.Item2, patient),
+                        "disabled native child blocks SAR: " + entry.Item1);
+                    var stale = new MedicalTreatmentOption(entry.Item2, null, 1, false, false, 1d, 0d);
+                    Check(Compatibility.MakeTreatmentRoundJob(doctor, patient, stale) == null,
+                        "disabled native child rejects stale Job: " + entry.Item1);
+                    Set(entry.Item1, 1);
+                    Check(Compatibility.NativeInterventionWorkAllowed(doctor, entry.Item2, patient),
+                        "reenabled native child permits SAR: " + entry.Item1);
+                }
+                Hediff cardiac = HediffMaker.MakeHediff(DefDatabase<HediffDef>.GetNamed("CardiacArrest"), patient);
+                patient.health.AddHediff(cardiac);
+                Set("DoctorPerformCpr", 0);
+                var cardiacPlan = MedicalCarePlan.Build(patient, Find.TickManager.TicksGame);
+                Check(!Compatibility.FindTreatmentOptions(doctor, patient, cardiacPlan, new MedicalResourceLedger(map))
+                    .Any(option => option.Intervention == MedicalIntervention.Cpr), "disabled CPR excluded from actual treatment candidates");
+                Set("DoctorPerformCpr", 1);
+                Check(Compatibility.FindTreatmentOptions(doctor, patient, cardiacPlan, new MedicalResourceLedger(map))
+                    .Any(option => option.Intervention == MedicalIntervention.Cpr), "enabled CPR returns to actual treatment candidates");
+                patient.health.RemoveHediff(cardiac);
+            }
+            int beforeTended = patient.health.hediffSet.hediffs.Count(h => h.IsTended());
+            int errors = 0;
+            void OnLog(string message, string stack, LogType type)
+            {
+                if (type == LogType.Error || type == LogType.Exception || type == LogType.Assert)
+                { errors++; results.Add("RUNTIME ERROR: " + message); }
+            }
+            Application.logMessageReceived += OnLog;
+            try
+            {
+                for (int tick = 0; tick < 6000; tick++) Find.TickManager.DoSingleTick();
+            }
+            finally { Application.logMessageReceived -= OnLog; }
+            Check(errors == 0, "6000 ticks after ownership handoff without runtime errors");
+            Check(!patient.Dead && patient.health.hediffSet.hediffs.Count(h => h.IsTended()) > beforeTended,
+                "marked patient receives actual tending after ownership handoff");
         }
     }
 }

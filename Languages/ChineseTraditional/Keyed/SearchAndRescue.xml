@@ -109,20 +109,20 @@
   <SAR_Compatibility_Defaults>不同人群的預設用藥最終寫入標準 pawn 用藥設定，搜尋與救援會直接讀取。</SAR_Compatibility_Defaults>
   <SAR_Compatibility_EmergencyTransfusions>建立該模組原生的單包輸血工作，可從傷員、救援者、地圖或受支援的攜帶者取得血原包。</SAR_Compatibility_EmergencyTransfusions>
   <SAR_Compatibility_HemogenDirect>未啟用 Emergency Transfusions 時，使用該模組原生工作提供緊急血原輸注。</SAR_Compatibility_HemogenDirect>
-  <SAR_Compatibility_DeathRattle>將危及生命的健康狀態納入統一分診，復甦操作使用 Death Rattle 的流程。</SAR_Compatibility_DeathRattle>
+  <SAR_Compatibility_DeathRattle>為原生無脈搏、缺氧、器官衰竭及昏迷提高撤離優先度，不建立無效包紮。功能恢復後撤銷額外優先度；手術和生命維持仍由對應系統處理。</SAR_Compatibility_DeathRattle>
   <SAR_Compatibility_RH2FirstAid>未啟用 CE 時使用 RH2 原生戰地急救工作，並將其註冊為外部患者所有權。</SAR_Compatibility_RH2FirstAid>
   <SAR_Compatibility_RH2Arrest>俘虜階段使用 RH2 原生的就地逮捕工作。</SAR_Compatibility_RH2Arrest>
-  <SAR_Compatibility_DubsRimkit>辨識自我包紮和為他人包紮的治療任務，並優先保留玩家安排的治療。</SAR_Compatibility_DubsRimkit>
+  <SAR_Compatibility_DubsRimkit>佩戴有剩餘次數的醫療包並開啟原生自動治療開關後，可自動用於 SAR 包紮。遵守用藥限制，每輪原生治療後重新評估；CE 穩定保持優先，手動 Rimkit 命令沿用原行為。</SAR_Compatibility_DubsRimkit>
   <SAR_Compatibility_TraumaTeam>在其首個工作產生前辨識小隊所有權，辨識治療和運輸工作；沒有可用救援者時會釋放失效所有權。</SAR_Compatibility_TraumaTeam>
   <SAR_Compatibility_MovePatient>優先詢問患者的轉床元件所選擇的醫療床，再回退到原版床位搜尋。</SAR_Compatibility_MovePatient>
-  <SAR_Compatibility_MedPod>辨識醫療艙搬入、救援、自行入艙及設施占用狀態，與 MedPod 的入艙和治療流程協同工作。</SAR_Compatibility_MedPod>
+  <SAR_Compatibility_MedPod>辨識原生入艙和實際占艙。沒有執行者的 SAR 標記允許原生入艙；已分配救援保留目前階段。選艙及治療沿用原模組。</SAR_Compatibility_MedPod>
   <SAR_Compatibility_Casevac>同時開啟戰地救援和 CASEVAC 的人員優先撤離無人搬運的患者，之後加入已有隊伍或升級附近的 SAR 普通搬運。手動命令保留控制權。</SAR_Compatibility_Casevac>
   <SAR_Compatibility_SmarterCapture>其自動俘虜 WorkGiver 使用統一所有權門控；玩家強制俘虜仍優先。</SAR_Compatibility_SmarterCapture>
   <SAR_Compatibility_PickUpAndHaul>保留患者和目前醫療計畫需要的器材，使其持續用於戰地補給。</SAR_Compatibility_PickUpAndHaul>
   <SAR_Compatibility_Hospitality>透過標準床位、賓客身分和陣營關係配合救援。接待、收費和訪客活動使用 Hospitality 的設定與流程。</SAR_Compatibility_Hospitality>
   <SAR_Compatibility_VehicleFramework>靜止、玩家所屬且可到達的載具貨艙可為藥包和送藥提供物資。傷員入車和車內治療使用載具及相關模組提供的操作。</SAR_Compatibility_VehicleFramework>
   <SAR_Compatibility_NurseJob>提供搬運、護士優先和僅限護士三種救援模式；支援性治療會使用護理工作，必要時由醫生替補。</SAR_Compatibility_NurseJob>
-  <SAR_Compatibility_WorkTab>讀取細分工作項目的優先度，用於安排對應的救援操作。</SAR_Compatibility_WorkTab>
+  <SAR_Compatibility_WorkTab>讀取 SAR 子工作優先度；More Injuries 的 CPR、氣道管理、除顫及醫生輸液輸血還需開啟對應原生子工作。護理保持獨立授權。</SAR_Compatibility_WorkTab>
   <SAR_Compatibility_MechWorkTab>決定機僕可以進入哪些戰地工作通道時，會讀取殖民地機僕的細分工作設定。</SAR_Compatibility_MechWorkTab>
   <SAR_Compatibility_WVCWorkModes>遵守新增的機僕工作模式及其最終工作權限。</SAR_Compatibility_WVCWorkModes>
   <SAR_Compatibility_SearchDestroy>Search and Destroy 提供徵召戰鬥控制；解除徵召後，人員可依工作設定參與搜尋與救援。</SAR_Compatibility_SearchDestroy>
@@ -130,7 +130,7 @@
   <SAR_Compatibility_PriorityTreatment>辨識戰地治療、補給、CE、More Injuries 和 RH2 工作，使救援人員在任務期間保持忙碌狀態。</SAR_Compatibility_PriorityTreatment>
   <SAR_Compatibility_TreatDyingFirst>普通治療採用其緊急度排序，已納入 SAR 的患者透過統一配對安排救援。玩家手動指定的工作優先執行。</SAR_Compatibility_TreatDyingFirst>
   <SAR_Compatibility_StabilizeBleeding>玩家手動止血命令優先執行；與 SAR 標記疊加使用列為部分相容，具體任務行為待實機驗證。</SAR_Compatibility_StabilizeBleeding>
-  <SAR_Compatibility_AlliesHelpful>對 SAR 已標記患者，其自動產生的非強制盟友治療／救援工作會讓出所有權；未標記者仍完全沿用原模組行為。</SAR_Compatibility_AlliesHelpful>
+  <SAR_Compatibility_AlliesHelpful>SAR 沒有可執行救援分配時允許盟友接手。已分配救援及仍敵對目標的俘虜階段保留優先權；手動命令不受影響。</SAR_Compatibility_AlliesHelpful>
   <SAR_Compatibility_NoOneLeftBehind>敵方搬運者開始撤離後保持權威；因此標記俘虜的敵人仍可能在我方回應者宣告前被帶離。</SAR_Compatibility_NoOneLeftBehind>
   <SAR_Compatibility_StayInBed>戰地治療、補給和轉運可以接替其閒置臥床工作。</SAR_Compatibility_StayInBed>
   <SAR_Compatibility_GrievousWounds>溢出傷害產生標準傷勢，會自動計入出血、嚴重度和治療評分。</SAR_Compatibility_GrievousWounds>
