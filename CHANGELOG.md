@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Recognize MemeGoddess and PES7 Smart Medicine continuations separately in the compatibility panel, and declare load ordering after PES7.
+
 ## 0.1.0-alpha.7
 
 - Fix Smart Medicine/Combat Extended startup patching when a fork names the worker argument `pawn` instead of `healer`; bind both stabilization work-giver patches by argument position.

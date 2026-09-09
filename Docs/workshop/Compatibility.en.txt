@@ -48,7 +48,7 @@ Recognizes dangerous conditions and raises evacuation priority. Prostheses, sub-
 EPOE-Forked — Compatible
 Implants, replacements, and surgery bills continue through EPOE and vanilla systems. Life-threatening patients who require bedside care receive additional evacuation priority.
 
-Smart Medicine - Continued — Compatible
+Smart Medicine - Continued (MemeGoddess / PES7) — Compatible
 Uses Smart Medicine's medicine-selection logic and protects persistent references and soft claims created by the current matching pass, keeping restocking AI from moving medicine between assignment and pickup. When CE is active, SAR also coordinates HasJobOnThing checks and job construction. Medicine in a third-party pawn's inventory is transferred to the doctor first; when a safe source is temporarily unavailable, the doctor waits for SAR restocking or delivery.
 
 Pharmacist: Represcribed — Compatible

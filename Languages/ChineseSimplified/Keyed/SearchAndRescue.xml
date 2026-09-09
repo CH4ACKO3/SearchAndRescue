@@ -102,7 +102,7 @@
   <SAR_Compatibility_MoreInjuries>调度 CPR、气道处理、除颤、止血、止血带、盐水和血袋；只能手术处理的创伤会提高撤离优先度。</SAR_Compatibility_MoreInjuries>
   <SAR_Compatibility_MSE2>将危险状态纳入分诊，并优先转运需要床边急救的伤员。MSE2 的床边系统提供专用手术急救、假体子部件及对应器材处理。</SAR_Compatibility_MSE2>
   <SAR_Compatibility_EPOE>通过标准健康与手术接口配合工作。植入、替换、截肢和择期手术使用 EPOE 与原版的手术账单流程。</SAR_Compatibility_EPOE>
-  <SAR_Compatibility_SmartMedicine>使用其选药逻辑和临时治疗点，保护已安排的战地器材；CE 稳定流程可通过 SAR 补包和送药取得其他人员携带的药品。</SAR_Compatibility_SmartMedicine>
+  <SAR_Compatibility_SmartMedicine>支持 MemeGoddess 和 PES7 续作分支；同一时间只启用一个 Smart Medicine 本体。使用其选药逻辑和临时治疗点，保护已安排的战地器材；CE 稳定流程可通过 SAR 补包和送药取得其他人员携带的药品。</SAR_Compatibility_SmartMedicine>
   <SAR_Compatibility_Pharmacist>读取其基于伤情和人员类别的用药建议，同时把 pawn 的原版用药上限作为硬限制。</SAR_Compatibility_Pharmacist>
   <SAR_Compatibility_ChooseMedicine>读取药品分组、伤情阶段、排序和单伤覆盖设置，用于预算、携带、补给和最终治疗。</SAR_Compatibility_ChooseMedicine>
   <SAR_Compatibility_MedicalTab>每轮规划读取当前个人用药设置，表格中的修改会应用到下一轮安排。</SAR_Compatibility_MedicalTab>

@@ -48,7 +48,7 @@
 **EPOE-Forked — 兼容**
 植入、替换和手术账单沿用 EPOE 与原版流程。生命危险且需要床边处理的目标获得更高撤离优先级。
 
-**Smart Medicine - Continued — 兼容**
+**Smart Medicine - Continued (MemeGoddess / PES7) — 兼容**
 使用其选药逻辑，并保护持久引用和本轮匹配产生的软声明，防止补货 AI 在分配与取货之间移动药品。与 CE 同时启用时，SAR 同步处理 HasJobOnThing 和 Job 构造。第三方 pawn 库存中的药品会先转交医生；安全药源暂时不可用时，医生等待 SAR 补包或送药。
 
 **Pharmacist: Represcribed — 兼容**
