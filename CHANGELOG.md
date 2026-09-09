@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.0-alpha.8
+
 - Recognize MemeGoddess and PES7 Smart Medicine continuations separately in the compatibility panel, and declare load ordering after PES7.
 
 ## 0.1.0-alpha.7
