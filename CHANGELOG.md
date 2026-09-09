@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.0-alpha.7
+
+- Fix Smart Medicine/Combat Extended startup patching when a fork names the worker argument `pawn` instead of `healer`; bind both stabilization work-giver patches by argument position.
+
 ## 0.1.0-alpha.6
 
 - Automatically use opted-in, charged Rimkit medical kits for one native treatment round, respecting medicine policy and the field emergency boundary.

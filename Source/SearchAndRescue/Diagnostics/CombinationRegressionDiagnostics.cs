@@ -42,6 +42,8 @@ namespace SearchAndRescue
 
         private static void Run()
         {
+            CheckSmartMedicineArgumentBindings();
+            if (ModsConfig.IsActive("pes7.smartmedicinecontinued")) CheckPes7Stabilization();
             results.Add("Mods: " + string.Join(",", ModsConfig.ActiveModsInLoadOrder.Select(mod => mod.PackageId)));
             Map map = Find.CurrentMap;
             var miSettings = AccessTools.Property(AccessTools.TypeByName("MoreInjuries.MoreInjuriesMod"), "Settings")
@@ -206,6 +208,115 @@ namespace SearchAndRescue
             Check(errors == 0, "6000 ticks after ownership handoff without runtime errors");
             Check(!patient.Dead && patient.health.hediffSet.hediffs.Count(h => h.IsTended()) > beforeTended,
                 "marked patient receives actual tending after ownership handoff");
+        }
+        private static void CheckPes7Stabilization()
+        {
+            Type type = AccessTools.TypeByName("SmartMedicine.Compatibility.CombatExtended.WorkGiver_Stabilize");
+            results.Add("PES7 assembly: " + type.Assembly.Location);
+            foreach (string name in new[] { "JobOnThing", "HasJobOnThing" })
+            {
+                var method = AccessTools.Method(type, name);
+                results.Add(name + " arguments: " + string.Join(",", method.GetParameters().Select(p => p.Name)));
+                Check(Harmony.GetPatchInfo(method)?.Postfixes.Any(p => p.PatchMethod.DeclaringType.Assembly == typeof(Bootstrap).Assembly) == true,
+                    "SAR postfix installed on actual PES7 " + name);
+            }
+            var originals = Find.CurrentMap.mapPawns.FreeColonistsSpawned.ToList();
+            var drafted = originals.Select(p => p.Drafted).ToList();
+            foreach (Pawn pawn in originals) pawn.drafter.Drafted = true;
+            Pawn doctor = null, patient = null;
+            int errors = 0;
+            void OnLog(string message, string stack, LogType level)
+            {
+                if (level == LogType.Error || level == LogType.Exception || level == LogType.Assert)
+                { errors++; results.Add("PES7 RUNTIME ERROR: " + message); }
+            }
+            Application.logMessageReceived += OnLog;
+            try
+            {
+                do { doctor = PawnGenerator.GeneratePawn(PawnKindDefOf.Colonist, Faction.OfPlayer); }
+                while (doctor.WorkTagIsDisabled(WorkTags.Caring));
+                Map map = Find.CurrentMap;
+                GenSpawn.Spawn(doctor, CellFinder.RandomClosewalkCellNear(originals[0].Position, map, 3), map);
+                doctor.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
+                doctor.workSettings.SetPriority(WorkTypeDefOf.Doctor, 1);
+                doctor.skills.GetSkill(SkillDefOf.Medicine).Level = 20;
+                patient = PawnGenerator.GeneratePawn(PawnKindDefOf.Colonist, Faction.OfPlayer);
+                GenSpawn.Spawn(patient, CellFinder.RandomClosewalkCellNear(doctor.Position, map, 2), map);
+                patient.health.AddHediff(HediffDefOf.Anesthetic);
+                patient.playerSettings.medCare = MedicalCareCategory.Best;
+                var injury = (HediffWithComps)HediffMaker.MakeHediff(HediffDefOf.Cut, patient, patient.RaceProps.body.corePart);
+                injury.Severity = 12f;
+                patient.health.AddHediff(injury);
+                // Native PES7 scanning requires less than two hours to bleeding death.
+                patient.health.AddHediff(HediffDefOf.BloodLoss).Severity = 0.95f;
+                Thing dose = ThingMaker.MakeThing(ThingDefOf.MedicineIndustrial);
+                dose.stackCount = 3;
+                doctor.inventory.innerContainer.TryAdd(dose);
+                var giver = (WorkGiver_Scanner)Activator.CreateInstance(type);
+                giver.def = DefDatabase<WorkGiverDef>.GetNamed("SmartMedicineStabilize");
+                Check(!giver.ShouldSkip(doctor), "PES7 native stabilization enabled");
+                Check(giver.HasJobOnThing(doctor, patient), "PES7 native scan accepts bleeding casualty");
+                Job job = giver.JobOnThing(doctor, patient);
+                Check(job?.def.defName == "Stabilize" && job.targetA.Pawn == patient && job.targetB.Thing == dose,
+                    "PES7 native job selects patient and carried medicine");
+                if (job == null) return;
+                job.workGiverDef = giver.def;
+                float before = injury.BleedRate;
+                var comp = injury.comps.First(c => c.GetType().FullName == "CombatExtended.HediffComp_Stabilize");
+                bool Stabilized() => (bool)AccessTools.Property(comp.GetType(), "Stabilized").GetValue(comp, null);
+                doctor.jobs.StartJob(job, JobCondition.InterruptForced);
+                int ticks = 0;
+                for (; ticks < 1200 && !patient.Dead && !Stabilized(); ticks++) Find.TickManager.DoSingleTick();
+                for (int i = 0; i < 5; i++) Find.TickManager.DoSingleTick();
+                results.Add("PES7 native stabilization ticks: " + ticks + "; bleed before=" + before + "; after=" + injury.BleedRate);
+                Check(!patient.Dead && Stabilized() && injury.BleedRate < before, "PES7 native job actually stabilizes bleeding");
+                int remaining = doctor.inventory.innerContainer.Where(t => t.def == ThingDefOf.MedicineIndustrial).Sum(t => t.stackCount)
+                    + (doctor.carryTracker.CarriedThing?.def == ThingDefOf.MedicineIndustrial ? doctor.carryTracker.CarriedThing.stackCount : 0);
+                Check(remaining == 2, "PES7 native stabilization consumes exactly one medicine");
+                Check(errors == 0, "PES7 native stabilization without runtime errors");
+            }
+            finally
+            {
+                Application.logMessageReceived -= OnLog;
+                doctor?.Destroy();
+                patient?.Destroy();
+                for (int i = 0; i < originals.Count; i++) originals[i].drafter.Drafted = drafted[i];
+            }
+        }
+
+        private static void CheckSmartMedicineArgumentBindings()
+        {
+            var harmony = new Harmony("SearchAndRescue.Diagnostics.SmartMedicineArguments");
+            try
+            {
+                foreach (Type fixture in new[] { typeof(HealerNamedStabilize), typeof(PawnNamedStabilize) })
+                {
+                    foreach (string method in new[] { "JobOnThing", "HasJobOnThing" })
+                    {
+                        Type patch = method == "JobOnThing"
+                            ? typeof(SmartMedicineCombatExtendedStabilize_SearchAndRescuePreflightPatch)
+                            : typeof(SmartMedicineCombatExtendedStabilize_SearchAndRescueScanPatch);
+                        var original = AccessTools.DeclaredMethod(fixture, method);
+                        harmony.Patch(original, postfix: new HarmonyMethod(AccessTools.Method(patch, "Postfix")));
+                        object result = original.Invoke(Activator.CreateInstance(fixture), new object[] { null, null, false });
+                        Check(method == "JobOnThing" ? result == null : Equals(result, false),
+                            "actual Harmony binding and invocation: " + fixture.Name + "." + method);
+                    }
+                }
+            }
+            finally { harmony.UnpatchAll(harmony.Id); }
+        }
+
+        private sealed class HealerNamedStabilize : WorkGiver_Scanner
+        {
+            public override Job JobOnThing(Pawn healer, Thing target, bool forced = false) => null;
+            public override bool HasJobOnThing(Pawn healer, Thing target, bool forced = false) => false;
+        }
+
+        private sealed class PawnNamedStabilize : WorkGiver_Scanner
+        {
+            public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false) => null;
+            public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false) => false;
         }
     }
 }

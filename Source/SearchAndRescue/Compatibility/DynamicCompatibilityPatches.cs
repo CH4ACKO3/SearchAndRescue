@@ -469,7 +469,9 @@ namespace SearchAndRescue
                    AccessTools.TypeByName("CombatExtended.JobDriver_Stabilize") != null;
         }
 
-        private static void Postfix(Pawn healer, ref Job __result)
+        // Smart Medicine forks name this argument either healer or pawn.
+        // Bind the stable WorkGiver argument position instead of provider-local names.
+        private static void Postfix([HarmonyArgument(0)] Pawn healer, ref Job __result)
         {
             if (__result?.targetA.Thing == null || __result.targetB.Thing == null)
             {
@@ -554,7 +556,7 @@ namespace SearchAndRescue
                    AccessTools.TypeByName("CombatExtended.JobDriver_Stabilize") != null;
         }
 
-        private static void Postfix(Pawn pawn, Thing t, ref bool __result)
+        private static void Postfix([HarmonyArgument(0)] Pawn pawn, [HarmonyArgument(1)] Thing t, ref bool __result)
         {
             if (!__result || !(t is Pawn patient) ||
                 !Compatibility.TryFindSmartMedicinePrimary(

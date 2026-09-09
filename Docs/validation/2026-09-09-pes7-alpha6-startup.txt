@@ -1,0 +1,25 @@
+Error in static constructor of SearchAndRescue.Bootstrap: System.TypeInitializationException: The type initializer for 'SearchAndRescue.Bootstrap' threw an exception. ---> HarmonyLib.HarmonyException: Patching exception in method virtual Verse.AI.Job SmartMedicine.Compatibility.CombatExtended.WorkGiver_Stabilize::JobOnThing(Verse.Pawn pawn, Verse.Thing t, System.Boolean forced) ---> System.Exception: Parameter "healer" not found in method virtual Verse.AI.Job SmartMedicine.Compatibility.CombatExtended.WorkGiver_Stabilize::JobOnThing(Verse.Pawn pawn, Verse.Thing t, System.Boolean forced)
+[Ref D6AB88B4]
+  at HarmonyLib.MethodCreatorTools.EmitCallParameter (HarmonyLib.MethodCreator creator, System.Reflection.MethodInfo patch, System.Boolean allowFirsParamPassthrough, System.Reflection.Emit.LocalBuilder& tmpInstanceBoxingVar, System.Reflection.Emit.LocalBuilder& tmpObjectVar, System.Boolean& refResultUsed, System.Collections.Generic.List`1[T] tmpBoxVars) [0x00a37] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.MethodCreator.AddPostfixes (System.Boolean passthroughPatches) [0x00079] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.MethodCreator.CreateReplacement () [0x00500] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.PatchFunctions.UpdateWrapper (System.Reflection.MethodBase original, HarmonyLib.PatchInfo patchInfo) [0x0007c] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.PatchClassProcessor.ProcessPatchJob (HarmonyLib.PatchJobs`1+Job[T] job) [0x000f8] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+   --- End of inner exception stack trace ---
+[Ref CF6C75FE]
+  at HarmonyLib.PatchClassProcessor.ReportException (System.Exception exception, System.Reflection.MethodBase original) [0x0013c] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.PatchClassProcessor.Patch () [0x00096] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.Harmony.<PatchAll>b__10_1 (System.Type type) [0x00007] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.CollectionExtensions.Do[T] (System.Collections.Generic.IEnumerable`1[T] sequence, System.Action`1[T] action) [0x00014] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.CollectionExtensions.DoIf[T] (System.Collections.Generic.IEnumerable`1[T] sequence, System.Func`2[T,TResult] condition, System.Action`1[T] action) [0x00007] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.Harmony.PatchAll (System.Reflection.Assembly assembly) [0x00006] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+  at HarmonyLib.Harmony.PatchAll () [0x0001d] in <e53399289d9b419d83f9f5b02c5cf609>:0 
+SearchAndRescue.Bootstrap..cctor()
+   --- End of inner exception stack trace ---
+[Ref 6DDF3653]
+(wrapper managed-to-native) System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(intptr)
+  at System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor (System.RuntimeTypeHandle type) [0x0002a] in <51fded79cd284d4d911c5949aff4cb21>:0 
+  at Verse.StaticConstructorOnStartupUtility.CallAll () [0x00025] in <61e4173561894da49d210260257b5097>:0 
+Could not execute post-long-event action. Exception: System.NullReferenceException: Object reference not set to an instance of an object
+[Ref 7F081F7F]
+  at Verse.GlobalTextureAtlasManager.TryInsertStatic (Verse.TextureAtlasGroup group, UnityEngine.Texture2D texture, UnityEngine.Texture2D mask) [0x00000] in <61e4173561894da49d210260257b5097>:0 

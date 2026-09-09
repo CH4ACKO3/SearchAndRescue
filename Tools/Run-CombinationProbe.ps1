@@ -3,12 +3,13 @@ param(
     [Parameter(Mandatory=$true)][string]$RuntimeDir,
     [Parameter(Mandatory=$true)][string]$SaveData,
     [switch]$ChooseYourMedicine,
-    [switch]$WorkTab
+    [switch]$WorkTab,
+    [string]$SmartMedicinePackage = 'memegoddess.smartmedicine'
 )
 $ErrorActionPreference = 'Stop'
 $modRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
 $exe = (Resolve-Path -LiteralPath $GameExe).Path
-$ids = @('ludeon.rimworld.biotech','ceteam.combatextended','memegoddess.smartmedicine',
+$ids = @('ludeon.rimworld.biotech','ceteam.combatextended',$SmartMedicinePackage,
     'th3fr3d.extendedinjuries','aoba.hemogendirect')
 if ($ChooseYourMedicine) { $ids += 'kopp.chooseyourmedicine' }
 if ($WorkTab) { $ids += 'fluffy.worktab' }
@@ -17,7 +18,7 @@ if ($WorkTab) { $ids += 'fluffy.worktab' }
 $runtime = [IO.Path]::GetFullPath($RuntimeDir)
 $profile = [IO.Path]::GetFullPath($SaveData)
 # Each disposable runtime has a distinct ID so existing benchmark installs remain intact.
-$package = 'ch4acko3.sarcombinationprobe.' + [Guid]::NewGuid().ToString('N')
+$package = 'ch4acko3.sarcombinationprobe.p' + [Guid]::NewGuid().ToString('N')
 $aboutPath = Join-Path $runtime 'About/About.xml'
 $about = [xml](Get-Content -LiteralPath $aboutPath -Raw)
 $about.ModMetaData.packageId = $package
