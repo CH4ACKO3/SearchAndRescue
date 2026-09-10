@@ -113,7 +113,7 @@ SAR 没有可执行救援分配时，盟友可接手已标记患者。已分配�
 **Smarter Capture Them — 兼容**
 自动俘虏和运输 WorkGiver 接入统一所有权门控。玩家强制命令具有优先权。
 
-**Hauler's Dream — 联动**
+**Hauler's Dream — 兼容**
 保护仍用于 SAR 治疗和补给任务的药品，避免被当作多余物资卸下；SAR 释放物资后恢复正常卸货。
 
 **Pick Up And Haul — 兼容**

@@ -128,7 +128,7 @@ namespace SearchAndRescue
                     null, "lke.Smarter.CaptureThem"),
                 Entry("Pick Up And Haul", "PickUpAndHaul", CompatibilitySupportLevel.Compatible,
                     null, "mehni.pickupandhaul"),
-                Entry("Hauler's Dream", "HaulersDream", CompatibilitySupportLevel.Integration,
+                Entry("Hauler's Dream", "HaulersDream", CompatibilitySupportLevel.Compatible,
                     null, "giwaffed.haulersdream"),
                 Entry("Hospitality", "Hospitality", CompatibilitySupportLevel.Partial,
                     null, "orion.hospitality"),

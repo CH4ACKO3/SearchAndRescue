@@ -113,7 +113,7 @@ Workers assigned to Field Rescue and CASEVAC start unattended evacuations first,
 Smarter Capture Them — Compatible
 Automatic capture and transport WorkGivers participate in the shared ownership gate. Player-forced orders have priority.
 
-Hauler's Dream — Integration
+Hauler's Dream — Compatible
 Keeps medicine reserved for active SAR treatment and supply tasks from being unloaded as surplus. Normal unloading resumes when SAR releases the supplies.
 
 Pick Up And Haul — Compatible
