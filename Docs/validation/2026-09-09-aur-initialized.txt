@@ -1,0 +1,79 @@
+Mods: brrainz.harmony,ludeon.rimworld,xmb.ancienturbanruins.mo,ch4acko3.saraurprobe.pb3d636240d1e45a3936f7d2bc94ae63f
+AM_AI2A ordinary initial count=3 selectedJob=TendPatient
+AM_AI2A ordinary ticks=485 cut=True bruise=True kitDestroyed=False count=2 job=Wait_MaintainPosture
+PASS: AM_AI2A ordinary actual wound treated/stabilized
+PASS: AM_AI2A ordinary field boundary preserved
+PASS: AM_AI2A ordinary reusable kit retained after first round
+PASS: AM_AI2A ordinary no runtime errors
+PASS: AM_AI2A SAR selected production medicine/job
+AM_AI2A SAR initial count=3 selectedJob=TendPatient
+AM_AI2A SAR ticks=559 cut=True bruise=False kitDestroyed=False count=2 job=Wait_MaintainPosture
+PASS: AM_AI2A SAR actual wound treated/stabilized
+PASS: AM_AI2A SAR field boundary preserved
+PASS: AM_AI2A SAR reusable kit retained after first round
+PASS: AM_AI2A SAR no runtime errors
+AM_HemostaticAgent ordinary initial count=3 selectedJob=TendPatient
+AM_HemostaticAgent ordinary ticks=490 cut=True bruise=True kitDestroyed=False count=2 job=GotoWander
+PASS: AM_HemostaticAgent ordinary actual wound treated/stabilized
+PASS: AM_HemostaticAgent ordinary field boundary preserved
+PASS: AM_HemostaticAgent ordinary reusable kit retained after first round
+PASS: AM_HemostaticAgent ordinary no runtime errors
+PASS: AM_HemostaticAgent SAR selected production medicine/job
+AM_HemostaticAgent SAR initial count=3 selectedJob=TendPatient
+AM_HemostaticAgent SAR ticks=599 cut=True bruise=False kitDestroyed=False count=2 job=Wait_MaintainPosture
+PASS: AM_HemostaticAgent SAR actual wound treated/stabilized
+PASS: AM_HemostaticAgent SAR field boundary preserved
+PASS: AM_HemostaticAgent SAR reusable kit retained after first round
+PASS: AM_HemostaticAgent SAR no runtime errors
+AM_FirstAidKit ordinary initial count=4 selectedJob=TendPatient
+AM_FirstAidKit ordinary ticks=487 cut=True bruise=True kitDestroyed=False count=3 job=Wait_MaintainPosture
+PASS: AM_FirstAidKit ordinary actual wound treated/stabilized
+PASS: AM_FirstAidKit ordinary field boundary preserved
+PASS: AM_FirstAidKit ordinary reusable kit retained after first round
+PASS: AM_FirstAidKit ordinary no runtime errors
+PASS: AM_FirstAidKit SAR selected production medicine/job
+AM_FirstAidKit SAR initial count=4 selectedJob=TendPatient
+AM_FirstAidKit SAR ticks=514 cut=True bruise=False kitDestroyed=False count=3 job=Wait_MaintainPosture
+PASS: AM_FirstAidKit SAR actual wound treated/stabilized
+PASS: AM_FirstAidKit SAR field boundary preserved
+PASS: AM_FirstAidKit SAR reusable kit retained after first round
+PASS: AM_FirstAidKit SAR no runtime errors
+AM_Salewa ordinary initial count=8 selectedJob=TendPatient
+AM_Salewa ordinary ticks=537 cut=True bruise=True kitDestroyed=False count=7 job=Wait_MaintainPosture
+PASS: AM_Salewa ordinary actual wound treated/stabilized
+PASS: AM_Salewa ordinary field boundary preserved
+PASS: AM_Salewa ordinary reusable kit retained after first round
+PASS: AM_Salewa ordinary no runtime errors
+PASS: AM_Salewa SAR selected production medicine/job
+AM_Salewa SAR initial count=8 selectedJob=TendPatient
+AM_Salewa SAR ticks=550 cut=True bruise=False kitDestroyed=False count=7 job=Wait_MaintainPosture
+PASS: AM_Salewa SAR actual wound treated/stabilized
+PASS: AM_Salewa SAR field boundary preserved
+PASS: AM_Salewa SAR reusable kit retained after first round
+PASS: AM_Salewa SAR no runtime errors
+AM_Grizzly ordinary initial count=24 selectedJob=TendPatient
+AM_Grizzly ordinary ticks=534 cut=True bruise=True kitDestroyed=False count=23 job=Wait_MaintainPosture
+PASS: AM_Grizzly ordinary actual wound treated/stabilized
+PASS: AM_Grizzly ordinary field boundary preserved
+PASS: AM_Grizzly ordinary reusable kit retained after first round
+PASS: AM_Grizzly ordinary no runtime errors
+PASS: AM_Grizzly SAR selected production medicine/job
+AM_Grizzly SAR initial count=24 selectedJob=TendPatient
+AM_Grizzly SAR ticks=759 cut=True bruise=False kitDestroyed=False count=23 job=Wait_MaintainPosture
+PASS: AM_Grizzly SAR actual wound treated/stabilized
+PASS: AM_Grizzly SAR field boundary preserved
+PASS: AM_Grizzly SAR reusable kit retained after first round
+PASS: AM_Grizzly SAR no runtime errors
+AM_AncientGrizzly ordinary initial count=24 selectedJob=TendPatient
+AM_AncientGrizzly ordinary ticks=779 cut=True bruise=True kitDestroyed=False count=23 job=Wait_MaintainPosture
+PASS: AM_AncientGrizzly ordinary actual wound treated/stabilized
+PASS: AM_AncientGrizzly ordinary field boundary preserved
+PASS: AM_AncientGrizzly ordinary reusable kit retained after first round
+PASS: AM_AncientGrizzly ordinary no runtime errors
+PASS: AM_AncientGrizzly SAR selected production medicine/job
+AM_AncientGrizzly SAR initial count=24 selectedJob=TendPatient
+AM_AncientGrizzly SAR ticks=536 cut=True bruise=False kitDestroyed=False count=23 job=Wait_MaintainPosture
+PASS: AM_AncientGrizzly SAR actual wound treated/stabilized
+PASS: AM_AncientGrizzly SAR field boundary preserved
+PASS: AM_AncientGrizzly SAR reusable kit retained after first round
+PASS: AM_AncientGrizzly SAR no runtime errors

@@ -1,0 +1,38 @@
+PASS: fixture has an enclosed prison cell
+0: SAR_CaptureInPlace/0 prisoner=False bed=False cut=False bruise=False
+107: SAR_CaptureInPlace/1 prisoner=False bed=False cut=False bruise=False
+226: Wait_MaintainPosture/0 prisoner=True bed=False cut=False bruise=False
+227: TendPatient/3 prisoner=True bed=False cut=False bruise=False
+769: Capture/6 prisoner=True bed=False cut=True bruise=False
+1474: Wait_MaintainPosture/0 prisoner=True bed=True cut=True bruise=False
+1475: TendPatient/0 prisoner=True bed=True cut=True bruise=False
+1509: TendPatient/3 prisoner=True bed=True cut=True bruise=False
+2050: Wait_MaintainPosture/0 prisoner=True bed=True cut=True bruise=True
+PASS: marked hostile was captured by actual job
+PASS: bleeding treated in field while minor wound was deferred
+PASS: actual rescue delivered prisoner into safe bed
+PASS: scheduler assigned followup treatment
+PASS: bed followup actually treated minor wound without cancelling marks
+PASS: Treat keeps its intended emergency/routine boundary in bed
+PASS: Treat actual treatment respects bed stage permission
+PASS: Treat medicine consumed only for an effective round
+PASS: Treat restores treatment scope
+PASS: FollowupTreat keeps its intended emergency/routine boundary in bed
+PASS: FollowupTreat actual treatment respects bed stage permission
+PASS: FollowupTreat medicine consumed only for an effective round
+PASS: FollowupTreat restores treatment scope
+PASS: GrimWorks disabled emergency child blocks SAR emergency work
+PASS: GrimWorks priority 7 emergency child is enabled
+PASS: GrimWorks disabled SAR treatment child blocks assignment
+PASS: GrimWorks emergency-only doctor cannot perform routine human tending
+PASS: GrimWorks priority 8 routine tending is enabled
+PASS: GrimWorks surgery remains in its separate work type
+PASS: GrimWorks Rescue supplies SAR transport with Hauling disabled
+PASS: disabled GrimWorks rescue child revokes transport
+PASS: GrimWorks rescue priority 6 is preserved
+PASS: GrimWorks Nurse alone does not grant medical tending
+PASS: Haulers Dream considers unclaimed inventory medicine surplus
+PASS: fixture reserves inventory medicine for SAR
+PASS: Haulers Dream does not unload SAR-claimed medicine
+PASS: Haulers Dream resumes normal unloading after claim release
+PASS: clinical execution logged no errors

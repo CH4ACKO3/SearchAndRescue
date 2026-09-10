@@ -747,7 +747,7 @@ namespace SearchAndRescue
 
         internal static bool NativeInterventionWorkAllowed(Pawn worker, MedicalIntervention intervention, Pawn patient)
         {
-            if (!UsesWorkTab || IsColonyWorkMech(worker) || HardworkingCompatibility.IsWorker(worker)) return true;
+            if ((!UsesWorkTab && !GrimWorksCompatibility.Available) || IsColonyWorkMech(worker) || HardworkingCompatibility.IsWorker(worker)) return true;
             // Nursing is an independent provider. A disabled Doctor column must not
             // revoke the explicitly enabled nursing specialization.
             if (IsSupportiveIntervention(intervention) && NursingTreatmentWorkGiver != null &&
@@ -973,6 +973,13 @@ namespace SearchAndRescue
                     return null;
                 }
 
+                if (AncientUrbanRuinsCompatibility.RequiresNativeTend(ceMedicine))
+                {
+                    if (!CanStartAutomaticTreatmentJob(doctor, patient, JobDefOf.TendPatient)) return null;
+                    Job tend = JobMaker.MakeJob(JobDefOf.TendPatient, patient, ceMedicine);
+                    ConfigureTreatmentRoundJob(tend, patient, 1);
+                    return tend;
+                }
                 Job stabilize = JobMaker.MakeJob(StabilizeJob, patient, ceMedicine);
                 stabilize.count = 1;
                 return stabilize;
@@ -1261,7 +1268,9 @@ namespace SearchAndRescue
                         ? Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))
                         : Math.Sqrt(doctor.Position.DistanceToSquared(candidateMedicine.PositionHeld)) +
                           Math.Sqrt(candidateMedicine.PositionHeld.DistanceToSquared(patient.Position));
-                    MedicalIntervention intervention = ceStabilizeAvailable
+                    MedicalIntervention intervention = AncientUrbanRuinsCompatibility.RequiresNativeTend(candidateMedicine)
+                        ? MedicalIntervention.VanillaTend
+                        : ceStabilizeAvailable
                         ? MedicalIntervention.CombatExtendedStabilize
                         : FirstAidJob != null && !UsesSmartMedicine && !UsesCombatExtended
                             ? MedicalIntervention.Rh2FirstAid
@@ -1619,6 +1628,9 @@ namespace SearchAndRescue
                         return hemogenJob;
                     }
                 case MedicalIntervention.CombatExtendedStabilize:
+                    if (AncientUrbanRuinsCompatibility.RequiresNativeTend(option.Resource))
+                        return CanStartAutomaticTreatmentJob(doctor, patient, JobDefOf.TendPatient)
+                            ? JobMaker.MakeJob(JobDefOf.TendPatient, patient, option.Resource) : null;
                     return StabilizeJob == null || option.Resource == null
                         ? null
                         : JobMaker.MakeJob(StabilizeJob, patient, option.Resource);
@@ -1917,6 +1929,7 @@ namespace SearchAndRescue
                 return RescueWorkProvider.Nursing;
             }
 
+            if (GrimWorksCompatibility.RescuePriority(worker) > 0) return RescueWorkProvider.GrimWorks;
             return hauling ? RescueWorkProvider.Hauling : RescueWorkProvider.None;
         }
 
@@ -1924,6 +1937,7 @@ namespace SearchAndRescue
         {
             RescueWorkProvider provider = RescueProviderFor(worker);
             if (provider == RescueWorkProvider.Casevac) return CasevacPriority(worker);
+            if (provider == RescueWorkProvider.GrimWorks) return GrimWorksCompatibility.RescuePriority(worker);
             if (provider == RescueWorkProvider.Animal)
             {
                 return 3;
@@ -2560,7 +2574,7 @@ namespace SearchAndRescue
                 : Math.Max(fieldPriority, providerPriority);
         }
 
-        private static int DetailedWorkPriority(Pawn worker, WorkGiverDef workGiver, WorkTypeDef fallbackWorkType)
+        internal static int DetailedWorkPriority(Pawn worker, WorkGiverDef workGiver, WorkTypeDef fallbackWorkType)
         {
             if (worker == null || workGiver == null || fallbackWorkType == null)
             {
@@ -2569,11 +2583,17 @@ namespace SearchAndRescue
 
             if (worker.workSettings != null)
             {
+                int? grimPriority = GrimWorksCompatibility.Available && !HardworkingCompatibility.IsWorker(worker)
+                    ? GrimWorksCompatibility.GetPriority(worker, workGiver) : (int?)null;
+                if (grimPriority == 0) return 0;
                 if (WorkTabGetPriority != null && !HardworkingCompatibility.IsWorker(worker))
                 {
                     try
                     {
-                        return WorkTabGetPriority(worker, workGiver, -1);
+                        int workTabPriority = WorkTabGetPriority(worker, workGiver, -1);
+                        // Work Tab builds the native list first; GrimWorks then filters
+                        // and sorts it. Both permissions apply when both mods are loaded.
+                        return workTabPriority <= 0 ? 0 : grimPriority ?? workTabPriority;
                     }
                     catch (Exception exception)
                     {
@@ -2582,7 +2602,7 @@ namespace SearchAndRescue
                     }
                 }
 
-                return worker.workSettings.GetPriority(fallbackWorkType);
+                return grimPriority ?? worker.workSettings.GetPriority(fallbackWorkType);
             }
 
             if (!IsColonyWorkMech(worker))
@@ -2613,6 +2633,8 @@ namespace SearchAndRescue
             if (worker.workSettings != null)
             {
                 int nativePriority = worker.workSettings.GetPriority(workType);
+                bool grimWorks = GrimWorksCompatibility.Available && !HardworkingCompatibility.IsWorker(worker);
+                if (grimWorks && (nativePriority <= 0 || worker.WorkTypeIsDisabled(workType))) return 0;
                 if (colonyWorkMech && nativePriority <= 0)
                 {
                     // Mech Work Tab keeps an hourly schedule separate from the native
@@ -2626,7 +2648,8 @@ namespace SearchAndRescue
                     try
                     {
                         // Work Tab interprets -1 as the pawn's current local hour.
-                        return WorkTabGetWorkTypePriority(worker, workType, -1);
+                        int workTabPriority = WorkTabGetWorkTypePriority(worker, workType, -1);
+                        return workTabPriority <= 0 ? 0 : grimWorks ? nativePriority : workTabPriority;
                     }
                     catch (Exception exception)
                     {

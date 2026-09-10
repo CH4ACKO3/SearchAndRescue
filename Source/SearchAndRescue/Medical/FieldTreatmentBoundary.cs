@@ -43,7 +43,10 @@ namespace SearchAndRescue
         internal static bool RestrictRound(Pawn doctor, Pawn patient) =>
             doctor?.CurJob?.targetA.Pawn == patient &&
             !MechanicalCare.IsPatient(patient) && !RobotMedicalProfile.OwnsMedicineSelection(patient) &&
-            (SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob, SearchAndRescueStage.Treat) ||
+            // Treat ownership also matches FollowupTreat for scheduling. Routine bed care
+            // must not inherit the emergency-only execution filter from that lane alias.
+            (SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob, SearchAndRescueStage.Treat) &&
+             !SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob, SearchAndRescueStage.FollowupTreat) ||
              (SearchAndRescueJobContext.IsActive(doctor, doctor.CurJob) ||
               RimkitCompatibility.IsManagedRound(doctor.CurJob)) && !AtCareLocation(patient));
 
@@ -54,9 +57,10 @@ namespace SearchAndRescue
     internal static class FieldTendScopePatch
     {
         [HarmonyPriority(Priority.First)]
-        private static bool Prefix(Pawn doctor, Pawn patient, out Pawn __state)
+        private static bool Prefix(Pawn doctor, Pawn patient, Medicine medicine, out Pawn __state)
         {
             __state = FieldTreatmentBoundary.EmergencyPatient;
+            AncientUrbanRuinsCompatibility.PrepareManagedMedicine(doctor, patient, medicine);
             if (!FieldTreatmentBoundary.RestrictRound(doctor, patient)) return true;
             FieldTreatmentBoundary.EmergencyPatient = patient;
             // No medicine or treatment statistics should be consumed after stabilization.

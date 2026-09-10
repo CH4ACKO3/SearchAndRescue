@@ -1,6 +1,13 @@
 # Changelog
 
-## Unreleased
+## 0.1.0-alpha.9
+
+- Respect GrimWorks child work priorities and support its Rescue work as a SAR transport provider without requiring Hauling.
+- Preserve Nurse Job rescue-mode preferences and require both managers' child-work permission when GrimWorks and Work Tab are enabled together.
+- Protect SAR-assigned medicine from Hauler's Dream surplus unloading until the medical claim is released.
+- Fix marked patients repeatedly receiving ineffective follow-up tending after delivery to a bed; keep emergency-only medical work restricted to emergencies.
+- Route Ancient Urban Ruins multi-use medicines through native tending instead of CE stabilization, preserving their remaining uses and completing actual wound treatment.
+- Initialize AUR medicine counters when SAR commits a treatment round, so an uninspected kit is not consumed as a single-use item.
 
 ## 0.1.0-alpha.8
 

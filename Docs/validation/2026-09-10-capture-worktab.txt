@@ -1,0 +1,24 @@
+PASS: fixture has an enclosed prison cell
+0: SAR_CaptureInPlace/0 prisoner=False bed=False cut=False bruise=False
+69: SAR_CaptureInPlace/1 prisoner=False bed=False cut=False bruise=False
+188: Wait_MaintainPosture/0 prisoner=True bed=False cut=False bruise=False
+189: TendPatient/3 prisoner=True bed=False cut=False bruise=False
+765: Capture/6 prisoner=True bed=False cut=True bruise=False
+1085: Wait_MaintainPosture/0 prisoner=True bed=True cut=True bruise=False
+1086: TendPatient/0 prisoner=True bed=True cut=True bruise=False
+1108: TendPatient/3 prisoner=True bed=True cut=True bruise=False
+1683: Wait_MaintainPosture/0 prisoner=True bed=True cut=True bruise=True
+PASS: marked hostile was captured by actual job
+PASS: bleeding treated in field while minor wound was deferred
+PASS: actual rescue delivered prisoner into safe bed
+PASS: scheduler assigned followup treatment
+PASS: bed followup actually treated minor wound without cancelling marks
+PASS: Treat keeps its intended emergency/routine boundary in bed
+PASS: Treat actual treatment respects bed stage permission
+PASS: Treat medicine consumed only for an effective round
+PASS: Treat restores treatment scope
+PASS: FollowupTreat keeps its intended emergency/routine boundary in bed
+PASS: FollowupTreat actual treatment respects bed stage permission
+PASS: FollowupTreat medicine consumed only for an effective round
+PASS: FollowupTreat restores treatment scope
+PASS: clinical execution logged no errors

@@ -4,7 +4,8 @@ param(
     [Parameter(Mandatory=$true)][string]$SaveData,
     [switch]$ChooseYourMedicine,
     [switch]$WorkTab,
-    [string]$SmartMedicinePackage = 'memegoddess.smartmedicine'
+    [string]$SmartMedicinePackage = 'memegoddess.smartmedicine',
+    [string[]]$AdditionalMods = @()
 )
 $ErrorActionPreference = 'Stop'
 $modRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot '..')).Path
@@ -13,6 +14,7 @@ $ids = @('ludeon.rimworld.biotech','ceteam.combatextended',$SmartMedicinePackage
     'th3fr3d.extendedinjuries','aoba.hemogendirect')
 if ($ChooseYourMedicine) { $ids += 'kopp.chooseyourmedicine' }
 if ($WorkTab) { $ids += 'fluffy.worktab' }
+$ids += $AdditionalMods
 & (Join-Path $PSScriptRoot 'SchedulerOptimizer/New-EngineProfile.ps1') -ModDir $modRoot `
     -RuntimeDir $RuntimeDir -SaveData $SaveData -AdditionalMods $ids | Out-Null
 $runtime = [IO.Path]::GetFullPath($RuntimeDir)

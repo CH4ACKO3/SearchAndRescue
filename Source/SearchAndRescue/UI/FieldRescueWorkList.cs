@@ -28,6 +28,7 @@ namespace SearchAndRescue
             "SAR_RepairMarkedMech" => 2,
             "SAR_CaptureMarked" => 3,
             "SAR_RescueMarkedHauling" => 4,
+            "SAR_RescueMarkedGrimWorks" => 4,
             "SAR_RescueMarkedParamedic" => 4,
             "SAR_RescueMarkedNursing" => 4,
             "SAR_FollowupTreatMarked" => 5,

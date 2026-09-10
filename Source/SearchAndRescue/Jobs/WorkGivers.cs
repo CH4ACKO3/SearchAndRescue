@@ -11,7 +11,14 @@ namespace SearchAndRescue
         Hauling,
         Nursing,
         Paramedic,
-        Animal
+        Animal,
+        GrimWorks
+    }
+
+    public sealed class WorkGiver_SearchAndRescueRescueGrimWorks : WorkGiver
+    {
+        public override Job NonScanJob(Pawn pawn) => pawn.Map?.GetComponent<SearchAndRescueCoordinator>()
+            ?.TryIssueJob(pawn, SearchAndRescueStage.Rescue, RescueWorkProvider.GrimWorks);
     }
 
     public sealed class WorkGiver_SearchAndRescueCasevac : WorkGiver

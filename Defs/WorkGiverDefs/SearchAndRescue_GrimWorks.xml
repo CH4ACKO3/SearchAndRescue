@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <WorkGiverDef MayRequire="grimworks.workmanager">
+    <defName>SAR_RescueMarkedGrimWorks</defName>
+    <label>evacuate casualties (GrimWorks rescue)</label>
+    <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueRescueGrimWorks</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <emergency>true</emergency>
+    <verb>rescue</verb>
+    <gerund>rescuing</gerund>
+    <priorityInType>90</priorityInType>
+    <requiredCapacities><li>Manipulation</li></requiredCapacities>
+    <directOrderable>false</directOrderable>
+  </WorkGiverDef>
+</Defs>

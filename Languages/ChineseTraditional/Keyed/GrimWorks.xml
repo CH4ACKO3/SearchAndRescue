@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_Compatibility_GrimWorks>讀取各子工作的優先級，包括被關閉的醫療子工作。開啟戰地救援與 GrimWorks 救援後，無需開啟搬運即可轉移傷員；僅開啟護士不會獲得治療權限。</SAR_Compatibility_GrimWorks>
+</LanguageData>

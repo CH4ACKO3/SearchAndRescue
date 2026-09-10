@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_Compatibility_GrimWorks>读取各子工作的优先级，包括被关闭的医疗子工作。开启战地救援与 GrimWorks 救援后，无需开启搬运即可转移伤员；仅开启护士不会获得治疗权限。</SAR_Compatibility_GrimWorks>
+</LanguageData>
