@@ -19,6 +19,10 @@ on:
         description: Replace the verified release's change notes with its current Docs/releases text
         type: boolean
         default: false
+      refresh_descriptions:
+        description: Synchronize current Workshop descriptions while preserving the verified release files
+        type: boolean
+        default: false
 permissions:
   contents: read
 concurrency:
@@ -219,6 +223,16 @@ jobs:
         if: inputs.refresh_release_notes
         shell: pwsh
         run: ./Tools/CI/Refresh-ReleaseNotes.ps1 -ArtifactRoot package
+      - name: Refresh Workshop descriptions from the repository
+        if: inputs.refresh_descriptions
+        shell: pwsh
+        run: |
+          $m=Get-Content package/manifest.json -Raw | ConvertFrom-Json
+          foreach ($language in @('en','zh-CN')) {
+            Copy-Item -LiteralPath "Docs/workshop/Description.$language.bbcode" -Destination "package/Description.$language.bbcode"
+            $m.descriptions.$language=(Get-FileHash -LiteralPath "package/Description.$language.bbcode").Hash
+          }
+          $m | ConvertTo-Json -Depth 5 | Set-Content package/manifest.json
       - name: Verify published files and synchronize descriptions
         shell: pwsh
         env:
@@ -231,13 +245,14 @@ jobs:
           STEAM_CONFIG_VDF_BASE64: ${{ secrets.STEAM_CONFIG_VDF_BASE64 }}
         run: ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot package -VerifyPublished
       - name: Preserve verified release metadata
-        if: inputs.refresh_release_notes
+        if: inputs.refresh_release_notes || inputs.refresh_descriptions
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: revised-release-metadata
           path: |
             package/manifest.json
             package/release-notes*.md
+            package/Description.*.bbcode
           if-no-files-found: error
       - name: Save encrypted Steam session
         if: always()
