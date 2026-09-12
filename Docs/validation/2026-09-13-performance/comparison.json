@@ -1,0 +1,29 @@
+{
+  "baseline": {
+    "Survivors": "18",
+    "Deaths": "16",
+    "Rounds": "64",
+    "Switches": "6",
+    "MedicineConsumed": "34",
+    "Untended": "1",
+    "Errors": "0",
+    "OwnershipConflicts": "0",
+    "FirstTreatmentDelay": "0.46309803921568626",
+    "post_first_window_sar_us_per_tick": 43.26816819629144
+  },
+  "optimized": {
+    "Survivors": "18",
+    "Deaths": "16",
+    "Rounds": "64",
+    "Switches": "6",
+    "MedicineConsumed": "34",
+    "Untended": "1",
+    "Errors": "0",
+    "OwnershipConflicts": "0",
+    "FirstTreatmentDelay": "0.46309803921568626",
+    "post_first_window_sar_us_per_tick": 42.39488543562462
+  },
+  "events_identical": true,
+  "initial_save_sha256": "fe9576b0ba2d2483357e7e346e484503ce14f6a067a7d2a3e15d194e854061a8",
+  "optimized_dll_sha256": "f8224b50967ce02125a13352dfc9afe9cef9b30b290e9977283b94f6ca6f3e17"
+}

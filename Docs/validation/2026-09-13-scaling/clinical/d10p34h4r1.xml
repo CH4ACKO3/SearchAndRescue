@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<EngineBenchmarkResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ScoringVersion>3</ScoringVersion>
+  <Request>
+    <RunId>d10p34h4r1</RunId>
+    <Seed>709</Seed>
+    <Horizon>6000</Horizon>
+    <Scenario>stress-v1</Scenario>
+    <MedicineDetourTolerance>1</MedicineDetourTolerance>
+    <TreatmentSwitchReluctance>1</TreatmentSwitchReluctance>
+    <TreatmentBeforeTransportPriority>1</TreatmentBeforeTransportPriority>
+  </Request>
+  <Status>observed</Status>
+  <Elapsed>6000</Elapsed>
+  <Patients>34</Patients>
+  <Deaths>0</Deaths>
+  <Untended>136</Untended>
+  <Rounds>0</Rounds>
+  <Switches>0</Switches>
+  <Errors>0</Errors>
+  <OwnershipConflicts>0</OwnershipConflicts>
+  <RemainingPatients>34</RemainingPatients>
+  <Survivors>34</Survivors>
+  <Stabilized>0</Stabilized>
+  <DoctorCount>10</DoctorCount>
+  <HaulerCount>4</HaulerCount>
+  <CompletionTick>-1</CompletionTick>
+  <MedicineConsumed>0</MedicineConsumed>
+  <BloodBurden>0.39735309605212771</BloodBurden>
+  <FirstTreatmentDelay>1</FirstTreatmentDelay>
+  <WalkDistance>1855.6915726261814</WalkDistance>
+  <Score>34009.376646912177</Score>
+  <Events />
+</EngineBenchmarkResult>

@@ -1,0 +1,43 @@
+PASS: 92 direct production clinical/ownership/readiness/stage checks
+PASS: completed-care affinity precedence, expiry and global rematching (9 checks)
+PASS: skill/severity pairing
+PASS: nurse transfusion / doctor skilled-care split
+PASS: doctor transfusion fallback
+PASS: bandaged blood-loss transfusion urgency
+PASS: bounded hypovolemic-shock resuscitation
+PASS: stable follow-up locality
+PASS: casualty backlog prices doctor equipment detours
+PASS: post-round treatment continuity
+PASS: temporary-bed ForceWait lifecycle
+PASS: temporary-bed replacement lifecycle
+PASS: per-snapshot pickup reachability cache
+PASS: no-capable-transport-worker short circuit
+PASS: grouped transport roles preserve other casualties
+PASS: supply source diversification avoids avoidable pickup queues
+PASS: removed/overlapping bed cleanup
+PASS: vanilla tend safe-boundary preemption
+PASS: scarce device claim + fallback
+PASS: implicit supply competes with rescue
+PASS: supply distance and doctor-opportunity dispatch gate
+PASS: field-supply ownership boundaries
+PASS: exact medicine shortfall and partial replenishment
+PASS: stale medicine pickup recovery and exact-quota boundary
+PASS: new field references retire stale automatic haul reservations
+PASS: forbidden field supplies release references and reopen deficits
+PASS: destroyed medical supplies release ownership and rematch next tick
+PASS: treatment-ownership boundaries
+PASS: TakeToBed ownership covers rescue/capture aliases
+PASS: two-phase rescue interception
+PASS: safe delivery retains unresolved medical care
+PASS: unified three-mode care admission + soft ownership fallback
+PASS: automatic rescue admission + soft transport ownership
+PASS: More Injuries tourniquet safe-removal lifecycle
+PASS: pooled Job reuse cannot retain a stale active claim
+PASS: interrupted evacuation patient-drop invariant
+PASS: worker control-state boundaries
+PASS: responder gate preserves underlying work authority
+PASS: capture/treatment bundle and same-doctor handoff
+PASS: rescue-point route invalidation
+PASS: inventory donor control boundaries
+PASS: 200 randomized N/M graphs
+PASS: 40 scheduler/resource/ownership/lifecycle scenarios

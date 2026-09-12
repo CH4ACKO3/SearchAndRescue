@@ -1,0 +1,1091 @@
+[
+  {
+    "name": "d5p34h4r0",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "stableTPS": 2052.1720827896697,
+    "sarUsPerTick": 63.669361147327244,
+    "sarSharePercent": 13.769297036818013,
+    "profile": {
+      "MapTick": {
+        "calls": 6177,
+        "avgUs": 65.49,
+        "maxMs": 87.611,
+        "totalMs": 404.53
+      },
+      "PendingAndWake": {
+        "calls": 6177,
+        "avgUs": 4.12,
+        "maxMs": 0.55,
+        "totalMs": 25.47
+      },
+      "TreatmentMonitoring": {
+        "calls": 6177,
+        "avgUs": 5.38,
+        "maxMs": 6.904,
+        "totalMs": 33.21
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6177,
+        "avgUs": 2.22,
+        "maxMs": 0.929,
+        "totalMs": 13.73
+      },
+      "PeriodicCleanup": {
+        "calls": 136,
+        "avgUs": 89.16,
+        "maxMs": 3.832,
+        "totalMs": 12.13
+      },
+      "ScheduleRebuild": {
+        "calls": 78,
+        "avgUs": 4066.84,
+        "maxMs": 80.465,
+        "totalMs": 317.21
+      },
+      "CarePlanning": {
+        "calls": 78,
+        "avgUs": 472.33,
+        "maxMs": 9.201,
+        "totalMs": 36.84
+      },
+      "UnifiedMatching": {
+        "calls": 78,
+        "avgUs": 1334.68,
+        "maxMs": 35.735,
+        "totalMs": 104.11
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 1866,
+        "avgUs": 51.34,
+        "maxMs": 20.071,
+        "totalMs": 95.81
+      },
+      "PickupReachability": {
+        "calls": 5089,
+        "avgUs": 0.7,
+        "maxMs": 0.179,
+        "totalMs": 3.58
+      },
+      "TransportMatching": {
+        "calls": 78,
+        "avgUs": 1374.42,
+        "maxMs": 17.152,
+        "totalMs": 107.2
+      },
+      "WakePendingWorkers": {
+        "calls": 78,
+        "avgUs": 176.34,
+        "maxMs": 6.817,
+        "totalMs": 13.75
+      }
+    },
+    "solver": {
+      "workers": 9,
+      "patients": 34,
+      "medianMs": 0.0485,
+      "minMs": 0.0471,
+      "maxMs": 0.0744
+    },
+    "clinical": {
+      "Patients": 34,
+      "Deaths": 0,
+      "Rounds": 1,
+      "Errors": 1,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 1,
+      "RemainingPatients": 33
+    }
+  },
+  {
+    "name": "d10p34h4r1",
+    "doctors": 10,
+    "patients": 34,
+    "haulers": 4,
+    "stableTPS": 1692.8963783296251,
+    "sarUsPerTick": 148.04114883621608,
+    "sarSharePercent": 26.110798927662408,
+    "profile": {
+      "MapTick": {
+        "calls": 6268,
+        "avgUs": 129.57,
+        "maxMs": 30.714,
+        "totalMs": 812.12
+      },
+      "PendingAndWake": {
+        "calls": 6268,
+        "avgUs": 3.64,
+        "maxMs": 0.102,
+        "totalMs": 22.84
+      },
+      "TreatmentMonitoring": {
+        "calls": 6268,
+        "avgUs": 30.89,
+        "maxMs": 15.885,
+        "totalMs": 193.62
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6268,
+        "avgUs": 2.77,
+        "maxMs": 0.35,
+        "totalMs": 17.39
+      },
+      "PeriodicCleanup": {
+        "calls": 140,
+        "avgUs": 44.12,
+        "maxMs": 0.103,
+        "totalMs": 6.18
+      },
+      "ScheduleRebuild": {
+        "calls": 130,
+        "avgUs": 4391.4,
+        "maxMs": 30.603,
+        "totalMs": 570.88
+      },
+      "CarePlanning": {
+        "calls": 130,
+        "avgUs": 325.1,
+        "maxMs": 0.75,
+        "totalMs": 42.26
+      },
+      "UnifiedMatching": {
+        "calls": 130,
+        "avgUs": 2320.28,
+        "maxMs": 26.617,
+        "totalMs": 301.64
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 4701,
+        "avgUs": 61.57,
+        "maxMs": 7.287,
+        "totalMs": 289.43
+      },
+      "PickupReachability": {
+        "calls": 21198,
+        "avgUs": 0.49,
+        "maxMs": 0.019,
+        "totalMs": 10.36
+      },
+      "TransportMatching": {
+        "calls": 130,
+        "avgUs": 1085.72,
+        "maxMs": 9.289,
+        "totalMs": 141.14
+      },
+      "WakePendingWorkers": {
+        "calls": 130,
+        "avgUs": 54.4,
+        "maxMs": 0.71,
+        "totalMs": 7.07
+      }
+    },
+    "solver": {
+      "workers": 14,
+      "patients": 34,
+      "medianMs": 0.043,
+      "minMs": 0.0415,
+      "maxMs": 0.0452
+    },
+    "clinical": {
+      "Patients": 34,
+      "Deaths": 0,
+      "Rounds": 0,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 0,
+      "RemainingPatients": 34
+    }
+  },
+  {
+    "name": "d20p34h4r2",
+    "doctors": 20,
+    "patients": 34,
+    "haulers": 4,
+    "stableTPS": 1424.5192913714204,
+    "sarUsPerTick": 202.28296279991199,
+    "sarSharePercent": 29.956814234250583,
+    "profile": {
+      "MapTick": {
+        "calls": 6069,
+        "avgUs": 167.44,
+        "maxMs": 63.957,
+        "totalMs": 1016.17
+      },
+      "PendingAndWake": {
+        "calls": 6069,
+        "avgUs": 2.32,
+        "maxMs": 0.088,
+        "totalMs": 14.1
+      },
+      "TreatmentMonitoring": {
+        "calls": 6069,
+        "avgUs": 34.47,
+        "maxMs": 34.766,
+        "totalMs": 209.19
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6069,
+        "avgUs": 6.46,
+        "maxMs": 0.098,
+        "totalMs": 39.23
+      },
+      "PeriodicCleanup": {
+        "calls": 183,
+        "avgUs": 48.17,
+        "maxMs": 0.263,
+        "totalMs": 8.82
+      },
+      "ScheduleRebuild": {
+        "calls": 179,
+        "avgUs": 4173.5,
+        "maxMs": 63.886,
+        "totalMs": 747.06
+      },
+      "CarePlanning": {
+        "calls": 179,
+        "avgUs": 306.05,
+        "maxMs": 0.89,
+        "totalMs": 54.78
+      },
+      "UnifiedMatching": {
+        "calls": 179,
+        "avgUs": 1983.42,
+        "maxMs": 60.017,
+        "totalMs": 355.03
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 4913,
+        "avgUs": 70.31,
+        "maxMs": 6.478,
+        "totalMs": 345.44
+      },
+      "PickupReachability": {
+        "calls": 20544,
+        "avgUs": 0.75,
+        "maxMs": 0.008,
+        "totalMs": 15.36
+      },
+      "TransportMatching": {
+        "calls": 179,
+        "avgUs": 1222.12,
+        "maxMs": 14.507,
+        "totalMs": 218.76
+      },
+      "WakePendingWorkers": {
+        "calls": 179,
+        "avgUs": 50.91,
+        "maxMs": 0.934,
+        "totalMs": 9.11
+      }
+    },
+    "solver": {
+      "workers": 24,
+      "patients": 34,
+      "medianMs": 0.0546,
+      "minMs": 0.0543,
+      "maxMs": 0.0621
+    },
+    "clinical": {
+      "Patients": 34,
+      "Deaths": 0,
+      "Rounds": 48,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 2,
+      "RemainingPatients": 34
+    }
+  },
+  {
+    "name": "d40p34h4r3",
+    "doctors": 40,
+    "patients": 34,
+    "haulers": 4,
+    "stableTPS": 1042.6845578962884,
+    "sarUsPerTick": 292.99945462478183,
+    "sarSharePercent": 31.91326449025651,
+    "profile": {
+      "MapTick": {
+        "calls": 6087,
+        "avgUs": 285.49,
+        "maxMs": 130.27,
+        "totalMs": 1737.8
+      },
+      "PendingAndWake": {
+        "calls": 6087,
+        "avgUs": 12.58,
+        "maxMs": 0.478,
+        "totalMs": 76.6
+      },
+      "TreatmentMonitoring": {
+        "calls": 6087,
+        "avgUs": 30.64,
+        "maxMs": 39.14,
+        "totalMs": 186.53
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6087,
+        "avgUs": 15.94,
+        "maxMs": 8.965,
+        "totalMs": 97.02
+      },
+      "PeriodicCleanup": {
+        "calls": 249,
+        "avgUs": 49.6,
+        "maxMs": 0.134,
+        "totalMs": 12.35
+      },
+      "ScheduleRebuild": {
+        "calls": 348,
+        "avgUs": 3979.69,
+        "maxMs": 130.196,
+        "totalMs": 1384.93
+      },
+      "CarePlanning": {
+        "calls": 348,
+        "avgUs": 280.14,
+        "maxMs": 0.571,
+        "totalMs": 97.49
+      },
+      "UnifiedMatching": {
+        "calls": 348,
+        "avgUs": 1520.68,
+        "maxMs": 125.276,
+        "totalMs": 529.2
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 9260,
+        "avgUs": 56.18,
+        "maxMs": 5.932,
+        "totalMs": 520.2
+      },
+      "PickupReachability": {
+        "calls": 19240,
+        "avgUs": 0.96,
+        "maxMs": 0.011,
+        "totalMs": 18.53
+      },
+      "TransportMatching": {
+        "calls": 348,
+        "avgUs": 1637.69,
+        "maxMs": 16.827,
+        "totalMs": 569.92
+      },
+      "WakePendingWorkers": {
+        "calls": 348,
+        "avgUs": 63.85,
+        "maxMs": 1.601,
+        "totalMs": 22.22
+      }
+    },
+    "solver": {
+      "workers": 44,
+      "patients": 34,
+      "medianMs": 0.148,
+      "minMs": 0.145,
+      "maxMs": 0.1579
+    },
+    "clinical": {
+      "Patients": 34,
+      "Deaths": 0,
+      "Rounds": 127,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 0,
+      "RemainingPatients": 5
+    }
+  },
+  {
+    "name": "d5p68h4r4",
+    "doctors": 5,
+    "patients": 68,
+    "haulers": 4,
+    "stableTPS": 1601.686938578803,
+    "sarUsPerTick": 122.79678470562676,
+    "sarSharePercent": 20.420407792111796,
+    "profile": {
+      "MapTick": {
+        "calls": 6147,
+        "avgUs": 112.01,
+        "maxMs": 37.667,
+        "totalMs": 688.54
+      },
+      "PendingAndWake": {
+        "calls": 6147,
+        "avgUs": 5.63,
+        "maxMs": 0.151,
+        "totalMs": 34.58
+      },
+      "TreatmentMonitoring": {
+        "calls": 6147,
+        "avgUs": 15.55,
+        "maxMs": 16.899,
+        "totalMs": 95.6
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6147,
+        "avgUs": 1.44,
+        "maxMs": 0.015,
+        "totalMs": 8.86
+      },
+      "PeriodicCleanup": {
+        "calls": 130,
+        "avgUs": 67.05,
+        "maxMs": 0.128,
+        "totalMs": 8.72
+      },
+      "ScheduleRebuild": {
+        "calls": 76,
+        "avgUs": 7231.58,
+        "maxMs": 37.562,
+        "totalMs": 549.6
+      },
+      "CarePlanning": {
+        "calls": 76,
+        "avgUs": 560.95,
+        "maxMs": 1.283,
+        "totalMs": 42.63
+      },
+      "UnifiedMatching": {
+        "calls": 76,
+        "avgUs": 2478.79,
+        "maxMs": 30.511,
+        "totalMs": 188.39
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 3794,
+        "avgUs": 38.89,
+        "maxMs": 0.241,
+        "totalMs": 147.56
+      },
+      "PickupReachability": {
+        "calls": 8910,
+        "avgUs": 0.51,
+        "maxMs": 0.007,
+        "totalMs": 4.57
+      },
+      "TransportMatching": {
+        "calls": 76,
+        "avgUs": 2726.56,
+        "maxMs": 14.142,
+        "totalMs": 207.22
+      },
+      "WakePendingWorkers": {
+        "calls": 76,
+        "avgUs": 35.54,
+        "maxMs": 0.343,
+        "totalMs": 2.7
+      }
+    },
+    "solver": {
+      "workers": 9,
+      "patients": 68,
+      "medianMs": 0.3772,
+      "minMs": 0.3765,
+      "maxMs": 0.3823
+    },
+    "clinical": {
+      "Patients": 68,
+      "Deaths": 0,
+      "Rounds": 0,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 0,
+      "RemainingPatients": 68
+    }
+  },
+  {
+    "name": "d5p136h4r5",
+    "doctors": 5,
+    "patients": 136,
+    "haulers": 4,
+    "stableTPS": 918.776240699677,
+    "sarUsPerTick": 362.8539269306498,
+    "sarSharePercent": 34.676355191786016,
+    "profile": {
+      "MapTick": {
+        "calls": 6074,
+        "avgUs": 334.83,
+        "maxMs": 112.512,
+        "totalMs": 2033.75
+      },
+      "PendingAndWake": {
+        "calls": 6074,
+        "avgUs": 7.96,
+        "maxMs": 0.664,
+        "totalMs": 48.38
+      },
+      "TreatmentMonitoring": {
+        "calls": 6074,
+        "avgUs": 67.52,
+        "maxMs": 40.343,
+        "totalMs": 410.1
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6074,
+        "avgUs": 1.9,
+        "maxMs": 0.032,
+        "totalMs": 11.52
+      },
+      "PeriodicCleanup": {
+        "calls": 135,
+        "avgUs": 114.98,
+        "maxMs": 0.208,
+        "totalMs": 15.52
+      },
+      "ScheduleRebuild": {
+        "calls": 78,
+        "avgUs": 19827.49,
+        "maxMs": 112.308,
+        "totalMs": 1546.54
+      },
+      "CarePlanning": {
+        "calls": 78,
+        "avgUs": 1051.24,
+        "maxMs": 1.5,
+        "totalMs": 82.0
+      },
+      "UnifiedMatching": {
+        "calls": 78,
+        "avgUs": 8059.91,
+        "maxMs": 95.404,
+        "totalMs": 628.67
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 7306,
+        "avgUs": 47.7,
+        "maxMs": 5.685,
+        "totalMs": 348.49
+      },
+      "PickupReachability": {
+        "calls": 23062,
+        "avgUs": 0.54,
+        "maxMs": 0.02,
+        "totalMs": 12.52
+      },
+      "TransportMatching": {
+        "calls": 78,
+        "avgUs": 6856.05,
+        "maxMs": 24.554,
+        "totalMs": 534.77
+      },
+      "WakePendingWorkers": {
+        "calls": 78,
+        "avgUs": 46.85,
+        "maxMs": 0.395,
+        "totalMs": 3.65
+      }
+    },
+    "solver": {
+      "workers": 9,
+      "patients": 136,
+      "medianMs": 4.5363,
+      "minMs": 3.001,
+      "maxMs": 4.5898
+    },
+    "clinical": {
+      "Patients": 136,
+      "Deaths": 0,
+      "Rounds": 0,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 0,
+      "RemainingPatients": 136
+    }
+  },
+  {
+    "name": "d5p272h4r6",
+    "doctors": 5,
+    "patients": 272,
+    "haulers": 4,
+    "stableTPS": 483.6275356602312,
+    "sarUsPerTick": 862.5951920965971,
+    "sarSharePercent": 43.21765748883099,
+    "profile": {
+      "MapTick": {
+        "calls": 6083,
+        "avgUs": 808.21,
+        "maxMs": 338.14,
+        "totalMs": 4916.37
+      },
+      "PendingAndWake": {
+        "calls": 6083,
+        "avgUs": 9.73,
+        "maxMs": 9.037,
+        "totalMs": 59.17
+      },
+      "TreatmentMonitoring": {
+        "calls": 6083,
+        "avgUs": 79.76,
+        "maxMs": 116.956,
+        "totalMs": 485.17
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6083,
+        "avgUs": 1.75,
+        "maxMs": 0.042,
+        "totalMs": 10.65
+      },
+      "PeriodicCleanup": {
+        "calls": 124,
+        "avgUs": 223.55,
+        "maxMs": 0.715,
+        "totalMs": 27.72
+      },
+      "ScheduleRebuild": {
+        "calls": 63,
+        "avgUs": 68765.51,
+        "maxMs": 337.868,
+        "totalMs": 4332.23
+      },
+      "CarePlanning": {
+        "calls": 63,
+        "avgUs": 2221.56,
+        "maxMs": 10.262,
+        "totalMs": 139.96
+      },
+      "UnifiedMatching": {
+        "calls": 63,
+        "avgUs": 38365.43,
+        "maxMs": 283.422,
+        "totalMs": 2417.02
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 10201,
+        "avgUs": 75.29,
+        "maxMs": 6.093,
+        "totalMs": 768.02
+      },
+      "PickupReachability": {
+        "calls": 19145,
+        "avgUs": 0.5,
+        "maxMs": 0.013,
+        "totalMs": 9.63
+      },
+      "TransportMatching": {
+        "calls": 63,
+        "avgUs": 16390.57,
+        "maxMs": 60.62,
+        "totalMs": 1032.61
+      },
+      "WakePendingWorkers": {
+        "calls": 63,
+        "avgUs": 69.98,
+        "maxMs": 0.609,
+        "totalMs": 4.41
+      }
+    },
+    "solver": {
+      "workers": 9,
+      "patients": 272,
+      "medianMs": 23.7919,
+      "minMs": 23.4135,
+      "maxMs": 29.2615
+    },
+    "clinical": {
+      "Patients": 272,
+      "Deaths": 0,
+      "Rounds": 0,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 0,
+      "RemainingPatients": 272
+    }
+  },
+  {
+    "name": "d10p68h8r7",
+    "doctors": 10,
+    "patients": 68,
+    "haulers": 8,
+    "stableTPS": 1206.1111394774011,
+    "sarUsPerTick": 257.6592015792937,
+    "sarSharePercent": 32.323501407418696,
+    "profile": {
+      "MapTick": {
+        "calls": 6119,
+        "avgUs": 240.08,
+        "maxMs": 80.369,
+        "totalMs": 1469.07
+      },
+      "PendingAndWake": {
+        "calls": 6119,
+        "avgUs": 5.21,
+        "maxMs": 0.087,
+        "totalMs": 31.87
+      },
+      "TreatmentMonitoring": {
+        "calls": 6119,
+        "avgUs": 71.0,
+        "maxMs": 46.787,
+        "totalMs": 434.46
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6119,
+        "avgUs": 3.34,
+        "maxMs": 0.314,
+        "totalMs": 20.42
+      },
+      "PeriodicCleanup": {
+        "calls": 155,
+        "avgUs": 72.04,
+        "maxMs": 0.158,
+        "totalMs": 11.17
+      },
+      "ScheduleRebuild": {
+        "calls": 119,
+        "avgUs": 8261.39,
+        "maxMs": 80.265,
+        "totalMs": 983.11
+      },
+      "CarePlanning": {
+        "calls": 119,
+        "avgUs": 572.45,
+        "maxMs": 0.899,
+        "totalMs": 68.12
+      },
+      "UnifiedMatching": {
+        "calls": 119,
+        "avgUs": 3243.04,
+        "maxMs": 72.405,
+        "totalMs": 385.92
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 5777,
+        "avgUs": 55.65,
+        "maxMs": 5.797,
+        "totalMs": 321.46
+      },
+      "PickupReachability": {
+        "calls": 32531,
+        "avgUs": 0.64,
+        "maxMs": 0.013,
+        "totalMs": 20.75
+      },
+      "TransportMatching": {
+        "calls": 119,
+        "avgUs": 2893.9,
+        "maxMs": 20.686,
+        "totalMs": 344.37
+      },
+      "WakePendingWorkers": {
+        "calls": 119,
+        "avgUs": 36.28,
+        "maxMs": 0.548,
+        "totalMs": 4.32
+      }
+    },
+    "solver": {
+      "workers": 18,
+      "patients": 68,
+      "medianMs": 0.3669,
+      "minMs": 0.364,
+      "maxMs": 0.3687
+    },
+    "clinical": {
+      "Patients": 68,
+      "Deaths": 0,
+      "Rounds": 5,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 0,
+      "RemainingPatients": 68
+    }
+  },
+  {
+    "name": "d20p136h16r8",
+    "doctors": 20,
+    "patients": 136,
+    "haulers": 16,
+    "stableTPS": 360.44457314507986,
+    "sarUsPerTick": 1752.8049703100944,
+    "sarSharePercent": 65.01364331387074,
+    "profile": {
+      "MapTick": {
+        "calls": 6114,
+        "avgUs": 1687.27,
+        "maxMs": 421.281,
+        "totalMs": 10315.99
+      },
+      "PendingAndWake": {
+        "calls": 6114,
+        "avgUs": 13.16,
+        "maxMs": 0.264,
+        "totalMs": 80.44
+      },
+      "TreatmentMonitoring": {
+        "calls": 6114,
+        "avgUs": 430.74,
+        "maxMs": 247.31,
+        "totalMs": 2633.54
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6114,
+        "avgUs": 6.33,
+        "maxMs": 0.05,
+        "totalMs": 38.69
+      },
+      "PeriodicCleanup": {
+        "calls": 228,
+        "avgUs": 134.4,
+        "maxMs": 0.582,
+        "totalMs": 30.64
+      },
+      "ScheduleRebuild": {
+        "calls": 237,
+        "avgUs": 32929.48,
+        "maxMs": 421.13,
+        "totalMs": 7804.29
+      },
+      "CarePlanning": {
+        "calls": 237,
+        "avgUs": 1075.16,
+        "maxMs": 2.596,
+        "totalMs": 254.81
+      },
+      "UnifiedMatching": {
+        "calls": 237,
+        "avgUs": 12294.96,
+        "maxMs": 389.454,
+        "totalMs": 2913.91
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 38726,
+        "avgUs": 53.79,
+        "maxMs": 7.935,
+        "totalMs": 2083.13
+      },
+      "PickupReachability": {
+        "calls": 123374,
+        "avgUs": 0.9,
+        "maxMs": 0.074,
+        "totalMs": 111.65
+      },
+      "TransportMatching": {
+        "calls": 237,
+        "avgUs": 15148.13,
+        "maxMs": 51.337,
+        "totalMs": 3590.11
+      },
+      "WakePendingWorkers": {
+        "calls": 237,
+        "avgUs": 63.12,
+        "maxMs": 1.907,
+        "totalMs": 14.96
+      }
+    },
+    "solver": {
+      "workers": 36,
+      "patients": 136,
+      "medianMs": 2.2254,
+      "minMs": 2.2023,
+      "maxMs": 2.3032
+    },
+    "clinical": {
+      "Patients": 136,
+      "Deaths": 0,
+      "Rounds": 16,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 1,
+      "RemainingPatients": 135
+    }
+  },
+  {
+    "name": "d40p272h32r9",
+    "doctors": 40,
+    "patients": 272,
+    "haulers": 32,
+    "stableTPS": 48.8361703793112,
+    "sarUsPerTick": 18146.39991144565,
+    "sarSharePercent": 89.8163901590537,
+    "profile": {
+      "MapTick": {
+        "calls": 6017,
+        "avgUs": 18682.14,
+        "maxMs": 2800.707,
+        "totalMs": 112410.46
+      },
+      "PendingAndWake": {
+        "calls": 6017,
+        "avgUs": 45.26,
+        "maxMs": 3.266,
+        "totalMs": 272.36
+      },
+      "TreatmentMonitoring": {
+        "calls": 6017,
+        "avgUs": 2634.15,
+        "maxMs": 927.011,
+        "totalMs": 15849.67
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6017,
+        "avgUs": 18.15,
+        "maxMs": 0.348,
+        "totalMs": 109.22
+      },
+      "PeriodicCleanup": {
+        "calls": 365,
+        "avgUs": 277.13,
+        "maxMs": 6.325,
+        "totalMs": 101.15
+      },
+      "ScheduleRebuild": {
+        "calls": 520,
+        "avgUs": 186776.23,
+        "maxMs": 2800.425,
+        "totalMs": 97123.64
+      },
+      "CarePlanning": {
+        "calls": 520,
+        "avgUs": 2157.87,
+        "maxMs": 10.393,
+        "totalMs": 1122.09
+      },
+      "UnifiedMatching": {
+        "calls": 520,
+        "avgUs": 86078.28,
+        "maxMs": 2713.308,
+        "totalMs": 44760.71
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 365618,
+        "avgUs": 89.47,
+        "maxMs": 9.563,
+        "totalMs": 32711.84
+      },
+      "PickupReachability": {
+        "calls": 466323,
+        "avgUs": 1.18,
+        "maxMs": 0.127,
+        "totalMs": 548.46
+      },
+      "TransportMatching": {
+        "calls": 520,
+        "avgUs": 84188.0,
+        "maxMs": 242.4,
+        "totalMs": 43777.76
+      },
+      "WakePendingWorkers": {
+        "calls": 520,
+        "avgUs": 145.27,
+        "maxMs": 3.067,
+        "totalMs": 75.54
+      }
+    },
+    "solver": {
+      "workers": 72,
+      "patients": 272,
+      "medianMs": 20.8957,
+      "minMs": 20.5949,
+      "maxMs": 21.611
+    },
+    "clinical": {
+      "Patients": 272,
+      "Deaths": 0,
+      "Rounds": 123,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 3,
+      "RemainingPatients": 270
+    }
+  },
+  {
+    "name": "d5p34h4r10",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "stableTPS": 2062.7048231240483,
+    "sarUsPerTick": 67.20155220072294,
+    "sarSharePercent": 14.47847198791876,
+    "profile": {
+      "MapTick": {
+        "calls": 6239,
+        "avgUs": 60.1,
+        "maxMs": 17.13,
+        "totalMs": 374.98
+      },
+      "PendingAndWake": {
+        "calls": 6239,
+        "avgUs": 4.99,
+        "maxMs": 0.079,
+        "totalMs": 31.16
+      },
+      "TreatmentMonitoring": {
+        "calls": 6239,
+        "avgUs": 5.69,
+        "maxMs": 5.739,
+        "totalMs": 35.5
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6239,
+        "avgUs": 1.79,
+        "maxMs": 0.022,
+        "totalMs": 11.17
+      },
+      "PeriodicCleanup": {
+        "calls": 137,
+        "avgUs": 47.66,
+        "maxMs": 0.091,
+        "totalMs": 6.53
+      },
+      "ScheduleRebuild": {
+        "calls": 80,
+        "avgUs": 3609.01,
+        "maxMs": 17.062,
+        "totalMs": 288.72
+      },
+      "CarePlanning": {
+        "calls": 80,
+        "avgUs": 338.18,
+        "maxMs": 0.613,
+        "totalMs": 27.05
+      },
+      "UnifiedMatching": {
+        "calls": 80,
+        "avgUs": 1164.13,
+        "maxMs": 13.708,
+        "totalMs": 93.13
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 2072,
+        "avgUs": 41.08,
+        "maxMs": 3.132,
+        "totalMs": 85.12
+      },
+      "PickupReachability": {
+        "calls": 5645,
+        "avgUs": 0.67,
+        "maxMs": 0.007,
+        "totalMs": 3.76
+      },
+      "TransportMatching": {
+        "calls": 80,
+        "avgUs": 1443.92,
+        "maxMs": 12.412,
+        "totalMs": 115.51
+      },
+      "WakePendingWorkers": {
+        "calls": 80,
+        "avgUs": 30.63,
+        "maxMs": 0.252,
+        "totalMs": 2.45
+      }
+    },
+    "solver": {
+      "workers": 9,
+      "patients": 34,
+      "medianMs": 0.0478,
+      "minMs": 0.0468,
+      "maxMs": 0.0515
+    },
+    "clinical": {
+      "Patients": 34,
+      "Deaths": 0,
+      "Rounds": 1,
+      "Errors": 0,
+      "OwnershipConflicts": 0,
+      "MedicineConsumed": 1,
+      "RemainingPatients": 33
+    }
+  }
+]

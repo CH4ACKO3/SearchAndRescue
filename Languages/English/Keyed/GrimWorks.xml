@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <SAR_Compatibility_GrimWorks>Reads individual workgiver priorities, including disabled medical subtasks. Enable Field Rescue and GrimWorks Rescue for evacuation without Hauling; Nurse alone does not authorize tending.</SAR_Compatibility_GrimWorks>
+  <SAR_Compatibility_GrimWorks>Reads individual workgiver priorities, including disabled medical subtasks. Enable Field Rescue and GrimWorks Rescue for evacuation; Hauling is optional in this setup. Tending requires the appropriate medical work, and Nurse provides nursing duties.</SAR_Compatibility_GrimWorks>
 </LanguageData>

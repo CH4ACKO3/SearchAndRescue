@@ -1,0 +1,12 @@
+BEGIN exact_d5p34h4r0
+COMPLETE exact_d5p34h4r0
+BEGIN approx_d5p34h4r1
+COMPLETE approx_d5p34h4r1
+BEGIN exact_d20p136h16r2
+COMPLETE exact_d20p136h16r2
+BEGIN approx_d20p136h16r3
+COMPLETE approx_d20p136h16r3
+BEGIN exact_d40p272h32r4
+COMPLETE exact_d40p272h32r4
+BEGIN approx_d40p272h32r5
+COMPLETE approx_d40p272h32r5

@@ -1,0 +1,56 @@
+PASS: scenario 0: injured patient is standing
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: one patient cache entry serves repeated queries
+PASS: scoring cache cleared after matching
+PASS: new blood loss is visible immediately outside the scoring scope
+PASS: scoring cache also cleared when evaluation throws
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+INFO: scenario=0 completedTicks=1187 patientJob=Wait_Combat
+PASS: scenario 1: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: standing patient retains medicated tending
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+PASS: actual tending job uses selected medicine
+INFO: scenario=1 completedTicks=1189 patientJob=Wait_Combat
+PASS: scenario 2: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: standing patient retains medicated tending
+INFO: interrupt patient=Goto moving=True distance=3 sameJob=False tended=False
+PASS: moving away cancels incomplete round without applying treatment
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+PASS: new movement order interrupts the original treatment round
+PASS: actual tending job uses selected medicine
+INFO: scenario=2 completedTicks=1141 patientJob=Wait_Combat
+PASS: scenario 3: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: standing patient retains medicated tending
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+PASS: actual tending job uses selected medicine
+INFO: scenario=3 completedTicks=1549 patientJob=GotoWander
+COMPLETE

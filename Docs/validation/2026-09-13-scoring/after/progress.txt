@@ -1,0 +1,6 @@
+BEGIN legacy_d5p34h4r0
+COMPLETE legacy_d5p34h4r0
+BEGIN legacy_d20p136h16r2
+COMPLETE legacy_d20p136h16r2
+BEGIN legacy_d40p272h32r4
+COMPLETE legacy_d40p272h32r4

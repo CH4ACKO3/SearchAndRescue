@@ -733,6 +733,7 @@ namespace SearchAndRescue
 
         internal static bool CanPerformTreatmentIntervention(Pawn worker, MedicalIntervention intervention, Pawn patient = null)
         {
+            if (IsTransfusionIntervention(intervention) && ExtractionTransfusionPolicy.Blocks(patient)) return false;
             if (!NativeInterventionWorkAllowed(worker, intervention, patient)) return false;
             if (intervention == MedicalIntervention.Tourniquet &&
                 !CanSafelyApplyMoreInjuriesTourniquet(worker))
@@ -987,7 +988,7 @@ namespace SearchAndRescue
 
             JobDef treatmentJob = UsesSmartMedicine
                 ? JobDefOf.TendPatient
-                : (!UsesCombatExtended ? FirstAidJob : null) ?? JobDefOf.TendPatient;
+                : (!UsesCombatExtended && CanUseRh2FirstAid(patient) ? FirstAidJob : null) ?? JobDefOf.TendPatient;
             Job job;
             if (UsesSmartMedicine && TryMakeSmartMedicineJob(doctor, patient, out Job smartMedicineJob))
             {
@@ -1015,6 +1016,8 @@ namespace SearchAndRescue
 
         private static bool CanStartAutomaticTreatmentJob(Pawn doctor, Pawn patient, JobDef jobDef)
         {
+            if (jobDef != null && jobDef == FirstAidJob && !CanUseRh2FirstAid(patient)) return false;
+            if (ExtractionTransfusionPolicy.IsTransfusion(jobDef) && ExtractionTransfusionPolicy.Blocks(patient)) return false;
             if (jobDef != JobDefOf.TendPatient || doctor?.Faction != Faction.OfPlayer)
             {
                 return true;
@@ -1272,7 +1275,7 @@ namespace SearchAndRescue
                         ? MedicalIntervention.VanillaTend
                         : ceStabilizeAvailable
                         ? MedicalIntervention.CombatExtendedStabilize
-                        : FirstAidJob != null && !UsesSmartMedicine && !UsesCombatExtended
+                        : CanUseRh2FirstAid(patient) && !UsesSmartMedicine && !UsesCombatExtended
                             ? MedicalIntervention.Rh2FirstAid
                             : MedicalIntervention.VanillaTend;
                     if (intervention == MedicalIntervention.VanillaTend && !vanillaTendAvailable)
@@ -1318,8 +1321,7 @@ namespace SearchAndRescue
                 // RH2's medicine route has its own multi-dose pickup semantics. Its
                 // medicine-free aid can coexist with SM selection, but requires a lying
                 // patient and must not replace CE's stabilization protocol.
-                MedicalIntervention fallback = FirstAidJob != null && !UsesCombatExtended &&
-                    patient.GetPosture() != PawnPosture.Standing
+                MedicalIntervention fallback = CanUseRh2FirstAid(patient) && !UsesCombatExtended
                         ? MedicalIntervention.Rh2FirstAid
                         : MedicalIntervention.VanillaTend;
                 if (fallback != MedicalIntervention.VanillaTend || vanillaTendAvailable)
@@ -1457,7 +1459,7 @@ namespace SearchAndRescue
             MedicalIntervention intervention,
             bool fullyHeal = false)
         {
-            if (patient == null ||
+            if (patient == null || ExtractionTransfusionPolicy.Blocks(patient) ||
                 (intervention != MedicalIntervention.Saline && intervention != MedicalIntervention.Blood))
             {
                 return 0;
@@ -1644,6 +1646,13 @@ namespace SearchAndRescue
                 default:
                     return null;
             }
+        }
+
+        private static bool CanUseRh2FirstAid(Pawn patient)
+        {
+            // RH2's driver fails immediately for standing patients, even with medicine.
+            // Use native field tending for them and recheck posture when materializing jobs.
+            return FirstAidJob != null && patient != null && patient.GetPosture() != PawnPosture.Standing;
         }
 
         private static Job TryMakeTourniquetJob(Pawn doctor, Pawn patient, Thing tourniquet)
@@ -2249,7 +2258,8 @@ namespace SearchAndRescue
 
         public static bool HasHemogenTransfusionNeed(Pawn patient)
         {
-            return UsesHemogenTransfusion && patient?.RaceProps?.Humanlike == true &&
+            return !ExtractionTransfusionPolicy.Blocks(patient) &&
+                   UsesHemogenTransfusion && patient?.RaceProps?.Humanlike == true &&
                    AllowsMedicalDevices(patient) &&
                    (patient.health?.hediffSet.GetFirstHediffOfDef(HediffDefOf.BloodLoss)?.Severity ?? 0f) >= 0.15f;
         }

@@ -1,0 +1,10 @@
+{
+  "before": {
+    "path": "D:\\Projects\\rimworld\\work\\sar-matching-20260913\\before.dll",
+    "sha256": "b1230a0751355909cf68e0f7a39a020182cd9be165704033fce8abd0e08f46e8"
+  },
+  "after": {
+    "path": "D:\\Projects\\rimworld\\Mods\\SearchAndRescue\\Assemblies\\SearchAndRescue.dll",
+    "sha256": "de6e6dce878562d3ab957875c67075a3f2304825e84e320ab66333d113351e9b"
+  }
+}

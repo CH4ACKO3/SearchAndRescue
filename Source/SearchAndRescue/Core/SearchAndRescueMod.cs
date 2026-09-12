@@ -25,6 +25,7 @@ namespace SearchAndRescue
         public MedicalCoordinationMode MedicalCoordinationMode = MedicalCoordinationMode.EmergencyAuto;
         public bool PreemptRoutineWorkForEmergencies = true;
         public bool EnableRescuerStandby = true;
+        public bool UseApproximateMatching;
         public float RecentMarkerMemoryHours = 4f;
         public float StandbyLeadSeconds = 3f;
         public float BleedingSensitivity = 1f;
@@ -58,6 +59,7 @@ namespace SearchAndRescue
             Scribe_Values.Look(ref PreemptRoutineWorkForEmergencies,
                 "preemptRoutineWorkForEmergencies", true);
             Scribe_Values.Look(ref EnableRescuerStandby, "enableRescuerStandby", true);
+            Scribe_Values.Look(ref UseApproximateMatching, "useApproximateMatching", false);
             Scribe_Values.Look(ref RecentMarkerMemoryHours, "recentMarkerMemoryHours", 4f);
             Scribe_Values.Look(ref StandbyLeadSeconds, "standbyLeadSeconds", 3f);
             Scribe_Values.Look(ref BleedingSensitivity, "bleedingSensitivity", 1f);
@@ -96,6 +98,7 @@ namespace SearchAndRescue
             MedicalCoordinationMode = MedicalCoordinationMode.EmergencyAuto;
             PreemptRoutineWorkForEmergencies = true;
             EnableRescuerStandby = true;
+            UseApproximateMatching = false;
             RecentMarkerMemoryHours = 4f;
             StandbyLeadSeconds = 3f;
             BleedingSensitivity = 1f;
@@ -240,12 +243,14 @@ namespace SearchAndRescue
 
         private bool DrawAdvancedPage(Rect outer)
         {
-            Rect view = ScrollView(outer, ref advancedScroll, 1370f);
+            Rect view = ScrollView(outer, ref advancedScroll, 1530f);
             Listing_Standard listing = new Listing_Standard { ColumnWidth = view.width };
             listing.Begin(view);
             bool changed = false;
 
             Section(listing, "SAR_Settings_Section_Triage");
+            changed |= Checkbox(listing, "SAR_Settings_ApproximateMatching",
+                "SAR_Settings_ApproximateMatching_Desc", ref Settings.UseApproximateMatching);
             changed |= Slider(listing, "SAR_Settings_BleedingSensitivity",
                 "SAR_Settings_BleedingSensitivity_Desc", ref Settings.BleedingSensitivity,
                 0.5f, 2f, 0.05f, "SAR_Settings_Value_Percent");

@@ -49,7 +49,7 @@ Recognizes dangerous conditions and raises evacuation priority. Prostheses, sub-
 Implants, replacements, and surgery bills continue through EPOE and vanilla systems. Life-threatening patients who require bedside care receive additional evacuation priority.
 
 **Ancient Urban Ruins — Compatible**
-Supports multi-use medkits in SAR tending, including unopened kits and their final charge. These kits use ordinary tending instead of CE stabilization or RH2 first aid so the native charge counter is preserved. This support covers medical supplies, not every feature of AUR.
+Supports multi-use medkits in SAR tending, including unopened kits and their final charge. SAR uses ordinary tending for these kits, preserving their native charge counter. The adapter supports AUR medical supplies.
 
 **Smart Medicine - Continued (MemeGoddess / PES7) — Compatible**
 Uses Smart Medicine's medicine-selection logic and protects persistent references and soft claims created by the current matching pass, keeping restocking AI from moving medicine between assignment and pickup. When CE is active, SAR also coordinates HasJobOnThing checks and job construction. Medicine in a third-party pawn's inventory is transferred to the doctor first; when a safe source is temporarily unavailable, the doctor waits for SAR restocking or delivery.
@@ -140,7 +140,7 @@ Cargo in stationary, player-owned, reachable vehicles acts as a medical-supply s
 Provides Prefer nursing and Nursing only rescue modes; the default mode uses Hauling. For designated casualties, transfusions, infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with doctors taking over when nurses are unavailable. CPR, suction, defibrillation, and ordinary tending are matched to doctors by medical skill.
 
 **GrimWorks: Work Manager — Integration**
-Respects individual work priorities and disabled tasks. Enable Field Rescue and the native Rescue work to carry casualties; emergency care still requires medical authorization. GrimWorks Nurse work does not grant tending permission. When Work Tab is also active, a task must be enabled in both managers.
+Respects individual work priorities and disabled tasks. Enable Field Rescue and the native Rescue work to carry casualties; emergency care still requires medical authorization. Enable the appropriate medical work for tending; GrimWorks Nurse provides nursing duties. When Work Tab is also active, a task must be enabled in both managers.
 
 **Work Tab — Compatible**
 Reads detailed WorkGiver priorities. Emergency-only medics can enable "provide emergency medical care" and Field Rescue. With More Injuries, CPR, airway management, defibrillation and doctor transfusions also require their native child work; nursing remains separately authorized. Routine tending and surgery can stay disabled. Routine care respects humanlike/animal subtasks. Work Tab is optional.

@@ -1,0 +1,10 @@
+PASS: scenario 0: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: lying patient retains RH2 first aid
+FAIL: stale RH2 selection rejected after patient stands
+ERROR: System.Exception: stale RH2 selection rejected after patient stands
+[Ref 22174986]
+  at StandingTreatmentProbe.Check (System.Boolean yes, System.String label) [0x00027] in <8ea7506cce094c218e70f58c4740c0d0>:0 
+  at StandingTreatmentProbe.Setup () [0x0039e] in <8ea7506cce094c218e70f58c4740c0d0>:0 
+  at StandingTreatmentProbe.Update () [0x00037] in <8ea7506cce094c218e70f58c4740c0d0>:0 

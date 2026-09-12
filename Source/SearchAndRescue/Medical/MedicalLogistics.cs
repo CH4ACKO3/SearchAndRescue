@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
@@ -436,6 +436,63 @@ namespace SearchAndRescue
             new Dictionary<Pawn, List<FieldSupplyReference>>();
         private bool fieldSupplyReferenceIndexDirty = true;
         private bool schedulingSnapshotActive;
+
+        // Source membership is shared only while the coordinator evaluates a pure graph.
+        // Claims, patient policies and donor permissions are still checked for every edge.
+        private bool scoringSourcesActive;
+        private bool scoringSourcesBuilt;
+        private readonly Dictionary<ThingDef, List<Thing>> scoringInventoryByDef =
+            new Dictionary<ThingDef, List<Thing>>();
+        private readonly List<Thing> scoringInventoryMedicines = new List<Thing>();
+
+        internal void BeginScoringSources()
+        {
+            ClearScoringSources();
+            scoringSourcesActive = true;
+        }
+
+        internal void EndScoringSources()
+        {
+            scoringSourcesActive = false;
+            ClearScoringSources();
+        }
+
+        private void ClearScoringSources()
+        {
+            scoringSourcesBuilt = false;
+            scoringInventoryByDef.Clear();
+            scoringInventoryMedicines.Clear();
+        }
+
+        private IEnumerable<Thing> InventorySources(ThingDef def, bool medicineOnly)
+        {
+            if (!scoringSourcesActive)
+                return map.mapPawns.AllPawnsSpawned
+                    .SelectMany(holder => holder.inventory?.innerContainer ?? Enumerable.Empty<Thing>())
+                    .Where(thing => (def == null || thing.def == def) && (!medicineOnly || thing.def.IsMedicine));
+            if (!scoringSourcesBuilt)
+            {
+                foreach (Pawn holder in map.mapPawns.AllPawnsSpawned)
+                {
+                    if (holder.inventory == null) continue;
+                    foreach (Thing thing in holder.inventory.innerContainer)
+                    {
+                        if (!scoringInventoryByDef.TryGetValue(thing.def, out List<Thing> items))
+                            scoringInventoryByDef.Add(thing.def, items = new List<Thing>());
+                        items.Add(thing);
+                        if (thing.def.IsMedicine) scoringInventoryMedicines.Add(thing);
+                    }
+                }
+                scoringSourcesBuilt = true;
+            }
+            if (medicineOnly) return scoringInventoryMedicines;
+            if (def != null)
+                return scoringInventoryByDef.TryGetValue(def, out List<Thing> sources)
+                    ? sources : Enumerable.Empty<Thing>();
+            // Preserve map-pawn/container order for an unfiltered query as well.
+            return map.mapPawns.AllPawnsSpawned
+                .SelectMany(holder => holder.inventory?.innerContainer ?? Enumerable.Empty<Thing>());
+        }
 
         public MedicalResourceLedger(Map map)
         {
@@ -1055,7 +1112,7 @@ namespace SearchAndRescue
             }
 
 
-            foreach (Thing thing in AvailableInOtherPawnInventories(worker, patient, null, false, 1)
+            foreach (Thing thing in AvailableInOtherPawnInventories(worker, patient, null, false, 1, medicineOnly: true)
                          .Where(thing => thing.def.IsMedicine && Compatibility.AllowsMedicine(patient, thing)))
             {
                 yield return thing;
@@ -1158,26 +1215,18 @@ namespace SearchAndRescue
         }
 
         private IEnumerable<Thing> AvailableInOtherPawnInventories(
-            Pawn worker,
-            Pawn patient,
-            ThingDef def,
-            bool reusable,
-            int count)
+            Pawn worker, Pawn patient, ThingDef def, bool reusable, int count,
+            bool medicineOnly = false)
         {
-            if (worker == null || patient == null)
-            {
-                return Enumerable.Empty<Thing>();
-            }
-
+            if (worker == null || patient == null) return Enumerable.Empty<Thing>();
             int needed = reusable ? 1 : Math.Max(1, count);
-            return map.mapPawns.AllPawnsSpawned
-                .Where(holder => holder != worker && holder.Faction == worker.Faction &&
-                                 holder.inventory != null && !holder.Destroyed)
-                .SelectMany(holder => holder.inventory.innerContainer
-                    .Where(thing => (def == null || thing.def == def) &&
-                                    AvailableForRelocation(thing, worker) >= needed &&
-                                    CanTakeFromInventoryHolder(worker, holder, thing, needed, patient))
-                    .Select(thing => new { Holder = holder, Thing = thing }))
+            return InventorySources(def, medicineOnly)
+                .Select(thing => new { Holder = InventoryHolder(thing), Thing = thing })
+                .Where(candidate => candidate.Holder != null && candidate.Holder != worker &&
+                    candidate.Holder.Spawned && candidate.Holder.Map == map &&
+                    candidate.Holder.Faction == worker.Faction && !candidate.Holder.Destroyed &&
+                    AvailableForRelocation(candidate.Thing, worker) >= needed &&
+                    CanTakeFromInventoryHolder(worker, candidate.Holder, candidate.Thing, needed, patient))
                 .OrderBy(candidate => worker.Position.DistanceToSquared(candidate.Holder.Position) +
                                       candidate.Holder.Position.DistanceToSquared(patient.Position))
                 .Select(candidate => candidate.Thing);

@@ -1,0 +1,2 @@
+<Project Sdk="Microsoft.NET.Sdk"><PropertyGroup><TargetFramework>net48</TargetFramework><LangVersion>latest</LangVersion><EnableDefaultCompileItems>false</EnableDefaultCompileItems></PropertyGroup><ItemGroup><Compile Include="Probe.cs"/><PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.4871"/><PackageReference Include="Lib.Harmony" Version="2.4.2"/></ItemGroup></Project>
+

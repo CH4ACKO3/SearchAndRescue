@@ -1,4 +1,4 @@
-using SearchAndRescue;
+﻿using SearchAndRescue;
 
 record Worker(string Name, bool Doctor, double Skill, double X, bool Nurse = false);
 record Patient(string Name, double Urgency, int Deadline, double X, bool NeedsDevice = false);
@@ -47,6 +47,7 @@ static class Simulation
     public static int Main()
     {
         ProductionPolicyTests.Run();
+        MatchingAlgorithmTests.Run();
         CompletedCareWinsOverSpeculativeAffinity();
         BetterDoctorGetsSeverePatient();
         NurseTakesTransfusionWhileDoctorTakesSkilledCare();

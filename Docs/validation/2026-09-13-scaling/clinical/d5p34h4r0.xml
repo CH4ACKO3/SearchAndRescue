@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<EngineBenchmarkResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ScoringVersion>3</ScoringVersion>
+  <Request>
+    <RunId>d5p34h4r0</RunId>
+    <Seed>709</Seed>
+    <Horizon>6000</Horizon>
+    <Scenario>stress-v1</Scenario>
+    <MedicineDetourTolerance>1</MedicineDetourTolerance>
+    <TreatmentSwitchReluctance>1</TreatmentSwitchReluctance>
+    <TreatmentBeforeTransportPriority>1</TreatmentBeforeTransportPriority>
+  </Request>
+  <Status>observed</Status>
+  <Elapsed>6000</Elapsed>
+  <Patients>34</Patients>
+  <Deaths>0</Deaths>
+  <Untended>133</Untended>
+  <Rounds>1</Rounds>
+  <Switches>0</Switches>
+  <Errors>1</Errors>
+  <OwnershipConflicts>0</OwnershipConflicts>
+  <RemainingPatients>33</RemainingPatients>
+  <Survivors>34</Survivors>
+  <Stabilized>1</Stabilized>
+  <DoctorCount>5</DoctorCount>
+  <HaulerCount>4</HaulerCount>
+  <CompletionTick>-1</CompletionTick>
+  <MedicineConsumed>1</MedicineConsumed>
+  <BloodBurden>0.39729032031753486</BloodBurden>
+  <FirstTreatmentDelay>0.99592647058823525</FirstTreatmentDelay>
+  <WalkDistance>1441.4339478744473</WalkDistance>
+  <Score>-1000000000</Score>
+  <Events>
+    <string>5169 tend SAR Bench 709 Doctor 2 -&gt; SAR Bench 709 Patient 16</string>
+  </Events>
+</EngineBenchmarkResult>

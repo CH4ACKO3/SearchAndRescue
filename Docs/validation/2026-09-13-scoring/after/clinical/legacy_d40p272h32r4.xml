@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<EngineBenchmarkResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ScoringVersion>3</ScoringVersion>
+  <Request>
+    <RunId>legacy_d40p272h32r4</RunId>
+    <Seed>709</Seed>
+    <Horizon>6000</Horizon>
+    <Scenario>stress-v1</Scenario>
+    <MedicineDetourTolerance>1</MedicineDetourTolerance>
+    <TreatmentSwitchReluctance>1</TreatmentSwitchReluctance>
+    <TreatmentBeforeTransportPriority>1</TreatmentBeforeTransportPriority>
+  </Request>
+  <Status>observed</Status>
+  <Elapsed>6000</Elapsed>
+  <Patients>272</Patients>
+  <Deaths>0</Deaths>
+  <Untended>1021</Untended>
+  <Rounds>71</Rounds>
+  <Switches>1</Switches>
+  <Errors>0</Errors>
+  <OwnershipConflicts>0</OwnershipConflicts>
+  <RemainingPatients>272</RemainingPatients>
+  <Survivors>272</Survivors>
+  <Stabilized>0</Stabilized>
+  <DoctorCount>40</DoctorCount>
+  <HaulerCount>32</HaulerCount>
+  <CompletionTick>-1</CompletionTick>
+  <MedicineConsumed>0</MedicineConsumed>
+  <BloodBurden>0.39626168584451077</BloodBurden>
+  <FirstTreatmentDelay>0.92551960784313725</FirstTreatmentDelay>
+  <WalkDistance>10592.680121292429</WalkDistance>
+  <Score>272008.99604643189</Score>
+  <Events>
+    <string>722 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 187</string>
+    <string>738 tend SAR Bench 709 Doctor 17 -&gt; SAR Bench 709 Patient 38</string>
+    <string>865 tend SAR Bench 709 Doctor 39 -&gt; SAR Bench 709 Patient 245</string>
+    <string>879 tend SAR Bench 709 Doctor 27 -&gt; SAR Bench 709 Patient 8</string>
+    <string>937 tend SAR Bench 709 Doctor 28 -&gt; SAR Bench 709 Patient 7</string>
+    <string>938 tend SAR Bench 709 Doctor 35 -&gt; SAR Bench 709 Patient 2</string>
+    <string>965 tend SAR Bench 709 Doctor 9 -&gt; SAR Bench 709 Patient 219</string>
+    <string>969 tend SAR Bench 709 Doctor 26 -&gt; SAR Bench 709 Patient 9</string>
+    <string>1000 tend SAR Bench 709 Doctor 36 -&gt; SAR Bench 709 Patient 1</string>
+    <string>1028 tend SAR Bench 709 Doctor 18 -&gt; SAR Bench 709 Patient 214</string>
+    <string>1134 tend SAR Bench 709 Doctor 17 -&gt; SAR Bench 709 Patient 38</string>
+    <string>1163 tend SAR Bench 709 Doctor 19 -&gt; SAR Bench 709 Patient 61</string>
+    <string>1391 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 187</string>
+    <string>1534 tend SAR Bench 709 Doctor 39 -&gt; SAR Bench 709 Patient 245</string>
+    <string>1548 tend SAR Bench 709 Doctor 27 -&gt; SAR Bench 709 Patient 8</string>
+    <string>1606 tend SAR Bench 709 Doctor 28 -&gt; SAR Bench 709 Patient 7</string>
+    <string>1607 tend SAR Bench 709 Doctor 35 -&gt; SAR Bench 709 Patient 2</string>
+    <string>1634 tend SAR Bench 709 Doctor 9 -&gt; SAR Bench 709 Patient 219</string>
+    <string>1638 tend SAR Bench 709 Doctor 26 -&gt; SAR Bench 709 Patient 9</string>
+    <string>1669 tend SAR Bench 709 Doctor 36 -&gt; SAR Bench 709 Patient 1</string>
+    <string>1697 tend SAR Bench 709 Doctor 18 -&gt; SAR Bench 709 Patient 214</string>
+    <string>1915 tend SAR Bench 709 Doctor 19 -&gt; SAR Bench 709 Patient 61</string>
+    <string>1972 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 190</string>
+    <string>2158 tend SAR Bench 709 Doctor 35 -&gt; SAR Bench 709 Patient 3</string>
+    <string>2243 tend SAR Bench 709 Doctor 28 -&gt; SAR Bench 709 Patient 111</string>
+    <string>2254 tend SAR Bench 709 Doctor 26 -&gt; SAR Bench 709 Patient 95</string>
+    <string>2255 tend SAR Bench 709 Doctor 36 -&gt; SAR Bench 709 Patient 21</string>
+    <string>2303 tend SAR Bench 709 Doctor 9 -&gt; SAR Bench 709 Patient 219</string>
+    <string>2325 tend SAR Bench 709 Doctor 13 -&gt; SAR Bench 709 Patient 261</string>
+    <string>2366 tend SAR Bench 709 Doctor 18 -&gt; SAR Bench 709 Patient 214</string>
+    <string>2479 tend SAR Bench 709 Doctor 14 -&gt; SAR Bench 709 Patient 130</string>
+    <string>2498 tend SAR Bench 709 Doctor 7 -&gt; SAR Bench 709 Patient 115</string>
+    <string>2503 tend SAR Bench 709 Doctor 5 -&gt; SAR Bench 709 Patient 257</string>
+    <string>2516 tend SAR Bench 709 Doctor 19 -&gt; SAR Bench 709 Patient 61</string>
+    <string>2584 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 105</string>
+    <string>2693 tend SAR Bench 709 Doctor 35 -&gt; SAR Bench 709 Patient 3</string>
+    <string>2697 tend SAR Bench 709 Doctor 32 -&gt; SAR Bench 709 Patient 259</string>
+    <string>2771 tend SAR Bench 709 Doctor 13 -&gt; SAR Bench 709 Patient 261</string>
+    <string>2778 tend SAR Bench 709 Doctor 28 -&gt; SAR Bench 709 Patient 111</string>
+    <string>2789 tend SAR Bench 709 Doctor 26 -&gt; SAR Bench 709 Patient 95</string>
+    <string>2946 tend SAR Bench 709 Doctor 36 -&gt; SAR Bench 709 Patient 14</string>
+    <string>2984 tend SAR Bench 709 Doctor 24 -&gt; SAR Bench 709 Patient 134</string>
+    <string>3024 tend SAR Bench 709 Doctor 9 -&gt; SAR Bench 709 Patient 190</string>
+    <string>3033 tend SAR Bench 709 Doctor 7 -&gt; SAR Bench 709 Patient 115</string>
+    <string>3119 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 105</string>
+    <string>3133 tend SAR Bench 709 Doctor 19 -&gt; SAR Bench 709 Patient 78</string>
+    <string>3217 tend SAR Bench 709 Doctor 13 -&gt; SAR Bench 709 Patient 261</string>
+    <string>3228 tend SAR Bench 709 Doctor 35 -&gt; SAR Bench 709 Patient 3</string>
+    <string>3238 tend SAR Bench 709 Doctor 5 -&gt; SAR Bench 709 Patient 257</string>
+    <string>3313 tend SAR Bench 709 Doctor 28 -&gt; SAR Bench 709 Patient 111</string>
+    <string>3324 tend SAR Bench 709 Doctor 26 -&gt; SAR Bench 709 Patient 95</string>
+    <string>3329 tend SAR Bench 709 Doctor 37 -&gt; SAR Bench 709 Patient 255</string>
+    <string>3366 tend SAR Bench 709 Doctor 24 -&gt; SAR Bench 709 Patient 134</string>
+    <string>3377 tend SAR Bench 709 Doctor 11 -&gt; SAR Bench 709 Patient 121</string>
+    <string>3481 tend SAR Bench 709 Doctor 36 -&gt; SAR Bench 709 Patient 14</string>
+    <string>3543 tend SAR Bench 709 Doctor 17 -&gt; SAR Bench 709 Patient 4</string>
+    <string>3568 tend SAR Bench 709 Doctor 7 -&gt; SAR Bench 709 Patient 115</string>
+    <string>3654 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 105</string>
+    <string>3912 tend SAR Bench 709 Doctor 11 -&gt; SAR Bench 709 Patient 121</string>
+    <string>3937 tend SAR Bench 709 Doctor 6 -&gt; SAR Bench 709 Patient 204</string>
+    <string>3939 tend SAR Bench 709 Doctor 17 -&gt; SAR Bench 709 Patient 4</string>
+    <string>4016 tend SAR Bench 709 Doctor 36 -&gt; SAR Bench 709 Patient 14</string>
+    <string>4068 tend SAR Bench 709 Doctor 3 -&gt; SAR Bench 709 Patient 238</string>
+    <string>4074 tend SAR Bench 709 Doctor 16 -&gt; SAR Bench 709 Patient 189</string>
+    <string>4095 tend SAR Bench 709 Doctor 15 -&gt; SAR Bench 709 Patient 222</string>
+    <string>4189 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 105</string>
+    <string>4447 tend SAR Bench 709 Doctor 11 -&gt; SAR Bench 709 Patient 121</string>
+    <string>4603 tend SAR Bench 709 Doctor 3 -&gt; SAR Bench 709 Patient 238</string>
+    <string>4609 tend SAR Bench 709 Doctor 16 -&gt; SAR Bench 709 Patient 189</string>
+    <string>4630 tend SAR Bench 709 Doctor 15 -&gt; SAR Bench 709 Patient 222</string>
+    <string>4790 tend SAR Bench 709 Doctor 38 -&gt; SAR Bench 709 Patient 90</string>
+  </Events>
+</EngineBenchmarkResult>

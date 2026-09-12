@@ -1,0 +1,4 @@
+<LanguageData>
+  <SAR_ExtractionRecovery.label>抽血後暫停補血</SAR_ExtractionRecovery.label>
+  <SAR_ExtractionRecovery.description>在失血完全恢復之前，SAR 不會進行輸血或補液。其它救援和治療照常進行。可使用該小人的「恢復補血」命令提前取消此限制。</SAR_ExtractionRecovery.description>
+</LanguageData>

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -135,6 +135,9 @@ namespace SearchAndRescue
         private bool scheduleDirty = true;
         private bool postLoadRecoveryPending;
         private bool schedulingSnapshotActive;
+        private bool patientScoringSnapshotActive;
+        private readonly Dictionary<Pawn, (double Urgency, int Deadline)> patientScoringSnapshot =
+            new Dictionary<Pawn, (double Urgency, int Deadline)>();
         private int internalDesignationRemovalDepth;
 
         public SearchAndRescueCoordinator(Map map) : base(map)
@@ -2112,7 +2115,7 @@ namespace SearchAndRescue
             }
 
             int now = Find.TickManager.TicksGame;
-            List<Pawn> preemptionCandidates = AllCareCandidates();
+            List<Pawn> preemptionCandidates = null;
             foreach (ActiveAssignment assignment in activeByTarget.Values
                          .Where(active => IsTreatmentStage(active.Stage))
                          .ToList())
@@ -2124,17 +2127,18 @@ namespace SearchAndRescue
                     continue;
                 }
 
+                preemptionCandidates ??= AllCareCandidates();
                 Pawn replacement = FindTravelPreemptionTarget(
                     doctor,
                     currentPatient,
                     now,
-                    preemptionCandidates);
+                    preemptionCandidates,
+                    out double replacementWeight);
                 if (replacement == null)
                 {
                     continue;
                 }
 
-                double replacementWeight = EdgeWeight(doctor, replacement, SearchAndRescueStage.Treat);
                 if (assignment.Stage == SearchAndRescueStage.Treat)
                 {
                     double currentWeight = EdgeWeight(doctor, currentPatient, SearchAndRescueStage.Treat);
@@ -2187,7 +2191,8 @@ namespace SearchAndRescue
             Pawn doctor,
             Pawn currentPatient,
             int now,
-            IEnumerable<Pawn> careCandidates)
+            IEnumerable<Pawn> careCandidates,
+            out double bestWeight)
         {
             HashSet<Pawn> unavailable = new HashSet<Pawn>(activeByTarget.Keys);
             foreach (PendingAssignment pending in pendingByWorker.Values)
@@ -2195,18 +2200,21 @@ namespace SearchAndRescue
                 unavailable.Add(pending.Target);
             }
 
-            return careCandidates
-                .Where(patient => patient != currentPatient && !unavailable.Contains(patient) &&
-                                  TargetReadyForStage(patient, SearchAndRescueStage.Treat, now))
-                .Select(patient => new
+            Pawn best = null;
+            bestWeight = 0d;
+            foreach (Pawn patient in careCandidates)
+            {
+                if (patient == currentPatient || unavailable.Contains(patient) ||
+                    !TargetReadyForStage(patient, SearchAndRescueStage.Treat, now)) continue;
+                double weight = EdgeWeight(doctor, patient, SearchAndRescueStage.Treat);
+                // Strict comparison preserves the original stable ordering on ties.
+                if (weight > bestWeight)
                 {
-                    Patient = patient,
-                    Weight = EdgeWeight(doctor, patient, SearchAndRescueStage.Treat)
-                })
-                .Where(candidate => candidate.Weight > 0d)
-                .OrderByDescending(candidate => candidate.Weight)
-                .Select(candidate => candidate.Patient)
-                .FirstOrDefault();
+                    best = patient;
+                    bestWeight = weight;
+                }
+            }
+            return best;
         }
 
         private double TravelContinuityWeight(Pawn doctor, Pawn currentPatient, ActiveAssignment assignment, int now)
@@ -2489,7 +2497,7 @@ namespace SearchAndRescue
             long matchingStart = profile
                 ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.UnifiedMatching)
                 : 0L;
-            List<Match<Pawn, Pawn>> matches = WeightedBipartiteMatcher.MaximumWeight(
+            List<Match<Pawn, Pawn>> matches = WithPatientScoringSnapshot(() => MatchPatients(
                 workers,
                 targets,
                 (worker, patient) =>
@@ -2497,7 +2505,7 @@ namespace SearchAndRescue
                     StageChoice choice = BestStageChoice(worker, patient, now, previous);
                     choices[new WorkerTargetPair(worker, patient)] = choice;
                     return choice.Weight;
-                });
+                }));
             if (profile)
             {
                 SearchAndRescuePerformanceDiagnostics.End(SarPerformancePhase.UnifiedMatching, matchingStart);
@@ -3025,10 +3033,11 @@ namespace SearchAndRescue
                         plan = MedicalCarePlan.Build(patient, now);
                         carePlans[patient] = plan;
                     }
-                    treatment = BestTreatmentOption(
+                    treatment = SelectTreatmentOption(
                         worker,
                         patient,
                         plan,
+                        out weight,
                         allowExternalInventory: stage != SearchAndRescueStage.FollowupTreat,
                         stage: stage);
                     if (!treatment.IsValid)
@@ -3036,7 +3045,6 @@ namespace SearchAndRescue
                         continue;
                     }
 
-                    weight = TreatmentEdgeWeight(worker, patient, treatment, stage);
                     bool interceptingRescue = stage == SearchAndRescueStage.Treat &&
                                                activeByTarget.TryGetValue(patient, out ActiveAssignment active) &&
                                                active.Stage == SearchAndRescueStage.Rescue;
@@ -3103,13 +3111,16 @@ namespace SearchAndRescue
             Pawn worker,
             Pawn patient,
             MedicalTreatmentOption option,
-            SearchAndRescueStage stage = SearchAndRescueStage.Treat)
+            SearchAndRescueStage stage = SearchAndRescueStage.Treat,
+            double? patientUrgency = null,
+            int? bloodLossDeadline = null)
         {
             double predictedQuality = Compatibility.PredictTreatmentQuality(
                 worker,
                 patient,
                 option.Intervention);
-            double urgency = PatientUrgency(patient);
+            int deadline = bloodLossDeadline ?? ScoringBloodLossDeadline(patient);
+            double urgency = patientUrgency ?? ScoringPatientUrgency(patient, deadline);
             double scarcity = medicalResources.ScarcityPrice(option.Resource, option.Reusable);
             double routeCost = stage == SearchAndRescueStage.FollowupTreat
                 ? FollowupTreatmentRouteCost
@@ -3125,7 +3136,7 @@ namespace SearchAndRescue
             return AssignmentBaseWeight + urgency * predictedQuality * 120000d +
                    urgency * option.Benefit * 30000d + predictedQuality * 3000d -
                    option.RouteDistance * routeCost - scarcity -
-                   TreatmentDetourPenalty(worker, patient, option) +
+                   TreatmentDetourPenalty(worker, patient, option, urgency, deadline) +
                    Compatibility.TreatmentRoleFitBonus(worker, option.Intervention) +
                    Compatibility.TransfusionUrgencyBonus(patient, option.Intervention) +
                    manualAffinity + workPriorityWeight +
@@ -3133,7 +3144,7 @@ namespace SearchAndRescue
                        worker,
                        patient,
                        option.RouteDistance,
-                       TreatmentBaseDuration(option.Intervention));
+                       TreatmentBaseDuration(option.Intervention), deadline);
         }
 
         private static int TreatmentPriorityFor(
@@ -3168,19 +3179,50 @@ namespace SearchAndRescue
             bool allowExternalInventory = true,
             SearchAndRescueStage stage = SearchAndRescueStage.Treat)
         {
-            return Compatibility.FindTreatmentOptions(worker, patient, plan, medicalResources)
-                       .Where(option => allowExternalInventory || option.Resource == null ||
-                                        MedicalResourceLedger.InventoryHolder(option.Resource) == null ||
-                                        MedicalResourceLedger.InventoryHolder(option.Resource) == worker ||
-                                        MedicalResourceLedger.InventoryHolder(option.Resource) == patient)
-                       .OrderByDescending(option => TreatmentEdgeWeight(worker, patient, option, stage))
-                       .FirstOrDefault() ?? MedicalTreatmentOption.Invalid;
+            return SelectTreatmentOption(worker, patient, plan, out _, allowExternalInventory, stage);
+        }
+
+        private MedicalTreatmentOption SelectTreatmentOption(
+            Pawn worker,
+            Pawn patient,
+            MedicalCarePlan plan,
+            out double bestWeight,
+            bool allowExternalInventory = true,
+            SearchAndRescueStage stage = SearchAndRescueStage.Treat)
+        {
+            MedicalTreatmentOption best = null;
+            bestWeight = double.NaN;
+            // All alternatives are scored synchronously for this same patient. Reuse only
+            // within this call, so health changes between assignments remain immediately visible.
+            double? urgency = null;
+            int? deadline = null;
+            foreach (MedicalTreatmentOption option in
+                     Compatibility.FindTreatmentOptions(worker, patient, plan, medicalResources))
+            {
+                if (!allowExternalInventory && option.Resource != null)
+                {
+                    Pawn holder = MedicalResourceLedger.InventoryHolder(option.Resource);
+                    if (holder != null && holder != worker && holder != patient) continue;
+                }
+                deadline ??= ScoringBloodLossDeadline(patient);
+                urgency ??= ScoringPatientUrgency(patient, deadline);
+                double weight = TreatmentEdgeWeight(worker, patient, option, stage, urgency, deadline);
+                // Match OrderByDescending's stable double comparer, including NaN and ties.
+                if (best == null || weight.CompareTo(bestWeight) > 0)
+                {
+                    best = option;
+                    bestWeight = weight;
+                }
+            }
+            return best ?? MedicalTreatmentOption.Invalid;
         }
 
         private double TreatmentDetourPenalty(
             Pawn doctor,
             Pawn patient,
-            MedicalTreatmentOption option)
+            MedicalTreatmentOption option,
+            double urgency,
+            int deadline)
         {
             if (doctor == null || patient == null || option == null || option.FromInventory ||
                 option.Resource == null)
@@ -3193,11 +3235,10 @@ namespace SearchAndRescue
             float moveSpeed = Math.Max(0.1f, doctor.GetStatValue(StatDefOf.MoveSpeed));
             double detourTicks = detourDistance * 60d / moveSpeed;
 
-            int deadline = HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
             double deadlinePressure = deadline == int.MaxValue
                 ? 0d
                 : 1d - Math.Max(0d, Math.Min(1d, deadline / 12000d));
-            double untreatedInjuryPressure = Math.Min(4d, PatientUrgency(patient)) * 30d;
+            double untreatedInjuryPressure = Math.Min(4d, urgency) * 30d;
 
             // Time has a baseline opportunity cost even for a stable casualty. As the
             // number/severity of untreated injuries rises or the blood-loss horizon closes,
@@ -3384,7 +3425,7 @@ namespace SearchAndRescue
                 .ToList();
             SearchAndRescuePerformanceDiagnostics.RecordGraph(true, workers.Count, transportTargets.Count);
             List<Match<Pawn, TransportTask>> selectedMatches =
-                WeightedBipartiteMatcher.MaximumWeightGrouped(
+                WithPatientScoringSnapshot(() => MatchPatientOptions(
                     workers,
                     transportTargets,
                     patient => tasksByPatient[patient],
@@ -3393,8 +3434,8 @@ namespace SearchAndRescue
                         task,
                         now,
                         previous,
-                        existingStandbys));
-            selectedMatches = WeightedBipartiteMatcher.DiversifyExclusiveOptions(
+                        existingStandbys)));
+            selectedMatches = WithPatientScoringSnapshot(() => WeightedBipartiteMatcher.DiversifyExclusiveOptions(
                 selectedMatches,
                 task => task.Target,
                 patient => tasksByPatient[patient],
@@ -3406,7 +3447,7 @@ namespace SearchAndRescue
                     existingStandbys),
                 task => task.IsSupply,
                 task => task.SupplyResource,
-                (worker, supply) => !medicalResources.IsClaimedByOtherWorker(supply, worker));
+                (worker, supply) => !medicalResources.IsClaimedByOtherWorker(supply, worker)));
             Dictionary<Pawn, Match<Pawn, TransportTask>> matchByWorker = selectedMatches
                 .ToDictionary(match => match.Worker, match => match);
             foreach (KeyValuePair<Pawn, ActiveStandby> pair in existingStandbys)
@@ -3503,7 +3544,7 @@ namespace SearchAndRescue
                       worker.GetStatValue(StatDefOf.MedicalTendQuality) * 30000d +
                       (5 - Compatibility.TreatmentWorkPriority(worker)) * 7000d
                     : 0d;
-                double netUtility = PatientUrgency(patient) * task.SupplyBenefit * 65000d +
+                double netUtility = ScoringPatientUrgency(patient) * task.SupplyBenefit * 65000d +
                                     (5 - priority) * 4000d - route * SupplyRouteCost -
                                     medicalResources.ScarcityPrice(
                                         task.SupplyResource,
@@ -3529,7 +3570,7 @@ namespace SearchAndRescue
                                    committed.Target == patient
                     ? Math.Max(0, committed.ExpectedTreatmentEndTick - now)
                     : ExpectedRemainingTreatmentTicks(patient);
-                weight = AssignmentBaseWeight + PatientUrgency(patient) * 20000d -
+                weight = AssignmentBaseWeight + ScoringPatientUrgency(patient) * 20000d -
                          expectedWait * 200d - distance * 300d +
                          RescueMedicalPriorityWeight(patient);
                 if (preferredRescuerByTarget.TryGetValue(patient, out Pawn preferred) && preferred == worker)
@@ -4136,6 +4177,12 @@ namespace SearchAndRescue
 
         private bool PendingAssignmentValid(Pawn worker, PendingAssignment pending, int now)
         {
+            // A pawn can leave the map or be destroyed while its soft claim still exists.
+            // Native forbidden/reservation queries require a live map and mind state.
+            if (worker == null || worker.Destroyed || !worker.Spawned || worker.Map != map ||
+                worker.mindState == null)
+                return false;
+
             if (!PendingAssignmentRules.IsLive(pending.ExpiresAt, now))
             {
                 return false;
@@ -4801,7 +4848,7 @@ namespace SearchAndRescue
             }
 
             double distance = Math.Sqrt(worker.Position.DistanceToSquared(interactionPosition));
-            double urgency = PatientUrgency(patient);
+            double urgency = ScoringPatientUrgency(patient);
 
             switch (stage)
             {
@@ -4868,11 +4915,63 @@ namespace SearchAndRescue
             }
         }
 
-        private static double PatientUrgency(Pawn patient)
+        private static List<Match<TWorker, TTarget>> MatchPatients<TWorker, TTarget>(
+            IReadOnlyList<TWorker> workers, IReadOnlyList<TTarget> targets,
+            Func<TWorker, TTarget, double> score)
+        {
+            return SearchAndRescueMod.Settings?.UseApproximateMatching == true
+                ? WeightedBipartiteMatcher.ApproximateWeight(workers, targets, score)
+                : WeightedBipartiteMatcher.MaximumWeight(workers, targets, score);
+        }
+
+        private static List<Match<TWorker, TOption>> MatchPatientOptions<TWorker, TTarget, TOption>(
+            IReadOnlyList<TWorker> workers, IReadOnlyList<TTarget> targets,
+            Func<TTarget, IEnumerable<TOption>> options, Func<TWorker, TOption, double> score)
+        {
+            return SearchAndRescueMod.Settings?.UseApproximateMatching == true
+                ? WeightedBipartiteMatcher.ApproximateWeightGrouped(workers, targets, options, score)
+                : WeightedBipartiteMatcher.MaximumWeightGrouped(workers, targets, options, score);
+        }
+
+        private T WithPatientScoringSnapshot<T>(Func<T> evaluate)
+        {
+            // Only pure edge evaluation shares these values, never job starts, claim
+            // materialization or travel preemption. No cached result survives this call.
+            if (patientScoringSnapshotActive) return evaluate();
+            patientScoringSnapshot.Clear();
+            patientScoringSnapshotActive = true;
+            medicalResources.BeginScoringSources();
+            try { return evaluate(); }
+            finally
+            {
+                patientScoringSnapshotActive = false;
+                patientScoringSnapshot.Clear();
+                medicalResources.EndScoringSources();
+            }
+        }
+
+        private (double Urgency, int Deadline) PatientScoringValues(Pawn patient)
+        {
+            if (!patientScoringSnapshot.TryGetValue(patient, out var values))
+            {
+                int deadline = HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
+                values = (PatientUrgency(patient, deadline), deadline);
+                patientScoringSnapshot.Add(patient, values);
+            }
+            return values;
+        }
+
+        private double ScoringPatientUrgency(Pawn patient, int? deadline = null) =>
+            patientScoringSnapshotActive ? PatientScoringValues(patient).Urgency : PatientUrgency(patient, deadline);
+
+        private int ScoringBloodLossDeadline(Pawn patient) => patientScoringSnapshotActive
+            ? PatientScoringValues(patient).Deadline : HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
+
+        private static double PatientUrgency(Pawn patient, int? bloodLossDeadline = null)
         {
             float healthLoss = 1f - patient.health.summaryHealth.SummaryHealthPercent;
             float bleedRate = patient.health.hediffSet.BleedRateTotal;
-            int ticksToDeath = HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
+            int ticksToDeath = bloodLossDeadline ?? HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
             float deathPressure = ticksToDeath == int.MaxValue
                 ? 0f
                 : 1f - Mathf.Clamp01(ticksToDeath / 45000f);
@@ -4936,9 +5035,10 @@ namespace SearchAndRescue
             Pawn doctor,
             Pawn patient,
             double routeDistance,
-            int baseDuration)
+            int baseDuration,
+            int? bloodLossDeadline = null)
         {
-            int deadline = HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
+            int deadline = bloodLossDeadline ?? HealthUtility.TicksUntilDeathDueToBloodLoss(patient);
             if (deadline == int.MaxValue)
             {
                 return 0d;

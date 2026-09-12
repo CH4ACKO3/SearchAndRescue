@@ -1,0 +1,8 @@
+elapsedTicks=3066 seconds=1.811 tps=1693.3 tickMs=1745.283 sarMs=676.956 sharePct=38.79 sarMsPerSec=373.88 sarUsPerTick=220.79 alive=33 inBed=2 untended=188 jobs=TendPatient:5,GotoWander:1,SAR_DeliverMedicalSupply:1,Rescue:2
+elapsedTicks=6116 seconds=1.266 tps=2409.8 tickMs=1206.444 sarMs=258.794 sharePct=21.45 sarMsPerSec=204.47 sarUsPerTick=84.85 alive=27 inBed=8 untended=111 jobs=TendPatient:5,GotoWander:1,Rescue:3
+elapsedTicks=9254 seconds=1.105 tps=2840.4 tickMs=1064.932 sarMs=172.293 sharePct=16.18 sarMsPerSec=155.95 sarUsPerTick=54.91 alive=20 inBed=10 untended=45 jobs=TendPatient:5,Wait_Wander:1,Rescue:3
+elapsedTicks=12254 seconds=1.007 tps=2977.9 tickMs=962.241 sarMs=69.967 sharePct=7.27 sarMsPerSec=69.45 sarUsPerTick=23.32 alive=18 inBed=15 untended=6 jobs=TendPatient:2,GotoWander:4,Wait_Wander:3
+elapsedTicks=15347 seconds=1.015 tps=3046.4 tickMs=967.139 sarMs=103.901 sharePct=10.74 sarMsPerSec=102.34 sarUsPerTick=33.59 alive=18 inBed=15 untended=1 jobs=Wait_Wander:5,GotoWander:4
+elapsedTicks=18442 seconds=0.976 tps=3171.7 tickMs=932.491 sarMs=104.886 sharePct=11.25 sarMsPerSec=107.48 sarUsPerTick=33.89 alive=18 inBed=15 untended=1 jobs=GotoWander:9
+elapsedTicks=21579 seconds=1.002 tps=3130.2 tickMs=964.192 sarMs=112.136 sharePct=11.63 sarMsPerSec=111.89 sarUsPerTick=35.75 alive=18 inBed=15 untended=1 jobs=Wait_Wander:1,GotoWander:7,Wait_Downed:1
+elapsedTicks=24661 seconds=1.013 tps=3042.0 tickMs=964.433 sarMs=108.550 sharePct=11.26 sarMsPerSec=107.14 sarUsPerTick=35.22 alive=18 inBed=15 untended=1 jobs=FleeAndCower:3,AttackMelee:3,GotoWander:1,Wait_Downed:1,Wait_Wander:1

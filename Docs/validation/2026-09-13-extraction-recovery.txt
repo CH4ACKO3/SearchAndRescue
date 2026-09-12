@@ -1,0 +1,22 @@
+PASS: test patient is a colony prisoner
+PASS: no marker before extraction
+PASS: actual extraction toil starts marker before blood loss
+PASS: cancelled extraction at zero blood loss cannot leave a permanent lock
+PASS: manual cancellation during extraction is not undone on completion
+PASS: native extraction causes expected blood loss
+PASS: completed extraction stays blocked until recovery
+PASS: stale HD_AdministerHemogen rejected at job construction
+PASS: stale UseBloodBag rejected at job construction
+PASS: stale UseSalineBag rejected at job construction
+PASS: hemogen demand suppressed
+PASS: MI Blood demand suppressed, including full-heal mode
+PASS: MI Saline demand suppressed, including full-heal mode
+PASS: cancel gizmo exposed on patient
+PASS: marker survives save/load
+PASS: worsening blood loss does not bypass the player's restriction
+PASS: gizmo removes marker and restores eligibility
+PASS: native hemogen demand returns after cancellation
+PASS: partial blood recovery retains marker
+PASS: zero blood loss expires marker even before cleanup tick
+PASS: health tick physically removes recovered marker
+COMPLETE

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_Settings_ApproximateMatching>快速近似配對（實驗性）</SAR_Settings_ApproximateMatching>
+  <SAR_Settings_ApproximateMatching_Desc>使用快速近似演算法減少配對耗時。分配的總評分和患者數量可能降低，獲得救援的患者也可能改變。所有符合條件的組合都會參與評估。預設關閉。</SAR_Settings_ApproximateMatching_Desc>
+</LanguageData>

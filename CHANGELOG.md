@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.1.0-alpha.10
+
+- Index inventory resource sources once per scoring pass and filter non-medicines before donor checks, while retaining live patient, claim and transfer permissions.
+- Solve rectangular rescue assignments without padding to a square matrix, retaining maximum total-score matching with less work for uneven worker/patient counts.
+- Add an optional linear-time approximate matcher for large scenes; disabled by default because assignments and treatment coverage can differ.
+- Reject pending claims from departed or destroyed workers before querying medicine access, avoiding errors during claim cleanup.
+- Use native field tending for standing patients with RH2 First Aid; reject stale RH2 jobs if the patient has stood up.
+- Reuse patient urgency and blood-loss deadlines within each matching calculation, clearing cached values before jobs start.
+- Pause SAR blood and saline transfusions when hemogen extraction begins until blood loss fully recovers; persist the marker in saves and allow early removal with a pawn command.
+- Reduce redundant treatment scoring and skip travel-preemption patient scans when no eligible doctor is travelling, preserving scheduling priorities and intervals.
+- Clarify matching settings and work-permission descriptions across English, Simplified Chinese and Traditional Chinese.
+
 ## 0.1.0-alpha.9
 
 - Respect GrimWorks child work priorities and support its Rescue work as a SAR transport provider without requiring Hauling.

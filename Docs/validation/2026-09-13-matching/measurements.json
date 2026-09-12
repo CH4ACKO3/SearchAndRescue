@@ -1,0 +1,1743 @@
+{
+  "engine": [
+    {
+      "name": "exact_d5p34h4r0",
+      "doctors": 5,
+      "patients": 34,
+      "haulers": 4,
+      "stableTPS": 2238.6884520278004,
+      "sarUsPerTick": 55.582361639205736,
+      "sarSharePercent": 12.982898666968763,
+      "profile": {
+        "MapTick": {
+          "calls": 6261,
+          "avgUs": 116.48,
+          "maxMs": 446.392,
+          "totalMs": 729.29
+        },
+        "PendingAndWake": {
+          "calls": 6261,
+          "avgUs": 2.65,
+          "maxMs": 0.319,
+          "totalMs": 16.59
+        },
+        "TreatmentMonitoring": {
+          "calls": 6261,
+          "avgUs": 3.68,
+          "maxMs": 7.013,
+          "totalMs": 23.07
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6261,
+          "avgUs": 1.73,
+          "maxMs": 0.944,
+          "totalMs": 10.82
+        },
+        "PeriodicCleanup": {
+          "calls": 134,
+          "avgUs": 77.13,
+          "maxMs": 2.433,
+          "totalMs": 10.34
+        },
+        "ScheduleRebuild": {
+          "calls": 78,
+          "avgUs": 8539.23,
+          "maxMs": 441.762,
+          "totalMs": 666.06
+        },
+        "CarePlanning": {
+          "calls": 78,
+          "avgUs": 386.38,
+          "maxMs": 5.463,
+          "totalMs": 30.14
+        },
+        "UnifiedMatching": {
+          "calls": 78,
+          "avgUs": 2326.45,
+          "maxMs": 109.637,
+          "totalMs": 181.46
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 2089,
+          "avgUs": 85.67,
+          "maxMs": 84.134,
+          "totalMs": 178.96
+        },
+        "PickupReachability": {
+          "calls": 3356,
+          "avgUs": 0.71,
+          "maxMs": 0.163,
+          "totalMs": 2.39
+        },
+        "TransportMatching": {
+          "calls": 78,
+          "avgUs": 1216.69,
+          "maxMs": 16.994,
+          "totalMs": 94.9
+        },
+        "WakePendingWorkers": {
+          "calls": 78,
+          "avgUs": 184.72,
+          "maxMs": 7.074,
+          "totalMs": 14.41
+        }
+      },
+      "clinical": {
+        "Patients": 34,
+        "Deaths": 0,
+        "Rounds": 0,
+        "Errors": 1,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 34,
+        "MedicineConsumed": 0,
+        "Untended": 136,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "approx_d5p34h4r1",
+      "doctors": 5,
+      "patients": 34,
+      "haulers": 4,
+      "stableTPS": 2052.0632684676802,
+      "sarUsPerTick": 85.97557963163597,
+      "sarSharePercent": 18.318066173737222,
+      "profile": {
+        "MapTick": {
+          "calls": 6159,
+          "avgUs": 72.42,
+          "maxMs": 18.639,
+          "totalMs": 446.01
+        },
+        "PendingAndWake": {
+          "calls": 6159,
+          "avgUs": 3.77,
+          "maxMs": 0.065,
+          "totalMs": 23.2
+        },
+        "TreatmentMonitoring": {
+          "calls": 6159,
+          "avgUs": 16.62,
+          "maxMs": 8.018,
+          "totalMs": 102.39
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6159,
+          "avgUs": 2.52,
+          "maxMs": 0.138,
+          "totalMs": 15.51
+        },
+        "PeriodicCleanup": {
+          "calls": 142,
+          "avgUs": 46.05,
+          "maxMs": 0.087,
+          "totalMs": 6.54
+        },
+        "ScheduleRebuild": {
+          "calls": 90,
+          "avgUs": 3296.55,
+          "maxMs": 18.571,
+          "totalMs": 296.69
+        },
+        "CarePlanning": {
+          "calls": 90,
+          "avgUs": 317.28,
+          "maxMs": 0.538,
+          "totalMs": 28.56
+        },
+        "UnifiedMatching": {
+          "calls": 90,
+          "avgUs": 998.25,
+          "maxMs": 15.0,
+          "totalMs": 89.84
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 2225,
+          "avgUs": 39.6,
+          "maxMs": 5.629,
+          "totalMs": 88.1
+        },
+        "PickupReachability": {
+          "calls": 12645,
+          "avgUs": 0.6,
+          "maxMs": 0.009,
+          "totalMs": 7.55
+        },
+        "TransportMatching": {
+          "calls": 90,
+          "avgUs": 1408.3,
+          "maxMs": 9.263,
+          "totalMs": 126.75
+        },
+        "WakePendingWorkers": {
+          "calls": 90,
+          "avgUs": 28.91,
+          "maxMs": 0.287,
+          "totalMs": 2.6
+        }
+      },
+      "clinical": {
+        "Patients": 34,
+        "Deaths": 0,
+        "Rounds": 2,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 34,
+        "MedicineConsumed": 0,
+        "Untended": 135,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "exact_d20p136h16r2",
+      "doctors": 20,
+      "patients": 136,
+      "haulers": 16,
+      "stableTPS": 375.4299892624405,
+      "sarUsPerTick": 1684.7547515257193,
+      "sarSharePercent": 65.10775621138887,
+      "profile": {
+        "MapTick": {
+          "calls": 6114,
+          "avgUs": 1606.47,
+          "maxMs": 406.99,
+          "totalMs": 9821.99
+        },
+        "PendingAndWake": {
+          "calls": 6114,
+          "avgUs": 12.18,
+          "maxMs": 0.385,
+          "totalMs": 74.46
+        },
+        "TreatmentMonitoring": {
+          "calls": 6114,
+          "avgUs": 467.24,
+          "maxMs": 199.262,
+          "totalMs": 2856.68
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6114,
+          "avgUs": 18.2,
+          "maxMs": 37.327,
+          "totalMs": 111.26
+        },
+        "PeriodicCleanup": {
+          "calls": 236,
+          "avgUs": 120.1,
+          "maxMs": 0.243,
+          "totalMs": 28.34
+        },
+        "ScheduleRebuild": {
+          "calls": 263,
+          "avgUs": 26142.97,
+          "maxMs": 406.813,
+          "totalMs": 6875.6
+        },
+        "CarePlanning": {
+          "calls": 263,
+          "avgUs": 1069.4,
+          "maxMs": 6.668,
+          "totalMs": 281.25
+        },
+        "UnifiedMatching": {
+          "calls": 263,
+          "avgUs": 8443.39,
+          "maxMs": 377.975,
+          "totalMs": 2220.61
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 42277,
+          "avgUs": 52.28,
+          "maxMs": 5.843,
+          "totalMs": 2210.41
+        },
+        "PickupReachability": {
+          "calls": 149554,
+          "avgUs": 0.91,
+          "maxMs": 0.079,
+          "totalMs": 135.8
+        },
+        "TransportMatching": {
+          "calls": 263,
+          "avgUs": 12327.98,
+          "maxMs": 53.23,
+          "totalMs": 3242.26
+        },
+        "WakePendingWorkers": {
+          "calls": 263,
+          "avgUs": 57.51,
+          "maxMs": 1.258,
+          "totalMs": 15.12
+        }
+      },
+      "clinical": {
+        "Patients": 136,
+        "Deaths": 0,
+        "Rounds": 22,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 136,
+        "MedicineConsumed": 0,
+        "Untended": 523,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "approx_d20p136h16r3",
+      "doctors": 20,
+      "patients": 136,
+      "haulers": 16,
+      "stableTPS": 347.5581690259917,
+      "sarUsPerTick": 1866.7920457042408,
+      "sarSharePercent": 66.73020659785242,
+      "profile": {
+        "MapTick": {
+          "calls": 6098,
+          "avgUs": 1761.27,
+          "maxMs": 466.212,
+          "totalMs": 10740.24
+        },
+        "PendingAndWake": {
+          "calls": 6098,
+          "avgUs": 14.38,
+          "maxMs": 0.241,
+          "totalMs": 87.68
+        },
+        "TreatmentMonitoring": {
+          "calls": 6098,
+          "avgUs": 499.59,
+          "maxMs": 291.972,
+          "totalMs": 3046.48
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6098,
+          "avgUs": 7.32,
+          "maxMs": 0.038,
+          "totalMs": 44.63
+        },
+        "PeriodicCleanup": {
+          "calls": 249,
+          "avgUs": 126.51,
+          "maxMs": 0.362,
+          "totalMs": 31.5
+        },
+        "ScheduleRebuild": {
+          "calls": 281,
+          "avgUs": 26803.82,
+          "maxMs": 466.048,
+          "totalMs": 7531.87
+        },
+        "CarePlanning": {
+          "calls": 281,
+          "avgUs": 1072.33,
+          "maxMs": 2.45,
+          "totalMs": 301.33
+        },
+        "UnifiedMatching": {
+          "calls": 281,
+          "avgUs": 8906.86,
+          "maxMs": 431.192,
+          "totalMs": 2502.83
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 44588,
+          "avgUs": 55.9,
+          "maxMs": 8.552,
+          "totalMs": 2492.66
+        },
+        "PickupReachability": {
+          "calls": 151508,
+          "avgUs": 0.91,
+          "maxMs": 0.059,
+          "totalMs": 137.78
+        },
+        "TransportMatching": {
+          "calls": 281,
+          "avgUs": 12520.29,
+          "maxMs": 53.314,
+          "totalMs": 3518.2
+        },
+        "WakePendingWorkers": {
+          "calls": 281,
+          "avgUs": 66.8,
+          "maxMs": 2.274,
+          "totalMs": 18.77
+        }
+      },
+      "clinical": {
+        "Patients": 136,
+        "Deaths": 0,
+        "Rounds": 20,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 136,
+        "MedicineConsumed": 0,
+        "Untended": 524,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "exact_d40p272h32r4",
+      "doctors": 40,
+      "patients": 272,
+      "haulers": 32,
+      "stableTPS": 63.75656299157614,
+      "sarUsPerTick": 13402.62641383899,
+      "sarSharePercent": 86.68614849189203,
+      "profile": {
+        "MapTick": {
+          "calls": 6013,
+          "avgUs": 14162.42,
+          "maxMs": 2691.561,
+          "totalMs": 85158.66
+        },
+        "PendingAndWake": {
+          "calls": 6013,
+          "avgUs": 69.56,
+          "maxMs": 6.68,
+          "totalMs": 418.29
+        },
+        "TreatmentMonitoring": {
+          "calls": 6013,
+          "avgUs": 1975.2,
+          "maxMs": 988.743,
+          "totalMs": 11876.85
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6013,
+          "avgUs": 15.16,
+          "maxMs": 0.114,
+          "totalMs": 91.14
+        },
+        "PeriodicCleanup": {
+          "calls": 331,
+          "avgUs": 223.06,
+          "maxMs": 0.999,
+          "totalMs": 73.83
+        },
+        "ScheduleRebuild": {
+          "calls": 434,
+          "avgUs": 169473.6,
+          "maxMs": 2691.202,
+          "totalMs": 73551.54
+        },
+        "CarePlanning": {
+          "calls": 434,
+          "avgUs": 2125.16,
+          "maxMs": 10.352,
+          "totalMs": 922.32
+        },
+        "UnifiedMatching": {
+          "calls": 434,
+          "avgUs": 90565.78,
+          "maxMs": 2594.943,
+          "totalMs": 39305.55
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 371381,
+          "avgUs": 105.6,
+          "maxMs": 12.736,
+          "totalMs": 39217.86
+        },
+        "PickupReachability": {
+          "calls": 398902,
+          "avgUs": 1.13,
+          "maxMs": 0.094,
+          "totalMs": 449.43
+        },
+        "TransportMatching": {
+          "calls": 434,
+          "avgUs": 62371.2,
+          "maxMs": 234.188,
+          "totalMs": 27069.1
+        },
+        "WakePendingWorkers": {
+          "calls": 434,
+          "avgUs": 136.35,
+          "maxMs": 3.358,
+          "totalMs": 59.18
+        }
+      },
+      "clinical": {
+        "Patients": 272,
+        "Deaths": 0,
+        "Rounds": 84,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 272,
+        "MedicineConsumed": 0,
+        "Untended": 1012,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "approx_d40p272h32r5",
+      "doctors": 40,
+      "patients": 272,
+      "haulers": 32,
+      "stableTPS": 62.13047297854406,
+      "sarUsPerTick": 13766.564378724343,
+      "sarSharePercent": 86.83737155752475,
+      "profile": {
+        "MapTick": {
+          "calls": 6050,
+          "avgUs": 15296.98,
+          "maxMs": 2747.241,
+          "totalMs": 92546.74
+        },
+        "PendingAndWake": {
+          "calls": 6050,
+          "avgUs": 52.15,
+          "maxMs": 11.784,
+          "totalMs": 315.48
+        },
+        "TreatmentMonitoring": {
+          "calls": 6050,
+          "avgUs": 2456.84,
+          "maxMs": 959.32,
+          "totalMs": 14863.9
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6050,
+          "avgUs": 43.79,
+          "maxMs": 159.875,
+          "totalMs": 264.92
+        },
+        "PeriodicCleanup": {
+          "calls": 381,
+          "avgUs": 229.36,
+          "maxMs": 0.857,
+          "totalMs": 87.39
+        },
+        "ScheduleRebuild": {
+          "calls": 530,
+          "avgUs": 148469.55,
+          "maxMs": 2747.032,
+          "totalMs": 78688.86
+        },
+        "CarePlanning": {
+          "calls": 530,
+          "avgUs": 2133.0,
+          "maxMs": 11.313,
+          "totalMs": 1130.49
+        },
+        "UnifiedMatching": {
+          "calls": 530,
+          "avgUs": 69669.05,
+          "maxMs": 2646.611,
+          "totalMs": 36924.6
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 414550,
+          "avgUs": 88.85,
+          "maxMs": 59.012,
+          "totalMs": 36831.28
+        },
+        "PickupReachability": {
+          "calls": 409635,
+          "avgUs": 1.12,
+          "maxMs": 0.104,
+          "totalMs": 457.98
+        },
+        "TransportMatching": {
+          "calls": 530,
+          "avgUs": 62684.9,
+          "maxMs": 189.271,
+          "totalMs": 33223.0
+        },
+        "WakePendingWorkers": {
+          "calls": 530,
+          "avgUs": 127.98,
+          "maxMs": 4.172,
+          "totalMs": 67.83
+        }
+      },
+      "clinical": {
+        "Patients": 272,
+        "Deaths": 0,
+        "Rounds": 108,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 272,
+        "MedicineConsumed": 0,
+        "Untended": 982,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "legacy_d5p34h4r0",
+      "doctors": 5,
+      "patients": 34,
+      "haulers": 4,
+      "stableTPS": 2225.0356996788073,
+      "sarUsPerTick": 53.625575073191136,
+      "sarSharePercent": 12.57466648784876,
+      "profile": {
+        "MapTick": {
+          "calls": 6297,
+          "avgUs": 116.38,
+          "maxMs": 446.538,
+          "totalMs": 732.82
+        },
+        "PendingAndWake": {
+          "calls": 6297,
+          "avgUs": 2.44,
+          "maxMs": 0.341,
+          "totalMs": 15.37
+        },
+        "TreatmentMonitoring": {
+          "calls": 6297,
+          "avgUs": 4.7,
+          "maxMs": 7.566,
+          "totalMs": 29.57
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6297,
+          "avgUs": 1.76,
+          "maxMs": 0.96,
+          "totalMs": 11.06
+        },
+        "PeriodicCleanup": {
+          "calls": 135,
+          "avgUs": 86.12,
+          "maxMs": 3.342,
+          "totalMs": 11.63
+        },
+        "ScheduleRebuild": {
+          "calls": 76,
+          "avgUs": 8718.29,
+          "maxMs": 439.941,
+          "totalMs": 662.59
+        },
+        "CarePlanning": {
+          "calls": 76,
+          "avgUs": 407.01,
+          "maxMs": 6.573,
+          "totalMs": 30.93
+        },
+        "UnifiedMatching": {
+          "calls": 76,
+          "avgUs": 2230.92,
+          "maxMs": 98.353,
+          "totalMs": 169.55
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 2055,
+          "avgUs": 78.42,
+          "maxMs": 81.837,
+          "totalMs": 161.15
+        },
+        "PickupReachability": {
+          "calls": 3367,
+          "avgUs": 0.74,
+          "maxMs": 0.175,
+          "totalMs": 2.48
+        },
+        "TransportMatching": {
+          "calls": 76,
+          "avgUs": 1244.29,
+          "maxMs": 19.282,
+          "totalMs": 94.57
+        },
+        "WakePendingWorkers": {
+          "calls": 76,
+          "avgUs": 203.84,
+          "maxMs": 7.567,
+          "totalMs": 15.49
+        }
+      },
+      "clinical": {
+        "Patients": 34,
+        "Deaths": 0,
+        "Rounds": 0,
+        "Errors": 1,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 34,
+        "MedicineConsumed": 0,
+        "Untended": 136,
+        "Stabilized": 0
+      }
+    },
+    {
+      "name": "legacy_d20p136h16r2",
+      "doctors": 20,
+      "patients": 136,
+      "haulers": 16,
+      "stableTPS": 329.37287881226143,
+      "sarUsPerTick": 2044.203667105841,
+      "sarSharePercent": 69.12965541843023,
+      "profile": {
+        "MapTick": {
+          "calls": 6083,
+          "avgUs": 1942.09,
+          "maxMs": 471.561,
+          "totalMs": 11813.74
+        },
+        "PendingAndWake": {
+          "calls": 6083,
+          "avgUs": 11.07,
+          "maxMs": 0.246,
+          "totalMs": 67.32
+        },
+        "TreatmentMonitoring": {
+          "calls": 6083,
+          "avgUs": 517.79,
+          "maxMs": 201.216,
+          "totalMs": 3149.69
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6083,
+          "avgUs": 7.31,
+          "maxMs": 0.437,
+          "totalMs": 44.47
+        },
+        "PeriodicCleanup": {
+          "calls": 239,
+          "avgUs": 125.79,
+          "maxMs": 0.808,
+          "totalMs": 30.06
+        },
+        "ScheduleRebuild": {
+          "calls": 276,
+          "avgUs": 31005.54,
+          "maxMs": 471.424,
+          "totalMs": 8557.53
+        },
+        "CarePlanning": {
+          "calls": 276,
+          "avgUs": 1066.62,
+          "maxMs": 4.094,
+          "totalMs": 294.39
+        },
+        "UnifiedMatching": {
+          "calls": 276,
+          "avgUs": 12231.85,
+          "maxMs": 435.228,
+          "totalMs": 3375.99
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 45374,
+          "avgUs": 54.31,
+          "maxMs": 8.621,
+          "totalMs": 2464.47
+        },
+        "PickupReachability": {
+          "calls": 159514,
+          "avgUs": 0.9,
+          "maxMs": 0.028,
+          "totalMs": 144.28
+        },
+        "TransportMatching": {
+          "calls": 276,
+          "avgUs": 13434.93,
+          "maxMs": 52.675,
+          "totalMs": 3708.04
+        },
+        "WakePendingWorkers": {
+          "calls": 276,
+          "avgUs": 68.51,
+          "maxMs": 2.474,
+          "totalMs": 18.91
+        }
+      },
+      "clinical": {
+        "Patients": 136,
+        "Deaths": 0,
+        "Rounds": 17,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 135,
+        "MedicineConsumed": 1,
+        "Untended": 524,
+        "Stabilized": 1
+      }
+    },
+    {
+      "name": "legacy_d40p272h32r4",
+      "doctors": 40,
+      "patients": 272,
+      "haulers": 32,
+      "stableTPS": 47.142920693800825,
+      "sarUsPerTick": 18937.319252873564,
+      "sarSharePercent": 90.37584590990963,
+      "profile": {
+        "MapTick": {
+          "calls": 6048,
+          "avgUs": 19209.82,
+          "maxMs": 2859.115,
+          "totalMs": 116180.96
+        },
+        "PendingAndWake": {
+          "calls": 6048,
+          "avgUs": 94.53,
+          "maxMs": 9.693,
+          "totalMs": 571.69
+        },
+        "TreatmentMonitoring": {
+          "calls": 6048,
+          "avgUs": 2331.53,
+          "maxMs": 988.371,
+          "totalMs": 14101.12
+        },
+        "ActiveAssignmentMaintenance": {
+          "calls": 6048,
+          "avgUs": 15.53,
+          "maxMs": 0.083,
+          "totalMs": 93.93
+        },
+        "PeriodicCleanup": {
+          "calls": 344,
+          "avgUs": 236.45,
+          "maxMs": 0.73,
+          "totalMs": 81.34
+        },
+        "ScheduleRebuild": {
+          "calls": 469,
+          "avgUs": 217121.08,
+          "maxMs": 2858.894,
+          "totalMs": 101829.79
+        },
+        "CarePlanning": {
+          "calls": 469,
+          "avgUs": 2168.73,
+          "maxMs": 10.905,
+          "totalMs": 1017.14
+        },
+        "UnifiedMatching": {
+          "calls": 469,
+          "avgUs": 132105.93,
+          "maxMs": 2755.778,
+          "totalMs": 61957.68
+        },
+        "UnifiedEdgeScoring": {
+          "calls": 428412,
+          "avgUs": 119.18,
+          "maxMs": 12.674,
+          "totalMs": 51056.35
+        },
+        "PickupReachability": {
+          "calls": 398319,
+          "avgUs": 1.15,
+          "maxMs": 0.094,
+          "totalMs": 459.13
+        },
+        "TransportMatching": {
+          "calls": 469,
+          "avgUs": 68455.72,
+          "maxMs": 234.527,
+          "totalMs": 32105.73
+        },
+        "WakePendingWorkers": {
+          "calls": 469,
+          "avgUs": 179.18,
+          "maxMs": 9.351,
+          "totalMs": 84.04
+        }
+      },
+      "clinical": {
+        "Patients": 272,
+        "Deaths": 0,
+        "Rounds": 93,
+        "Errors": 0,
+        "OwnershipConflicts": 0,
+        "RemainingPatients": 271,
+        "MedicineConsumed": 1,
+        "Untended": 992,
+        "Stabilized": 1
+      }
+    }
+  ],
+  "solver": [
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "0.048200",
+      "minMs": "0.047400",
+      "maxMs": "0.076600",
+      "score": "11290000",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "0.011200",
+      "minMs": "0.010600",
+      "maxMs": "0.016200",
+      "score": "11290000",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.007800",
+      "minMs": "0.007600",
+      "maxMs": "0.011500",
+      "score": "11275000",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "0.046000",
+      "minMs": "0.045400",
+      "maxMs": "0.046500",
+      "score": "8705567",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.007900",
+      "minMs": "0.007600",
+      "maxMs": "0.009700",
+      "score": "8705567",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.007900",
+      "minMs": "0.007500",
+      "maxMs": "0.008700",
+      "score": "8667498",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "0.050500",
+      "minMs": "0.049900",
+      "maxMs": "0.096000",
+      "score": "6480255",
+      "matches": "8"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.008100",
+      "minMs": "0.007600",
+      "maxMs": "0.009300",
+      "score": "6480255",
+      "matches": "8"
+    },
+    {
+      "w": "9",
+      "p": "34",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.007900",
+      "minMs": "0.007700",
+      "maxMs": "0.008600",
+      "score": "6480255",
+      "matches": "8"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "0.394400",
+      "minMs": "0.388900",
+      "maxMs": "0.455000",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "0.020300",
+      "minMs": "0.020100",
+      "maxMs": "0.021700",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.013200",
+      "minMs": "0.012900",
+      "maxMs": "0.014800",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "0.381500",
+      "minMs": "0.380500",
+      "maxMs": "0.395100",
+      "score": "8782913",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.025100",
+      "minMs": "0.024200",
+      "maxMs": "0.028500",
+      "score": "8782913",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.013500",
+      "minMs": "0.013100",
+      "maxMs": "0.014600",
+      "score": "8782913",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "0.391200",
+      "minMs": "0.388900",
+      "maxMs": "0.401600",
+      "score": "7693261",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.014000",
+      "minMs": "0.013600",
+      "maxMs": "0.014700",
+      "score": "7693261",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "68",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.014000",
+      "minMs": "0.013400",
+      "maxMs": "0.015000",
+      "score": "7693261",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "3.163400",
+      "minMs": "3.104700",
+      "maxMs": "3.288800",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "0.038300",
+      "minMs": "0.037800",
+      "maxMs": "0.039200",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.024100",
+      "minMs": "0.023800",
+      "maxMs": "0.024700",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "3.035900",
+      "minMs": "3.030900",
+      "maxMs": "3.437000",
+      "score": "8933288",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.035300",
+      "minMs": "0.034000",
+      "maxMs": "0.041300",
+      "score": "8933288",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.025000",
+      "minMs": "0.023800",
+      "maxMs": "0.030100",
+      "score": "8933288",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "3.027400",
+      "minMs": "3.019100",
+      "maxMs": "3.109200",
+      "score": "8274362",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.029100",
+      "minMs": "0.028300",
+      "maxMs": "0.030900",
+      "score": "8274362",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "136",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.029000",
+      "minMs": "0.028000",
+      "maxMs": "0.033400",
+      "score": "8274362",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "24.597000",
+      "minMs": "24.394600",
+      "maxMs": "31.910800",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "0.072600",
+      "minMs": "0.071700",
+      "maxMs": "0.074200",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.044400",
+      "minMs": "0.044000",
+      "maxMs": "0.046000",
+      "score": "11359750",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "23.483000",
+      "minMs": "23.383000",
+      "maxMs": "23.778900",
+      "score": "8957139",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.046200",
+      "minMs": "0.045700",
+      "maxMs": "0.047800",
+      "score": "8957139",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.044600",
+      "minMs": "0.044100",
+      "maxMs": "0.045500",
+      "score": "8957139",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "24.484300",
+      "minMs": "24.057400",
+      "maxMs": "25.776900",
+      "score": "8528790",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.057700",
+      "minMs": "0.057100",
+      "maxMs": "0.065400",
+      "score": "8528790",
+      "matches": "9"
+    },
+    {
+      "w": "9",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.051900",
+      "minMs": "0.047800",
+      "maxMs": "0.095900",
+      "score": "8498170",
+      "matches": "9"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "3.460600",
+      "minMs": "2.321100",
+      "maxMs": "3.600100",
+      "score": "44981000",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "0.343200",
+      "minMs": "0.340300",
+      "maxMs": "0.406900",
+      "score": "44981000",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.098700",
+      "minMs": "0.094700",
+      "maxMs": "0.100200",
+      "score": "44842500",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "2.493600",
+      "minMs": "2.475700",
+      "maxMs": "2.660800",
+      "score": "35685613",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.099500",
+      "minMs": "0.098800",
+      "maxMs": "0.106400",
+      "score": "35685613",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.099300",
+      "minMs": "0.093800",
+      "maxMs": "0.105400",
+      "score": "35675371",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "2.461400",
+      "minMs": "2.437700",
+      "maxMs": "2.584200",
+      "score": "33029968",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.104600",
+      "minMs": "0.099800",
+      "maxMs": "0.107200",
+      "score": "33029968",
+      "matches": "36"
+    },
+    {
+      "w": "36",
+      "p": "136",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.105200",
+      "minMs": "0.095900",
+      "maxMs": "3.312100",
+      "score": "32988159",
+      "matches": "36"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "21.828300",
+      "minMs": "21.663400",
+      "maxMs": "21.955400",
+      "score": "89708500",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "1.861400",
+      "minMs": "1.853800",
+      "maxMs": "2.039000",
+      "score": "89708500",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.340700",
+      "minMs": "0.314200",
+      "maxMs": "0.362200",
+      "score": "89271250",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "18.599900",
+      "minMs": "18.385100",
+      "maxMs": "18.890400",
+      "score": "71689233",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.393100",
+      "minMs": "0.381700",
+      "maxMs": "0.412800",
+      "score": "71689233",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.386400",
+      "minMs": "0.364100",
+      "maxMs": "0.513700",
+      "score": "71662283",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "18.731700",
+      "minMs": "18.523600",
+      "maxMs": "18.954300",
+      "score": "69110714",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.381300",
+      "minMs": "0.372400",
+      "maxMs": "0.419000",
+      "score": "69110714",
+      "matches": "72"
+    },
+    {
+      "w": "72",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.374300",
+      "minMs": "0.367600",
+      "maxMs": "0.396300",
+      "score": "68702877",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "25.457100",
+      "minMs": "25.044400",
+      "maxMs": "25.849400",
+      "score": "80794000",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "2.192400",
+      "minMs": "2.167600",
+      "maxMs": "3.338300",
+      "score": "80794000",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "0.363000",
+      "minMs": "0.361500",
+      "maxMs": "0.384600",
+      "score": "80565000",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "26.009900",
+      "minMs": "25.666600",
+      "maxMs": "28.425600",
+      "score": "71694487",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "0.372300",
+      "minMs": "0.365800",
+      "maxMs": "0.405400",
+      "score": "71694487",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "0.378200",
+      "minMs": "0.369500",
+      "maxMs": "0.400100",
+      "score": "71667771",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "25.633300",
+      "minMs": "25.390400",
+      "maxMs": "25.748100",
+      "score": "69078068",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "0.374900",
+      "minMs": "0.373000",
+      "maxMs": "3.732700",
+      "score": "69078068",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "72",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "0.400000",
+      "minMs": "0.395800",
+      "maxMs": "0.417300",
+      "score": "69059686",
+      "matches": "72"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "21.334100",
+      "minMs": "21.140600",
+      "maxMs": "22.543100",
+      "score": "279453000",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "20.209500",
+      "minMs": "19.965600",
+      "maxMs": "24.651500",
+      "score": "279453000",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "1.278000",
+      "minMs": "1.268000",
+      "maxMs": "1.301200",
+      "score": "278017500",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "4.520000",
+      "minMs": "4.475700",
+      "maxMs": "4.699600",
+      "score": "270196333",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "4.421700",
+      "minMs": "4.336000",
+      "maxMs": "7.711600",
+      "score": "270196333",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "1.370600",
+      "minMs": "1.353300",
+      "maxMs": "1.517100",
+      "score": "267221779",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "3.976500",
+      "minMs": "3.950300",
+      "maxMs": "4.060700",
+      "score": "257711675",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "3.871200",
+      "minMs": "3.847900",
+      "maxMs": "3.948000",
+      "score": "257711675",
+      "matches": "272"
+    },
+    {
+      "w": "272",
+      "p": "272",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "1.449800",
+      "minMs": "1.408600",
+      "maxMs": "1.500800",
+      "score": "242139089",
+      "matches": "265"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "0",
+      "algorithm": "0",
+      "medianMs": "144.412400",
+      "minMs": "141.543300",
+      "maxMs": "148.879700",
+      "score": "484931000",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "0",
+      "algorithm": "1",
+      "medianMs": "135.719400",
+      "minMs": "133.574900",
+      "maxMs": "138.648800",
+      "score": "484931000",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "0",
+      "algorithm": "2",
+      "medianMs": "5.057900",
+      "minMs": "4.998900",
+      "maxMs": "6.091100",
+      "score": "483326000",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "1",
+      "algorithm": "0",
+      "medianMs": "21.644100",
+      "minMs": "21.054000",
+      "maxMs": "25.232900",
+      "score": "542358902",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "1",
+      "algorithm": "1",
+      "medianMs": "20.626200",
+      "minMs": "20.422500",
+      "maxMs": "24.073100",
+      "score": "542358902",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "1",
+      "algorithm": "2",
+      "medianMs": "5.536500",
+      "minMs": "5.467900",
+      "maxMs": "5.638700",
+      "score": "538872288",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "2",
+      "algorithm": "0",
+      "medianMs": "32.492300",
+      "minMs": "23.569000",
+      "maxMs": "39.693100",
+      "score": "526554149",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "2",
+      "algorithm": "1",
+      "medianMs": "23.137400",
+      "minMs": "23.060500",
+      "maxMs": "23.748000",
+      "score": "526554149",
+      "matches": "544"
+    },
+    {
+      "w": "544",
+      "p": "544",
+      "pattern": "2",
+      "algorithm": "2",
+      "medianMs": "5.892100",
+      "minMs": "5.833900",
+      "maxMs": "9.037300",
+      "score": "504624940",
+      "matches": "536"
+    }
+  ]
+}

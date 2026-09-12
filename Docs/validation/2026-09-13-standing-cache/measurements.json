@@ -1,0 +1,23 @@
+{
+  "baseline1": {
+    "sarTotalMs": 1615.278,
+    "postFirstWindowUsPerTick": 42.677302494078305,
+    "ticks": 24591.0
+  },
+  "baseline2": {
+    "sarTotalMs": 1586.002,
+    "postFirstWindowUsPerTick": 42.12910033490847,
+    "ticks": 24848.0
+  },
+  "cached1": {
+    "sarTotalMs": 1583.319,
+    "postFirstWindowUsPerTick": 42.11819487559654,
+    "ticks": 24606.0
+  },
+  "baseline.dll": {
+    "sha256": "090237c6eb157d2718e24839206ca991a926bd9e12b881fcdfb2dbc7c0d61f44"
+  },
+  "cached.dll": {
+    "sha256": "85205c3248b85131503823291dc04fdf85a02d370739fe37698152ace18e74f8"
+  }
+}

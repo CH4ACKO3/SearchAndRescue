@@ -1,0 +1,11 @@
+<Defs>
+  <HediffDef>
+    <defName>SAR_ExtractionRecovery</defName>
+    <label>transfusion paused after extraction</label>
+    <description>SAR will not administer blood or saline until blood loss has fully recovered. Other rescue and medical care remain available. Use the pawn's Resume transfusion command to remove this restriction early.</description>
+    <hediffClass>SearchAndRescue.Hediff_ExtractionRecovery</hediffClass>
+    <initialSeverity>1</initialSeverity>
+    <isBad>false</isBad>
+    <scenarioCanAdd>false</scenarioCanAdd>
+  </HediffDef>
+</Defs>
