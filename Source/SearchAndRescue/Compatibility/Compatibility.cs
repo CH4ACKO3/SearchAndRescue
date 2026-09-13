@@ -2586,7 +2586,8 @@ namespace SearchAndRescue
 
         internal static int DetailedWorkPriority(Pawn worker, WorkGiverDef workGiver, WorkTypeDef fallbackWorkType)
         {
-            if (worker == null || workGiver == null || fallbackWorkType == null)
+            if (worker == null || workGiver == null || fallbackWorkType == null ||
+                worker.workSettings?.Initialized == false)
             {
                 return 0;
             }
@@ -2627,7 +2628,9 @@ namespace SearchAndRescue
 
         private static int WorkTypePriority(Pawn worker, WorkTypeDef workType)
         {
-            if (worker == null || workType == null)
+            // GetPriority initializes missing priorities and logs an error. A read-only
+            // candidate scan must leave pawns without initialized work settings alone.
+            if (worker == null || workType == null || worker.workSettings?.Initialized == false)
             {
                 return 0;
             }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Reflection;
 using System;
 using System.IO;
@@ -46,7 +46,7 @@ public static class StandingTreatmentProbe {
   map.designationManager.AddDesignation(new Designation(patient,DefDatabase<DesignationDef>.GetNamed("SAR_Treat")));
   if(scenario>0){Thing med=ThingMaker.MakeThing(ThingDefOf.MedicineIndustrial);med.stackCount=3;doctor.inventory.innerContainer.TryAdd(med);}
   Check(!patient.Downed&&patient.GetPosture()==PawnPosture.Standing,"scenario "+scenario+": injured patient is standing");
-  if(scenario==0){CheckScoreCache();CheckRetiredWorker();CheckSourceIndex();}
+  if(scenario==0){CheckUninitializedWorkSettings();CheckScoreCache();CheckRetiredWorker();CheckSourceIndex();}
   var options=Options();Check(options.Any(o=>Kind(o)=="VanillaTend"),"standing patient has native field-tending option");
   Check(!options.Any(o=>Kind(o)=="Rh2FirstAid"),"standing patient has no impossible RH2 option");
   if(scenario>0)Check(options.Any(o=>Kind(o)=="VanillaTend"&&Resource(o)!=null),"standing patient retains medicated tending");
@@ -63,6 +63,31 @@ public static class StandingTreatmentProbe {
   IntVec3 goal=CellFinder.RandomClosewalkCellNear(doctor.Position+new IntVec3(-10,0,0),map,2);
   patient.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.Goto,goal));
   started=Find.TickManager.TicksGame;sawManaged=sawWait=sawMoved=interrupted=checkedInterrupt=sawMedicine=false;heldAt=0;
+ }
+ static void CheckUninitializedWorkSettings(){
+  var type=T("SearchAndRescueCoordinator");var coordinator=Find.CurrentMap.components.First(c=>c.GetType()==type);
+  var candidates=AccessTools.Method(type,"WorkerCandidates");
+  ((IEnumerable<Pawn>)candidates.Invoke(coordinator,null)).ToArray();
+  var original=doctor.workSettings;
+  var field=DefDatabase<WorkTypeDef>.GetNamed("SAR_FieldRescue");
+  var giver=DefDatabase<WorkGiverDef>.GetNamed("SAR_TreatMarked");
+  int expected=(int)Call("Compatibility","FieldRescueWorkPriority",doctor);
+  Check(expected>0,"initialized doctor has field-rescue priority");
+  try{
+   doctor.workSettings=new Pawn_WorkSettings(doctor);
+   Check(!doctor.workSettings.Initialized,"fixture has an uninitialized work-settings object");
+   bool excluded=true,zero=true;
+   for(int i=0;i<100;i++){
+    zero&=(int)Call("Compatibility","FieldRescueWorkPriority",doctor)==0;
+    zero&=(int)Call("Compatibility","DetailedWorkPriority",doctor,giver,field)==0;
+    excluded&=!((IEnumerable<Pawn>)candidates.Invoke(coordinator,null)).Contains(doctor);
+   }
+   Check(zero,"uninitialized parent and child priorities stay disabled across 100 scans");
+   Check(excluded,"uninitialized pawn is excluded from rescue worker candidates");
+   Check(!doctor.workSettings.Initialized,"priority queries do not initialize work settings");
+  }finally{doctor.workSettings=original;}
+  Check((int)Call("Compatibility","FieldRescueWorkPriority",doctor)==expected,"initialized priority is immediately available after restoring settings");
+  Check(((IEnumerable<Pawn>)candidates.Invoke(coordinator,null)).Contains(doctor),"initialized doctor returns to rescue candidates");
  }
  static void CheckRetiredWorker(){
   var map=Find.CurrentMap;var type=T("SearchAndRescueCoordinator");var coordinator=map.components.First(c=>c.GetType()==type);
