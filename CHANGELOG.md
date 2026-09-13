@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0-alpha.11
+
+Fixed repeated "did not have work settings initialized" errors when scanning rescue workers. Pawns whose work settings are not ready are now safely skipped.
+
 ## 0.1.0-alpha.10
 
 - Index inventory resource sources once per scoring pass and filter non-medicines before donor checks, while retaining live patient, claim and transfer permissions.
