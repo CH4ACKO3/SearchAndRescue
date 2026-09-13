@@ -31,10 +31,6 @@ namespace SearchAndRescue
             DefDatabase<JobDef>.GetNamedSilentFail("UseHemostaticAgent");
         private static readonly JobDef MoreInjuriesBandageJob =
             DefDatabase<JobDef>.GetNamedSilentFail("UseBandage");
-        private static readonly JobDef MoreInjuriesSalineJob =
-            DefDatabase<JobDef>.GetNamedSilentFail("UseSalineBag");
-        private static readonly JobDef MoreInjuriesBloodJob =
-            DefDatabase<JobDef>.GetNamedSilentFail("UseBloodBag");
         private static readonly JobDef HemogenDirectJob =
             DefDatabase<JobDef>.GetNamedSilentFail("HD_AdministerHemogen");
         private static readonly JobDef EmergencyTransfusionJob =

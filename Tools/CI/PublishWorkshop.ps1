@@ -119,7 +119,7 @@ try {
             if ((Get-FileHash -LiteralPath (Join-Path $download $f.path)).Hash -cne $f.sha256) { throw "Published file checksum mismatch: $($f.path)" }
         }
         Write-Host 'PASS: downloaded Workshop files match the release manifest.'
-    } elseif ($exitCode -ne 0 -or $text -notmatch '(?i)\bSuccess\.\s+(?:Published|Updated)[^\r\n]*\b3796056278\b') {
+    } else {
         throw 'Steam did not confirm the Workshop update. Validate login/Steam Guard locally and refresh the environment secrets; raw authentication output is withheld.'
     }
     dotnet $publisher publish $root

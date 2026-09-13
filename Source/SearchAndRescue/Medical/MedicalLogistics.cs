@@ -580,21 +580,6 @@ namespace SearchAndRescue
             }
         }
 
-        public void RetainPatientFieldSupplyReferences(Pawn patient, Func<Thing, bool> retain)
-        {
-            if (patient == null)
-            {
-                return;
-            }
-
-            if (fieldSupplyReferences.RemoveAll(reference =>
-                reference.Patient == patient &&
-                (reference.Supply == null || retain == null || !retain(reference.Supply))) > 0)
-            {
-                InvalidateFieldSupplyReferenceIndex();
-            }
-        }
-
         public bool ReleaseFieldSupplyReferences(Thing supply)
         {
             if (supply == null)
@@ -1028,48 +1013,6 @@ namespace SearchAndRescue
                 .OrderBy(thing => worker.Position.DistanceToSquared(thing.PositionHeld) +
                                   thing.PositionHeld.DistanceToSquared(patient.Position))
                 .FirstOrDefault();
-        }
-
-        public Thing FindBestOnMap(Pawn worker, Pawn patient, ThingDef def, bool reusable, int count = 1)
-        {
-            return AvailableOnMap(worker, patient, def, reusable, count).FirstOrDefault();
-        }
-
-        public IEnumerable<Thing> AvailableOnMap(
-            Pawn worker,
-            Pawn patient,
-            ThingDef def,
-            bool reusable,
-            int count = 1)
-        {
-            if (worker == null || patient == null || def == null)
-            {
-                return Enumerable.Empty<Thing>();
-            }
-            return map.listerThings.ThingsOfDef(def)
-                .Where(thing => thing.Spawned && !thing.IsForbidden(worker) &&
-                                AvailableForTreatment(thing, worker, patient) >= (reusable ? 1 : count) &&
-                                CanReserveAndReachForPickupCached(worker, thing, reusable ? 1 : count))
-                .OrderBy(thing => worker.Position.DistanceToSquared(thing.Position) +
-                                  thing.Position.DistanceToSquared(patient.Position));
-        }
-
-        public IEnumerable<Thing> AvailableForRestock(
-            Pawn worker,
-            Pawn patient,
-            ThingDef def,
-            bool reusable,
-            int count = 1)
-        {
-            int needed = reusable ? 1 : Math.Max(1, count);
-            IEnumerable<Thing> unreferencedMapSupplies = map.listerThings.ThingsOfDef(def)
-                .Where(thing => thing.Spawned && !thing.IsForbidden(worker) &&
-                                AvailableForRelocation(thing, worker) >= needed &&
-                                CanReserveAndReachForPickupCached(worker, thing, needed))
-                .OrderBy(thing => worker.Position.DistanceToSquared(thing.Position) +
-                                  thing.Position.DistanceToSquared(patient.Position));
-            return unreferencedMapSupplies
-                .Concat(AvailableInOtherPawnInventories(worker, patient, def, reusable, count));
         }
 
         public IEnumerable<Thing> AvailableMedicines(Pawn worker, Pawn patient)
