@@ -98,7 +98,21 @@ try {
         Write-Host 'PASS: SteamCMD login and bilingual ownership verified. No Workshop writes performed.'
         return
     }
-    if ($VerifyPublished) {
+    $verifyFiles=$VerifyPublished
+    if (!$VerifyPublished -and $exitCode -eq 0) {
+        # SteamCMD success wording varies. Verify the actual files after an accepted
+        # upload instead of depending on a particular console message.
+        $verifyArguments=@('+@ShutdownOnFailedCommand','1','+@NoPromptForPassword','1','+login',$env:STEAM_USERNAME)
+        if (!$cachedLogin) { $verifyArguments+=$env:STEAM_PASSWORD }
+        $verifyArguments+=@('+workshop_download_item','294100','3796056278','validate','+quit')
+        Push-Location -LiteralPath $steam
+        try {
+            $downloadOutput=& "$steam/steamcmd.exe" @verifyArguments 2>&1
+            $exitCode=$LASTEXITCODE
+        } finally { Pop-Location }
+        $verifyFiles=$true
+    }
+    if ($verifyFiles) {
         if ($exitCode -ne 0) { throw 'Published content download failed.' }
         $download=Join-Path $steam 'steamapps/workshop/content/294100/3796056278'
         foreach ($f in $m.files) {
