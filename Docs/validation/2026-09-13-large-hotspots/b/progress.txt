@@ -1,0 +1,16 @@
+BEGIN full_d5p34h4r0
+COMPLETE full_d5p34h4r0
+BEGIN full_d40p272h32r1
+COMPLETE full_d40p272h32r1
+BEGIN combined_d40p272h32r2
+COMPLETE combined_d40p272h32r2
+BEGIN restore_fast_d40p272h32r3
+COMPLETE restore_fast_d40p272h32r3
+BEGIN restore_logistics_d40p272h32r4
+COMPLETE restore_logistics_d40p272h32r4
+BEGIN restore_medicine_d40p272h32r5
+COMPLETE restore_medicine_d40p272h32r5
+BEGIN restore_kits_d40p272h32r6
+COMPLETE restore_kits_d40p272h32r6
+BEGIN restore_standby_d40p272h32r7
+COMPLETE restore_standby_d40p272h32r7

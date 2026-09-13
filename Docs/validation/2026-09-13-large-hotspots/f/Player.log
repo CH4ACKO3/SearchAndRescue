@@ -1,0 +1,502 @@
+Mono path[0] = 'D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/Managed'
+Mono config path = 'D:/App/Steam/steamapps/common/RimWorld/MonoBleedingEdge/etc'
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Initialize engine version: 2022.3.35f1 (011206c7a712)
+[Subsystems] Discovering subsystems at path D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 5070 Ti (ID=0x2c05)
+    Vendor:   NVIDIA
+    VRAM:     15995 MB
+    Driver:   32.0.15.9649
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.093 seconds
+- Finished resetting the current domain, in  0.001 seconds
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 0.475200 ms
+Command line arguments: -batchmode -quicktest -screen-width 1280 -screen-height 720 -savedatafolder=D:\Projects\rimworld\work\sar-hotspot-20260913f -logFile D:\Projects\rimworld\work\sar-hotspot-20260913f/Player.log
+RimWorld 1.6.4871 rev591
+Save data folder overridden to D:\Projects\rimworld\work\sar-hotspot-20260913f
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.pb2f3313c78594b35bac4119f1c34bd5e) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.pcb18d8d550b54109bb7de94a18c85957) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.53e7d670f39a4d12af0922373aa2f22c) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.5cd27fc6d64048689ec5196ded16c82d) is not in valid format.
+Mod SAR hot-add regression probe dependency (brrainz.harmony) needs to have <downloadUrl> and/or <steamWorkshopUrl> specified.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.pb2eba8762fce494a9bf7ae8356da1af4) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.p67b5a7013ea54abc8bea9df774810a0d) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.p6905bcaf7dd64d19acc7b25d945b9849) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.082468d320f34399856ff0dd92d110e4) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.37997bf6e3ca4fe095bf3041c28d37fc) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.paa2601c9ded74a679ec50ec75feac222) is not in valid format.
+Fallback handler could not load library D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/MonoBleedingEdge/data-000001D02A79D770.dll
+Fallback handler could not load library D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/MonoBleedingEdge/data-000001D02A92CF50.dll
+Translation data for language English has 21 errors. Generate translation report for more info.
+[Search and Rescue] Loaded for RimWorld 1.6. Active compatibility: none.
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 89 unused Assets to reduce memory usage. Loaded Objects now: 15806.
+Total: 57.823900 ms (FindLiveObjects: 0.685700 ms CreateObjectMapping: 0.225300 ms MarkObjects: 56.735900 ms  DeleteObjects: 0.176600 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 1.711200 ms
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 15821.
+Total: 55.206300 ms (FindLiveObjects: 0.744200 ms CreateObjectMapping: 0.239800 ms MarkObjects: 54.205200 ms  DeleteObjects: 0.016700 ms)
+
+Initializing new game with mods:
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - sarg.smartspeed
+  - ch4acko3.coordinationc37e281a239b4dee9aa5c25fff6e0820
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 21026.
+Total: 66.954300 ms (FindLiveObjects: 0.713600 ms CreateObjectMapping: 0.247100 ms MarkObjects: 65.947200 ms  DeleteObjects: 0.046100 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 16348.
+Total: 72.540400 ms (FindLiveObjects: 0.962900 ms CreateObjectMapping: 0.179300 ms MarkObjects: 71.389700 ms  DeleteObjects: 0.008300 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 0.306700 ms
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 16344.
+Total: 57.397200 ms (FindLiveObjects: 0.565800 ms CreateObjectMapping: 0.172900 ms MarkObjects: 56.610600 ms  DeleteObjects: 0.047400 ms)
+
+Loading game from file d5p34h4r10_Initial with mods:
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - sarg.smartspeed
+  - ch4acko3.coordinationc37e281a239b4dee9aa5c25fff6e0820
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 21611.
+Total: 77.968300 ms (FindLiveObjects: 1.016700 ms CreateObjectMapping: 0.246500 ms MarkObjects: 76.693200 ms  DeleteObjects: 0.011600 ms)
+
+[SAR engine] Begin full_d5p34h4r0 seed=709
+[Search and Rescue] Performance profiling started. Use 'Dump performance profile' for a snapshot or 'Stop performance profile' to finish.
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=375 rebuilds(global/request)=11/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=13/4/5 pickupReachCache(hit/miss)=2016/68 transportNoWorkerSkips=10
+ graphs unified(last/maxEdges)=0x35/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=375 avgUs=1273.49 maxMs=460.423 totalMs=477.56 usPerGameTick=1273.49
+ PendingAndWake calls=375 avgUs=0.85 maxMs=0.113 totalMs=0.32 usPerGameTick=0.85
+ TreatmentMonitoring calls=375 avgUs=2.85 maxMs=0.734 totalMs=1.07 usPerGameTick=2.85
+ ActiveAssignmentMaintenance calls=375 avgUs=15.42 maxMs=1.288 totalMs=5.78 usPerGameTick=15.42
+ PeriodicCleanup calls=10 avgUs=434.52 maxMs=3.416 totalMs=4.35 usPerGameTick=11.59
+ ScheduleRebuild calls=11 avgUs=42117.45 maxMs=452.351 totalMs=463.29 usPerGameTick=1235.45
+ CarePlanning calls=11 avgUs=1042.85 maxMs=8.216 totalMs=11.47 usPerGameTick=30.59
+ UnifiedMatching calls=11 avgUs=3845.15 maxMs=42.252 totalMs=42.30 usPerGameTick=112.79
+ UnifiedEdgeScoring calls=272 avgUs=148.56 maxMs=25.022 totalMs=40.41 usPerGameTick=107.75
+ PickupReachability calls=68 avgUs=5.52 maxMs=0.226 totalMs=0.38 usPerGameTick=1.00
+ TransportMatching calls=11 avgUs=1873.16 maxMs=18.897 totalMs=20.60 usPerGameTick=54.95
+ WakePendingWorkers calls=11 avgUs=783.47 maxMs=8.613 totalMs=8.62 usPerGameTick=22.98
+[SAR engine] full_d5p34h4r0 observed score=34010.17 deaths=0
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=732 rebuilds(global/request)=13/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=13/4/5 pickupReachCache(hit/miss)=2016/68 transportNoWorkerSkips=12
+ graphs unified(last/maxEdges)=0x35/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=732 avgUs=656.21 maxMs=460.423 totalMs=480.34 usPerGameTick=656.21
+ PendingAndWake calls=732 avgUs=0.72 maxMs=0.113 totalMs=0.52 usPerGameTick=0.72
+ TreatmentMonitoring calls=732 avgUs=1.54 maxMs=0.734 totalMs=1.13 usPerGameTick=1.54
+ ActiveAssignmentMaintenance calls=732 avgUs=7.96 maxMs=1.288 totalMs=5.83 usPerGameTick=7.96
+ PeriodicCleanup calls=16 avgUs=294.88 maxMs=3.416 totalMs=4.72 usPerGameTick=6.45
+ ScheduleRebuild calls=13 avgUs=35792.32 maxMs=452.351 totalMs=465.30 usPerGameTick=635.66
+ CarePlanning calls=13 avgUs=931.51 maxMs=8.216 totalMs=12.11 usPerGameTick=16.54
+ UnifiedMatching calls=13 avgUs=3254.61 maxMs=42.252 totalMs=42.31 usPerGameTick=57.80
+ UnifiedEdgeScoring calls=272 avgUs=148.56 maxMs=25.022 totalMs=40.41 usPerGameTick=55.20
+ PickupReachability calls=68 avgUs=5.52 maxMs=0.226 totalMs=0.38 usPerGameTick=0.51
+ TransportMatching calls=13 avgUs=1605.72 maxMs=18.897 totalMs=20.87 usPerGameTick=28.52
+ WakePendingWorkers calls=13 avgUs=663.02 maxMs=8.613 totalMs=8.62 usPerGameTick=11.77
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=732 rebuilds(global/request)=13/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=13/4/5 pickupReachCache(hit/miss)=2016/68 transportNoWorkerSkips=12
+ graphs unified(last/maxEdges)=0x35/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=732 avgUs=656.21 maxMs=460.423 totalMs=480.34 usPerGameTick=656.21
+ PendingAndWake calls=732 avgUs=0.72 maxMs=0.113 totalMs=0.52 usPerGameTick=0.72
+ TreatmentMonitoring calls=732 avgUs=1.54 maxMs=0.734 totalMs=1.13 usPerGameTick=1.54
+ ActiveAssignmentMaintenance calls=732 avgUs=7.96 maxMs=1.288 totalMs=5.83 usPerGameTick=7.96
+ PeriodicCleanup calls=16 avgUs=294.88 maxMs=3.416 totalMs=4.72 usPerGameTick=6.45
+ ScheduleRebuild calls=13 avgUs=35792.32 maxMs=452.351 totalMs=465.30 usPerGameTick=635.66
+ CarePlanning calls=13 avgUs=931.51 maxMs=8.216 totalMs=12.11 usPerGameTick=16.54
+ UnifiedMatching calls=13 avgUs=3254.61 maxMs=42.252 totalMs=42.31 usPerGameTick=57.80
+ UnifiedEdgeScoring calls=272 avgUs=148.56 maxMs=25.022 totalMs=40.41 usPerGameTick=55.20
+ PickupReachability calls=68 avgUs=5.52 maxMs=0.226 totalMs=0.38 usPerGameTick=0.51
+ TransportMatching calls=13 avgUs=1605.72 maxMs=18.897 totalMs=20.87 usPerGameTick=28.52
+ WakePendingWorkers calls=13 avgUs=663.02 maxMs=8.613 totalMs=8.62 usPerGameTick=11.77
+[Search and Rescue] Performance profiling stopped.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 16407.
+Total: 73.382100 ms (FindLiveObjects: 0.575700 ms CreateObjectMapping: 0.190600 ms MarkObjects: 72.604700 ms  DeleteObjects: 0.010600 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 1.051800 ms
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 16367.
+Total: 63.475100 ms (FindLiveObjects: 0.622200 ms CreateObjectMapping: 0.183100 ms MarkObjects: 62.624500 ms  DeleteObjects: 0.044900 ms)
+
+Loading game from file d40p272h32r9_Initial with mods:
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - sarg.smartspeed
+  - ch4acko3.coordinationc37e281a239b4dee9aa5c25fff6e0820
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 21623.
+Total: 103.645200 ms (FindLiveObjects: 0.836200 ms CreateObjectMapping: 0.255400 ms MarkObjects: 102.538400 ms  DeleteObjects: 0.014800 ms)
+
+[SAR engine] Begin combined_d40p272h32r1 seed=709
+[Search and Rescue] Performance profiling started. Use 'Dump performance profile' for a snapshot or 'Stop performance profile' to finish.
+Resolution too small (0x0), resetting UI scale to 1.
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=300 rebuilds(global/request)=80/2 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=539/106/450 pickupReachCache(hit/miss)=156232/37072 transportNoWorkerSkips=0
+ graphs unified(last/maxEdges)=3x264/18768 transport(last/maxEdges)=3x259/7564
+ MapTick calls=300 avgUs=120187.14 maxMs=852.611 totalMs=36056.14 usPerGameTick=120187.14
+ PendingAndWake calls=300 avgUs=210.08 maxMs=9.061 totalMs=63.02 usPerGameTick=210.08
+ TreatmentMonitoring calls=300 avgUs=4805.98 maxMs=852.099 totalMs=1441.80 usPerGameTick=4805.98
+ ActiveAssignmentMaintenance calls=300 avgUs=64.45 maxMs=1.322 totalMs=19.34 usPerGameTick=64.45
+ PeriodicCleanup calls=90 avgUs=243.63 maxMs=0.484 totalMs=21.93 usPerGameTick=73.09
+ ScheduleRebuild calls=82 avgUs=425763.95 maxMs=590.954 totalMs=34912.64 usPerGameTick=116375.48
+ CarePlanning calls=82 avgUs=2712.89 maxMs=22.252 totalMs=222.46 usPerGameTick=741.52
+ UnifiedMatching calls=82 avgUs=316837.39 maxMs=506.039 totalMs=25980.67 usPerGameTick=86602.22
+ UnifiedEdgeScoring calls=133096 avgUs=193.35 maxMs=8.008 totalMs=25734.49 usPerGameTick=85781.62
+ PickupReachability calls=37072 avgUs=1.63 maxMs=0.077 totalMs=60.58 usPerGameTick=201.95
+ TransportMatching calls=82 avgUs=89730.95 maxMs=159.934 totalMs=7357.94 usPerGameTick=24526.46
+ WakePendingWorkers calls=82 avgUs=1235.03 maxMs=22.575 totalMs=101.27 usPerGameTick=337.58
+[SAR engine] combined_d40p272h32r1 observed score=-1000000000.00 deaths=0
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=600 rebuilds(global/request)=370/2 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=910/409/807 pickupReachCache(hit/miss)=739930/51279 transportNoWorkerSkips=0
+ graphs unified(last/maxEdges)=2x265/18768 transport(last/maxEdges)=2x257/7564
+ MapTick calls=600 avgUs=176453.18 maxMs=852.611 totalMs=105871.91 usPerGameTick=176453.18
+ PendingAndWake calls=600 avgUs=531.58 maxMs=9.061 totalMs=318.95 usPerGameTick=531.58
+ TreatmentMonitoring calls=600 avgUs=2712.93 maxMs=852.099 totalMs=1627.76 usPerGameTick=2712.93
+ ActiveAssignmentMaintenance calls=600 avgUs=61.63 maxMs=1.322 totalMs=36.98 usPerGameTick=61.63
+ PeriodicCleanup calls=381 avgUs=278.61 maxMs=8.526 totalMs=106.15 usPerGameTick=176.92
+ ScheduleRebuild calls=372 avgUs=280065.56 maxMs=590.954 totalMs=104184.39 usPerGameTick=173640.65
+ CarePlanning calls=372 avgUs=2401.74 maxMs=22.252 totalMs=893.45 usPerGameTick=1489.08
+ UnifiedMatching calls=372 avgUs=163683.23 maxMs=506.039 totalMs=60890.16 usPerGameTick=101483.60
+ UnifiedEdgeScoring calls=331824 avgUs=181.02 maxMs=8.522 totalMs=60068.32 usPerGameTick=100113.86
+ PickupReachability calls=51279 avgUs=1.64 maxMs=0.077 totalMs=83.87 usPerGameTick=139.78
+ TransportMatching calls=372 avgUs=97856.02 maxMs=171.221 totalMs=36402.44 usPerGameTick=60670.74
+ WakePendingWorkers calls=372 avgUs=408.78 maxMs=22.575 totalMs=152.07 usPerGameTick=253.44
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=600 rebuilds(global/request)=370/2 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=910/409/807 pickupReachCache(hit/miss)=739930/51279 transportNoWorkerSkips=0
+ graphs unified(last/maxEdges)=2x265/18768 transport(last/maxEdges)=2x257/7564
+ MapTick calls=600 avgUs=176453.18 maxMs=852.611 totalMs=105871.91 usPerGameTick=176453.18
+ PendingAndWake calls=600 avgUs=531.58 maxMs=9.061 totalMs=318.95 usPerGameTick=531.58
+ TreatmentMonitoring calls=600 avgUs=2712.93 maxMs=852.099 totalMs=1627.76 usPerGameTick=2712.93
+ ActiveAssignmentMaintenance calls=600 avgUs=61.63 maxMs=1.322 totalMs=36.98 usPerGameTick=61.63
+ PeriodicCleanup calls=381 avgUs=278.61 maxMs=8.526 totalMs=106.15 usPerGameTick=176.92
+ ScheduleRebuild calls=372 avgUs=280065.56 maxMs=590.954 totalMs=104184.39 usPerGameTick=173640.65
+ CarePlanning calls=372 avgUs=2401.74 maxMs=22.252 totalMs=893.45 usPerGameTick=1489.08
+ UnifiedMatching calls=372 avgUs=163683.23 maxMs=506.039 totalMs=60890.16 usPerGameTick=101483.60
+ UnifiedEdgeScoring calls=331824 avgUs=181.02 maxMs=8.522 totalMs=60068.32 usPerGameTick=100113.86
+ PickupReachability calls=51279 avgUs=1.64 maxMs=0.077 totalMs=83.87 usPerGameTick=139.78
+ TransportMatching calls=372 avgUs=97856.02 maxMs=171.221 totalMs=36402.44 usPerGameTick=60670.74
+ WakePendingWorkers calls=372 avgUs=408.78 maxMs=22.575 totalMs=152.07 usPerGameTick=253.44
+[Search and Rescue] Performance profiling stopped.
+Memory Statistics:
+[ALLOC_TEMP_TLS] TLS Allocator
+  StackAllocators :
+    [ALLOC_TEMP_MAIN]
+      Peak usage frame count: [0-1.0 KB]: 50534 frames, [1.0 KB-2.0 KB]: 1 frames, [2.0 KB-4.0 KB]: 4 frames, [4.0 KB-8.0 KB]: 5 frames, [32.0 KB-64.0 KB]: 1 frames, [2.0 MB-4.0 MB]: 10 frames
+      Initial Block Size 4.0 MB
+      Current Block Size 4.0 MB
+      Peak Allocated Bytes 3.2 MB
+      Overflow Count 1
+    [ALLOC_TEMP_Loading.AsyncRead]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 267 B
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.PreloadManager]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 3.7 KB
+      Overflow Count 16
+    [ALLOC_TEMP_Background Job.Worker 8]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 6]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 0]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 10]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 9]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 5]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 14]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 6]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 4]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 14]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 3]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 13]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 12]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_EnlightenWorker] x 8
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 15]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 1]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 2]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 7]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetGarbageCollectorHelper] x 15
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 138 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 5]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 9]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 13]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 8]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 7]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 1]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 507 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 2]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 480 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 3]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 11]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 10]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 0]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 11]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 12]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 4]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_BatchDeleteObjects]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+[ALLOC_DEFAULT] Dual Thread Allocator
+  Peak main deferred allocation count 516
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 6578
+        32B: 34 Subsections = 17408 buckets. Failed count: 100065
+        48B: 63 Subsections = 21504 buckets. Failed count: 27039
+        64B: 47 Subsections = 12032 buckets. Failed count: 10228
+        80B: 87 Subsections = 17817 buckets. Failed count: 1285
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1629
+        128B: 5 Subsections = 640 buckets. Failed count: 3402
+    [ALLOC_DEFAULT_MAIN]
+      Peak usage frame count: [16.0 MB-32.0 MB]: 318 frames, [64.0 MB-128.0 MB]: 49865 frames, [128.0 MB-256.0 MB]: 372 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 9
+      Peak Allocated memory 132.3 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_DEFAULT_THREAD]
+      Peak usage frame count: [4.0 MB-8.0 MB]: 1 frames, [8.0 MB-16.0 MB]: 16383 frames, [16.0 MB-32.0 MB]: 1980 frames, [32.0 MB-64.0 MB]: 5234 frames, [64.0 MB-128.0 MB]: 26957 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 6
+      Peak Allocated memory 81.1 MB
+      Peak Large allocation bytes 8.2 MB
+[ALLOC_TEMP_JOB_1_FRAME]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_2_FRAMES]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_4_FRAMES (JobTemp)]
+  Initial Block Size 2.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_ASYNC (Background)]
+  Initial Block Size 1.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_GFX] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 6578
+        32B: 34 Subsections = 17408 buckets. Failed count: 100065
+        48B: 63 Subsections = 21504 buckets. Failed count: 27039
+        64B: 47 Subsections = 12032 buckets. Failed count: 10228
+        80B: 87 Subsections = 17817 buckets. Failed count: 1285
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1629
+        128B: 5 Subsections = 640 buckets. Failed count: 3402
+    [ALLOC_GFX_MAIN]
+      Peak usage frame count: [64.0 KB-128.0 KB]: 1 frames, [2.0 MB-4.0 MB]: 50162 frames, [16.0 MB-32.0 MB]: 2 frames, [32.0 MB-64.0 MB]: 389 frames, [64.0 MB-128.0 MB]: 1 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 3
+      Peak Allocated memory 109.5 MB
+      Peak Large allocation bytes 106.3 MB
+    [ALLOC_GFX_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 50555 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 0.9 KB
+      Peak Large allocation bytes 0 B
+[ALLOC_CACHEOBJECTS] Dual Thread Allocator
+  Peak main deferred allocation count 86
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 6578
+        32B: 34 Subsections = 17408 buckets. Failed count: 100065
+        48B: 63 Subsections = 21504 buckets. Failed count: 27039
+        64B: 47 Subsections = 12032 buckets. Failed count: 10228
+        80B: 87 Subsections = 17817 buckets. Failed count: 1285
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1629
+        128B: 5 Subsections = 640 buckets. Failed count: 3402
+    [ALLOC_CACHEOBJECTS_MAIN]
+      Peak usage frame count: [4.0 MB-8.0 MB]: 318 frames, [8.0 MB-16.0 MB]: 50237 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 3
+      Peak Allocated memory 9.0 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_CACHEOBJECTS_THREAD]
+      Peak usage frame count: [4.0 KB-8.0 KB]: 318 frames, [32.0 KB-64.0 KB]: 1 frames, [64.0 KB-128.0 KB]: 50221 frames, [256.0 KB-0.5 MB]: 15 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 1
+      Peak Allocated memory 430.3 KB
+      Peak Large allocation bytes 0 B
+[ALLOC_TYPETREE] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 6578
+        32B: 34 Subsections = 17408 buckets. Failed count: 100065
+        48B: 63 Subsections = 21504 buckets. Failed count: 27039
+        64B: 47 Subsections = 12032 buckets. Failed count: 10228
+        80B: 87 Subsections = 17817 buckets. Failed count: 1285
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1629
+        128B: 5 Subsections = 640 buckets. Failed count: 3402
+    [ALLOC_TYPETREE_MAIN]
+      Peak usage frame count: [4.0 KB-8.0 KB]: 1 frames, [8.0 KB-16.0 KB]: 50554 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 1
+      Peak Allocated memory 10.6 KB
+      Peak Large allocation bytes 0 B
+    [ALLOC_TYPETREE_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 50555 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B

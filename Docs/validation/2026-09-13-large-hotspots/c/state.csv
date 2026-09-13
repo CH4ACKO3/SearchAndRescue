@@ -1,0 +1,6 @@
+full_d5p34h4r0,313,17,17,0,0,Wait_Wander:36|Wait_Downed:34|GotoWander:13|FleeAndCower:9|Wait_MaintainPosture:7|Wait_Combat:3|AttackMelee:1
+full_d5p34h4r0,725,17,17,0,0,Wait_Downed:34|GotoWander:27|Wait_Wander:26|FleeAndCower:10|Wait_Combat:3|AttackMelee:1|Flee:1|Wait_MaintainPosture:1
+full_d40p272h32r1,310,17,17,0,0,Wait_Downed:272|FleeAndCower:46|Wait_Wander:33|GotoWander:16|SAR_DeliverMedicalSupply:14|TendPatient:11|Wait_MaintainPosture:8|Wait_Combat:3|AttackMelee:1
+full_d40p272h32r1,613,17,17,0,0,Wait_Downed:272|FleeAndCower:54|GotoWander:37|Wait_Wander:19|TendPatient:11|SAR_DeliverMedicalSupply:6|Wait_Combat:3|AttackMelee:1|Wait_MaintainPosture:1
+combined_d40p272h32r2,300,17,17,0,17,Wait_Downed:263|FleeAndCower:39|Wait_Wander:34|GotoWander:24|Rescue:17|TendPatient:9|SAR_DeliverMedicalSupply:5|Wait_Combat:3|AttackMelee:1
+combined_d40p272h32r2,604,17,17,0,17,Wait_Downed:257|FleeAndCower:43|GotoWander:35|Wait_Wander:18|Rescue:17|TendPatient:9|Wait_Combat:3|Flee:3|Wait_MaintainPosture:2|AttackMelee:1|SAR_DeliverMedicalSupply:1

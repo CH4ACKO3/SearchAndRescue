@@ -1,0 +1,2441 @@
+[
+  {
+    "profile": "sar-hotspot-20260913a",
+    "name": "full_d40p272h32r1",
+    "ticks": 1548,
+    "sarMs": 24963.7776,
+    "sarMsPerTick": 16.12647131782946,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 1548,
+        "calls": 142,
+        "ms": 23685.1039,
+        "maxMs": 1166.1564,
+        "success": null,
+        "failure": null
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 1548,
+        "calls": 142,
+        "ms": 12257.9278,
+        "maxMs": 138.0645,
+        "success": null,
+        "failure": null
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 1548,
+        "calls": 1251184,
+        "ms": 2615.6692,
+        "maxMs": 5.4912,
+        "success": null,
+        "failure": null
+      },
+      "SelectTreatmentOption": {
+        "tick": 1548,
+        "calls": 18674,
+        "ms": 973.6009,
+        "maxMs": 14.5532,
+        "success": null,
+        "failure": null
+      },
+      "BuildMissionKit": {
+        "tick": 1548,
+        "calls": 11690,
+        "ms": 249.1731,
+        "maxMs": 4.7728,
+        "success": null,
+        "failure": null
+      },
+      "EdgeWeight": {
+        "tick": 1548,
+        "calls": 396953,
+        "ms": 9591.8247,
+        "maxMs": 7.5304,
+        "success": null,
+        "failure": null
+      },
+      "BuildSupplyTasks": {
+        "tick": 1548,
+        "calls": 188253,
+        "ms": 9210.6176,
+        "maxMs": 8.961,
+        "success": null,
+        "failure": null
+      },
+      "SupplyAlternatives": {
+        "tick": 1548,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": null,
+        "failure": null
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 1548,
+        "calls": 32347,
+        "ms": 86.687,
+        "maxMs": 4.5379,
+        "success": null,
+        "failure": null
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 1548,
+        "calls": 242285,
+        "ms": 8600.2173,
+        "maxMs": 8.7138,
+        "success": null,
+        "failure": null
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 1548,
+        "calls": 142,
+        "ms": 149.6618,
+        "maxMs": 8.5022,
+        "success": null,
+        "failure": null
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 1548,
+        "calls": 389972,
+        "ms": 7476.2062,
+        "maxMs": 7.5146,
+        "success": null,
+        "failure": null
+      },
+      "PendingAssignmentValid": {
+        "tick": 1548,
+        "calls": 3258,
+        "ms": 165.1432,
+        "maxMs": 3.1724,
+        "success": null,
+        "failure": null
+      },
+      "MatchTransportTasks": {
+        "tick": 1548,
+        "calls": 127,
+        "ms": 2767.4062,
+        "maxMs": 76.2706,
+        "success": null,
+        "failure": null
+      },
+      "MatchRescuePatients": {
+        "tick": 1548,
+        "calls": 142,
+        "ms": 9071.1417,
+        "maxMs": 1058.8817,
+        "success": null,
+        "failure": null
+      },
+      "BestStageChoiceCore": {
+        "tick": 1548,
+        "calls": 208118,
+        "ms": 8993.887,
+        "maxMs": 14.7418,
+        "success": null,
+        "failure": null
+      }
+    },
+    "windows": [
+      {
+        "endTick": 310,
+        "ticks": 310,
+        "sarMsPerTick": 40.92481322580645
+      },
+      {
+        "endTick": 613,
+        "ticks": 303,
+        "sarMsPerTick": 22.38932904290429
+      },
+      {
+        "endTick": 937,
+        "ticks": 324,
+        "sarMsPerTick": 8.347208641975309
+      },
+      {
+        "endTick": 1237,
+        "ticks": 300,
+        "sarMsPerTick": 3.502898
+      },
+      {
+        "endTick": 1548,
+        "ticks": 311,
+        "sarMsPerTick": 5.587632797427653
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913a",
+    "name": "combined_d40p272h32r2",
+    "ticks": 1525,
+    "sarMs": 113536.8892,
+    "sarMsPerTick": 74.45041914754098,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 1525,
+        "calls": 475,
+        "ms": 112051.6989,
+        "maxMs": 563.7902,
+        "success": null,
+        "failure": null
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 1525,
+        "calls": 475,
+        "ms": 42976.7181,
+        "maxMs": 176.1864,
+        "success": null,
+        "failure": null
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 1525,
+        "calls": 37990,
+        "ms": 136.7113,
+        "maxMs": 0.3787,
+        "success": null,
+        "failure": null
+      },
+      "SelectTreatmentOption": {
+        "tick": 1525,
+        "calls": 10099,
+        "ms": 632.8463,
+        "maxMs": 5.392,
+        "success": null,
+        "failure": null
+      },
+      "BuildMissionKit": {
+        "tick": 1525,
+        "calls": 89,
+        "ms": 0.0236,
+        "maxMs": 0.0016,
+        "success": null,
+        "failure": null
+      },
+      "EdgeWeight": {
+        "tick": 1525,
+        "calls": 366991,
+        "ms": 60473.2522,
+        "maxMs": 28.7152,
+        "success": null,
+        "failure": null
+      },
+      "BuildSupplyTasks": {
+        "tick": 1525,
+        "calls": 697208,
+        "ms": 41700.9837,
+        "maxMs": 49.3836,
+        "success": null,
+        "failure": null
+      },
+      "SupplyAlternatives": {
+        "tick": 1525,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": null,
+        "failure": null
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 1525,
+        "calls": 116525,
+        "ms": 307.9098,
+        "maxMs": 7.4577,
+        "success": null,
+        "failure": null
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 1525,
+        "calls": 924516,
+        "ms": 39459.1403,
+        "maxMs": 35.1972,
+        "success": null,
+        "failure": null
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 1525,
+        "calls": 475,
+        "ms": 476.3287,
+        "maxMs": 8.0843,
+        "success": null,
+        "failure": null
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 1525,
+        "calls": 356988,
+        "ms": 59167.8392,
+        "maxMs": 28.7084,
+        "success": null,
+        "failure": null
+      },
+      "PendingAssignmentValid": {
+        "tick": 1525,
+        "calls": 3496,
+        "ms": 70.8059,
+        "maxMs": 0.2044,
+        "success": null,
+        "failure": null
+      },
+      "MatchTransportTasks": {
+        "tick": 1525,
+        "calls": 464,
+        "ms": 324.9162,
+        "maxMs": 9.8321,
+        "success": null,
+        "failure": null
+      },
+      "MatchRescuePatients": {
+        "tick": 1525,
+        "calls": 475,
+        "ms": 61169.7777,
+        "maxMs": 485.388,
+        "success": null,
+        "failure": null
+      },
+      "BestStageChoiceCore": {
+        "tick": 1525,
+        "calls": 368992,
+        "ms": 60443.9729,
+        "maxMs": 28.7186,
+        "success": null,
+        "failure": null
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 108.86114133333334
+      },
+      {
+        "endTick": 600,
+        "ticks": 300,
+        "sarMsPerTick": 210.76688333333334
+      },
+      {
+        "endTick": 911,
+        "ticks": 311,
+        "sarMsPerTick": 46.137249196141475
+      },
+      {
+        "endTick": 1218,
+        "ticks": 307,
+        "sarMsPerTick": 6.248685342019543
+      },
+      {
+        "endTick": 1525,
+        "ticks": 307,
+        "sarMsPerTick": 4.4998400651465795
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "full_d40p272h32r1",
+    "ticks": 931,
+    "sarMs": 22744.6475,
+    "sarMsPerTick": 24.4303410311493,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 931,
+        "calls": 123,
+        "ms": 21697.5059,
+        "maxMs": 1187.389,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 931,
+        "calls": 123,
+        "ms": 10544.7962,
+        "maxMs": 163.0429,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 931,
+        "calls": 1179159,
+        "ms": 2556.5419,
+        "maxMs": 7.5451,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 931,
+        "calls": 17612,
+        "ms": 835.5036,
+        "maxMs": 6.7782,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 931,
+        "calls": 11689,
+        "ms": 264.5174,
+        "maxMs": 4.9098,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 931,
+        "calls": 375540,
+        "ms": 9547.7134,
+        "maxMs": 7.5371,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 931,
+        "calls": 160954,
+        "ms": 7611.0125,
+        "maxMs": 6.5545,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 931,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 931,
+        "calls": 27800,
+        "ms": 63.5714,
+        "maxMs": 0.1394,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 931,
+        "calls": 205909,
+        "ms": 7054.3925,
+        "maxMs": 6.3716,
+        "success": 205909,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 931,
+        "calls": 123,
+        "ms": 114.5718,
+        "maxMs": 5.599,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 931,
+        "calls": 369620,
+        "ms": 7597.7936,
+        "maxMs": 7.5157,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 931,
+        "calls": 2433,
+        "ms": 120.6101,
+        "maxMs": 0.3216,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 931,
+        "calls": 110,
+        "ms": 2694.764,
+        "maxMs": 85.8393,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 931,
+        "calls": 123,
+        "ms": 9131.8051,
+        "maxMs": 1094.2788,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 931,
+        "calls": 197966,
+        "ms": 9067.6003,
+        "maxMs": 7.54,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 931,
+        "calls": 199859,
+        "ms": 7886.6853,
+        "maxMs": 7.5212,
+        "success": 199859,
+        "failure": 0
+      },
+      "FindBestRescueBed": {
+        "tick": 931,
+        "calls": 199859,
+        "ms": 7682.9953,
+        "maxMs": 7.5191,
+        "success": 199859,
+        "failure": 0
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 931,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      }
+    },
+    "windows": [
+      {
+        "endTick": 310,
+        "ticks": 310,
+        "sarMsPerTick": 42.049688064516126
+      },
+      {
+        "endTick": 613,
+        "ticks": 303,
+        "sarMsPerTick": 24.24567524752475
+      },
+      {
+        "endTick": 931,
+        "ticks": 318,
+        "sarMsPerTick": 7.4302031446540875
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "combined_d40p272h32r2",
+    "ticks": 911,
+    "sarMs": 87755.6088,
+    "sarMsPerTick": 96.32887903402855,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 911,
+        "calls": 348,
+        "ms": 86453.296,
+        "maxMs": 522.8629,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 911,
+        "calls": 348,
+        "ms": 29482.5024,
+        "maxMs": 186.8274,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 911,
+        "calls": 34579,
+        "ms": 116.3381,
+        "maxMs": 0.3697,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 911,
+        "calls": 8836,
+        "ms": 613.3034,
+        "maxMs": 6.2741,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 911,
+        "calls": 84,
+        "ms": 0.0292,
+        "maxMs": 0.011,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 911,
+        "calls": 304583,
+        "ms": 50599.2094,
+        "maxMs": 55.8613,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 911,
+        "calls": 504975,
+        "ms": 28554.3149,
+        "maxMs": 87.5865,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 911,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 911,
+        "calls": 84507,
+        "ms": 221.6168,
+        "maxMs": 6.2777,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 911,
+        "calls": 668372,
+        "ms": 26833.7573,
+        "maxMs": 52.9056,
+        "success": 668372,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 911,
+        "calls": 348,
+        "ms": 341.5723,
+        "maxMs": 7.5198,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 911,
+        "calls": 295836,
+        "ms": 49418.1142,
+        "maxMs": 55.8584,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 911,
+        "calls": 2506,
+        "ms": 51.1603,
+        "maxMs": 0.2498,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 911,
+        "calls": 339,
+        "ms": 253.6027,
+        "maxMs": 4.9238,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 911,
+        "calls": 348,
+        "ms": 51074.8533,
+        "maxMs": 469.2677,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 911,
+        "calls": 301594,
+        "ms": 50477.2029,
+        "maxMs": 55.8635,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 911,
+        "calls": 277126,
+        "ms": 49298.8955,
+        "maxMs": 55.857,
+        "success": 444,
+        "failure": 276682
+      },
+      "FindBestRescueBed": {
+        "tick": 911,
+        "calls": 277126,
+        "ms": 49139.9413,
+        "maxMs": 55.8536,
+        "success": 444,
+        "failure": 276682
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 911,
+        "calls": 553364,
+        "ms": 10497.866,
+        "maxMs": 44.5061,
+        "success": 0,
+        "failure": 553364
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 110.40629000000001
+      },
+      {
+        "endTick": 604,
+        "ticks": 304,
+        "sarMsPerTick": 177.22388223684212
+      },
+      {
+        "endTick": 911,
+        "ticks": 307,
+        "sarMsPerTick": 2.467953094462541
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "restore_fast_d40p272h32r3",
+    "ticks": 927,
+    "sarMs": 10592.655999999999,
+    "sarMsPerTick": 11.426813376483278,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 927,
+        "calls": 65,
+        "ms": 9560.9352,
+        "maxMs": 966.8496,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 927,
+        "calls": 65,
+        "ms": 3781.0612,
+        "maxMs": 160.3367,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 927,
+        "calls": 3109,
+        "ms": 12.616,
+        "maxMs": 0.2138,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 927,
+        "calls": 19230,
+        "ms": 854.0885,
+        "maxMs": 10.0929,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 927,
+        "calls": 10852,
+        "ms": 2.5034,
+        "maxMs": 0.0776,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 927,
+        "calls": 53542,
+        "ms": 4939.9843,
+        "maxMs": 11.4379,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 927,
+        "calls": 69221,
+        "ms": 3622.1068,
+        "maxMs": 11.2607,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 927,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 927,
+        "calls": 11925,
+        "ms": 27.183,
+        "maxMs": 0.0554,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 927,
+        "calls": 90184,
+        "ms": 3414.5036,
+        "maxMs": 11.1768,
+        "success": 90184,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 927,
+        "calls": 65,
+        "ms": 77.6767,
+        "maxMs": 7.2727,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 927,
+        "calls": 45202,
+        "ms": 4157.5912,
+        "maxMs": 11.4325,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 927,
+        "calls": 944,
+        "ms": 55.4431,
+        "maxMs": 0.2455,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 927,
+        "calls": 47,
+        "ms": 26.9681,
+        "maxMs": 4.7948,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 927,
+        "calls": 65,
+        "ms": 4714.3791,
+        "maxMs": 909.1852,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 927,
+        "calls": 46839,
+        "ms": 4696.5501,
+        "maxMs": 11.4448,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 927,
+        "calls": 43639,
+        "ms": 4140.2435,
+        "maxMs": 11.4312,
+        "success": 26489,
+        "failure": 17150
+      },
+      "FindBestRescueBed": {
+        "tick": 927,
+        "calls": 43639,
+        "ms": 4100.4362,
+        "maxMs": 11.4286,
+        "success": 26489,
+        "failure": 17150
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 927,
+        "calls": 34300,
+        "ms": 788.4266,
+        "maxMs": 11.1552,
+        "success": 0,
+        "failure": 34300
+      }
+    },
+    "windows": [
+      {
+        "endTick": 311,
+        "ticks": 311,
+        "sarMsPerTick": 24.867228295819935
+      },
+      {
+        "endTick": 615,
+        "ticks": 304,
+        "sarMsPerTick": 6.757105263157894
+      },
+      {
+        "endTick": 927,
+        "ticks": 312,
+        "sarMsPerTick": 2.579448717948718
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "restore_logistics_d40p272h32r4",
+    "ticks": 908,
+    "sarMs": 20607.2283,
+    "sarMsPerTick": 22.695185352422907,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 908,
+        "calls": 103,
+        "ms": 19239.7381,
+        "maxMs": 450.8216,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 908,
+        "calls": 103,
+        "ms": 17269.0753,
+        "maxMs": 420.0005,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 908,
+        "calls": 1231383,
+        "ms": 9784.6917,
+        "maxMs": 14.7259,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 908,
+        "calls": 8939,
+        "ms": 590.0157,
+        "maxMs": 6.6075,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 908,
+        "calls": 85,
+        "ms": 0.0158,
+        "maxMs": 0.0011,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 908,
+        "calls": 192539,
+        "ms": 9054.9029,
+        "maxMs": 14.725,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 908,
+        "calls": 135354,
+        "ms": 7118.3483,
+        "maxMs": 95.5681,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 908,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 908,
+        "calls": 22781,
+        "ms": 55.3529,
+        "maxMs": 0.0799,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 908,
+        "calls": 168110,
+        "ms": 6650.1911,
+        "maxMs": 71.0475,
+        "success": 168110,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 908,
+        "calls": 103,
+        "ms": 92.8467,
+        "maxMs": 3.7139,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 908,
+        "calls": 183689,
+        "ms": 7681.9955,
+        "maxMs": 14.7081,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 908,
+        "calls": 1991,
+        "ms": 203.0951,
+        "maxMs": 59.1829,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 908,
+        "calls": 92,
+        "ms": 9935.4708,
+        "maxMs": 341.6118,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 908,
+        "calls": 103,
+        "ms": 163.2126,
+        "maxMs": 10.3033,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 908,
+        "calls": 5037,
+        "ms": 138.7605,
+        "maxMs": 0.3081,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 908,
+        "calls": 181217,
+        "ms": 7607.1825,
+        "maxMs": 14.707,
+        "success": 181217,
+        "failure": 0
+      },
+      "FindBestRescueBed": {
+        "tick": 908,
+        "calls": 181217,
+        "ms": 7400.4506,
+        "maxMs": 14.7041,
+        "success": 181217,
+        "failure": 0
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 908,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 45.313374333333336
+      },
+      {
+        "endTick": 608,
+        "ticks": 308,
+        "sarMsPerTick": 18.913908766233767
+      },
+      {
+        "endTick": 908,
+        "ticks": 300,
+        "sarMsPerTick": 3.959107
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "restore_medicine_d40p272h32r5",
+    "ticks": 909,
+    "sarMs": 121955.7157,
+    "sarMsPerTick": 134.16470374037405,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 909,
+        "calls": 436,
+        "ms": 119863.8819,
+        "maxMs": 636.4636,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 909,
+        "calls": 436,
+        "ms": 46481.5089,
+        "maxMs": 272.2236,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 909,
+        "calls": 37031,
+        "ms": 153.4865,
+        "maxMs": 0.9148,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 909,
+        "calls": 9834,
+        "ms": 1158.9516,
+        "maxMs": 10.3668,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 909,
+        "calls": 85,
+        "ms": 0.0708,
+        "maxMs": 0.0464,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 909,
+        "calls": 355913,
+        "ms": 64279.6256,
+        "maxMs": 28.5104,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 909,
+        "calls": 650750,
+        "ms": 45078.0208,
+        "maxMs": 39.4379,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 909,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 909,
+        "calls": 108787,
+        "ms": 373.8278,
+        "maxMs": 9.2205,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 909,
+        "calls": 862612,
+        "ms": 42374.7824,
+        "maxMs": 37.442,
+        "success": 862612,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 909,
+        "calls": 436,
+        "ms": 492.1227,
+        "maxMs": 11.593,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 909,
+        "calls": 346170,
+        "ms": 62382.3154,
+        "maxMs": 28.5037,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 909,
+        "calls": 2947,
+        "ms": 78.2315,
+        "maxMs": 0.5213,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 909,
+        "calls": 434,
+        "ms": 349.1995,
+        "maxMs": 4.9715,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 909,
+        "calls": 436,
+        "ms": 64725.2481,
+        "maxMs": 534.3048,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 909,
+        "calls": 356853,
+        "ms": 63815.0672,
+        "maxMs": 28.5157,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 909,
+        "calls": 327809,
+        "ms": 62218.9557,
+        "maxMs": 28.4996,
+        "success": 459,
+        "failure": 327350
+      },
+      "FindBestRescueBed": {
+        "tick": 909,
+        "calls": 327809,
+        "ms": 61993.9348,
+        "maxMs": 28.4894,
+        "success": 459,
+        "failure": 327350
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 909,
+        "calls": 654700,
+        "ms": 13822.8661,
+        "maxMs": 28.1107,
+        "success": 0,
+        "failure": 654700
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 117.56413933333334
+      },
+      {
+        "endTick": 600,
+        "ticks": 300,
+        "sarMsPerTick": 242.02302866666665
+      },
+      {
+        "endTick": 909,
+        "ticks": 309,
+        "sarMsPerTick": 45.56493624595469
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "restore_kits_d40p272h32r6",
+    "ticks": 911,
+    "sarMs": 91527.5162,
+    "sarMsPerTick": 100.46928232711306,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 911,
+        "calls": 329,
+        "ms": 90093.3013,
+        "maxMs": 578.883,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 911,
+        "calls": 329,
+        "ms": 33143.3425,
+        "maxMs": 207.1516,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 911,
+        "calls": 32515,
+        "ms": 117.6785,
+        "maxMs": 0.2933,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 911,
+        "calls": 7797,
+        "ms": 680.8773,
+        "maxMs": 11.6761,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 911,
+        "calls": 87,
+        "ms": 1.8388,
+        "maxMs": 0.0493,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 911,
+        "calls": 280817,
+        "ms": 50243.081,
+        "maxMs": 15.9048,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 911,
+        "calls": 490348,
+        "ms": 32114.7095,
+        "maxMs": 15.9889,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 911,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 911,
+        "calls": 82444,
+        "ms": 273.7405,
+        "maxMs": 3.0396,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 911,
+        "calls": 650012,
+        "ms": 30074.2297,
+        "maxMs": 14.8944,
+        "success": 650012,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 911,
+        "calls": 329,
+        "ms": 387.4784,
+        "maxMs": 10.8228,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 911,
+        "calls": 273112,
+        "ms": 48964.0778,
+        "maxMs": 15.8996,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 911,
+        "calls": 2382,
+        "ms": 55.1098,
+        "maxMs": 0.2362,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 911,
+        "calls": 326,
+        "ms": 257.8119,
+        "maxMs": 5.282,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 911,
+        "calls": 329,
+        "ms": 50827.1988,
+        "maxMs": 466.8469,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 911,
+        "calls": 278906,
+        "ms": 50082.801,
+        "maxMs": 15.9078,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 911,
+        "calls": 255730,
+        "ms": 48829.284,
+        "maxMs": 15.8987,
+        "success": 460,
+        "failure": 255270
+      },
+      "FindBestRescueBed": {
+        "tick": 911,
+        "calls": 255730,
+        "ms": 48633.211,
+        "maxMs": 15.8963,
+        "success": 460,
+        "failure": 255270
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 911,
+        "calls": 510540,
+        "ms": 10986.9861,
+        "maxMs": 13.0054,
+        "success": 0,
+        "failure": 510540
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 71.11239366666666
+      },
+      {
+        "endTick": 603,
+        "ticks": 303,
+        "sarMsPerTick": 217.7697409240924
+      },
+      {
+        "endTick": 911,
+        "ticks": 308,
+        "sarMsPerTick": 13.667424025974027
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913b",
+    "name": "restore_standby_d40p272h32r7",
+    "ticks": 911,
+    "sarMs": 106879.8655,
+    "sarMsPerTick": 117.32147694840835,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 911,
+        "calls": 413,
+        "ms": 105512.701,
+        "maxMs": 913.8623,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 911,
+        "calls": 413,
+        "ms": 40021.0733,
+        "maxMs": 206.5205,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 911,
+        "calls": 35182,
+        "ms": 863.5621,
+        "maxMs": 3.3616,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 911,
+        "calls": 8837,
+        "ms": 662.6546,
+        "maxMs": 8.5414,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 911,
+        "calls": 85,
+        "ms": 0.0215,
+        "maxMs": 0.0015,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 911,
+        "calls": 322106,
+        "ms": 57265.7423,
+        "maxMs": 20.0401,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 911,
+        "calls": 610123,
+        "ms": 38112.1754,
+        "maxMs": 11.2262,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 911,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 911,
+        "calls": 102020,
+        "ms": 295.1233,
+        "maxMs": 6.1651,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 911,
+        "calls": 808476,
+        "ms": 35878.5585,
+        "maxMs": 10.8598,
+        "success": 808476,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 911,
+        "calls": 413,
+        "ms": 447.943,
+        "maxMs": 9.5411,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 911,
+        "calls": 313359,
+        "ms": 55928.759,
+        "maxMs": 20.0379,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 911,
+        "calls": 2535,
+        "ms": 52.5731,
+        "maxMs": 0.4744,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 911,
+        "calls": 409,
+        "ms": 1036.4689,
+        "maxMs": 57.5307,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 911,
+        "calls": 413,
+        "ms": 57940.263,
+        "maxMs": 760.546,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 911,
+        "calls": 320686,
+        "ms": 57174.6358,
+        "maxMs": 20.042,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 911,
+        "calls": 298197,
+        "ms": 56515.2878,
+        "maxMs": 20.037,
+        "success": 564,
+        "failure": 297633
+      },
+      "FindBestRescueBed": {
+        "tick": 911,
+        "calls": 298197,
+        "ms": 56305.1062,
+        "maxMs": 20.0342,
+        "success": 564,
+        "failure": 297633
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 911,
+        "calls": 595266,
+        "ms": 12402.5227,
+        "maxMs": 11.9528,
+        "success": 0,
+        "failure": 595266
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 123.32472299999999
+      },
+      {
+        "endTick": 600,
+        "ticks": 300,
+        "sarMsPerTick": 213.62840033333333
+      },
+      {
+        "endTick": 911,
+        "ticks": 311,
+        "sarMsPerTick": 18.629995176848876
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913c",
+    "name": "full_d40p272h32r1",
+    "ticks": 613,
+    "sarMs": 20866.6682,
+    "sarMsPerTick": 34.04024176182708,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 613,
+        "calls": 92,
+        "ms": 19768.5422,
+        "maxMs": 1147.3876,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 613,
+        "calls": 92,
+        "ms": 8871.2757,
+        "maxMs": 193.4567,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 613,
+        "calls": 1134715,
+        "ms": 2578.311,
+        "maxMs": 5.8705,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 613,
+        "calls": 16546,
+        "ms": 836.4682,
+        "maxMs": 6.1439,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 613,
+        "calls": 10625,
+        "ms": 250.483,
+        "maxMs": 5.5113,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 613,
+        "calls": 362584,
+        "ms": 9838.0092,
+        "maxMs": 14.3152,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 613,
+        "calls": 124235,
+        "ms": 5949.8424,
+        "maxMs": 7.4419,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 613,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 613,
+        "calls": 21684,
+        "ms": 68.837,
+        "maxMs": 7.1636,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 613,
+        "calls": 156981,
+        "ms": 5462.8535,
+        "maxMs": 6.0808,
+        "success": 156981,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 613,
+        "calls": 92,
+        "ms": 93.2099,
+        "maxMs": 7.1343,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 613,
+        "calls": 356666,
+        "ms": 7774.9315,
+        "maxMs": 13.6636,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 613,
+        "calls": 2186,
+        "ms": 121.4977,
+        "maxMs": 3.1598,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 613,
+        "calls": 87,
+        "ms": 2718.1191,
+        "maxMs": 78.7745,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 613,
+        "calls": 92,
+        "ms": 9341.0217,
+        "maxMs": 1070.679,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 613,
+        "calls": 190568,
+        "ms": 9261.7124,
+        "maxMs": 14.9242,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 613,
+        "calls": 192609,
+        "ms": 8063.0078,
+        "maxMs": 13.6617,
+        "success": 192609,
+        "failure": 0
+      },
+      "FindBestRescueBed": {
+        "tick": 613,
+        "calls": 192609,
+        "ms": 7850.1285,
+        "maxMs": 13.657,
+        "success": 192609,
+        "failure": 0
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 613,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      }
+    },
+    "windows": [
+      {
+        "endTick": 310,
+        "ticks": 310,
+        "sarMsPerTick": 43.24360548387097
+      },
+      {
+        "endTick": 613,
+        "ticks": 303,
+        "sarMsPerTick": 24.62425907590759
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913c",
+    "name": "combined_d40p272h32r2",
+    "ticks": 604,
+    "sarMs": 90657.1841,
+    "sarMsPerTick": 150.09467566225166,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 604,
+        "calls": 336,
+        "ms": 89271.4659,
+        "maxMs": 663.8032,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 604,
+        "calls": 336,
+        "ms": 29449.9257,
+        "maxMs": 175.0998,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 604,
+        "calls": 34520,
+        "ms": 125.5586,
+        "maxMs": 0.4092,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 604,
+        "calls": 8836,
+        "ms": 619.6628,
+        "maxMs": 9.2467,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 604,
+        "calls": 84,
+        "ms": 0.0178,
+        "maxMs": 0.0011,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 604,
+        "calls": 303112,
+        "ms": 53547.2509,
+        "maxMs": 60.9891,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 604,
+        "calls": 500424,
+        "ms": 28449.1025,
+        "maxMs": 50.3173,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 604,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 604,
+        "calls": 83749,
+        "ms": 266.4964,
+        "maxMs": 9.6125,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 604,
+        "calls": 662308,
+        "ms": 26621.1789,
+        "maxMs": 49.7538,
+        "success": 662308,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 604,
+        "calls": 336,
+        "ms": 344.3418,
+        "maxMs": 11.1421,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 604,
+        "calls": 294365,
+        "ms": 52274.991,
+        "maxMs": 60.976,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 604,
+        "calls": 2459,
+        "ms": 49.0769,
+        "maxMs": 0.2503,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 604,
+        "calls": 336,
+        "ms": 279.6544,
+        "maxMs": 4.7718,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 604,
+        "calls": 336,
+        "ms": 54209.4647,
+        "maxMs": 585.2967,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 604,
+        "calls": 299998,
+        "ms": 53478.2371,
+        "maxMs": 60.9963,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 604,
+        "calls": 275655,
+        "ms": 52143.1426,
+        "maxMs": 60.9733,
+        "success": 444,
+        "failure": 275211
+      },
+      "FindBestRescueBed": {
+        "tick": 604,
+        "calls": 275655,
+        "ms": 51949.8913,
+        "maxMs": 60.9649,
+        "success": 444,
+        "failure": 275211
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 604,
+        "calls": 550422,
+        "ms": 11055.6602,
+        "maxMs": 29.4157,
+        "success": 0,
+        "failure": 550422
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 118.59148833333333
+      },
+      {
+        "endTick": 604,
+        "ticks": 304,
+        "sarMsPerTick": 181.18334736842107
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913d",
+    "name": "combined_d40p272h32r1",
+    "ticks": 600,
+    "sarMs": 104388.8543,
+    "sarMsPerTick": 173.98142383333334,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 102632.2553,
+        "maxMs": 558.2917,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 36181.984,
+        "maxMs": 201.8185,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 600,
+        "calls": 36022,
+        "ms": 132.2048,
+        "maxMs": 0.3341,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 600,
+        "calls": 9334,
+        "ms": 680.2446,
+        "maxMs": 6.1773,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 600,
+        "calls": 85,
+        "ms": 0.0206,
+        "maxMs": 0.0019,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 600,
+        "calls": 332561,
+        "ms": 58972.8462,
+        "maxMs": 11.8078,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 600,
+        "calls": 556554,
+        "ms": 35063.2067,
+        "maxMs": 26.5971,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 600,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 600,
+        "calls": 93098,
+        "ms": 302.3692,
+        "maxMs": 6.2064,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 600,
+        "calls": 737100,
+        "ms": 32863.1234,
+        "maxMs": 10.8033,
+        "success": 737100,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 384.6877,
+        "maxMs": 9.1267,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 600,
+        "calls": 323318,
+        "ms": 57597.5982,
+        "maxMs": 11.8055,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 600,
+        "calls": 2668,
+        "ms": 279.2857,
+        "maxMs": 1.2043,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 297.999,
+        "maxMs": 5.8605,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 59798.0369,
+        "maxMs": 478.6618,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 600,
+        "calls": 331824,
+        "ms": 58936.3558,
+        "maxMs": 11.8101,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 600,
+        "calls": 304959,
+        "ms": 57445.2803,
+        "maxMs": 11.804,
+        "success": 455,
+        "failure": 304504
+      },
+      "FindBestRescueBed": {
+        "tick": 600,
+        "calls": 304959,
+        "ms": 57242.2562,
+        "maxMs": 11.7994,
+        "success": 455,
+        "failure": 304504
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 600,
+        "calls": 609008,
+        "ms": 12520.4447,
+        "maxMs": 9.6259,
+        "success": 0,
+        "failure": 609008
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 117.69750166666667
+      },
+      {
+        "endTick": 600,
+        "ticks": 300,
+        "sarMsPerTick": 230.265346
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913f",
+    "name": "combined_d40p272h32r1",
+    "ticks": 600,
+    "sarMs": 105878.5023,
+    "sarMsPerTick": 176.4641705,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 104029.479,
+        "maxMs": 590.146,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 36402.1997,
+        "maxMs": 171.2201,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 600,
+        "calls": 36022,
+        "ms": 140.393,
+        "maxMs": 0.3925,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 600,
+        "calls": 9334,
+        "ms": 717.5947,
+        "maxMs": 7.1248,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 600,
+        "calls": 85,
+        "ms": 0.0345,
+        "maxMs": 0.0024,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 600,
+        "calls": 332561,
+        "ms": 60071.6414,
+        "maxMs": 8.5189,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 600,
+        "calls": 556554,
+        "ms": 35246.9142,
+        "maxMs": 13.2224,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 600,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 600,
+        "calls": 93098,
+        "ms": 296.4547,
+        "maxMs": 4.7368,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 600,
+        "calls": 737100,
+        "ms": 33012.0918,
+        "maxMs": 9.0337,
+        "success": 737100,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 401.3469,
+        "maxMs": 10.2152,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 600,
+        "calls": 323318,
+        "ms": 58622.641,
+        "maxMs": 8.5153,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 600,
+        "calls": 2668,
+        "ms": 319.5779,
+        "maxMs": 8.9627,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 317.4662,
+        "maxMs": 6.4407,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 600,
+        "calls": 372,
+        "ms": 60889.0341,
+        "maxMs": 506.0361,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 600,
+        "calls": 331824,
+        "ms": 60026.6997,
+        "maxMs": 8.5214,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 600,
+        "calls": 304959,
+        "ms": 58455.5863,
+        "maxMs": 8.5129,
+        "success": 455,
+        "failure": 304504
+      },
+      "FindBestRescueBed": {
+        "tick": 600,
+        "calls": 304959,
+        "ms": 58239.8262,
+        "maxMs": 8.5083,
+        "success": 455,
+        "failure": 304504
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 600,
+        "calls": 609008,
+        "ms": 12625.5453,
+        "maxMs": 8.1621,
+        "success": 0,
+        "failure": 609008
+      }
+    },
+    "windows": [
+      {
+        "endTick": 300,
+        "ticks": 300,
+        "sarMsPerTick": 120.191327
+      },
+      {
+        "endTick": 600,
+        "ticks": 300,
+        "sarMsPerTick": 232.73701400000002
+      }
+    ]
+  },
+  {
+    "profile": "sar-hotspot-20260913g",
+    "name": "combined_d40p272h32r1",
+    "ticks": 637,
+    "sarMs": 9360.0919,
+    "sarMsPerTick": 14.694021821036106,
+    "methods": {
+      "RebuildPendingAssignmentsCore": {
+        "tick": 637,
+        "calls": 52,
+        "ms": 7927.9838,
+        "maxMs": 550.8862,
+        "success": 0,
+        "failure": 0
+      },
+      "ScheduleTransportAndStandbyAssignments": {
+        "tick": 637,
+        "calls": 52,
+        "ms": 2928.5649,
+        "maxMs": 157.5816,
+        "success": 0,
+        "failure": 0
+      },
+      "TransportTaskEdgeWeight": {
+        "tick": 637,
+        "calls": 4588,
+        "ms": 13.6335,
+        "maxMs": 0.2601,
+        "success": 0,
+        "failure": 0
+      },
+      "SelectTreatmentOption": {
+        "tick": 637,
+        "calls": 9055,
+        "ms": 689.5848,
+        "maxMs": 6.5079,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildMissionKit": {
+        "tick": 637,
+        "calls": 84,
+        "ms": 0.0176,
+        "maxMs": 0.0011,
+        "success": 0,
+        "failure": 0
+      },
+      "EdgeWeight": {
+        "tick": 637,
+        "calls": 32438,
+        "ms": 4763.4341,
+        "maxMs": 7.3843,
+        "success": 0,
+        "failure": 0
+      },
+      "BuildSupplyTasks": {
+        "tick": 637,
+        "calls": 52922,
+        "ms": 2802.4531,
+        "maxMs": 6.6762,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyAlternatives": {
+        "tick": 637,
+        "calls": 0,
+        "ms": 0.0,
+        "maxMs": 0.0,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyMedicineAlternatives": {
+        "tick": 637,
+        "calls": 9054,
+        "ms": 24.9274,
+        "maxMs": 0.1244,
+        "success": 0,
+        "failure": 0
+      },
+      "SupplyReachableByAvailableHauler": {
+        "tick": 637,
+        "calls": 69556,
+        "ms": 2619.0741,
+        "maxMs": 6.1947,
+        "success": 69556,
+        "failure": 0
+      },
+      "RebalanceNearbyFieldSupplyReferences": {
+        "tick": 637,
+        "calls": 52,
+        "ms": 42.706,
+        "maxMs": 3.4628,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestinationCached": {
+        "tick": 637,
+        "calls": 23468,
+        "ms": 3957.8155,
+        "maxMs": 7.3823,
+        "success": 0,
+        "failure": 0
+      },
+      "PendingAssignmentValid": {
+        "tick": 637,
+        "calls": 1465,
+        "ms": 93.094,
+        "maxMs": 10.6699,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchTransportTasks": {
+        "tick": 637,
+        "calls": 36,
+        "ms": 41.8123,
+        "maxMs": 9.0856,
+        "success": 0,
+        "failure": 0
+      },
+      "MatchRescuePatients": {
+        "tick": 637,
+        "calls": 52,
+        "ms": 4136.7018,
+        "maxMs": 480.1101,
+        "success": 0,
+        "failure": 0
+      },
+      "BestStageChoiceCore": {
+        "tick": 637,
+        "calls": 24007,
+        "ms": 4062.8281,
+        "maxMs": 7.3864,
+        "success": 0,
+        "failure": 0
+      },
+      "TryFindRescueDestination": {
+        "tick": 637,
+        "calls": 21954,
+        "ms": 3951.6502,
+        "maxMs": 7.3802,
+        "success": 382,
+        "failure": 21572
+      },
+      "FindBestRescueBed": {
+        "tick": 637,
+        "calls": 21954,
+        "ms": 3936.9567,
+        "maxMs": 7.3774,
+        "success": 382,
+        "failure": 21572
+      },
+      "FindNonTemporaryRescueBed": {
+        "tick": 637,
+        "calls": 43144,
+        "ms": 867.3668,
+        "maxMs": 7.2275,
+        "success": 0,
+        "failure": 43144
+      }
+    },
+    "windows": [
+      {
+        "endTick": 312,
+        "ticks": 312,
+        "sarMsPerTick": 24.140246474358975
+      },
+      {
+        "endTick": 637,
+        "ticks": 325,
+        "sarMsPerTick": 5.625646153846154
+      }
+    ]
+  }
+]

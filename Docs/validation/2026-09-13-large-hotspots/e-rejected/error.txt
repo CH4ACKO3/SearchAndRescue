@@ -1,0 +1,13 @@
+full_d5p34h4r0: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation. ---> System.ArgumentException: Invalid engine benchmark request.
+[Ref 57BFB37E]
+  at SearchAndRescue.EngineBenchmarkDiagnostics.ReadRequest () [0x0010a] in <b7fce8c7cbc9446d847a49918373842b>:0
+  at SearchAndRescue.EngineBenchmarkDiagnostics.Begin () [0x00012] in <b7fce8c7cbc9446d847a49918373842b>:0
+(wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x0006a] in <51fded79cd284d4d911c5949aff4cb21>:0
+   --- End of inner exception stack trace ---
+[Ref 494C9388]
+  at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo culture) [0x00083] in <51fded79cd284d4d911c5949aff4cb21>:0
+  at System.Reflection.MethodBase.Invoke (System.Object obj, System.Object[] parameters) [0x00000] in <51fded79cd284d4d911c5949aff4cb21>:0
+  at CoordinationProbe.Call (System.String t, System.String n, System.Object[] args) [0x0000e] in <dc187983cf854a37899c234470c6b783>:0
+  at CoordinationProbe.BuildCase () [0x0007f] in <dc187983cf854a37899c234470c6b783>:0
+  at CoordinationProbe.Update () [0x00107] in <dc187983cf854a37899c234470c6b783>:0

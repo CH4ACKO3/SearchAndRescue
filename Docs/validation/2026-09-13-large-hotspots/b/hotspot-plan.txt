@@ -1,0 +1,7 @@
+full,00011
+combined,11100
+restore_fast,01100
+restore_logistics,10100
+restore_medicine,11000
+restore_kits,11110
+restore_standby,11101

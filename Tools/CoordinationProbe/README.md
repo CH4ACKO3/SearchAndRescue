@@ -13,3 +13,13 @@ Modes reload their initial save and change only the named setting: full, fast al
 The harness fixes per-tick random seeds, but game trajectories can still differ between runs. It is not a deterministic outcome test. Compare clinical outcomes separately from CPU time, repeat material comparisons, and report observation limits. First-treatment timing refers to the first completed tend; uncompleted patients receive the full observation horizon.
 
 The four new defaults and settings serialization are covered by `StandingTreatmentProbe`; its four actual tending cases enable the three simplifications and disable kits. `Run-StandingProbe.ps1 -Preview` renders the advanced settings page after those cases finish.
+
+## Large-scene hotspot tracing
+
+Pass `-HotspotPlan @('full,00011','combined,11100')` and optionally `-HotspotTicks 900`. Each bit controls, in order: fast rescue, simplified logistics, fewer medicine sources, mission kits, standby. A short small-scene warmup precedes the specified large-scene cases. Do not combine this with ClinicalSave or PerformanceOnly. Defaults outside these five flags match the pressure probe.
+
+The probe dumps cumulative method timings and the built-in phase profile every 300 ticks. `hotspots.csv` columns are run, elapsed ticks, method, calls, total ms, max ms, successes, failures. Outcome counters apply to destination, bed and supply-reachability queries. Iterator bodies are measured at MoveNext; methods returning lazy LINQ queries still measure query construction, with actual enumeration included in their consuming BuildSupplyTasks timer. Nested timings must not be summed.
+
+`-TraceDirty` adds rebuild-request call stacks to dirty.csv and bed/occupation/reservation/job snapshots to state.csv. This is a separate instrumented diagnostic run; its extra overhead must not be presented as a production speed benchmark. `summarize-hotspots.py <output> <profile> ...` retains every window, including the initial peak, in hotspot-summary.json. A truncated case remains a partial observation; use progress.txt to confirm completion.
+
+HotspotTicks must be 600–6000 and divisible by 30. TraceDirty also records up to 500 invalid-pending samples per case in invalid-pending.tsv: game tick, worker, patient, stage, diagnostic reason, supply id, resource availability/pickup/active-owner/emergency details. The separate `-RejectRescueSupply` switch applies a probe-only causal filter to supply edges for patients already owned by Rescue; never use its measurements as unchanged-production observations. The production DLL remains untouched.
