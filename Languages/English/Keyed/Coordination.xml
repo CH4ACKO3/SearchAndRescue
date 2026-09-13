@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_Settings_Section_CoordinationCost>Coordination detail</SAR_Settings_Section_CoordinationCost>
+  <SAR_Settings_FastRescue>Fast rescue allocation (experimental)</SAR_Settings_FastRescue>
+  <SAR_Settings_FastRescue_Desc>Prioritize urgent patients and compare a few nearby workers first. Expand the search when none can help. Worker assignments and treatment order may change. Fewer comparisons do not guarantee better overall performance. Disabled by default.</SAR_Settings_FastRescue_Desc>
+  <SAR_Settings_SimpleLogistics>Simplify transport and supplies (experimental)</SAR_Settings_SimpleLogistics>
+  <SAR_Settings_SimpleLogistics_Desc>Assign transport, handoffs and supply deliveries by patient urgency using fewer worker comparisons. Walking distance and waiting times may increase. Combining simplifications can also reduce overall performance. Resource ownership checks remain active. Disabled by default.</SAR_Settings_SimpleLogistics_Desc>
+  <SAR_Settings_SimpleMedicine>Compare fewer medicine sources</SAR_Settings_SimpleMedicine>
+  <SAR_Settings_SimpleMedicine_Desc>Limit the ordinary medicine search to four usable sources, checking carried and nearby medicine first. Delivered supplies, special emergency procedures and medical-care restrictions remain active. Smart Medicine and Choose Your Medicine keep their selection. Quality and consumption may change. Disabled by default.</SAR_Settings_SimpleMedicine_Desc>
+  <SAR_Settings_MissionKits>Collect medicine for several patients</SAR_Settings_MissionKits>
+  <SAR_Settings_MissionKits_Desc>Bring extra medicine from the chosen pickup for nearby patients. Turning this off may cause more supply trips; its direct performance benefit is usually small. Enabled by default.</SAR_Settings_MissionKits_Desc>
+</LanguageData>

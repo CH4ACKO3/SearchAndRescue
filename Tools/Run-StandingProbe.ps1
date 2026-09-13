@@ -2,7 +2,8 @@ param(
     [Parameter(Mandatory=$true)][string]$GameExe,
     [Parameter(Mandatory=$true)][string]$RuntimeDir,
     [Parameter(Mandatory=$true)][string]$SaveData,
-    [switch]$Rh2
+    [switch]$Rh2,
+    [switch]$Preview
 )
 $ErrorActionPreference='Stop'
 $modRoot=(Resolve-Path (Join-Path $PSScriptRoot '..')).Path
@@ -18,7 +19,9 @@ foreach($file in @((Join-Path $runtime 'About/About.xml'),(Join-Path $profile 'C
     (Get-Content -LiteralPath $file -Raw).Replace('ch4acko3.sarbenchmarkruntime',$id) | Set-Content -LiteralPath $file
 }
 Copy-Item -LiteralPath (Join-Path $PSScriptRoot 'StandingTreatmentProbe/bin/Release/net48/StandingTreatmentProbe.dll') -Destination (Join-Path $runtime 'Assemblies')
-$arguments=@('-batchmode','-quicktest','-screen-width','1280','-screen-height','720',('-savedatafolder="'+$profile+'"'),'-logFile',('"'+(Join-Path $profile 'Player.log')+'"'))
+$arguments=@('-quicktest','-screen-fullscreen','0','-screen-width','1280','-screen-height','720',('-savedatafolder="'+$profile+'"'),'-logFile',('"'+(Join-Path $profile 'Player.log')+'"'))
+if($Preview){'preview' | Set-Content -LiteralPath (Join-Path $profile 'preview.txt')}
+else{$arguments=@('-batchmode')+$arguments}
 $probe=Start-Process -FilePath (Resolve-Path $GameExe).Path -ArgumentList $arguments -WindowStyle Hidden -PassThru
 $probe.Id | Set-Content -LiteralPath (Join-Path $profile 'pid.txt')
 [pscustomobject]@{pid=$probe.Id;profile=$profile;results=(Join-Path $profile 'standing-results.txt')}

@@ -46,7 +46,7 @@ public static class StandingTreatmentProbe {
   map.designationManager.AddDesignation(new Designation(patient,DefDatabase<DesignationDef>.GetNamed("SAR_Treat")));
   if(scenario>0){Thing med=ThingMaker.MakeThing(ThingDefOf.MedicineIndustrial);med.stackCount=3;doctor.inventory.innerContainer.TryAdd(med);}
   Check(!patient.Downed&&patient.GetPosture()==PawnPosture.Standing,"scenario "+scenario+": injured patient is standing");
-  if(scenario==0){CheckUninitializedWorkSettings();CheckScoreCache();CheckRetiredWorker();CheckSourceIndex();}
+  if(scenario==0){CheckCoordinationOptions();CheckUninitializedWorkSettings();CheckScoreCache();CheckRetiredWorker();CheckSourceIndex();}
   var options=Options();Check(options.Any(o=>Kind(o)=="VanillaTend"),"standing patient has native field-tending option");
   Check(!options.Any(o=>Kind(o)=="Rh2FirstAid"),"standing patient has no impossible RH2 option");
   if(scenario>0)Check(options.Any(o=>Kind(o)=="VanillaTend"&&Resource(o)!=null),"standing patient retains medicated tending");
@@ -63,6 +63,20 @@ public static class StandingTreatmentProbe {
   IntVec3 goal=CellFinder.RandomClosewalkCellNear(doctor.Position+new IntVec3(-10,0,0),map,2);
   patient.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.Goto,goal));
   started=Find.TickManager.TicksGame;sawManaged=sawWait=sawMoved=interrupted=checkedInterrupt=sawMedicine=false;heldAt=0;
+ }
+ static void CheckCoordinationOptions(){
+  var type=T("SearchAndRescueSettings");
+  var defaults=(ModSettings)Activator.CreateInstance(type);
+  var switches=new[]{"UseFastRescueAllocation","SimplifyLogistics","SimplifyMedicineSelection","EnableMissionKits"};
+  foreach(string name in switches)Check((bool)AccessTools.Field(type,name).GetValue(defaults)==(name=="EnableMissionKits"),"default preserves existing behavior: "+name);
+  foreach(string name in switches)AccessTools.Field(type,name).SetValue(defaults,name!="EnableMissionKits");
+  string path=Path.Combine(GenFilePaths.SaveDataFolderPath,"coordination-settings.xml");
+  Scribe.saver.InitSaving(path,"Settings");Scribe_Deep.Look(ref defaults,"settings");Scribe.saver.FinalizeSaving();
+  ModSettings restored=null;Scribe.loader.InitLoading(path);Scribe_Deep.Look(ref restored,"settings");Scribe.loader.FinalizeLoading();
+  foreach(string name in switches)Check((bool)AccessTools.Field(type,name).GetValue(restored)==(name!="EnableMissionKits"),"setting survives serialization: "+name);
+  object live=AccessTools.Property(T("SearchAndRescueMod"),"Settings").GetValue(null,null);
+  foreach(string name in switches)AccessTools.Field(type,name).SetValue(live,name!="EnableMissionKits");
+  Call("SearchAndRescueCoordinator","NotifyGlobalSettingsChanged");
  }
  static void CheckUninitializedWorkSettings(){
   var type=T("SearchAndRescueCoordinator");var coordinator=Find.CurrentMap.components.First(c=>c.GetType()==type);
@@ -159,7 +173,7 @@ public static class StandingTreatmentProbe {
    if(scenario>0)Check(sawMedicine,"actual tending job uses selected medicine");
    File.AppendAllText(Output,"INFO: scenario="+scenario+" completedTicks="+elapsed+" patientJob="+patient.CurJobDef+"\n");
    doctor.Destroy();patient.Destroy();scenario++;
-   if(scenario==4){done=true;File.AppendAllText(Output,"COMPLETE\n");Application.Quit();}else Setup();
+   if(scenario==4){done=true;File.AppendAllText(Output,"COMPLETE\n");if(!File.Exists(Path.Combine(GenFilePaths.SaveDataFolderPath,"preview.txt")))Application.Quit();}else Setup();
   }else if(elapsed>6000)throw new Exception("Timeout: doctor="+doctor.CurJobDef+" patient="+patient.CurJobDef+" managed="+sawManaged+" waited="+sawWait+" downed="+patient.Downed);
  }
 }

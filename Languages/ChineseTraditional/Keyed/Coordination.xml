@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_Settings_Section_CoordinationCost>協調精細度</SAR_Settings_Section_CoordinationCost>
+  <SAR_Settings_FastRescue>快速救援分配（實驗性）</SAR_Settings_FastRescue>
+  <SAR_Settings_FastRescue_Desc>優先處理緊急傷員，先比較少量附近工作者；無人能執行時擴大查找範圍。救援人選和治療順序可能改變，減少比較不保證整體提速。預設關閉。</SAR_Settings_FastRescue_Desc>
+  <SAR_Settings_SimpleLogistics>簡化搬運與補給協調（實驗性）</SAR_Settings_SimpleLogistics>
+  <SAR_Settings_SimpleLogistics_Desc>按傷員緊迫程度安排搬運、接手和送藥，減少工作者之間的比較。路程和等待時間可能增加，組合啟用簡化選項也可能降低整體速度。物資所有權檢查仍然生效。預設關閉。</SAR_Settings_SimpleLogistics_Desc>
+  <SAR_Settings_SimpleMedicine>減少藥品來源比較</SAR_Settings_SimpleMedicine>
+  <SAR_Settings_SimpleMedicine_Desc>常規選藥最多搜尋四個可用來源，優先隨身及附近藥品。保留已配送補給、特殊急救和醫療限制；Smart Medicine、Choose Your Medicine 的選藥規則繼續優先。藥品品質與消耗可能改變。預設關閉。</SAR_Settings_SimpleMedicine_Desc>
+  <SAR_Settings_MissionKits>為多名傷員備藥</SAR_Settings_MissionKits>
+  <SAR_Settings_MissionKits_Desc>在選定取藥點多帶一些藥品，供附近傷員使用。關閉後可能增加取藥往返，直接計算收益通常較小。預設開啟。</SAR_Settings_MissionKits_Desc>
+</LanguageData>

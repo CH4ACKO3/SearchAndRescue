@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<EngineBenchmarkResult xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ScoringVersion>3</ScoringVersion>
+  <Request>
+    <RunId>medicine_d20p136h16r11</RunId>
+    <Seed>709</Seed>
+    <Horizon>6000</Horizon>
+    <Scenario>stress-v1</Scenario>
+    <MedicineDetourTolerance>1</MedicineDetourTolerance>
+    <TreatmentSwitchReluctance>1</TreatmentSwitchReluctance>
+    <TreatmentBeforeTransportPriority>1</TreatmentBeforeTransportPriority>
+  </Request>
+  <Status>observed</Status>
+  <Elapsed>6000</Elapsed>
+  <Patients>136</Patients>
+  <Deaths>0</Deaths>
+  <Untended>535</Untended>
+  <Rounds>9</Rounds>
+  <Switches>0</Switches>
+  <Errors>0</Errors>
+  <OwnershipConflicts>0</OwnershipConflicts>
+  <RemainingPatients>136</RemainingPatients>
+  <Survivors>136</Survivors>
+  <Stabilized>0</Stabilized>
+  <DoctorCount>20</DoctorCount>
+  <HaulerCount>16</HaulerCount>
+  <CompletionTick>-1</CompletionTick>
+  <MedicineConsumed>0</MedicineConsumed>
+  <BloodBurden>0.39720226998167</BloodBurden>
+  <FirstTreatmentDelay>0.97824754901960786</FirstTreatmentDelay>
+  <WalkDistance>5938.247039788328</WalkDistance>
+  <Score>136009.28086817928</Score>
+  <Events>
+    <string>1113 tend SAR Bench 709 Doctor 18 -&gt; SAR Bench 709 Patient 2</string>
+    <string>3940 tend SAR Bench 709 Doctor 10 -&gt; SAR Bench 709 Patient 104</string>
+    <string>3999 tend SAR Bench 709 Doctor 5 -&gt; SAR Bench 709 Patient 33</string>
+    <string>4091 tend SAR Bench 709 Doctor 6 -&gt; SAR Bench 709 Patient 113</string>
+    <string>4139 tend SAR Bench 709 Doctor 17 -&gt; SAR Bench 709 Patient 80</string>
+    <string>4222 tend SAR Bench 709 Doctor 16 -&gt; SAR Bench 709 Patient 63</string>
+    <string>4298 tend SAR Bench 709 Doctor 11 -&gt; SAR Bench 709 Patient 29</string>
+    <string>4448 tend SAR Bench 709 Doctor 0 -&gt; SAR Bench 709 Patient 59</string>
+    <string>4587 tend SAR Bench 709 Doctor 5 -&gt; SAR Bench 709 Patient 33</string>
+  </Events>
+</EngineBenchmarkResult>

@@ -48,6 +48,7 @@ static class Simulation
     {
         ProductionPolicyTests.Run();
         MatchingAlgorithmTests.Run();
+FastCandidateTests.Run();
         CompletedCareWinsOverSpeculativeAffinity();
         BetterDoctorGetsSeverePatient();
         NurseTakesTransfusionWhileDoctorTakesSkilledCare();

@@ -1,0 +1,16 @@
+BEGIN full_d5p34h4r0
+COMPLETE full_d5p34h4r0
+BEGIN full_d5p34h4r1
+COMPLETE full_d5p34h4r1
+BEGIN fast_d5p34h4r2
+COMPLETE fast_d5p34h4r2
+BEGIN logistics_d5p34h4r3
+COMPLETE logistics_d5p34h4r3
+BEGIN medicine_d5p34h4r4
+COMPLETE medicine_d5p34h4r4
+BEGIN no_kit_d5p34h4r5
+COMPLETE no_kit_d5p34h4r5
+BEGIN no_standby_d5p34h4r6
+COMPLETE no_standby_d5p34h4r6
+BEGIN combined_d5p34h4r7
+COMPLETE combined_d5p34h4r7

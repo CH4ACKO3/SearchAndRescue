@@ -1183,6 +1183,11 @@ namespace SearchAndRescue
                                         doctor,
                                         patient,
                                         thing));
+                // Preserve external medicine selectors and all special intervention types.
+                // The bounded source list only changes ordinary SAR medicine selection.
+                if (SearchAndRescueMod.Settings?.SimplifyMedicineSelection == true &&
+                    !UsesSmartMedicine && !UsesChooseYourMedicine)
+                    availableMedicines = availableMedicines.Take(4);
                 List<ThingCount> medicineCandidates;
                 if (UsesSmartMedicine && !UsesChooseYourMedicine && TryFindSmartMedicineSelection(
                         doctor,

@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
   <SAR_Settings_ApproximateMatching>Fast approximate matching (experimental)</SAR_Settings_ApproximateMatching>
-  <SAR_Settings_ApproximateMatching_Desc>Reduce matching time with a fast approximate algorithm. Total scores and the number of patients assigned may be lower, and different patients may receive help. All eligible pairs are evaluated. Disabled by default.</SAR_Settings_ApproximateMatching_Desc>
+  <SAR_Settings_ApproximateMatching_Desc>Reduce matching time with an approximate algorithm. Total scores and the number of patients assigned may be lower. It applies to full candidate graphs; fast rescue allocation and simplified logistics use their own assignment methods. Disabled by default.</SAR_Settings_ApproximateMatching_Desc>
 </LanguageData>

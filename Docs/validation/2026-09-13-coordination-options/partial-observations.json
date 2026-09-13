@@ -1,0 +1,10 @@
+{
+  "case": "combined_d40p272h32r21",
+  "status": "aborted-after-first-window",
+  "ticks": 1516,
+  "wallSeconds": 120.838148,
+  "sarMsPerTick": 76.48859419525066,
+  "fullFirstWindowSarMsPerTick": 16.3191569159497,
+  "ratioToFullFirstWindow": 4.68704324550576,
+  "clinicalResult": null
+}

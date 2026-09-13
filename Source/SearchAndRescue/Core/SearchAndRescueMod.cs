@@ -26,6 +26,10 @@ namespace SearchAndRescue
         public bool PreemptRoutineWorkForEmergencies = true;
         public bool EnableRescuerStandby = true;
         public bool UseApproximateMatching;
+        public bool UseFastRescueAllocation;
+        public bool SimplifyLogistics;
+        public bool SimplifyMedicineSelection;
+        public bool EnableMissionKits = true;
         public float RecentMarkerMemoryHours = 4f;
         public float StandbyLeadSeconds = 3f;
         public float BleedingSensitivity = 1f;
@@ -60,6 +64,10 @@ namespace SearchAndRescue
                 "preemptRoutineWorkForEmergencies", true);
             Scribe_Values.Look(ref EnableRescuerStandby, "enableRescuerStandby", true);
             Scribe_Values.Look(ref UseApproximateMatching, "useApproximateMatching", false);
+            Scribe_Values.Look(ref UseFastRescueAllocation, "useFastRescueAllocation", false);
+            Scribe_Values.Look(ref SimplifyLogistics, "simplifyLogistics", false);
+            Scribe_Values.Look(ref SimplifyMedicineSelection, "simplifyMedicineSelection", false);
+            Scribe_Values.Look(ref EnableMissionKits, "enableMissionKits", true);
             Scribe_Values.Look(ref RecentMarkerMemoryHours, "recentMarkerMemoryHours", 4f);
             Scribe_Values.Look(ref StandbyLeadSeconds, "standbyLeadSeconds", 3f);
             Scribe_Values.Look(ref BleedingSensitivity, "bleedingSensitivity", 1f);
@@ -99,6 +107,10 @@ namespace SearchAndRescue
             PreemptRoutineWorkForEmergencies = true;
             EnableRescuerStandby = true;
             UseApproximateMatching = false;
+            UseFastRescueAllocation = false;
+            SimplifyLogistics = false;
+            SimplifyMedicineSelection = false;
+            EnableMissionKits = true;
             RecentMarkerMemoryHours = 4f;
             StandbyLeadSeconds = 3f;
             BleedingSensitivity = 1f;
@@ -243,14 +255,20 @@ namespace SearchAndRescue
 
         private bool DrawAdvancedPage(Rect outer)
         {
-            Rect view = ScrollView(outer, ref advancedScroll, 1530f);
+            Rect view = ScrollView(outer, ref advancedScroll, 2020f);
             Listing_Standard listing = new Listing_Standard { ColumnWidth = view.width };
             listing.Begin(view);
             bool changed = false;
 
+            Section(listing, "SAR_Settings_Section_CoordinationCost");
+            changed |= Checkbox(listing, "SAR_Settings_FastRescue", "SAR_Settings_FastRescue_Desc", ref Settings.UseFastRescueAllocation);
+            changed |= Checkbox(listing, "SAR_Settings_SimpleLogistics", "SAR_Settings_SimpleLogistics_Desc", ref Settings.SimplifyLogistics);
+            changed |= Checkbox(listing, "SAR_Settings_SimpleMedicine", "SAR_Settings_SimpleMedicine_Desc", ref Settings.SimplifyMedicineSelection);
+            changed |= Checkbox(listing, "SAR_Settings_MissionKits", "SAR_Settings_MissionKits_Desc", ref Settings.EnableMissionKits);
             Section(listing, "SAR_Settings_Section_Triage");
-            changed |= Checkbox(listing, "SAR_Settings_ApproximateMatching",
-                "SAR_Settings_ApproximateMatching_Desc", ref Settings.UseApproximateMatching);
+            if (!(Settings.UseFastRescueAllocation && Settings.SimplifyLogistics))
+                changed |= Checkbox(listing, "SAR_Settings_ApproximateMatching",
+                    "SAR_Settings_ApproximateMatching_Desc", ref Settings.UseApproximateMatching);
             changed |= Slider(listing, "SAR_Settings_BleedingSensitivity",
                 "SAR_Settings_BleedingSensitivity_Desc", ref Settings.BleedingSensitivity,
                 0.5f, 2f, 0.05f, "SAR_Settings_Value_Percent");
@@ -272,10 +290,13 @@ namespace SearchAndRescue
             changed |= Slider(listing, "SAR_Settings_MedicineDetour",
                 "SAR_Settings_MedicineDetour_Desc", ref Settings.MedicineDetourTolerance,
                 0.25f, 2f, 0.05f, "SAR_Settings_Value_Percent");
-            changed |= IntSlider(listing, "SAR_Settings_KitPatients",
-                "SAR_Settings_KitPatients_Desc", ref Settings.MissionKitPatientCount, 1, 6);
-            changed |= IntSlider(listing, "SAR_Settings_KitConsumables",
-                "SAR_Settings_KitConsumables_Desc", ref Settings.MissionKitConsumableCount, 1, 12);
+            if (Settings.EnableMissionKits)
+            {
+                changed |= IntSlider(listing, "SAR_Settings_KitPatients",
+                    "SAR_Settings_KitPatients_Desc", ref Settings.MissionKitPatientCount, 1, 6);
+                changed |= IntSlider(listing, "SAR_Settings_KitConsumables",
+                    "SAR_Settings_KitConsumables_Desc", ref Settings.MissionKitConsumableCount, 1, 12);
+            }
             changed |= Slider(listing, "SAR_Settings_FieldSupplyRadius",
                 "SAR_Settings_FieldSupplyRadius_Desc", ref Settings.FieldSupplyRadius,
                 2f, 16f, 1f, "SAR_Settings_Value_Cells");

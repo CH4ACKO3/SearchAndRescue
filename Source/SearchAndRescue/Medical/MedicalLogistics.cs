@@ -1045,7 +1045,13 @@ namespace SearchAndRescue
                 }
             }
 
-            foreach (Thing thing in map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine)
+            IEnumerable<Thing> mapMedicines = map.listerThings.ThingsInGroup(ThingRequestGroup.Medicine);
+            if (SearchAndRescueMod.Settings?.SimplifyMedicineSelection == true &&
+                !Compatibility.UsesSmartMedicine && !Compatibility.UsesChooseYourMedicine)
+                mapMedicines = mapMedicines.OrderBy(thing =>
+                    worker.Position.DistanceToSquared(thing.PositionHeld) +
+                    thing.PositionHeld.DistanceToSquared(patient.Position));
+            foreach (Thing thing in mapMedicines
                          .Where(thing => thing.Spawned && !thing.IsForbidden(worker) &&
                                          Compatibility.AllowsMedicine(patient, thing) &&
                                          AvailableForTreatment(thing, worker, patient) > 0 &&

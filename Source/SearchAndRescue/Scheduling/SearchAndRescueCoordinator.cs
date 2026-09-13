@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -2497,7 +2497,7 @@ namespace SearchAndRescue
             long matchingStart = profile
                 ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.UnifiedMatching)
                 : 0L;
-            List<Match<Pawn, Pawn>> matches = WithPatientScoringSnapshot(() => MatchPatients(
+            List<Match<Pawn, Pawn>> matches = WithPatientScoringSnapshot(() => MatchRescuePatients(
                 workers,
                 targets,
                 (worker, patient) =>
@@ -2505,7 +2505,7 @@ namespace SearchAndRescue
                     StageChoice choice = BestStageChoice(worker, patient, now, previous);
                     choices[new WorkerTargetPair(worker, patient)] = choice;
                     return choice.Weight;
-                }));
+                }, previous));
             if (profile)
             {
                 SearchAndRescuePerformanceDiagnostics.End(SarPerformancePhase.UnifiedMatching, matchingStart);
@@ -3254,6 +3254,7 @@ namespace SearchAndRescue
             Pawn primaryPatient,
             MedicalTreatmentOption option)
         {
+            if (SearchAndRescueMod.Settings?.EnableMissionKits == false) return null;
             // These finders consume map resources through their own native Tend driver.
             if (RobotMedicalProfile.OwnsMedicineSelection(primaryPatient)) return null;
             if (option?.Resource == null || option.Resource.Destroyed || option.FromInventory)
@@ -3425,29 +3426,32 @@ namespace SearchAndRescue
                 .ToList();
             SearchAndRescuePerformanceDiagnostics.RecordGraph(true, workers.Count, transportTargets.Count);
             List<Match<Pawn, TransportTask>> selectedMatches =
-                WithPatientScoringSnapshot(() => MatchPatientOptions(
+                WithPatientScoringSnapshot(() => MatchTransportTasks(
                     workers,
                     transportTargets,
+                    tasksByPatient,
+                    (worker, task) => TransportTaskEdgeWeight(
+                        worker,
+                        task,
+                        now,
+                        previous,
+                        existingStandbys), SearchAndRescueMod.Settings?.SimplifyLogistics == true, previous, existingStandbys));
+            if (SearchAndRescueMod.Settings?.SimplifyLogistics != true)
+            {
+                selectedMatches = WithPatientScoringSnapshot(() => WeightedBipartiteMatcher.DiversifyExclusiveOptions(
+                    selectedMatches,
+                    task => task.Target,
                     patient => tasksByPatient[patient],
                     (worker, task) => TransportTaskEdgeWeight(
                         worker,
                         task,
                         now,
                         previous,
-                        existingStandbys)));
-            selectedMatches = WithPatientScoringSnapshot(() => WeightedBipartiteMatcher.DiversifyExclusiveOptions(
-                selectedMatches,
-                task => task.Target,
-                patient => tasksByPatient[patient],
-                (worker, task) => TransportTaskEdgeWeight(
-                    worker,
-                    task,
-                    now,
-                    previous,
-                    existingStandbys),
-                task => task.IsSupply,
-                task => task.SupplyResource,
-                (worker, supply) => !medicalResources.IsClaimedByOtherWorker(supply, worker)));
+                        existingStandbys),
+                    task => task.IsSupply,
+                    task => task.SupplyResource,
+                    (worker, supply) => !medicalResources.IsClaimedByOtherWorker(supply, worker)));
+            }
             Dictionary<Pawn, Match<Pawn, TransportTask>> matchByWorker = selectedMatches
                 .ToDictionary(match => match.Worker, match => match);
             foreach (KeyValuePair<Pawn, ActiveStandby> pair in existingStandbys)
