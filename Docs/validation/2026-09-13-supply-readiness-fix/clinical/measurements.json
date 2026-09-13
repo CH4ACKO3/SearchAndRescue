@@ -1,0 +1,650 @@
+[
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "full_d5p34h4r0",
+    "mode": "full",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 6000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": true,
+    "sarMsPerTick": 0.09018078260869565,
+    "tps": 2096.5019864356323,
+    "clinical": {
+      "Deaths": 7.0,
+      "Rounds": 29.0,
+      "Untended": 111.0,
+      "Switches": 1.0,
+      "Errors": 1.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 22.0,
+      "Stabilized": 5.0,
+      "MedicineConsumed": 22.0,
+      "BloodBurden": 0.8279398703399826,
+      "WalkDistance": 1768.7579737648152,
+      "FirstTreatmentDelay": 0.7840098039215686
+    },
+    "patientsEverTended": 15,
+    "firstTendMeanTicks": 4704.058823529412,
+    "firstTendP95CensoredTicks": 6000,
+    "profile": {
+      "MapTick": {
+        "calls": 6240,
+        "totalMs": 1009.44
+      },
+      "PendingAndWake": {
+        "calls": 6240,
+        "totalMs": 3.11
+      },
+      "TreatmentMonitoring": {
+        "calls": 6240,
+        "totalMs": 202.59
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 6240,
+        "totalMs": 51.59
+      },
+      "PeriodicCleanup": {
+        "calls": 165,
+        "totalMs": 13.44
+      },
+      "ScheduleRebuild": {
+        "calls": 99,
+        "totalMs": 746.87
+      },
+      "CarePlanning": {
+        "calls": 99,
+        "totalMs": 43.97
+      },
+      "UnifiedMatching": {
+        "calls": 99,
+        "totalMs": 119.41
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 2154,
+        "totalMs": 116.1
+      },
+      "PickupReachability": {
+        "calls": 1865,
+        "totalMs": 2.13
+      },
+      "TransportMatching": {
+        "calls": 99,
+        "totalMs": 113.09
+      },
+      "WakePendingWorkers": {
+        "calls": 99,
+        "totalMs": 36.43
+      }
+    },
+    "usableClinical": false
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "full_d5p34h4r1",
+    "mode": "full",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.04596980612990586,
+    "tps": 2564.911681831433,
+    "clinical": {
+      "Deaths": 16.0,
+      "Rounds": 64.0,
+      "Untended": 1.0,
+      "Switches": 6.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 1.0,
+      "Stabilized": 17.0,
+      "MedicineConsumed": 34.0,
+      "BloodBurden": 0.9003325376944507,
+      "WalkDistance": 5243.881268892209,
+      "FirstTreatmentDelay": 0.46309803921568626
+    },
+    "patientsEverTended": 23,
+    "firstTendMeanTicks": 11114.35294117647,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 24824,
+        "totalMs": 1148.17
+      },
+      "PendingAndWake": {
+        "calls": 24824,
+        "totalMs": 10.21
+      },
+      "TreatmentMonitoring": {
+        "calls": 24824,
+        "totalMs": 289.83
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 24824,
+        "totalMs": 90.63
+      },
+      "PeriodicCleanup": {
+        "calls": 524,
+        "totalMs": 21.69
+      },
+      "ScheduleRebuild": {
+        "calls": 292,
+        "totalMs": 758.79
+      },
+      "CarePlanning": {
+        "calls": 292,
+        "totalMs": 70.4
+      },
+      "UnifiedMatching": {
+        "calls": 292,
+        "totalMs": 461.2
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 5145,
+        "totalMs": 457.54
+      },
+      "PickupReachability": {
+        "calls": 2672,
+        "totalMs": 2.29
+      },
+      "TransportMatching": {
+        "calls": 292,
+        "totalMs": 133.28
+      },
+      "WakePendingWorkers": {
+        "calls": 292,
+        "totalMs": 20.05
+      }
+    },
+    "usableClinical": true
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "fast_d5p34h4r2",
+    "mode": "fast",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.04510300440189752,
+    "tps": 2555.094393479295,
+    "clinical": {
+      "Deaths": 15.0,
+      "Rounds": 77.0,
+      "Untended": 1.0,
+      "Switches": 8.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 1.0,
+      "Stabilized": 18.0,
+      "MedicineConsumed": 29.0,
+      "BloodBurden": 0.9028492860934314,
+      "WalkDistance": 4794.07548789432,
+      "FirstTreatmentDelay": 0.5329227941176471
+    },
+    "patientsEverTended": 21,
+    "firstTendMeanTicks": 12790.14705882353,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 24996,
+        "totalMs": 1168.88
+      },
+      "PendingAndWake": {
+        "calls": 24996,
+        "totalMs": 10.65
+      },
+      "TreatmentMonitoring": {
+        "calls": 24996,
+        "totalMs": 262.93
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 24996,
+        "totalMs": 105.01
+      },
+      "PeriodicCleanup": {
+        "calls": 518,
+        "totalMs": 21.07
+      },
+      "ScheduleRebuild": {
+        "calls": 295,
+        "totalMs": 763.37
+      },
+      "CarePlanning": {
+        "calls": 295,
+        "totalMs": 69.16
+      },
+      "UnifiedMatching": {
+        "calls": 295,
+        "totalMs": 462.79
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 3373,
+        "totalMs": 443.97
+      },
+      "PickupReachability": {
+        "calls": 1907,
+        "totalMs": 1.67
+      },
+      "TransportMatching": {
+        "calls": 295,
+        "totalMs": 145.69
+      },
+      "WakePendingWorkers": {
+        "calls": 295,
+        "totalMs": 15.75
+      }
+    },
+    "usableClinical": true
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "logistics_d5p34h4r3",
+    "mode": "logistics",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.045933752022481476,
+    "tps": 2524.985921531703,
+    "clinical": {
+      "Deaths": 15.0,
+      "Rounds": 75.0,
+      "Untended": 3.0,
+      "Switches": 11.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 2.0,
+      "Stabilized": 17.0,
+      "MedicineConsumed": 34.0,
+      "BloodBurden": 0.9076722021729631,
+      "WalkDistance": 5140.23986682441,
+      "FirstTreatmentDelay": 0.4770772058823529
+    },
+    "patientsEverTended": 23,
+    "firstTendMeanTicks": 11449.85294117647,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 25009,
+        "totalMs": 1155.75
+      },
+      "PendingAndWake": {
+        "calls": 25009,
+        "totalMs": 13.51
+      },
+      "TreatmentMonitoring": {
+        "calls": 25009,
+        "totalMs": 213.89
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 25009,
+        "totalMs": 112.41
+      },
+      "PeriodicCleanup": {
+        "calls": 535,
+        "totalMs": 22.45
+      },
+      "ScheduleRebuild": {
+        "calls": 292,
+        "totalMs": 793.78
+      },
+      "CarePlanning": {
+        "calls": 292,
+        "totalMs": 73.36
+      },
+      "UnifiedMatching": {
+        "calls": 292,
+        "totalMs": 514.45
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 5391,
+        "totalMs": 510.61
+      },
+      "PickupReachability": {
+        "calls": 1046,
+        "totalMs": 0.86
+      },
+      "TransportMatching": {
+        "calls": 292,
+        "totalMs": 105.72
+      },
+      "WakePendingWorkers": {
+        "calls": 292,
+        "totalMs": 21.26
+      }
+    },
+    "usableClinical": true
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "medicine_d5p34h4r4",
+    "mode": "medicine",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.05004647511848341,
+    "tps": 2540.5119854071067,
+    "clinical": {
+      "Deaths": 15.0,
+      "Rounds": 78.0,
+      "Untended": 0.0,
+      "Switches": 10.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 0.0,
+      "Stabilized": 19.0,
+      "MedicineConsumed": 34.0,
+      "BloodBurden": 0.9018014320731162,
+      "WalkDistance": 5124.199468257997,
+      "FirstTreatmentDelay": 0.44968137254901963
+    },
+    "patientsEverTended": 24,
+    "firstTendMeanTicks": 10792.35294117647,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 25204,
+        "totalMs": 1305.69
+      },
+      "PendingAndWake": {
+        "calls": 25204,
+        "totalMs": 10.89
+      },
+      "TreatmentMonitoring": {
+        "calls": 25204,
+        "totalMs": 334.81
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 25204,
+        "totalMs": 103.22
+      },
+      "PeriodicCleanup": {
+        "calls": 537,
+        "totalMs": 21.71
+      },
+      "ScheduleRebuild": {
+        "calls": 301,
+        "totalMs": 843.29
+      },
+      "CarePlanning": {
+        "calls": 301,
+        "totalMs": 70.15
+      },
+      "UnifiedMatching": {
+        "calls": 301,
+        "totalMs": 520.62
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 5612,
+        "totalMs": 516.68
+      },
+      "PickupReachability": {
+        "calls": 2497,
+        "totalMs": 2.09
+      },
+      "TransportMatching": {
+        "calls": 301,
+        "totalMs": 157.52
+      },
+      "WakePendingWorkers": {
+        "calls": 301,
+        "totalMs": 20.74
+      }
+    },
+    "usableClinical": true
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "no_kit_d5p34h4r5",
+    "mode": "no_kit",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.0529422340288787,
+    "tps": 2521.6673884087363,
+    "clinical": {
+      "Deaths": 14.0,
+      "Rounds": 74.0,
+      "Untended": 1.0,
+      "Switches": 10.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 1.0,
+      "Stabilized": 19.0,
+      "MedicineConsumed": 34.0,
+      "BloodBurden": 0.9023810476502951,
+      "WalkDistance": 5113.387592452549,
+      "FirstTreatmentDelay": 0.45349264705882353
+    },
+    "patientsEverTended": 24,
+    "firstTendMeanTicks": 10883.823529411764,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 24905,
+        "totalMs": 1356.19
+      },
+      "PendingAndWake": {
+        "calls": 24905,
+        "totalMs": 10.72
+      },
+      "TreatmentMonitoring": {
+        "calls": 24905,
+        "totalMs": 246.96
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 24905,
+        "totalMs": 101.2
+      },
+      "PeriodicCleanup": {
+        "calls": 523,
+        "totalMs": 21.48
+      },
+      "ScheduleRebuild": {
+        "calls": 290,
+        "totalMs": 972.4
+      },
+      "CarePlanning": {
+        "calls": 290,
+        "totalMs": 69.92
+      },
+      "UnifiedMatching": {
+        "calls": 290,
+        "totalMs": 654.66
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 6418,
+        "totalMs": 650.3
+      },
+      "PickupReachability": {
+        "calls": 2068,
+        "totalMs": 1.56
+      },
+      "TransportMatching": {
+        "calls": 290,
+        "totalMs": 148.1
+      },
+      "WakePendingWorkers": {
+        "calls": 290,
+        "totalMs": 14.35
+      }
+    },
+    "usableClinical": true
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "no_standby_d5p34h4r6",
+    "mode": "no_standby",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.04984897898535343,
+    "tps": 2516.802098150687,
+    "clinical": {
+      "Deaths": 15.0,
+      "Rounds": 77.0,
+      "Untended": 0.0,
+      "Switches": 10.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 0.0,
+      "Stabilized": 19.0,
+      "MedicineConsumed": 31.0,
+      "BloodBurden": 0.9029082745138337,
+      "WalkDistance": 5120.86193290842,
+      "FirstTreatmentDelay": 0.4850833333333333
+    },
+    "patientsEverTended": 22,
+    "firstTendMeanTicks": 11642.0,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 25094,
+        "totalMs": 1245.89
+      },
+      "PendingAndWake": {
+        "calls": 25094,
+        "totalMs": 14.19
+      },
+      "TreatmentMonitoring": {
+        "calls": 25094,
+        "totalMs": 317.74
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 25094,
+        "totalMs": 99.51
+      },
+      "PeriodicCleanup": {
+        "calls": 529,
+        "totalMs": 22.44
+      },
+      "ScheduleRebuild": {
+        "calls": 298,
+        "totalMs": 797.96
+      },
+      "CarePlanning": {
+        "calls": 298,
+        "totalMs": 77.82
+      },
+      "UnifiedMatching": {
+        "calls": 298,
+        "totalMs": 518.09
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 5508,
+        "totalMs": 514.03
+      },
+      "PickupReachability": {
+        "calls": 2514,
+        "totalMs": 2.21
+      },
+      "TransportMatching": {
+        "calls": 298,
+        "totalMs": 110.54
+      },
+      "WakePendingWorkers": {
+        "calls": 298,
+        "totalMs": 18.69
+      }
+    },
+    "usableClinical": true
+  },
+  {
+    "source": "sar-supply-fix-clinical-20260913",
+    "name": "combined_d5p34h4r7",
+    "mode": "combined",
+    "doctors": 5,
+    "patients": 34,
+    "haulers": 4,
+    "horizon": 24000,
+    "coordinationMode": "EmergencyAuto",
+    "warmup": false,
+    "sarMsPerTick": 0.036422007409615466,
+    "tps": 2679.3631871494626,
+    "clinical": {
+      "Deaths": 17.0,
+      "Rounds": 58.0,
+      "Untended": 0.0,
+      "Switches": 10.0,
+      "Errors": 0.0,
+      "OwnershipConflicts": 0.0,
+      "RemainingPatients": 0.0,
+      "Stabilized": 17.0,
+      "MedicineConsumed": 34.0,
+      "BloodBurden": 0.9074461190314854,
+      "WalkDistance": 5548.329588194887,
+      "FirstTreatmentDelay": 0.4957487745098039
+    },
+    "patientsEverTended": 22,
+    "firstTendMeanTicks": 11897.970588235294,
+    "firstTendP95CensoredTicks": 24000,
+    "profile": {
+      "MapTick": {
+        "calls": 24992,
+        "totalMs": 929.76
+      },
+      "PendingAndWake": {
+        "calls": 24992,
+        "totalMs": 11.25
+      },
+      "TreatmentMonitoring": {
+        "calls": 24992,
+        "totalMs": 289.35
+      },
+      "ActiveAssignmentMaintenance": {
+        "calls": 24992,
+        "totalMs": 91.25
+      },
+      "PeriodicCleanup": {
+        "calls": 521,
+        "totalMs": 21.1
+      },
+      "ScheduleRebuild": {
+        "calls": 305,
+        "totalMs": 507.45
+      },
+      "CarePlanning": {
+        "calls": 305,
+        "totalMs": 69.66
+      },
+      "UnifiedMatching": {
+        "calls": 305,
+        "totalMs": 255.86
+      },
+      "UnifiedEdgeScoring": {
+        "calls": 1928,
+        "totalMs": 242.45
+      },
+      "PickupReachability": {
+        "calls": 2339,
+        "totalMs": 1.85
+      },
+      "TransportMatching": {
+        "calls": 305,
+        "totalMs": 94.5
+      },
+      "WakePendingWorkers": {
+        "calls": 305,
+        "totalMs": 13.33
+      }
+    },
+    "usableClinical": true
+  }
+]

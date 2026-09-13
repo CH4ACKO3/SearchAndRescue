@@ -88,6 +88,14 @@ static class HotspotTiming
         Pawn patient = (Pawn)AccessTools.Field(type, "Target").GetValue(__1);
         Thing supply = (Thing)AccessTools.Field(type, "SupplyResource").GetValue(__1);
         int count = (int)AccessTools.Field(type, "SupplyCount").GetValue(__1);
+        // Production rejects retired workers before native pickup queries. The probe
+        // must honor the same boundary so collecting a sample cannot interrupt cleanup.
+        if (__0 == null || __0.Destroyed || !__0.Spawned || __0.Map != Find.CurrentMap || __0.mindState == null)
+        {
+            File.AppendAllText(Path.Combine(GenFilePaths.SaveDataFolderPath, "invalid-pending.tsv"),
+                $"{__2}\t{__0?.ThingID}\t{patient?.ThingID}\t{stage}\tworker-retired\t{supply?.ThingID}\tqueries-skipped\n");
+            return;
+        }
         string reason = (string)reasonMethod.Invoke(__instance, new[] { (object)__0, __1, __2 });
         string extra = supply == null ? "" : "available=" + availableMethod.Invoke(ledgerField.GetValue(__instance), new object[] { supply, __0 }) +
             "/" + count + ";pickup=" + pickupMethod.Invoke(__instance, new object[] { __0, supply, count, patient });

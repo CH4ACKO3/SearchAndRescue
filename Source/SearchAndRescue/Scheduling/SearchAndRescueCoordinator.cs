@@ -3608,6 +3608,22 @@ namespace SearchAndRescue
             return weight;
         }
 
+        private bool SupplyTargetReady(Pawn patient, int now)
+        {
+            if (patient == null || !patient.Spawned || patient.Map != map || patient.Dead)
+                return false;
+
+            if (!activeByTarget.TryGetValue(patient, out ActiveAssignment active))
+                return TargetReadyForStage(patient, SearchAndRescueStage.Treat, now);
+
+            // Supplies can join urgent, unmedicated treatment. Other primary jobs own
+            // the patient until their handoff completes; candidate and pending checks
+            // must agree or a rejected delivery triggers another identical rebuild.
+            return active.Stage == SearchAndRescueStage.Treat && active.Job?.targetB.Thing == null &&
+                   TreatmentAdmitted(patient, SearchAndRescueStage.Supply) &&
+                   Compatibility.NeedsAnyFieldTreatment(patient) && NeedsFieldStabilization(patient);
+        }
+
         private IEnumerable<TransportTask> BuildSupplyTasks(int now)
         {
             foreach (MedicalCarePlan plan in carePlans.Values
@@ -3615,25 +3631,14 @@ namespace SearchAndRescue
                          .OrderByDescending(plan => PatientUrgency(plan.Patient)))
             {
                 Pawn patient = plan.Patient;
-                if (IsRetryBlocked(patient, SearchAndRescueStage.Supply, now))
+                if (IsRetryBlocked(patient, SearchAndRescueStage.Supply, now) || !SupplyTargetReady(patient, now))
                 {
                     continue;
                 }
-                activeByTarget.TryGetValue(patient, out ActiveAssignment active);
-                bool activeDryTreatment = active?.Stage == SearchAndRescueStage.Treat &&
-                                          active.Job?.targetB.Thing == null;
-                bool treatmentNeedReady = activeDryTreatment ||
-                                          TargetReadyForStage(patient, SearchAndRescueStage.Treat, now);
-                bool activeResourceRun = active != null &&
-                                         (active.Stage == SearchAndRescueStage.Restock ||
-                                          active.Stage == SearchAndRescueStage.Treat &&
-                                          active.Job?.targetB.Thing != null);
                 bool pendingResourceRun = pendingByWorker.Values.Any(pending => pending.Target == patient &&
                     (pending.Stage == SearchAndRescueStage.Restock || pending.Stage == SearchAndRescueStage.Supply ||
                      pending.Stage == SearchAndRescueStage.Treat && pending.Treatment?.Resource != null));
-                if (!treatmentNeedReady ||
-                    activeLogisticsByWorker.Values.Any(logistics => logistics.Target == patient) ||
-                    activeResourceRun || pendingResourceRun)
+                if (activeLogisticsByWorker.Values.Any(logistics => logistics.Target == patient) || pendingResourceRun)
                 {
                     continue;
                 }
@@ -4240,20 +4245,13 @@ namespace SearchAndRescue
                     medicalResources.AvailableForRelocation(item.Thing, worker) >= item.Count &&
                     PickupReservationAvailable(worker, item.Thing, item.Count, pending.Target));
             }
-            bool concurrentDrySupply = pending.Stage == SearchAndRescueStage.Supply &&
-                                       activeByTarget.TryGetValue(pending.Target, out ActiveAssignment active) &&
-                                       active.Stage == SearchAndRescueStage.Treat &&
-                                       active.Job?.targetB.Thing == null;
             bool pendingRescueInterception = pending.Stage == SearchAndRescueStage.Treat &&
                                              activeByTarget.TryGetValue(
                                                  pending.Target,
                                                  out ActiveAssignment rescue) &&
                                              rescue.Stage == SearchAndRescueStage.Rescue;
-            bool targetReady = concurrentDrySupply
-                ? pending.Target != null && pending.Target.Spawned && !pending.Target.Dead &&
-                  TreatmentAdmitted(pending.Target, SearchAndRescueStage.Supply) &&
-                  Compatibility.NeedsAnyFieldTreatment(pending.Target) &&
-                  NeedsFieldStabilization(pending.Target)
+            bool targetReady = pending.Stage == SearchAndRescueStage.Supply
+                ? SupplyTargetReady(pending.Target, now)
                 : (pendingRescueInterception || !activeByTarget.ContainsKey(pending.Target)) &&
                   TargetReadyForStage(pending.Target, readinessStage, now);
             bool targetReservationValid = pending.WaitForTreatment ||
@@ -4284,6 +4282,12 @@ namespace SearchAndRescue
             }
 
             List<string> reasons = new List<string>();
+            if (pending.Stage == SearchAndRescueStage.Supply && !SupplyTargetReady(pending.Target, now))
+            {
+                string owner = pending.Target != null && activeByTarget.TryGetValue(pending.Target, out ActiveAssignment supplyOwner)
+                    ? supplyOwner.Stage.ToString() : "none";
+                reasons.Add($"supply-target(active={owner})");
+            }
             if (worker == null || worker.Map != map)
             {
                 reasons.Add("worker-map");

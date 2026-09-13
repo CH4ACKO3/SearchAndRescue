@@ -1,0 +1,4 @@
+4510	Human40440	Human40462	Treat	worker-stage		;active=none;emergency=True
+3445	Human40575	Human40632	Supply	supply-target(active=Treat),target-stage(active=True,external=False)	MedicineIndustrial42224	available=17/4;pickup=True;active=Treat;emergency=True
+3930	Human40680	Human40823	Supply	target-stage(active=True,external=False)	MedicineIndustrial45654	available=4/4;pickup=False;active=Treat;emergency=True
+4222	Human40623	Human40536	Supply	target-stage(active=True,external=False)	MedicineIndustrial45720	available=3/3;pickup=False;active=Treat;emergency=True

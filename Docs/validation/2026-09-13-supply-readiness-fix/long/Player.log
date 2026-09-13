@@ -1,0 +1,979 @@
+Mono path[0] = 'D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/Managed'
+Mono config path = 'D:/App/Steam/steamapps/common/RimWorld/MonoBleedingEdge/etc'
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+Initialize engine version: 2022.3.35f1 (011206c7a712)
+[Subsystems] Discovering subsystems at path D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/UnitySubsystems
+GfxDevice: creating device client; threaded=0; jobified=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce RTX 5070 Ti (ID=0x2c05)
+    Vendor:   NVIDIA
+    VRAM:     15995 MB
+    Driver:   32.0.15.9649
+Begin MonoManager ReloadAssembly
+- Loaded All Assemblies, in  0.079 seconds
+- Finished resetting the current domain, in  0.001 seconds
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 0.474500 ms
+Command line arguments: -batchmode -quicktest -screen-width 1280 -screen-height 720 -savedatafolder=D:\Projects\rimworld\work\sar-supply-fix-long-b-20260913 -logFile D:\Projects\rimworld\work\sar-supply-fix-long-b-20260913/Player.log
+RimWorld 1.6.4871 rev591
+Save data folder overridden to D:\Projects\rimworld\work\sar-supply-fix-long-b-20260913
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.pb2f3313c78594b35bac4119f1c34bd5e) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.pcb18d8d550b54109bb7de94a18c85957) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.53e7d670f39a4d12af0922373aa2f22c) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.5cd27fc6d64048689ec5196ded16c82d) is not in valid format.
+Mod SAR hot-add regression probe dependency (brrainz.harmony) needs to have <downloadUrl> and/or <steamWorkshopUrl> specified.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.pb2eba8762fce494a9bf7ae8356da1af4) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.p67b5a7013ea54abc8bea9df774810a0d) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.p6905bcaf7dd64d19acc7b25d945b9849) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.082468d320f34399856ff0dd92d110e4) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.37997bf6e3ca4fe095bf3041c28d37fc) is not in valid format.
+Mod Search and Rescue Benchmark Runtime <packageId> (ch4acko3.sarcombinationprobe.paa2601c9ded74a679ec50ec75feac222) is not in valid format.
+Fallback handler could not load library D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/MonoBleedingEdge/data-0000014319CE2610.dll
+Fallback handler could not load library D:/App/Steam/steamapps/common/RimWorld/RimWorldWin64_Data/MonoBleedingEdge/data-0000014319F6DCF0.dll
+Translation data for language English has 21 errors. Generate translation report for more info.
+[Search and Rescue] Loaded for RimWorld 1.6. Active compatibility: none.
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 89 unused Assets to reduce memory usage. Loaded Objects now: 15806.
+Total: 62.595100 ms (FindLiveObjects: 0.585800 ms CreateObjectMapping: 0.173900 ms MarkObjects: 61.640800 ms  DeleteObjects: 0.194200 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 1.554700 ms
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 15821.
+Total: 57.484800 ms (FindLiveObjects: 0.559000 ms CreateObjectMapping: 0.170300 ms MarkObjects: 56.737800 ms  DeleteObjects: 0.017500 ms)
+
+Initializing new game with mods:
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - sarg.smartspeed
+  - ch4acko3.coordination91d6990e8bf74b5fbcc3eedb4e046d0b
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 20892.
+Total: 83.316100 ms (FindLiveObjects: 0.725500 ms CreateObjectMapping: 0.240700 ms MarkObjects: 82.293600 ms  DeleteObjects: 0.056000 ms)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 16320.
+Total: 76.735400 ms (FindLiveObjects: 0.581100 ms CreateObjectMapping: 0.175900 ms MarkObjects: 75.968100 ms  DeleteObjects: 0.010000 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 0.307800 ms
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 16313.
+Total: 52.452800 ms (FindLiveObjects: 0.541100 ms CreateObjectMapping: 0.175300 ms MarkObjects: 51.689000 ms  DeleteObjects: 0.047000 ms)
+
+Loading game from file d5p34h4r10_Initial with mods:
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - sarg.smartspeed
+  - ch4acko3.coordination91d6990e8bf74b5fbcc3eedb4e046d0b
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 21614.
+Total: 76.598900 ms (FindLiveObjects: 0.821700 ms CreateObjectMapping: 0.261800 ms MarkObjects: 75.467600 ms  DeleteObjects: 0.047100 ms)
+
+[SAR engine] Begin full_d5p34h4r0 seed=709
+[Search and Rescue] Performance profiling started. Use 'Dump performance profile' for a snapshot or 'Stop performance profile' to finish.
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=415 rebuilds(global/request)=11/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=13/4/5 pickupReachCache(hit/miss)=2016/68 transportNoWorkerSkips=10
+ graphs unified(last/maxEdges)=0x35/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=415 avgUs=1127.06 maxMs=450.665 totalMs=467.73 usPerGameTick=1127.06
+ PendingAndWake calls=415 avgUs=0.80 maxMs=0.118 totalMs=0.33 usPerGameTick=0.80
+ TreatmentMonitoring calls=415 avgUs=2.62 maxMs=0.780 totalMs=1.09 usPerGameTick=2.62
+ ActiveAssignmentMaintenance calls=415 avgUs=13.69 maxMs=1.312 totalMs=5.68 usPerGameTick=13.69
+ PeriodicCleanup calls=11 avgUs=358.01 maxMs=2.935 totalMs=3.94 usPerGameTick=9.49
+ ScheduleRebuild calls=11 avgUs=41292.68 maxMs=443.709 totalMs=454.22 usPerGameTick=1094.50
+ CarePlanning calls=11 avgUs=822.83 maxMs=5.965 totalMs=9.05 usPerGameTick=21.81
+ UnifiedMatching calls=11 avgUs=3580.11 maxMs=39.341 totalMs=39.38 usPerGameTick=94.89
+ UnifiedEdgeScoring calls=272 avgUs=137.00 maxMs=23.203 totalMs=37.27 usPerGameTick=89.80
+ PickupReachability calls=68 avgUs=4.53 maxMs=0.174 totalMs=0.31 usPerGameTick=0.74
+ TransportMatching calls=11 avgUs=1642.32 maxMs=16.482 totalMs=18.07 usPerGameTick=43.53
+ WakePendingWorkers calls=11 avgUs=735.18 maxMs=8.082 totalMs=8.09 usPerGameTick=19.49
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=719 rebuilds(global/request)=13/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=13/4/5 pickupReachCache(hit/miss)=2016/68 transportNoWorkerSkips=12
+ graphs unified(last/maxEdges)=0x35/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=719 avgUs=654.20 maxMs=450.665 totalMs=470.37 usPerGameTick=654.20
+ PendingAndWake calls=719 avgUs=0.66 maxMs=0.118 totalMs=0.47 usPerGameTick=0.66
+ TreatmentMonitoring calls=719 avgUs=1.57 maxMs=0.780 totalMs=1.13 usPerGameTick=1.57
+ ActiveAssignmentMaintenance calls=719 avgUs=7.94 maxMs=1.312 totalMs=5.71 usPerGameTick=7.94
+ PeriodicCleanup calls=16 avgUs=265.26 maxMs=2.935 totalMs=4.24 usPerGameTick=5.90
+ ScheduleRebuild calls=13 avgUs=35098.44 maxMs=443.709 totalMs=456.28 usPerGameTick=634.60
+ CarePlanning calls=13 avgUs=749.26 maxMs=5.965 totalMs=9.74 usPerGameTick=13.55
+ UnifiedMatching calls=13 avgUs=3030.36 maxMs=39.341 totalMs=39.39 usPerGameTick=54.79
+ UnifiedEdgeScoring calls=272 avgUs=137.00 maxMs=23.203 totalMs=37.27 usPerGameTick=51.83
+ PickupReachability calls=68 avgUs=4.53 maxMs=0.174 totalMs=0.31 usPerGameTick=0.43
+ TransportMatching calls=13 avgUs=1410.84 maxMs=16.482 totalMs=18.34 usPerGameTick=25.51
+ WakePendingWorkers calls=13 avgUs=622.15 maxMs=8.082 totalMs=8.09 usPerGameTick=11.25
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=1124 rebuilds(global/request)=16/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=15/5/6 pickupReachCache(hit/miss)=2976/116 transportNoWorkerSkips=13
+ graphs unified(last/maxEdges)=1x36/272 transport(last/maxEdges)=1x36/120
+ MapTick calls=1124 avgUs=432.36 maxMs=450.665 totalMs=485.97 usPerGameTick=432.36
+ PendingAndWake calls=1124 avgUs=0.64 maxMs=0.118 totalMs=0.72 usPerGameTick=0.64
+ TreatmentMonitoring calls=1124 avgUs=1.06 maxMs=0.780 totalMs=1.20 usPerGameTick=1.06
+ ActiveAssignmentMaintenance calls=1124 avgUs=5.68 maxMs=1.312 totalMs=6.38 usPerGameTick=5.68
+ PeriodicCleanup calls=23 avgUs=202.17 maxMs=2.935 totalMs=4.65 usPerGameTick=4.14
+ ScheduleRebuild calls=16 avgUs=29399.96 maxMs=443.709 totalMs=470.40 usPerGameTick=418.50
+ CarePlanning calls=16 avgUs=673.53 maxMs=5.965 totalMs=10.78 usPerGameTick=9.59
+ UnifiedMatching calls=16 avgUs=2815.95 maxMs=39.341 totalMs=45.06 usPerGameTick=40.08
+ UnifiedEdgeScoring calls=344 avgUs=124.65 maxMs=23.203 totalMs=42.88 usPerGameTick=38.15
+ PickupReachability calls=116 avgUs=2.82 maxMs=0.174 totalMs=0.33 usPerGameTick=0.29
+ TransportMatching calls=16 avgUs=1489.48 maxMs=16.482 totalMs=23.83 usPerGameTick=21.20
+ WakePendingWorkers calls=16 avgUs=518.13 maxMs=8.082 totalMs=8.29 usPerGameTick=7.38
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=1424 rebuilds(global/request)=18/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=17/6/7 pickupReachCache(hit/miss)=3458/131 transportNoWorkerSkips=14
+ graphs unified(last/maxEdges)=1x36/272 transport(last/maxEdges)=1x35/120
+ MapTick calls=1424 avgUs=354.25 maxMs=450.665 totalMs=504.46 usPerGameTick=354.25
+ PendingAndWake calls=1424 avgUs=0.65 maxMs=0.118 totalMs=0.92 usPerGameTick=0.65
+ TreatmentMonitoring calls=1424 avgUs=0.87 maxMs=0.780 totalMs=1.23 usPerGameTick=0.87
+ ActiveAssignmentMaintenance calls=1424 avgUs=4.99 maxMs=1.312 totalMs=7.11 usPerGameTick=4.99
+ PeriodicCleanup calls=29 avgUs=173.09 maxMs=2.935 totalMs=5.02 usPerGameTick=3.53
+ ScheduleRebuild calls=18 avgUs=27082.72 maxMs=443.709 totalMs=487.49 usPerGameTick=342.34
+ CarePlanning calls=18 avgUs=638.37 maxMs=5.965 totalMs=11.49 usPerGameTick=8.07
+ UnifiedMatching calls=18 avgUs=2595.62 maxMs=39.341 totalMs=46.72 usPerGameTick=32.81
+ UnifiedEdgeScoring calls=380 avgUs=117.10 maxMs=23.203 totalMs=44.50 usPerGameTick=31.25
+ PickupReachability calls=131 avgUs=2.59 maxMs=0.174 totalMs=0.34 usPerGameTick=0.24
+ TransportMatching calls=18 avgUs=2033.88 maxMs=16.482 totalMs=36.61 usPerGameTick=25.71
+ WakePendingWorkers calls=18 avgUs=465.98 maxMs=8.082 totalMs=8.39 usPerGameTick=5.89
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=1754 rebuilds(global/request)=20/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=17/6/7 pickupReachCache(hit/miss)=3458/131 transportNoWorkerSkips=16
+ graphs unified(last/maxEdges)=0x36/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=1754 avgUs=289.42 maxMs=450.665 totalMs=507.64 usPerGameTick=289.42
+ PendingAndWake calls=1754 avgUs=0.61 maxMs=0.118 totalMs=1.08 usPerGameTick=0.61
+ TreatmentMonitoring calls=1754 avgUs=0.73 maxMs=0.780 totalMs=1.28 usPerGameTick=0.73
+ ActiveAssignmentMaintenance calls=1754 avgUs=4.37 maxMs=1.312 totalMs=7.67 usPerGameTick=4.37
+ PeriodicCleanup calls=35 avgUs=152.45 maxMs=2.935 totalMs=5.34 usPerGameTick=3.04
+ ScheduleRebuild calls=20 avgUs=24476.06 maxMs=443.709 totalMs=489.52 usPerGameTick=279.09
+ CarePlanning calls=20 avgUs=605.16 maxMs=5.965 totalMs=12.10 usPerGameTick=6.90
+ UnifiedMatching calls=20 avgUs=2336.66 maxMs=39.341 totalMs=46.73 usPerGameTick=26.64
+ UnifiedEdgeScoring calls=380 avgUs=117.10 maxMs=23.203 totalMs=44.50 usPerGameTick=25.37
+ PickupReachability calls=131 avgUs=2.59 maxMs=0.174 totalMs=0.34 usPerGameTick=0.19
+ TransportMatching calls=20 avgUs=1844.43 maxMs=16.482 totalMs=36.89 usPerGameTick=21.03
+ WakePendingWorkers calls=20 avgUs=419.44 maxMs=8.082 totalMs=8.39 usPerGameTick=4.78
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=2140 rebuilds(global/request)=23/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=19/7/8 pickupReachCache(hit/miss)=5303/456 transportNoWorkerSkips=16
+ graphs unified(last/maxEdges)=1x35/272 transport(last/maxEdges)=1x29/120
+ MapTick calls=2140 avgUs=249.82 maxMs=450.665 totalMs=534.62 usPerGameTick=249.82
+ PendingAndWake calls=2140 avgUs=3.33 maxMs=0.118 totalMs=7.12 usPerGameTick=3.33
+ TreatmentMonitoring calls=2140 avgUs=0.65 maxMs=0.780 totalMs=1.39 usPerGameTick=0.65
+ ActiveAssignmentMaintenance calls=2140 avgUs=4.15 maxMs=1.312 totalMs=8.88 usPerGameTick=4.15
+ PeriodicCleanup calls=42 avgUs=140.10 maxMs=2.935 totalMs=5.88 usPerGameTick=2.75
+ ScheduleRebuild calls=23 avgUs=22108.87 maxMs=443.709 totalMs=508.50 usPerGameTick=237.62
+ CarePlanning calls=23 avgUs=567.41 maxMs=5.965 totalMs=13.05 usPerGameTick=6.10
+ UnifiedMatching calls=23 avgUs=2398.69 maxMs=39.341 totalMs=55.17 usPerGameTick=25.78
+ UnifiedEdgeScoring calls=594 avgUs=88.96 maxMs=23.203 totalMs=52.84 usPerGameTick=24.69
+ PickupReachability calls=456 avgUs=1.55 maxMs=0.174 totalMs=0.71 usPerGameTick=0.33
+ TransportMatching calls=23 avgUs=1931.82 maxMs=16.482 totalMs=44.43 usPerGameTick=20.76
+ WakePendingWorkers calls=23 avgUs=375.90 maxMs=8.082 totalMs=8.65 usPerGameTick=4.04
+Resolution too small (0x0), resetting UI scale to 2.
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=2524 rebuilds(global/request)=41/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=38/17/16 pickupReachCache(hit/miss)=11546/1798 transportNoWorkerSkips=23
+ graphs unified(last/maxEdges)=0x37/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=2524 avgUs=248.85 maxMs=450.665 totalMs=628.10 usPerGameTick=248.85
+ PendingAndWake calls=2524 avgUs=5.45 maxMs=0.231 totalMs=13.75 usPerGameTick=5.45
+ TreatmentMonitoring calls=2524 avgUs=3.70 maxMs=3.263 totalMs=9.33 usPerGameTick=3.70
+ ActiveAssignmentMaintenance calls=2524 avgUs=4.46 maxMs=1.312 totalMs=11.27 usPerGameTick=4.46
+ PeriodicCleanup calls=57 avgUs=116.07 maxMs=2.935 totalMs=6.62 usPerGameTick=2.62
+ ScheduleRebuild calls=41 avgUs=14249.22 maxMs=443.709 totalMs=584.22 usPerGameTick=231.47
+ CarePlanning calls=41 avgUs=467.43 maxMs=5.965 totalMs=19.16 usPerGameTick=7.59
+ UnifiedMatching calls=41 avgUs=1998.10 maxMs=39.341 totalMs=81.92 usPerGameTick=32.46
+ UnifiedEdgeScoring calls=1270 avgUs=62.46 maxMs=23.203 totalMs=79.32 usPerGameTick=31.43
+ PickupReachability calls=1798 avgUs=0.95 maxMs=0.174 totalMs=1.71 usPerGameTick=0.68
+ TransportMatching calls=41 avgUs=1768.52 maxMs=16.482 totalMs=72.51 usPerGameTick=28.73
+ WakePendingWorkers calls=41 avgUs=349.36 maxMs=8.082 totalMs=14.32 usPerGameTick=5.67
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=2873 rebuilds(global/request)=46/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=41/19/17 pickupReachCache(hit/miss)=13044/2487 transportNoWorkerSkips=26
+ graphs unified(last/maxEdges)=2x40/272 transport(last/maxEdges)=2x36/120
+ MapTick calls=2873 avgUs=230.53 maxMs=450.665 totalMs=662.31 usPerGameTick=230.53
+ PendingAndWake calls=2873 avgUs=5.27 maxMs=0.231 totalMs=15.13 usPerGameTick=5.27
+ TreatmentMonitoring calls=2873 avgUs=5.09 maxMs=3.263 totalMs=14.63 usPerGameTick=5.09
+ ActiveAssignmentMaintenance calls=2873 avgUs=4.30 maxMs=1.312 totalMs=12.34 usPerGameTick=4.30
+ PeriodicCleanup calls=63 avgUs=110.93 maxMs=2.935 totalMs=6.99 usPerGameTick=2.43
+ ScheduleRebuild calls=46 avgUs=13265.60 maxMs=443.709 totalMs=610.22 usPerGameTick=212.40
+ CarePlanning calls=46 avgUs=454.27 maxMs=5.965 totalMs=20.90 usPerGameTick=7.27
+ UnifiedMatching calls=46 avgUs=1912.38 maxMs=39.341 totalMs=87.97 usPerGameTick=30.62
+ UnifiedEdgeScoring calls=1428 avgUs=59.71 maxMs=23.203 totalMs=85.27 usPerGameTick=29.68
+ PickupReachability calls=2487 avgUs=0.85 maxMs=0.174 totalMs=2.11 usPerGameTick=0.73
+ TransportMatching calls=46 avgUs=1834.31 maxMs=16.482 totalMs=84.38 usPerGameTick=29.37
+ WakePendingWorkers calls=46 avgUs=322.42 maxMs=8.082 totalMs=14.83 usPerGameTick=5.16
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=3190 rebuilds(global/request)=50/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=48/22/21 pickupReachCache(hit/miss)=13822/4400 transportNoWorkerSkips=29
+ graphs unified(last/maxEdges)=0x39/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=3190 avgUs=223.91 maxMs=450.665 totalMs=714.27 usPerGameTick=223.91
+ PendingAndWake calls=3190 avgUs=5.28 maxMs=0.231 totalMs=16.84 usPerGameTick=5.28
+ TreatmentMonitoring calls=3190 avgUs=12.82 maxMs=11.936 totalMs=40.89 usPerGameTick=12.82
+ ActiveAssignmentMaintenance calls=3190 avgUs=4.32 maxMs=1.312 totalMs=13.78 usPerGameTick=4.32
+ PeriodicCleanup calls=72 avgUs=124.62 maxMs=2.935 totalMs=8.97 usPerGameTick=2.81
+ ScheduleRebuild calls=50 avgUs=12613.21 maxMs=443.709 totalMs=630.66 usPerGameTick=197.70
+ CarePlanning calls=50 avgUs=448.89 maxMs=5.965 totalMs=22.44 usPerGameTick=7.04
+ UnifiedMatching calls=50 avgUs=1851.42 maxMs=39.341 totalMs=92.57 usPerGameTick=29.02
+ UnifiedEdgeScoring calls=1508 avgUs=59.55 maxMs=23.203 totalMs=89.80 usPerGameTick=28.15
+ PickupReachability calls=4400 avgUs=0.71 maxMs=0.174 totalMs=3.15 usPerGameTick=0.99
+ TransportMatching calls=50 avgUs=1907.02 maxMs=16.482 totalMs=95.35 usPerGameTick=29.89
+ WakePendingWorkers calls=50 avgUs=300.12 maxMs=8.082 totalMs=15.01 usPerGameTick=4.70
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=3520 rebuilds(global/request)=56/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=59/29/27 pickupReachCache(hit/miss)=15507/7925 transportNoWorkerSkips=33
+ graphs unified(last/maxEdges)=1x39/272 transport(last/maxEdges)=1x40/120
+ MapTick calls=3520 avgUs=217.78 maxMs=450.665 totalMs=766.57 usPerGameTick=217.78
+ PendingAndWake calls=3520 avgUs=5.35 maxMs=0.231 totalMs=18.84 usPerGameTick=5.35
+ TreatmentMonitoring calls=3520 avgUs=19.61 maxMs=11.936 totalMs=69.04 usPerGameTick=19.61
+ ActiveAssignmentMaintenance calls=3520 avgUs=4.44 maxMs=1.312 totalMs=15.61 usPerGameTick=4.44
+ PeriodicCleanup calls=81 avgUs=119.38 maxMs=2.935 totalMs=9.67 usPerGameTick=2.75
+ ScheduleRebuild calls=56 avgUs=11610.18 maxMs=443.709 totalMs=650.17 usPerGameTick=184.71
+ CarePlanning calls=56 avgUs=436.64 maxMs=5.965 totalMs=24.45 usPerGameTick=6.95
+ UnifiedMatching calls=56 avgUs=1775.96 maxMs=39.341 totalMs=99.45 usPerGameTick=28.25
+ UnifiedEdgeScoring calls=1665 avgUs=57.98 maxMs=23.203 totalMs=96.54 usPerGameTick=27.43
+ PickupReachability calls=7925 avgUs=0.65 maxMs=0.174 totalMs=5.13 usPerGameTick=1.46
+ TransportMatching calls=56 avgUs=1827.20 maxMs=16.482 totalMs=102.32 usPerGameTick=29.07
+ WakePendingWorkers calls=56 avgUs=272.67 maxMs=8.082 totalMs=15.27 usPerGameTick=4.34
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=3844 rebuilds(global/request)=58/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=59/29/27 pickupReachCache(hit/miss)=16613/9843 transportNoWorkerSkips=33
+ graphs unified(last/maxEdges)=1x39/272 transport(last/maxEdges)=1x40/120
+ MapTick calls=3844 avgUs=207.83 maxMs=450.665 totalMs=798.92 usPerGameTick=207.83
+ PendingAndWake calls=3844 avgUs=5.49 maxMs=0.231 totalMs=21.09 usPerGameTick=5.49
+ TreatmentMonitoring calls=3844 avgUs=22.18 maxMs=11.936 totalMs=85.28 usPerGameTick=22.18
+ ActiveAssignmentMaintenance calls=3844 avgUs=4.32 maxMs=1.312 totalMs=16.62 usPerGameTick=4.32
+ PeriodicCleanup calls=87 avgUs=114.87 maxMs=2.935 totalMs=9.99 usPerGameTick=2.60
+ ScheduleRebuild calls=58 avgUs=11423.53 maxMs=443.709 totalMs=662.56 usPerGameTick=172.36
+ CarePlanning calls=58 avgUs=433.00 maxMs=5.965 totalMs=25.11 usPerGameTick=6.53
+ UnifiedMatching calls=58 avgUs=1754.77 maxMs=39.341 totalMs=101.78 usPerGameTick=26.48
+ UnifiedEdgeScoring calls=1743 avgUs=56.70 maxMs=23.203 totalMs=98.83 usPerGameTick=25.71
+ PickupReachability calls=9843 avgUs=0.63 maxMs=0.174 totalMs=6.20 usPerGameTick=1.61
+ TransportMatching calls=58 avgUs=1903.72 maxMs=16.482 totalMs=110.42 usPerGameTick=28.72
+ WakePendingWorkers calls=58 avgUs=265.12 maxMs=8.082 totalMs=15.38 usPerGameTick=4.00
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4151 rebuilds(global/request)=62/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=64/32/29 pickupReachCache(hit/miss)=18249/10705 transportNoWorkerSkips=36
+ graphs unified(last/maxEdges)=2x40/272 transport(last/maxEdges)=1x41/120
+ MapTick calls=4151 avgUs=203.69 maxMs=450.665 totalMs=845.51 usPerGameTick=203.69
+ PendingAndWake calls=4151 avgUs=7.92 maxMs=3.131 totalMs=32.86 usPerGameTick=7.92
+ TreatmentMonitoring calls=4151 avgUs=22.55 maxMs=11.936 totalMs=93.61 usPerGameTick=22.55
+ ActiveAssignmentMaintenance calls=4151 avgUs=4.23 maxMs=1.312 totalMs=17.56 usPerGameTick=4.23
+ PeriodicCleanup calls=93 avgUs=111.26 maxMs=2.935 totalMs=10.35 usPerGameTick=2.49
+ ScheduleRebuild calls=62 avgUs=11091.07 maxMs=443.709 totalMs=687.65 usPerGameTick=165.66
+ CarePlanning calls=62 avgUs=433.68 maxMs=5.965 totalMs=26.89 usPerGameTick=6.48
+ UnifiedMatching calls=62 avgUs=1898.47 maxMs=39.341 totalMs=117.71 usPerGameTick=28.36
+ UnifiedEdgeScoring calls=1943 avgUs=58.97 maxMs=23.203 totalMs=114.57 usPerGameTick=27.60
+ PickupReachability calls=10705 avgUs=0.64 maxMs=0.174 totalMs=6.90 usPerGameTick=1.66
+ TransportMatching calls=62 avgUs=1847.25 maxMs=16.482 totalMs=114.53 usPerGameTick=27.59
+ WakePendingWorkers calls=62 avgUs=250.10 maxMs=8.082 totalMs=15.51 usPerGameTick=3.74
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4491 rebuilds(global/request)=65/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=66/33/30 pickupReachCache(hit/miss)=19078/11359 transportNoWorkerSkips=39
+ graphs unified(last/maxEdges)=1x40/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=4491 avgUs=195.00 maxMs=450.665 totalMs=875.75 usPerGameTick=195.00
+ PendingAndWake calls=4491 avgUs=9.88 maxMs=3.131 totalMs=44.36 usPerGameTick=9.88
+ TreatmentMonitoring calls=4491 avgUs=21.60 maxMs=11.936 totalMs=97.02 usPerGameTick=21.60
+ ActiveAssignmentMaintenance calls=4491 avgUs=4.12 maxMs=1.312 totalMs=18.51 usPerGameTick=4.12
+ PeriodicCleanup calls=99 avgUs=107.95 maxMs=2.935 totalMs=10.69 usPerGameTick=2.38
+ ScheduleRebuild calls=65 avgUs=10792.98 maxMs=443.709 totalMs=701.54 usPerGameTick=156.21
+ CarePlanning calls=65 avgUs=438.93 maxMs=5.965 totalMs=28.53 usPerGameTick=6.35
+ UnifiedMatching calls=65 avgUs=1960.26 maxMs=39.341 totalMs=127.42 usPerGameTick=28.37
+ UnifiedEdgeScoring calls=2064 avgUs=60.18 maxMs=23.203 totalMs=124.21 usPerGameTick=27.66
+ PickupReachability calls=11359 avgUs=0.67 maxMs=0.174 totalMs=7.57 usPerGameTick=1.69
+ TransportMatching calls=65 avgUs=1769.35 maxMs=16.482 totalMs=115.01 usPerGameTick=25.61
+ WakePendingWorkers calls=65 avgUs=239.06 maxMs=8.082 totalMs=15.54 usPerGameTick=3.46
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4856 rebuilds(global/request)=72/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=73/37/34 pickupReachCache(hit/miss)=20431/11725 transportNoWorkerSkips=44
+ graphs unified(last/maxEdges)=0x41/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=4856 avgUs=185.96 maxMs=450.665 totalMs=903.02 usPerGameTick=185.96
+ PendingAndWake calls=4856 avgUs=9.61 maxMs=3.131 totalMs=46.68 usPerGameTick=9.61
+ TreatmentMonitoring calls=4856 avgUs=20.70 maxMs=11.936 totalMs=100.54 usPerGameTick=20.70
+ ActiveAssignmentMaintenance calls=4856 avgUs=4.05 maxMs=1.312 totalMs=19.67 usPerGameTick=4.05
+ PeriodicCleanup calls=109 avgUs=102.80 maxMs=2.935 totalMs=11.21 usPerGameTick=2.31
+ ScheduleRebuild calls=72 avgUs=10016.23 maxMs=443.709 totalMs=721.17 usPerGameTick=148.51
+ CarePlanning calls=72 avgUs=432.18 maxMs=5.965 totalMs=31.12 usPerGameTick=6.41
+ UnifiedMatching calls=72 avgUs=1847.83 maxMs=39.341 totalMs=133.04 usPerGameTick=27.40
+ UnifiedEdgeScoring calls=2186 avgUs=59.36 maxMs=23.203 totalMs=129.76 usPerGameTick=26.72
+ PickupReachability calls=11725 avgUs=0.67 maxMs=0.174 totalMs=7.83 usPerGameTick=1.61
+ TransportMatching calls=72 avgUs=1691.93 maxMs=16.482 totalMs=121.82 usPerGameTick=25.09
+ WakePendingWorkers calls=72 avgUs=223.38 maxMs=8.082 totalMs=16.08 usPerGameTick=3.31
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=5181 rebuilds(global/request)=78/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=80/41/38 pickupReachCache(hit/miss)=22268/12389 transportNoWorkerSkips=47
+ graphs unified(last/maxEdges)=0x42/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=5181 avgUs=181.29 maxMs=450.665 totalMs=939.27 usPerGameTick=181.29
+ PendingAndWake calls=5181 avgUs=9.51 maxMs=3.131 totalMs=49.27 usPerGameTick=9.51
+ TreatmentMonitoring calls=5181 avgUs=20.84 maxMs=11.936 totalMs=107.98 usPerGameTick=20.84
+ ActiveAssignmentMaintenance calls=5181 avgUs=4.04 maxMs=1.312 totalMs=20.95 usPerGameTick=4.04
+ PeriodicCleanup calls=117 avgUs=99.33 maxMs=2.935 totalMs=11.62 usPerGameTick=2.24
+ ScheduleRebuild calls=78 avgUs=9557.07 maxMs=443.709 totalMs=745.45 usPerGameTick=143.88
+ CarePlanning calls=78 avgUs=425.98 maxMs=5.965 totalMs=33.23 usPerGameTick=6.41
+ UnifiedMatching calls=78 avgUs=1801.81 maxMs=39.341 totalMs=140.54 usPerGameTick=27.13
+ UnifiedEdgeScoring calls=2350 avgUs=58.37 maxMs=23.203 totalMs=137.16 usPerGameTick=26.47
+ PickupReachability calls=12389 avgUs=0.68 maxMs=0.174 totalMs=8.36 usPerGameTick=1.61
+ TransportMatching calls=78 avgUs=1697.88 maxMs=16.482 totalMs=132.43 usPerGameTick=25.56
+ WakePendingWorkers calls=78 avgUs=209.69 maxMs=8.082 totalMs=16.36 usPerGameTick=3.16
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=5528 rebuilds(global/request)=79/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=80/41/38 pickupReachCache(hit/miss)=22268/13340 transportNoWorkerSkips=48
+ graphs unified(last/maxEdges)=0x41/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=5528 avgUs=172.62 maxMs=450.665 totalMs=954.22 usPerGameTick=172.62
+ PendingAndWake calls=5528 avgUs=8.95 maxMs=3.131 totalMs=49.50 usPerGameTick=8.95
+ TreatmentMonitoring calls=5528 avgUs=21.73 maxMs=11.936 totalMs=120.10 usPerGameTick=21.73
+ ActiveAssignmentMaintenance calls=5528 avgUs=3.96 maxMs=1.312 totalMs=21.91 usPerGameTick=3.96
+ PeriodicCleanup calls=123 avgUs=97.79 maxMs=2.935 totalMs=12.03 usPerGameTick=2.18
+ ScheduleRebuild calls=79 avgUs=9449.90 maxMs=443.709 totalMs=746.54 usPerGameTick=135.05
+ CarePlanning calls=79 avgUs=425.04 maxMs=5.965 totalMs=33.58 usPerGameTick=6.07
+ UnifiedMatching calls=79 avgUs=1779.09 maxMs=39.341 totalMs=140.55 usPerGameTick=25.42
+ UnifiedEdgeScoring calls=2350 avgUs=58.37 maxMs=23.203 totalMs=137.16 usPerGameTick=24.81
+ PickupReachability calls=13340 avgUs=0.68 maxMs=0.174 totalMs=9.05 usPerGameTick=1.64
+ TransportMatching calls=79 avgUs=1678.48 maxMs=16.482 totalMs=132.60 usPerGameTick=23.99
+ WakePendingWorkers calls=79 avgUs=207.05 maxMs=8.082 totalMs=16.36 usPerGameTick=2.96
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=5839 rebuilds(global/request)=81/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=80/41/38 pickupReachCache(hit/miss)=22268/14000 transportNoWorkerSkips=50
+ graphs unified(last/maxEdges)=0x41/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=5839 avgUs=165.17 maxMs=450.665 totalMs=964.42 usPerGameTick=165.17
+ PendingAndWake calls=5839 avgUs=8.53 maxMs=3.131 totalMs=49.78 usPerGameTick=8.53
+ TreatmentMonitoring calls=5839 avgUs=21.64 maxMs=11.936 totalMs=126.36 usPerGameTick=21.64
+ ActiveAssignmentMaintenance calls=5839 avgUs=3.86 maxMs=1.312 totalMs=22.54 usPerGameTick=3.86
+ PeriodicCleanup calls=128 avgUs=96.00 maxMs=2.935 totalMs=12.29 usPerGameTick=2.10
+ ScheduleRebuild calls=81 avgUs=9249.19 maxMs=443.709 totalMs=749.18 usPerGameTick=128.31
+ CarePlanning calls=81 avgUs=424.27 maxMs=5.965 totalMs=34.37 usPerGameTick=5.89
+ UnifiedMatching calls=81 avgUs=1735.50 maxMs=39.341 totalMs=140.58 usPerGameTick=24.08
+ UnifiedEdgeScoring calls=2350 avgUs=58.37 maxMs=23.203 totalMs=137.16 usPerGameTick=23.49
+ PickupReachability calls=14000 avgUs=0.67 maxMs=0.174 totalMs=9.42 usPerGameTick=1.61
+ TransportMatching calls=81 avgUs=1641.65 maxMs=16.482 totalMs=132.97 usPerGameTick=22.77
+ WakePendingWorkers calls=81 avgUs=201.95 maxMs=8.082 totalMs=16.36 usPerGameTick=2.80
+[SAR engine] full_d5p34h4r0 observed score=-1000000000.00 deaths=0
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=6176 rebuilds(global/request)=83/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=84/42/42 pickupReachCache(hit/miss)=22588/14967 transportNoWorkerSkips=52
+ graphs unified(last/maxEdges)=1x41/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=6176 avgUs=159.88 maxMs=450.665 totalMs=987.43 usPerGameTick=159.88
+ PendingAndWake calls=6176 avgUs=8.09 maxMs=3.131 totalMs=49.95 usPerGameTick=8.09
+ TreatmentMonitoring calls=6176 avgUs=22.87 maxMs=11.936 totalMs=141.27 usPerGameTick=22.87
+ ActiveAssignmentMaintenance calls=6176 avgUs=3.77 maxMs=1.312 totalMs=23.27 usPerGameTick=3.77
+ PeriodicCleanup calls=136 avgUs=99.17 maxMs=2.935 totalMs=13.49 usPerGameTick=2.18
+ ScheduleRebuild calls=83 avgUs=9097.02 maxMs=443.709 totalMs=755.05 usPerGameTick=122.26
+ CarePlanning calls=83 avgUs=423.04 maxMs=5.965 totalMs=35.11 usPerGameTick=5.69
+ UnifiedMatching calls=83 avgUs=1732.80 maxMs=39.341 totalMs=143.82 usPerGameTick=23.29
+ UnifiedEdgeScoring calls=2391 avgUs=58.71 maxMs=23.203 totalMs=140.38 usPerGameTick=22.73
+ PickupReachability calls=14967 avgUs=0.66 maxMs=0.174 totalMs=9.93 usPerGameTick=1.61
+ TransportMatching calls=83 avgUs=1607.77 maxMs=16.482 totalMs=133.44 usPerGameTick=21.61
+ WakePendingWorkers calls=83 avgUs=198.18 maxMs=8.082 totalMs=16.45 usPerGameTick=2.66
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=6176 rebuilds(global/request)=83/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=84/42/42 pickupReachCache(hit/miss)=22588/14967 transportNoWorkerSkips=52
+ graphs unified(last/maxEdges)=1x41/272 transport(last/maxEdges)=0x0/120
+ MapTick calls=6176 avgUs=159.88 maxMs=450.665 totalMs=987.43 usPerGameTick=159.88
+ PendingAndWake calls=6176 avgUs=8.09 maxMs=3.131 totalMs=49.95 usPerGameTick=8.09
+ TreatmentMonitoring calls=6176 avgUs=22.87 maxMs=11.936 totalMs=141.27 usPerGameTick=22.87
+ ActiveAssignmentMaintenance calls=6176 avgUs=3.77 maxMs=1.312 totalMs=23.27 usPerGameTick=3.77
+ PeriodicCleanup calls=136 avgUs=99.17 maxMs=2.935 totalMs=13.49 usPerGameTick=2.18
+ ScheduleRebuild calls=83 avgUs=9097.02 maxMs=443.709 totalMs=755.05 usPerGameTick=122.26
+ CarePlanning calls=83 avgUs=423.04 maxMs=5.965 totalMs=35.11 usPerGameTick=5.69
+ UnifiedMatching calls=83 avgUs=1732.80 maxMs=39.341 totalMs=143.82 usPerGameTick=23.29
+ UnifiedEdgeScoring calls=2391 avgUs=58.71 maxMs=23.203 totalMs=140.38 usPerGameTick=22.73
+ PickupReachability calls=14967 avgUs=0.66 maxMs=0.174 totalMs=9.93 usPerGameTick=1.61
+ TransportMatching calls=83 avgUs=1607.77 maxMs=16.482 totalMs=133.44 usPerGameTick=21.61
+ WakePendingWorkers calls=83 avgUs=198.18 maxMs=8.082 totalMs=16.45 usPerGameTick=2.66
+[Search and Rescue] Performance profiling stopped.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 16431.
+Total: 74.655500 ms (FindLiveObjects: 0.580400 ms CreateObjectMapping: 0.185000 ms MarkObjects: 73.880300 ms  DeleteObjects: 0.009600 ms)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0)
+[PhysX] Initialized MultithreadedTaskDispatcher with 16 workers.
+UnloadTime: 0.482900 ms
+Unloading 3 unused Assets to reduce memory usage. Loaded Objects now: 16371.
+Total: 63.780300 ms (FindLiveObjects: 0.640600 ms CreateObjectMapping: 0.194400 ms MarkObjects: 62.894600 ms  DeleteObjects: 0.050200 ms)
+
+Loading game from file d40p272h32r9_Initial with mods:
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - sarg.smartspeed
+  - ch4acko3.coordination91d6990e8bf74b5fbcc3eedb4e046d0b
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 0 unused Assets to reduce memory usage. Loaded Objects now: 21631.
+Total: 92.033300 ms (FindLiveObjects: 0.795200 ms CreateObjectMapping: 0.250000 ms MarkObjects: 90.975700 ms  DeleteObjects: 0.011800 ms)
+
+[SAR engine] Begin combined_d40p272h32r1 seed=709
+[Search and Rescue] Performance profiling started. Use 'Dump performance profile' for a snapshot or 'Stop performance profile' to finish.
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=312 rebuilds(global/request)=43/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=105/56/19 pickupReachCache(hit/miss)=48720/33172 transportNoWorkerSkips=16
+ graphs unified(last/maxEdges)=4x266/18768 transport(last/maxEdges)=4x257/7564
+ MapTick calls=312 avgUs=23985.29 maxMs=844.402 totalMs=7483.41 usPerGameTick=23985.29
+ PendingAndWake calls=312 avgUs=62.79 maxMs=0.305 totalMs=19.59 usPerGameTick=62.79
+ TreatmentMonitoring calls=312 avgUs=3443.23 maxMs=843.969 totalMs=1074.29 usPerGameTick=3443.23
+ ActiveAssignmentMaintenance calls=312 avgUs=67.04 maxMs=1.892 totalMs=20.92 usPerGameTick=67.04
+ PeriodicCleanup calls=22 avgUs=273.93 maxMs=0.484 totalMs=6.03 usPerGameTick=19.32
+ ScheduleRebuild calls=43 avgUs=147961.12 maxMs=598.513 totalMs=6362.33 usPerGameTick=20392.08
+ CarePlanning calls=43 avgUs=2413.73 maxMs=3.904 totalMs=103.79 usPerGameTick=332.66
+ UnifiedMatching calls=43 avgUs=80468.06 maxMs=530.800 totalMs=3460.13 usPerGameTick=11090.15
+ UnifiedEdgeScoring calls=19502 avgUs=173.98 maxMs=6.931 totalMs=3392.95 usPerGameTick=10874.85
+ PickupReachability calls=33172 avgUs=1.67 maxMs=0.077 totalMs=55.44 usPerGameTick=177.69
+ TransportMatching calls=43 avgUs=49771.58 maxMs=138.671 totalMs=2140.18 usPerGameTick=6859.54
+ WakePendingWorkers calls=43 avgUs=474.17 maxMs=17.685 totalMs=20.39 usPerGameTick=65.35
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=638 rebuilds(global/request)=52/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=110/60/22 pickupReachCache(hit/miss)=67297/38364 transportNoWorkerSkips=16
+ graphs unified(last/maxEdges)=2x267/18768 transport(last/maxEdges)=2x256/7564
+ MapTick calls=638 avgUs=14624.60 maxMs=844.402 totalMs=9330.50 usPerGameTick=14624.60
+ PendingAndWake calls=638 avgUs=115.19 maxMs=8.082 totalMs=73.49 usPerGameTick=115.19
+ TreatmentMonitoring calls=638 avgUs=1988.83 maxMs=843.969 totalMs=1268.87 usPerGameTick=1988.83
+ ActiveAssignmentMaintenance calls=638 avgUs=46.04 maxMs=1.892 totalMs=29.37 usPerGameTick=46.04
+ PeriodicCleanup calls=29 avgUs=286.05 maxMs=0.484 totalMs=8.30 usPerGameTick=13.00
+ ScheduleRebuild calls=52 avgUs=152886.35 maxMs=598.513 totalMs=7950.09 usPerGameTick=12460.96
+ CarePlanning calls=52 avgUs=2472.50 maxMs=6.305 totalMs=128.57 usPerGameTick=201.52
+ UnifiedMatching calls=52 avgUs=79570.58 maxMs=530.800 totalMs=4137.67 usPerGameTick=6485.38
+ UnifiedEdgeScoring calls=24005 avgUs=169.18 maxMs=7.021 totalMs=4061.13 usPerGameTick=6365.40
+ PickupReachability calls=38364 avgUs=1.62 maxMs=0.077 totalMs=62.02 usPerGameTick=97.20
+ TransportMatching calls=52 avgUs=55009.82 maxMs=138.671 totalMs=2860.51 usPerGameTick=4483.56
+ WakePendingWorkers calls=52 avgUs=489.52 maxMs=17.685 totalMs=25.45 usPerGameTick=39.90
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=947 rebuilds(global/request)=61/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=122/66/28 pickupReachCache(hit/miss)=73399/39479 transportNoWorkerSkips=22
+ graphs unified(last/maxEdges)=1x269/18768 transport(last/maxEdges)=1x260/7564
+ MapTick calls=947 avgUs=10402.32 maxMs=844.402 totalMs=9851.00 usPerGameTick=10402.32
+ PendingAndWake calls=947 avgUs=82.50 maxMs=8.082 totalMs=78.13 usPerGameTick=82.50
+ TreatmentMonitoring calls=947 avgUs=1369.72 maxMs=843.969 totalMs=1297.12 usPerGameTick=1369.72
+ ActiveAssignmentMaintenance calls=947 avgUs=40.67 maxMs=1.892 totalMs=38.51 usPerGameTick=40.67
+ PeriodicCleanup calls=40 avgUs=276.31 maxMs=0.484 totalMs=11.05 usPerGameTick=11.67
+ ScheduleRebuild calls=61 avgUs=138126.54 maxMs=598.513 totalMs=8425.72 usPerGameTick=8897.27
+ CarePlanning calls=61 avgUs=2442.73 maxMs=6.305 totalMs=149.01 usPerGameTick=157.35
+ UnifiedMatching calls=61 avgUs=67868.24 maxMs=530.800 totalMs=4139.96 usPerGameTick=4371.66
+ UnifiedEdgeScoring calls=24066 avgUs=168.77 maxMs=7.021 totalMs=4061.65 usPerGameTick=4288.96
+ PickupReachability calls=39479 avgUs=1.61 maxMs=0.077 totalMs=63.48 usPerGameTick=67.04
+ TransportMatching calls=61 avgUs=52097.64 maxMs=138.671 totalMs=3177.96 usPerGameTick=3355.81
+ WakePendingWorkers calls=61 avgUs=425.84 maxMs=17.685 totalMs=25.98 usPerGameTick=27.43
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=1253 rebuilds(global/request)=79/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=150/74/50 pickupReachCache(hit/miss)=102272/39738 transportNoWorkerSkips=26
+ graphs unified(last/maxEdges)=2x269/18768 transport(last/maxEdges)=2x263/7564
+ MapTick calls=1253 avgUs=9250.05 maxMs=844.402 totalMs=11590.31 usPerGameTick=9250.05
+ PendingAndWake calls=1253 avgUs=73.20 maxMs=8.082 totalMs=91.72 usPerGameTick=73.20
+ TreatmentMonitoring calls=1253 avgUs=1035.68 maxMs=843.969 totalMs=1297.71 usPerGameTick=1035.68
+ ActiveAssignmentMaintenance calls=1253 avgUs=37.49 maxMs=1.892 totalMs=46.97 usPerGameTick=37.49
+ PeriodicCleanup calls=58 avgUs=259.08 maxMs=0.484 totalMs=15.03 usPerGameTick=11.99
+ ScheduleRebuild calls=79 avgUs=128332.27 maxMs=598.513 totalMs=10138.25 usPerGameTick=8091.18
+ CarePlanning calls=79 avgUs=2413.28 maxMs=6.305 totalMs=190.65 usPerGameTick=152.15
+ UnifiedMatching calls=79 avgUs=52487.64 maxMs=530.800 totalMs=4146.52 usPerGameTick=3309.28
+ UnifiedEdgeScoring calls=24262 avgUs=167.52 maxMs=7.021 totalMs=4064.40 usPerGameTick=3243.74
+ PickupReachability calls=39738 avgUs=1.61 maxMs=0.077 totalMs=63.92 usPerGameTick=51.01
+ TransportMatching calls=79 avgUs=58061.05 maxMs=141.067 totalMs=4586.82 usPerGameTick=3660.67
+ WakePendingWorkers calls=79 avgUs=395.77 maxMs=17.685 totalMs=31.27 usPerGameTick=24.95
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=1554 rebuilds(global/request)=91/0 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=172/86/63 pickupReachCache(hit/miss)=113935/44085 transportNoWorkerSkips=32
+ graphs unified(last/maxEdges)=0x270/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=1554 avgUs=8111.16 maxMs=844.402 totalMs=12604.75 usPerGameTick=8111.16
+ PendingAndWake calls=1554 avgUs=61.06 maxMs=8.082 totalMs=94.88 usPerGameTick=61.06
+ TreatmentMonitoring calls=1554 avgUs=944.92 maxMs=843.969 totalMs=1468.41 usPerGameTick=944.92
+ ActiveAssignmentMaintenance calls=1554 avgUs=35.16 maxMs=1.892 totalMs=54.64 usPerGameTick=35.16
+ PeriodicCleanup calls=72 avgUs=255.07 maxMs=0.484 totalMs=18.37 usPerGameTick=11.82
+ ScheduleRebuild calls=91 avgUs=120523.09 maxMs=598.513 totalMs=10967.60 usPerGameTick=7057.66
+ CarePlanning calls=91 avgUs=2374.79 maxMs=6.305 totalMs=216.11 usPerGameTick=139.06
+ UnifiedMatching calls=91 avgUs=45961.87 maxMs=530.800 totalMs=4182.53 usPerGameTick=2691.46
+ UnifiedEdgeScoring calls=24585 avgUs=166.63 maxMs=7.021 totalMs=4096.51 usPerGameTick=2636.11
+ PickupReachability calls=44085 avgUs=1.57 maxMs=0.077 totalMs=69.06 usPerGameTick=44.44
+ TransportMatching calls=91 avgUs=56872.01 maxMs=141.067 totalMs=5175.35 usPerGameTick=3330.34
+ WakePendingWorkers calls=91 avgUs=382.22 maxMs=17.685 totalMs=34.78 usPerGameTick=22.38
+TryMakePreToilReservations() returned false for a non-queued job right after StartJob(). This should have been checked before. pawn = SAR Bench 709 Doctor 16, curJob = TendPatient (Job_2814) A = Thing_Human41204 B = Thing_MedicineIndustrial42224 Giver = JobGiver_Work [workGiverDef: DoctorTendEmergency]
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=1878 rebuilds(global/request)=132/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=238/132/101 pickupReachCache(hit/miss)=188306/74835 transportNoWorkerSkips=38
+ graphs unified(last/maxEdges)=1x257/18768 transport(last/maxEdges)=1x261/7564
+ MapTick calls=1878 avgUs=9516.62 maxMs=844.402 totalMs=17872.21 usPerGameTick=9516.62
+ PendingAndWake calls=1878 avgUs=54.22 maxMs=8.082 totalMs=101.82 usPerGameTick=54.22
+ TreatmentMonitoring calls=1878 avgUs=1265.13 maxMs=843.969 totalMs=2375.92 usPerGameTick=1265.13
+ ActiveAssignmentMaintenance calls=1878 avgUs=35.96 maxMs=1.892 totalMs=67.53 usPerGameTick=35.96
+ PeriodicCleanup calls=99 avgUs=261.42 maxMs=0.489 totalMs=25.88 usPerGameTick=13.78
+ ScheduleRebuild calls=133 avgUs=116027.52 maxMs=598.513 totalMs=15431.66 usPerGameTick=8217.07
+ CarePlanning calls=133 avgUs=2400.72 maxMs=6.305 totalMs=319.30 usPerGameTick=170.02
+ UnifiedMatching calls=133 avgUs=31606.09 maxMs=530.800 totalMs=4203.61 usPerGameTick=2238.34
+ UnifiedEdgeScoring calls=24818 avgUs=165.52 maxMs=7.021 totalMs=4107.79 usPerGameTick=2187.32
+ PickupReachability calls=74835 avgUs=1.62 maxMs=0.258 totalMs=121.59 usPerGameTick=64.75
+ TransportMatching calls=133 avgUs=66361.27 maxMs=175.822 totalMs=8826.05 usPerGameTick=4699.71
+ WakePendingWorkers calls=133 avgUs=390.32 maxMs=17.685 totalMs=51.91 usPerGameTick=27.64
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=2194 rebuilds(global/request)=161/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=273/152/119 pickupReachCache(hit/miss)=222241/98258 transportNoWorkerSkips=51
+ graphs unified(last/maxEdges)=0x256/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=2194 avgUs=9746.97 maxMs=844.402 totalMs=21384.85 usPerGameTick=9746.97
+ PendingAndWake calls=2194 avgUs=49.25 maxMs=8.082 totalMs=108.06 usPerGameTick=49.25
+ TreatmentMonitoring calls=2194 avgUs=1502.05 maxMs=843.969 totalMs=3295.51 usPerGameTick=1502.05
+ ActiveAssignmentMaintenance calls=2194 avgUs=35.71 maxMs=1.892 totalMs=78.36 usPerGameTick=35.71
+ PeriodicCleanup calls=119 avgUs=262.02 maxMs=0.489 totalMs=31.18 usPerGameTick=14.21
+ ScheduleRebuild calls=162 avgUs=111123.72 maxMs=598.513 totalMs=18002.04 usPerGameTick=8205.12
+ CarePlanning calls=162 avgUs=2367.57 maxMs=6.305 totalMs=383.55 usPerGameTick=174.82
+ UnifiedMatching calls=162 avgUs=26004.72 maxMs=530.800 totalMs=4212.77 usPerGameTick=1920.13
+ UnifiedEdgeScoring calls=24863 avgUs=165.35 maxMs=7.021 totalMs=4111.13 usPerGameTick=1873.80
+ PickupReachability calls=98258 avgUs=1.65 maxMs=0.261 totalMs=161.89 usPerGameTick=73.79
+ TransportMatching calls=162 avgUs=67210.30 maxMs=175.822 totalMs=10888.07 usPerGameTick=4962.66
+ WakePendingWorkers calls=162 avgUs=368.20 maxMs=17.685 totalMs=59.65 usPerGameTick=27.19
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=2500 rebuilds(global/request)=176/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=290/162/129 pickupReachCache(hit/miss)=236720/107667 transportNoWorkerSkips=60
+ graphs unified(last/maxEdges)=0x259/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=2500 avgUs=9134.61 maxMs=844.402 totalMs=22836.53 usPerGameTick=9134.61
+ PendingAndWake calls=2500 avgUs=43.79 maxMs=8.082 totalMs=109.46 usPerGameTick=43.79
+ TreatmentMonitoring calls=2500 avgUs=1443.37 maxMs=843.969 totalMs=3608.43 usPerGameTick=1443.37
+ ActiveAssignmentMaintenance calls=2500 avgUs=34.61 maxMs=1.892 totalMs=86.52 usPerGameTick=34.61
+ PeriodicCleanup calls=132 avgUs=260.71 maxMs=0.489 totalMs=34.41 usPerGameTick=13.77
+ ScheduleRebuild calls=177 avgUs=108065.65 maxMs=598.513 totalMs=19127.62 usPerGameTick=7651.05
+ CarePlanning calls=177 avgUs=2356.48 maxMs=6.305 totalMs=417.10 usPerGameTick=166.84
+ UnifiedMatching calls=177 avgUs=23828.00 maxMs=530.800 totalMs=4217.56 usPerGameTick=1687.02
+ UnifiedEdgeScoring calls=24881 avgUs=165.31 maxMs=7.021 totalMs=4113.02 usPerGameTick=1645.21
+ PickupReachability calls=107667 avgUs=1.62 maxMs=0.261 totalMs=174.11 usPerGameTick=69.65
+ TransportMatching calls=177 avgUs=66385.45 maxMs=230.682 totalMs=11750.22 usPerGameTick=4700.09
+ WakePendingWorkers calls=177 avgUs=344.39 maxMs=17.685 totalMs=60.96 usPerGameTick=24.38
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=2808 rebuilds(global/request)=194/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=315/176/144 pickupReachCache(hit/miss)=264183/117497 transportNoWorkerSkips=68
+ graphs unified(last/maxEdges)=1x264/18768 transport(last/maxEdges)=1x275/7564
+ MapTick calls=2808 avgUs=8831.52 maxMs=844.402 totalMs=24798.91 usPerGameTick=8831.52
+ PendingAndWake calls=2808 avgUs=39.63 maxMs=8.082 totalMs=111.28 usPerGameTick=39.63
+ TreatmentMonitoring calls=2808 avgUs=1394.03 maxMs=843.969 totalMs=3914.44 usPerGameTick=1394.03
+ ActiveAssignmentMaintenance calls=2808 avgUs=33.75 maxMs=1.892 totalMs=94.78 usPerGameTick=33.75
+ PeriodicCleanup calls=148 avgUs=263.22 maxMs=0.489 totalMs=38.96 usPerGameTick=13.87
+ ScheduleRebuild calls=195 avgUs=106508.07 maxMs=598.513 totalMs=20769.07 usPerGameTick=7396.39
+ CarePlanning calls=195 avgUs=2362.35 maxMs=6.305 totalMs=460.66 usPerGameTick=164.05
+ UnifiedMatching calls=195 avgUs=21661.37 maxMs=530.800 totalMs=4223.97 usPerGameTick=1504.26
+ UnifiedEdgeScoring calls=24914 avgUs=165.19 maxMs=7.021 totalMs=4115.49 usPerGameTick=1465.63
+ PickupReachability calls=117497 avgUs=1.59 maxMs=0.261 totalMs=187.24 usPerGameTick=66.68
+ TransportMatching calls=195 avgUs=66956.00 maxMs=230.682 totalMs=13056.42 usPerGameTick=4649.72
+ WakePendingWorkers calls=195 avgUs=321.13 maxMs=17.685 totalMs=62.62 usPerGameTick=22.30
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=3113 rebuilds(global/request)=214/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=343/192/160 pickupReachCache(hit/miss)=324340/129105 transportNoWorkerSkips=68
+ graphs unified(last/maxEdges)=3x265/18768 transport(last/maxEdges)=3x276/7564
+ MapTick calls=3113 avgUs=9142.26 maxMs=844.402 totalMs=28459.87 usPerGameTick=9142.26
+ PendingAndWake calls=3113 avgUs=37.72 maxMs=8.082 totalMs=117.43 usPerGameTick=37.72
+ TreatmentMonitoring calls=3113 avgUs=1373.83 maxMs=843.969 totalMs=4276.72 usPerGameTick=1373.83
+ ActiveAssignmentMaintenance calls=3113 avgUs=32.85 maxMs=1.892 totalMs=102.27 usPerGameTick=32.85
+ PeriodicCleanup calls=164 avgUs=264.14 maxMs=0.489 totalMs=43.32 usPerGameTick=13.92
+ ScheduleRebuild calls=215 avgUs=111857.98 maxMs=598.513 totalMs=24049.47 usPerGameTick=7725.49
+ CarePlanning calls=215 avgUs=2353.59 maxMs=6.305 totalMs=506.02 usPerGameTick=162.55
+ UnifiedMatching calls=215 avgUs=19698.11 maxMs=530.800 totalMs=4235.09 usPerGameTick=1360.45
+ UnifiedEdgeScoring calls=25033 avgUs=164.67 maxMs=7.021 totalMs=4122.08 usPerGameTick=1324.15
+ PickupReachability calls=129105 avgUs=1.56 maxMs=0.261 totalMs=201.62 usPerGameTick=64.77
+ TransportMatching calls=215 avgUs=74332.87 maxMs=230.682 totalMs=15981.57 usPerGameTick=5133.82
+ WakePendingWorkers calls=215 avgUs=309.72 maxMs=17.685 totalMs=66.59 usPerGameTick=21.39
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=3436 rebuilds(global/request)=233/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=371/212/177 pickupReachCache(hit/miss)=353265/143890 transportNoWorkerSkips=77
+ graphs unified(last/maxEdges)=2x266/18768 transport(last/maxEdges)=2x272/7564
+ MapTick calls=3436 avgUs=8950.77 maxMs=844.402 totalMs=30754.83 usPerGameTick=8950.77
+ PendingAndWake calls=3436 avgUs=34.65 maxMs=8.082 totalMs=119.05 usPerGameTick=34.65
+ TreatmentMonitoring calls=3436 avgUs=1388.28 maxMs=843.969 totalMs=4770.13 usPerGameTick=1388.28
+ ActiveAssignmentMaintenance calls=3436 avgUs=32.16 maxMs=1.892 totalMs=110.50 usPerGameTick=32.16
+ PeriodicCleanup calls=182 avgUs=266.44 maxMs=0.578 totalMs=48.49 usPerGameTick=14.11
+ ScheduleRebuild calls=234 avgUs=110408.98 maxMs=598.513 totalMs=25835.70 usPerGameTick=7519.12
+ CarePlanning calls=234 avgUs=2345.29 maxMs=6.305 totalMs=548.80 usPerGameTick=159.72
+ UnifiedMatching calls=234 avgUs=18135.82 maxMs=530.800 totalMs=4243.78 usPerGameTick=1235.09
+ UnifiedEdgeScoring calls=25087 avgUs=164.50 maxMs=7.021 totalMs=4126.77 usPerGameTick=1201.04
+ PickupReachability calls=143890 avgUs=1.54 maxMs=0.261 totalMs=221.27 usPerGameTick=64.40
+ TransportMatching calls=234 avgUs=74473.77 maxMs=230.682 totalMs=17426.86 usPerGameTick=5071.85
+ WakePendingWorkers calls=234 avgUs=298.61 maxMs=17.685 totalMs=69.88 usPerGameTick=20.34
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=3738 rebuilds(global/request)=280/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=436/251/212 pickupReachCache(hit/miss)=419545/182041 transportNoWorkerSkips=102
+ graphs unified(last/maxEdges)=1x262/18768 transport(last/maxEdges)=1x272/7564
+ MapTick calls=3738 avgUs=9688.82 maxMs=844.402 totalMs=36216.81 usPerGameTick=9688.82
+ PendingAndWake calls=3738 avgUs=36.90 maxMs=8.082 totalMs=137.94 usPerGameTick=36.90
+ TreatmentMonitoring calls=3738 avgUs=1576.91 maxMs=843.969 totalMs=5894.51 usPerGameTick=1576.91
+ ActiveAssignmentMaintenance calls=3738 avgUs=32.57 maxMs=1.892 totalMs=121.75 usPerGameTick=32.57
+ PeriodicCleanup calls=212 avgUs=267.30 maxMs=0.578 totalMs=56.67 usPerGameTick=15.16
+ ScheduleRebuild calls=281 avgUs=107240.75 maxMs=598.513 totalMs=30134.65 usPerGameTick=8061.70
+ CarePlanning calls=281 avgUs=2346.89 maxMs=6.305 totalMs=659.48 usPerGameTick=176.42
+ UnifiedMatching calls=281 avgUs=15175.99 maxMs=530.800 totalMs=4264.45 usPerGameTick=1140.84
+ UnifiedEdgeScoring calls=25250 avgUs=163.83 maxMs=7.021 totalMs=4136.82 usPerGameTick=1106.69
+ PickupReachability calls=182041 avgUs=1.53 maxMs=0.261 totalMs=279.34 usPerGameTick=74.73
+ TransportMatching calls=281 avgUs=74044.19 maxMs=251.984 totalMs=20806.42 usPerGameTick=5566.19
+ WakePendingWorkers calls=281 avgUs=269.81 maxMs=17.685 totalMs=75.82 usPerGameTick=20.28
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4039 rebuilds(global/request)=316/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=477/273/233 pickupReachCache(hit/miss)=518788/200818 transportNoWorkerSkips=108
+ graphs unified(last/maxEdges)=1x263/18768 transport(last/maxEdges)=1x275/7564
+ MapTick calls=4039 avgUs=10672.89 maxMs=844.402 totalMs=43107.80 usPerGameTick=10672.89
+ PendingAndWake calls=4039 avgUs=37.85 maxMs=8.082 totalMs=152.88 usPerGameTick=37.85
+ TreatmentMonitoring calls=4039 avgUs=1598.73 maxMs=843.969 totalMs=6457.25 usPerGameTick=1598.73
+ ActiveAssignmentMaintenance calls=4039 avgUs=32.67 maxMs=1.892 totalMs=131.95 usPerGameTick=32.67
+ PeriodicCleanup calls=235 avgUs=267.32 maxMs=0.578 totalMs=62.82 usPerGameTick=15.55
+ ScheduleRebuild calls=317 avgUs=114925.13 maxMs=598.513 totalMs=36431.27 usPerGameTick=9019.87
+ CarePlanning calls=317 avgUs=2341.71 maxMs=6.305 totalMs=742.32 usPerGameTick=183.79
+ UnifiedMatching calls=317 avgUs=13503.07 maxMs=530.800 totalMs=4280.47 usPerGameTick=1059.79
+ UnifiedEdgeScoring calls=25379 avgUs=163.32 maxMs=7.021 totalMs=4144.88 usPerGameTick=1026.22
+ PickupReachability calls=200818 avgUs=1.53 maxMs=0.261 totalMs=306.42 usPerGameTick=75.86
+ TransportMatching calls=317 avgUs=83275.85 maxMs=251.984 totalMs=26398.44 usPerGameTick=6535.89
+ WakePendingWorkers calls=317 avgUs=249.93 maxMs=17.685 totalMs=79.23 usPerGameTick=19.62
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4341 rebuilds(global/request)=340/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=508/290/254 pickupReachCache(hit/miss)=603855/212415 transportNoWorkerSkips=111
+ graphs unified(last/maxEdges)=1x264/18768 transport(last/maxEdges)=1x276/7564
+ MapTick calls=4341 avgUs=11183.17 maxMs=844.402 totalMs=48546.13 usPerGameTick=11183.17
+ PendingAndWake calls=4341 avgUs=37.61 maxMs=8.082 totalMs=163.27 usPerGameTick=37.61
+ TreatmentMonitoring calls=4341 avgUs=1568.35 maxMs=843.969 totalMs=6808.20 usPerGameTick=1568.35
+ ActiveAssignmentMaintenance calls=4341 avgUs=32.27 maxMs=1.892 totalMs=140.08 usPerGameTick=32.27
+ PeriodicCleanup calls=255 avgUs=269.81 maxMs=0.751 totalMs=68.80 usPerGameTick=15.85
+ ScheduleRebuild calls=341 avgUs=121682.81 maxMs=598.513 totalMs=41493.84 usPerGameTick=9558.59
+ CarePlanning calls=341 avgUs=2334.70 maxMs=6.305 totalMs=796.13 usPerGameTick=183.40
+ UnifiedMatching calls=341 avgUs=12586.87 maxMs=530.800 totalMs=4292.12 usPerGameTick=988.74
+ UnifiedEdgeScoring calls=25469 avgUs=162.99 maxMs=7.021 totalMs=4151.32 usPerGameTick=956.30
+ PickupReachability calls=212415 avgUs=1.52 maxMs=0.261 totalMs=321.95 usPerGameTick=74.16
+ TransportMatching calls=341 avgUs=91014.17 maxMs=309.856 totalMs=31035.83 usPerGameTick=7149.47
+ WakePendingWorkers calls=341 avgUs=239.18 maxMs=17.685 totalMs=81.56 usPerGameTick=18.79
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4645 rebuilds(global/request)=360/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=534/304/269 pickupReachCache(hit/miss)=634511/226105 transportNoWorkerSkips=124
+ graphs unified(last/maxEdges)=0x262/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=4645 avgUs=11052.56 maxMs=844.402 totalMs=51339.14 usPerGameTick=11052.56
+ PendingAndWake calls=4645 avgUs=36.64 maxMs=8.082 totalMs=170.21 usPerGameTick=36.64
+ TreatmentMonitoring calls=4645 avgUs=1564.40 maxMs=843.969 totalMs=7266.64 usPerGameTick=1564.40
+ ActiveAssignmentMaintenance calls=4645 avgUs=31.66 maxMs=1.892 totalMs=147.07 usPerGameTick=31.66
+ PeriodicCleanup calls=267 avgUs=270.51 maxMs=0.751 totalMs=72.23 usPerGameTick=15.55
+ ScheduleRebuild calls=361 avgUs=121359.46 maxMs=598.513 totalMs=43810.76 usPerGameTick=9431.81
+ CarePlanning calls=361 avgUs=2329.59 maxMs=6.305 totalMs=840.98 usPerGameTick=181.05
+ UnifiedMatching calls=361 avgUs=11905.48 maxMs=530.800 totalMs=4297.88 usPerGameTick=925.27
+ UnifiedEdgeScoring calls=25487 avgUs=162.96 maxMs=7.021 totalMs=4153.41 usPerGameTick=894.17
+ PickupReachability calls=226105 avgUs=1.50 maxMs=0.261 totalMs=338.52 usPerGameTick=72.88
+ TransportMatching calls=361 avgUs=91388.27 maxMs=385.001 totalMs=32991.17 usPerGameTick=7102.51
+ WakePendingWorkers calls=361 avgUs=232.19 maxMs=17.685 totalMs=83.82 usPerGameTick=18.04
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=4946 rebuilds(global/request)=373/1 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=554/317/281 pickupReachCache(hit/miss)=634511/245859 transportNoWorkerSkips=137
+ graphs unified(last/maxEdges)=0x263/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=4946 avgUs=10573.19 maxMs=844.402 totalMs=52295.01 usPerGameTick=10573.19
+ PendingAndWake calls=4946 avgUs=34.47 maxMs=8.082 totalMs=170.48 usPerGameTick=34.47
+ TreatmentMonitoring calls=4946 avgUs=1603.48 maxMs=843.969 totalMs=7930.83 usPerGameTick=1603.48
+ ActiveAssignmentMaintenance calls=4946 avgUs=31.21 maxMs=1.892 totalMs=154.34 usPerGameTick=31.21
+ PeriodicCleanup calls=278 avgUs=272.40 maxMs=0.810 totalMs=75.73 usPerGameTick=15.31
+ ScheduleRebuild calls=374 avgUs=117890.76 maxMs=598.513 totalMs=44091.15 usPerGameTick=8914.51
+ CarePlanning calls=374 avgUs=2331.46 maxMs=6.305 totalMs=871.97 usPerGameTick=176.30
+ UnifiedMatching calls=374 avgUs=11503.26 maxMs=530.800 totalMs=4302.22 usPerGameTick=869.84
+ UnifiedEdgeScoring calls=25494 avgUs=162.99 maxMs=7.021 totalMs=4155.21 usPerGameTick=840.12
+ PickupReachability calls=245859 avgUs=1.47 maxMs=0.452 totalMs=361.16 usPerGameTick=73.02
+ TransportMatching calls=374 avgUs=88269.27 maxMs=385.001 totalMs=33012.71 usPerGameTick=6674.63
+ WakePendingWorkers calls=374 avgUs=226.59 maxMs=17.685 totalMs=84.75 usPerGameTick=17.13
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=5246 rebuilds(global/request)=382/2 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=572/328/293 pickupReachCache(hit/miss)=643391/254856 transportNoWorkerSkips=145
+ graphs unified(last/maxEdges)=1x265/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=5246 avgUs=10146.16 maxMs=844.402 totalMs=53226.76 usPerGameTick=10146.16
+ PendingAndWake calls=5246 avgUs=32.54 maxMs=8.082 totalMs=170.71 usPerGameTick=32.54
+ TreatmentMonitoring calls=5246 avgUs=1572.04 maxMs=843.969 totalMs=8246.94 usPerGameTick=1572.04
+ ActiveAssignmentMaintenance calls=5246 avgUs=30.52 maxMs=1.892 totalMs=160.12 usPerGameTick=30.52
+ PeriodicCleanup calls=289 avgUs=272.16 maxMs=0.810 totalMs=78.65 usPerGameTick=14.99
+ ScheduleRebuild calls=384 avgUs=116448.41 maxMs=598.513 totalMs=44716.19 usPerGameTick=8523.86
+ CarePlanning calls=384 avgUs=2330.11 maxMs=6.305 totalMs=894.76 usPerGameTick=170.56
+ UnifiedMatching calls=384 avgUs=11213.16 maxMs=530.800 totalMs=4305.85 usPerGameTick=820.79
+ UnifiedEdgeScoring calls=25500 avgUs=163.01 maxMs=7.021 totalMs=4156.80 usPerGameTick=792.37
+ PickupReachability calls=254856 avgUs=1.46 maxMs=0.452 totalMs=371.31 usPerGameTick=70.78
+ TransportMatching calls=384 avgUs=87155.70 maxMs=385.001 totalMs=33467.79 usPerGameTick=6379.68
+ WakePendingWorkers calls=384 avgUs=222.90 maxMs=17.685 totalMs=85.60 usPerGameTick=16.32
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=5551 rebuilds(global/request)=397/2 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=594/343/307 pickupReachCache(hit/miss)=665332/272739 transportNoWorkerSkips=155
+ graphs unified(last/maxEdges)=3x267/18768 transport(last/maxEdges)=3x273/7564
+ MapTick calls=5551 avgUs=9880.92 maxMs=844.402 totalMs=54848.96 usPerGameTick=9880.92
+ PendingAndWake calls=5551 avgUs=31.33 maxMs=8.082 totalMs=173.91 usPerGameTick=31.33
+ TreatmentMonitoring calls=5551 avgUs=1578.36 maxMs=843.969 totalMs=8761.45 usPerGameTick=1578.36
+ ActiveAssignmentMaintenance calls=5551 avgUs=30.08 maxMs=1.892 totalMs=167.00 usPerGameTick=30.08
+ PeriodicCleanup calls=303 avgUs=276.17 maxMs=1.153 totalMs=83.68 usPerGameTick=15.07
+ ScheduleRebuild calls=399 avgUs=114808.26 maxMs=598.513 totalMs=45808.50 usPerGameTick=8252.30
+ CarePlanning calls=399 avgUs=2327.52 maxMs=6.305 totalMs=928.68 usPerGameTick=167.30
+ UnifiedMatching calls=399 avgUs=10804.14 maxMs=530.800 totalMs=4310.85 usPerGameTick=776.59
+ UnifiedEdgeScoring calls=25530 avgUs=162.90 maxMs=7.021 totalMs=4158.80 usPerGameTick=749.20
+ PickupReachability calls=272739 avgUs=1.44 maxMs=0.452 totalMs=392.22 usPerGameTick=70.66
+ TransportMatching calls=399 avgUs=85933.24 maxMs=385.001 totalMs=34287.36 usPerGameTick=6176.79
+ WakePendingWorkers calls=399 avgUs=219.01 maxMs=17.685 totalMs=87.39 usPerGameTick=15.74
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=5859 rebuilds(global/request)=422/2 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=633/364/330 pickupReachCache(hit/miss)=736506/279073 transportNoWorkerSkips=162
+ graphs unified(last/maxEdges)=3x268/18768 transport(last/maxEdges)=3x270/7564
+ MapTick calls=5859 avgUs=10003.81 maxMs=844.402 totalMs=58612.33 usPerGameTick=10003.81
+ PendingAndWake calls=5859 avgUs=32.01 maxMs=8.082 totalMs=187.53 usPerGameTick=32.01
+ TreatmentMonitoring calls=5859 avgUs=1523.59 maxMs=843.969 totalMs=8926.69 usPerGameTick=1523.59
+ ActiveAssignmentMaintenance calls=5859 avgUs=29.89 maxMs=1.892 totalMs=175.14 usPerGameTick=29.89
+ PeriodicCleanup calls=326 avgUs=276.90 maxMs=1.153 totalMs=90.27 usPerGameTick=15.41
+ ScheduleRebuild calls=424 avgUs=116457.49 maxMs=598.513 totalMs=49377.97 usPerGameTick=8427.71
+ CarePlanning calls=424 avgUs=2324.73 maxMs=6.305 totalMs=985.68 usPerGameTick=168.23
+ UnifiedMatching calls=424 avgUs=10192.29 maxMs=530.800 totalMs=4321.53 usPerGameTick=737.59
+ UnifiedEdgeScoring calls=25663 avgUs=162.26 maxMs=7.021 totalMs=4164.05 usPerGameTick=710.71
+ PickupReachability calls=279073 avgUs=1.43 maxMs=0.452 totalMs=400.27 usPerGameTick=68.32
+ TransportMatching calls=424 avgUs=88142.28 maxMs=385.001 totalMs=37372.33 usPerGameTick=6378.62
+ WakePendingWorkers calls=424 avgUs=220.37 maxMs=17.685 totalMs=93.44 usPerGameTick=15.95
+[SAR engine] combined_d40p272h32r1 observed score=272011.00 deaths=0
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=6165 rebuilds(global/request)=451/3 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=679/389/356 pickupReachCache(hit/miss)=812491/303144 transportNoWorkerSkips=169
+ graphs unified(last/maxEdges)=0x271/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=6165 avgUs=10221.27 maxMs=844.402 totalMs=63014.11 usPerGameTick=10221.27
+ PendingAndWake calls=6165 avgUs=31.70 maxMs=8.082 totalMs=195.41 usPerGameTick=31.70
+ TreatmentMonitoring calls=6165 avgUs=1583.33 maxMs=843.969 totalMs=9761.23 usPerGameTick=1583.33
+ ActiveAssignmentMaintenance calls=6165 avgUs=29.97 maxMs=1.892 totalMs=184.74 usPerGameTick=29.97
+ PeriodicCleanup calls=348 avgUs=279.69 maxMs=1.153 totalMs=97.33 usPerGameTick=15.79
+ ScheduleRebuild calls=454 avgUs=116655.44 maxMs=598.513 totalMs=52961.57 usPerGameTick=8590.68
+ CarePlanning calls=454 avgUs=2328.64 maxMs=6.305 totalMs=1057.20 usPerGameTick=171.48
+ UnifiedMatching calls=454 avgUs=9550.17 maxMs=530.800 totalMs=4335.78 usPerGameTick=703.29
+ UnifiedEdgeScoring calls=25856 avgUs=161.34 maxMs=7.021 totalMs=4171.65 usPerGameTick=676.67
+ PickupReachability calls=303144 avgUs=1.43 maxMs=0.452 totalMs=432.03 usPerGameTick=70.08
+ TransportMatching calls=454 avgUs=88903.89 maxMs=385.001 totalMs=40362.37 usPerGameTick=6547.02
+ WakePendingWorkers calls=454 avgUs=217.32 maxMs=17.685 totalMs=98.66 usPerGameTick=16.00
+[Search and Rescue] Performance profile enabled=True benchmark=unconfigured observedGameTicks=6165 rebuilds(global/request)=451/3 nested/maxDepth=0/1 dirty(total/immediate/maintenance)=679/389/356 pickupReachCache(hit/miss)=812491/303144 transportNoWorkerSkips=169
+ graphs unified(last/maxEdges)=0x271/18768 transport(last/maxEdges)=0x0/7564
+ MapTick calls=6165 avgUs=10221.27 maxMs=844.402 totalMs=63014.11 usPerGameTick=10221.27
+ PendingAndWake calls=6165 avgUs=31.70 maxMs=8.082 totalMs=195.41 usPerGameTick=31.70
+ TreatmentMonitoring calls=6165 avgUs=1583.33 maxMs=843.969 totalMs=9761.23 usPerGameTick=1583.33
+ ActiveAssignmentMaintenance calls=6165 avgUs=29.97 maxMs=1.892 totalMs=184.74 usPerGameTick=29.97
+ PeriodicCleanup calls=348 avgUs=279.69 maxMs=1.153 totalMs=97.33 usPerGameTick=15.79
+ ScheduleRebuild calls=454 avgUs=116655.44 maxMs=598.513 totalMs=52961.57 usPerGameTick=8590.68
+ CarePlanning calls=454 avgUs=2328.64 maxMs=6.305 totalMs=1057.20 usPerGameTick=171.48
+ UnifiedMatching calls=454 avgUs=9550.17 maxMs=530.800 totalMs=4335.78 usPerGameTick=703.29
+ UnifiedEdgeScoring calls=25856 avgUs=161.34 maxMs=7.021 totalMs=4171.65 usPerGameTick=676.67
+ PickupReachability calls=303144 avgUs=1.43 maxMs=0.452 totalMs=432.03 usPerGameTick=70.08
+ TransportMatching calls=454 avgUs=88903.89 maxMs=385.001 totalMs=40362.37 usPerGameTick=6547.02
+ WakePendingWorkers calls=454 avgUs=217.32 maxMs=17.685 totalMs=98.66 usPerGameTick=16.00
+[Search and Rescue] Performance profiling stopped.
+Memory Statistics:
+[ALLOC_TEMP_TLS] TLS Allocator
+  StackAllocators : 
+    [ALLOC_TEMP_MAIN]
+      Peak usage frame count: [0-1.0 KB]: 52715 frames, [1.0 KB-2.0 KB]: 2 frames, [2.0 KB-4.0 KB]: 9 frames, [4.0 KB-8.0 KB]: 39 frames, [32.0 KB-64.0 KB]: 1 frames, [2.0 MB-4.0 MB]: 10 frames
+      Initial Block Size 4.0 MB
+      Current Block Size 4.0 MB
+      Peak Allocated Bytes 3.2 MB
+      Overflow Count 1
+    [ALLOC_TEMP_Loading.AsyncRead]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 267 B
+      Overflow Count 0
+    [ALLOC_TEMP_Loading.PreloadManager]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 3.7 KB
+      Overflow Count 16
+    [ALLOC_TEMP_Background Job.Worker 8]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 6]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 0]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 10]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 9]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 5]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 14]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 6]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 4]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 14]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 3]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 112 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 13]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 12]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_EnlightenWorker] x 8
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 15]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 1]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 2]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 7]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_AssetGarbageCollectorHelper] x 15
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 138 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 5]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 9]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 13]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 8]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 7]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 0 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 1]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 507 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 2]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 480 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 3]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 11]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 10]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 0]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 11]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Job.Worker 12]
+      Initial Block Size 256.0 KB
+      Current Block Size 256.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_Background Job.Worker 4]
+      Initial Block Size 32.0 KB
+      Current Block Size 32.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+    [ALLOC_TEMP_BatchDeleteObjects]
+      Initial Block Size 64.0 KB
+      Current Block Size 64.0 KB
+      Peak Allocated Bytes 54 B
+      Overflow Count 0
+[ALLOC_DEFAULT] Dual Thread Allocator
+  Peak main deferred allocation count 516
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 8598
+        32B: 34 Subsections = 17408 buckets. Failed count: 111893
+        48B: 63 Subsections = 21504 buckets. Failed count: 32590
+        64B: 47 Subsections = 12032 buckets. Failed count: 12565
+        80B: 87 Subsections = 17817 buckets. Failed count: 1523
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1649
+        128B: 5 Subsections = 640 buckets. Failed count: 3849
+    [ALLOC_DEFAULT_MAIN]
+      Peak usage frame count: [16.0 MB-32.0 MB]: 328 frames, [64.0 MB-128.0 MB]: 51911 frames, [128.0 MB-256.0 MB]: 537 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 9
+      Peak Allocated memory 132.5 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_DEFAULT_THREAD]
+      Peak usage frame count: [4.0 MB-8.0 MB]: 1 frames, [8.0 MB-16.0 MB]: 16780 frames, [16.0 MB-32.0 MB]: 2251 frames, [32.0 MB-64.0 MB]: 5638 frames, [64.0 MB-128.0 MB]: 28106 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 6
+      Peak Allocated memory 81.4 MB
+      Peak Large allocation bytes 8.2 MB
+[ALLOC_TEMP_JOB_1_FRAME]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_2_FRAMES]
+  Initial Block Size 2.0 MB
+  Used Block Count 0
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_4_FRAMES (JobTemp)]
+  Initial Block Size 2.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_TEMP_JOB_ASYNC (Background)]
+  Initial Block Size 1.0 MB
+  Used Block Count 1
+  Overflow Count (too large) 0
+  Overflow Count (full) 0
+[ALLOC_GFX] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 8598
+        32B: 34 Subsections = 17408 buckets. Failed count: 111893
+        48B: 63 Subsections = 21504 buckets. Failed count: 32590
+        64B: 47 Subsections = 12032 buckets. Failed count: 12565
+        80B: 87 Subsections = 17817 buckets. Failed count: 1523
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1649
+        128B: 5 Subsections = 640 buckets. Failed count: 3849
+    [ALLOC_GFX_MAIN]
+      Peak usage frame count: [64.0 KB-128.0 KB]: 1 frames, [2.0 MB-4.0 MB]: 52156 frames, [32.0 MB-64.0 MB]: 618 frames, [64.0 MB-128.0 MB]: 1 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 3
+      Peak Allocated memory 109.5 MB
+      Peak Large allocation bytes 106.3 MB
+    [ALLOC_GFX_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 52776 frames
+      Requested Block Size 16.0 MB
+      Peak Block count 1
+      Peak Allocated memory 0.9 KB
+      Peak Large allocation bytes 0 B
+[ALLOC_CACHEOBJECTS] Dual Thread Allocator
+  Peak main deferred allocation count 86
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 8598
+        32B: 34 Subsections = 17408 buckets. Failed count: 111893
+        48B: 63 Subsections = 21504 buckets. Failed count: 32590
+        64B: 47 Subsections = 12032 buckets. Failed count: 12565
+        80B: 87 Subsections = 17817 buckets. Failed count: 1523
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1649
+        128B: 5 Subsections = 640 buckets. Failed count: 3849
+    [ALLOC_CACHEOBJECTS_MAIN]
+      Peak usage frame count: [4.0 MB-8.0 MB]: 328 frames, [8.0 MB-16.0 MB]: 52448 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 3
+      Peak Allocated memory 9.0 MB
+      Peak Large allocation bytes 0 B
+    [ALLOC_CACHEOBJECTS_THREAD]
+      Peak usage frame count: [4.0 KB-8.0 KB]: 328 frames, [32.0 KB-64.0 KB]: 1 frames, [64.0 KB-128.0 KB]: 52436 frames, [256.0 KB-0.5 MB]: 11 frames
+      Requested Block Size 4.0 MB
+      Peak Block count 1
+      Peak Allocated memory 430.3 KB
+      Peak Large allocation bytes 0 B
+[ALLOC_TYPETREE] Dual Thread Allocator
+  Peak main deferred allocation count 0
+    [ALLOC_BUCKET]
+      Large Block size 4.0 MB
+      Used Block count 1
+      Peak Allocated bytes 4.0 MB
+      Failed Allocations. Bucket layout:
+        16B: 4 Subsections = 4096 buckets. Failed count: 8598
+        32B: 34 Subsections = 17408 buckets. Failed count: 111893
+        48B: 63 Subsections = 21504 buckets. Failed count: 32590
+        64B: 47 Subsections = 12032 buckets. Failed count: 12565
+        80B: 87 Subsections = 17817 buckets. Failed count: 1523
+        96B: 8 Subsections = 1365 buckets. Failed count: 0
+        112B: 8 Subsections = 1170 buckets. Failed count: 1649
+        128B: 5 Subsections = 640 buckets. Failed count: 3849
+    [ALLOC_TYPETREE_MAIN]
+      Peak usage frame count: [4.0 KB-8.0 KB]: 1 frames, [8.0 KB-16.0 KB]: 52775 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 1
+      Peak Allocated memory 10.6 KB
+      Peak Large allocation bytes 0 B
+    [ALLOC_TYPETREE_THREAD]
+      Peak usage frame count: [0-1.0 KB]: 52776 frames
+      Requested Block Size 2.0 MB
+      Peak Block count 0
+      Peak Allocated memory 0 B
+      Peak Large allocation bytes 0 B

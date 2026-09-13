@@ -46,7 +46,7 @@ public static class StandingTreatmentProbe {
   map.designationManager.AddDesignation(new Designation(patient,DefDatabase<DesignationDef>.GetNamed("SAR_Treat")));
   if(scenario>0){Thing med=ThingMaker.MakeThing(ThingDefOf.MedicineIndustrial);med.stackCount=3;doctor.inventory.innerContainer.TryAdd(med);}
   Check(!patient.Downed&&patient.GetPosture()==PawnPosture.Standing,"scenario "+scenario+": injured patient is standing");
-  if(scenario==0){CheckCoordinationOptions();CheckUninitializedWorkSettings();CheckScoreCache();CheckRetiredWorker();CheckSourceIndex();}
+  if(scenario==0){CheckCoordinationOptions();CheckUninitializedWorkSettings();CheckScoreCache();CheckRetiredWorker();CheckSourceIndex();SupplyEligibilityProbe.Run(doctor,patient,wound,Check);}
   var options=Options();Check(options.Any(o=>Kind(o)=="VanillaTend"),"standing patient has native field-tending option");
   Check(!options.Any(o=>Kind(o)=="Rh2FirstAid"),"standing patient has no impossible RH2 option");
   if(scenario>0)Check(options.Any(o=>Kind(o)=="VanillaTend"&&Resource(o)!=null),"standing patient retains medicated tending");

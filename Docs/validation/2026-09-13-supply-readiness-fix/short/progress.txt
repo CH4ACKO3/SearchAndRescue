@@ -1,0 +1,6 @@
+BEGIN full_d5p34h4r0
+COMPLETE full_d5p34h4r0
+BEGIN full_d40p272h32r1
+COMPLETE full_d40p272h32r1
+BEGIN combined_d40p272h32r2
+COMPLETE combined_d40p272h32r2
