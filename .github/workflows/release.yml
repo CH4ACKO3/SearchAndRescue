@@ -11,6 +11,10 @@ on:
         description: Existing release run ID to verify remote files and finish description synchronization (no file upload)
         type: string
         default: ''
+      retry_workshop_upload:
+        description: Retry uploading the specified release artifact before verifying it
+        type: boolean
+        default: false
       verify_steam:
         description: Verify Steam login and Workshop ownership without publishing
         type: boolean
@@ -243,7 +247,11 @@ jobs:
           STEAM_PASSWORD: ${{ secrets.STEAM_PASSWORD }}
           STEAM_REFRESH_TOKEN: ${{ secrets.STEAM_REFRESH_TOKEN }}
           STEAM_CONFIG_VDF_BASE64: ${{ secrets.STEAM_CONFIG_VDF_BASE64 }}
-        run: ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot package -VerifyPublished
+        run: |
+          if ('${{ inputs.retry_workshop_upload }}' -eq 'true') {
+            ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot package
+          }
+          ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot package -VerifyPublished
       - name: Preserve verified release metadata
         if: inputs.refresh_release_notes || inputs.refresh_descriptions
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1

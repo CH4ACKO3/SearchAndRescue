@@ -86,6 +86,11 @@ try {
         ($text -match '(?i)Steam Guard|two.factor|AccountLogonDenied|auth.*code|confirm.*sign.in'),
         ($text -match '(?i)InvalidPassword|Invalid Password'),
         ($text -match '(?i)NoConnection|No Connection|Failed to connect|timeout'))
+    Write-Host ("SteamCMD Workshop diagnostics: parseFailure={0}; uploadFailure={1}; accessDenied={2}; resultCodes={3}" -f
+        ($text -match '(?i)Failed to parse|KeyValues Error|Error while parsing'),
+        ($text -match '(?i)Failed to (?:update|publish)|Error.*(?:upload|update item)'),
+        ($text -match '(?i)AccessDenied|Access Denied|InsufficientPrivilege'),
+        (([regex]::Matches($text, '(?i)(?:result|error)(?: code)?[ :=]+([0-9]+)') | ForEach-Object { $_.Groups[1].Value }) -join ','))
     if ($CheckOnly) {
         if ($exitCode -ne 0 -or $text -notmatch 'Waiting for user info\.\.\.\s*OK') { throw 'SteamCMD login check failed. Refresh Steam Guard locally; no Workshop content was changed.' }
         Write-Host 'PASS: SteamCMD login and bilingual ownership verified. No Workshop writes performed.'
