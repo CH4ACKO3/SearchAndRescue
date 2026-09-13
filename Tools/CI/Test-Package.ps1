@@ -49,9 +49,9 @@ try {
     $manifest | ConvertTo-Json -Depth 5 | Set-Content $manifestPath
     & $publisher -ArtifactRoot $testRoot -DryRun
     $vdf=Get-Content (Join-Path $testRoot 'workshop-upload.vdf') -Raw
-    if ($vdf -notmatch '\\"quote\\"' -or $vdf -notmatch 'C:\\\\test' -or $vdf -notmatch "`nEnglish") { throw 'VDF escaping failed.' }
+    if ($vdf -notmatch ('"changenote" "Release v' + [regex]::Escape($manifest.version) + '"') -or $vdf.Contains('quote') -or $vdf.Contains('C:\test')) { throw 'VDF release marker failed.' }
     if ($vdf -match '"(title|description|visibility|tags|previewfile)"') { throw 'Unexpected Workshop metadata update.' }
-    Write-Host 'PASS: invalid identity/tag/path, modified/extra files, VDF escaping and metadata preservation.'
+    Write-Host 'PASS: invalid identity/tag/path, modified/extra files, VDF release marker and metadata preservation.'
 } finally {
     $resolved=[IO.Path]::GetFullPath($testRoot)
     if ($resolved.StartsWith([IO.Path]::GetTempPath(),[StringComparison]::OrdinalIgnoreCase) -and

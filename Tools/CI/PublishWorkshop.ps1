@@ -21,7 +21,9 @@ if ($hasLocalizedNotes) {
         if ((Get-FileHash "$root/release-notes.$language.md").Hash -cne $m.localizedNotes.$language) { throw "Localized release notes checksum mismatch: $language" }
     }
 } elseif (!$DryRun -and !$CheckOnly -and !$VerifyPublished) { throw 'Publishing requires separate English and Chinese release notes.' }
-$changeNote=if ($hasLocalizedNotes) { Get-Content "$root/release-notes.en.md" -Raw } else { Get-Content "$root/release-notes.md" -Raw }
+# The full localized text is applied and verified by WorkshopPublisher after upload.
+# Keep SteamCMD KeyValues input free of user-authored quotes and newlines.
+$changeNote="Release v$($m.version)"
 $seen=@{}
 foreach ($f in $m.files) {
     if ($f.path -match '(^/|:|\\|(^|/)\.\.(/|$))' -or $seen.ContainsKey($f.path)) { throw 'Invalid/duplicate manifest path.' }
