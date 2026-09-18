@@ -67,6 +67,28 @@ static class SupplyEligibilityProbe
             check((bool)AccessTools.Method(type, "SupplyTargetReady").Invoke(coordinator, new object[] { patient, now }), "unowned casualty is eligible for supply");
             check(valid(), "unowned pending delivery accepted: " + AccessTools.Method(type, "DebugPendingInvalidReason").Invoke(coordinator, new object[] { hauler, pending, now }));
             check(offers(), "unowned casualty generates supply candidates");
+            Job transition = JobMaker.MakeJob(JobDefOf.Wait_MaintainPosture, 600);
+            hauler.jobs.StartJob(transition, JobCondition.InterruptForced);
+            WorkGiverDef prioritizedWork = DefDatabase<WorkGiverDef>.AllDefsListForReading
+                .First(def => def.workType == WorkTypeDefOf.Doctor && def.prioritizeSustains);
+            hauler.mindState.priorityWork.Set(hauler.Position, prioritizedWork);
+            var pendingWorkers = (IDictionary)AccessTools.Field(type, "pendingByWorker").GetValue(coordinator);
+            try
+            {
+                check(!transition.playerForced && hauler.mindState.priorityWork.IsPrioritized,
+                    "sustained prioritized work fixture is between forced jobs");
+                check(!valid(), "sustained prioritized work rejects pending supply during transition");
+                pendingWorkers[hauler] = pending;
+                AccessTools.Method(type, "TryWakePendingWorker").Invoke(coordinator, new object[] { hauler });
+                check(hauler.CurJob == transition && hauler.mindState.priorityWork.IsPrioritized,
+                    "deferred SAR wake preserves sustained prioritized work and current transition");
+            }
+            finally
+            {
+                pendingWorkers.Remove(hauler);
+                hauler.mindState.priorityWork.Clear();
+            }
+            check(valid(), "supply eligibility returns after vanilla clears prioritized work");
             foreach (string stage in new[] { "Rescue", "Capture", "Restock", "FollowupTreat" })
             {
                 own(stage, false);

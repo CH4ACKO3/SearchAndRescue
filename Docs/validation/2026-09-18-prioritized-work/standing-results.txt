@@ -1,0 +1,135 @@
+PASS: scenario 0: injured patient is standing
+PASS: default preserves existing behavior: UseFastRescueAllocation
+PASS: default preserves existing behavior: SimplifyLogistics
+PASS: default preserves existing behavior: SimplifyMedicineSelection
+PASS: default preserves existing behavior: EnableMissionKits
+PASS: setting survives serialization: UseFastRescueAllocation
+PASS: setting survives serialization: SimplifyLogistics
+PASS: setting survives serialization: SimplifyMedicineSelection
+PASS: setting survives serialization: EnableMissionKits
+PASS: initialized doctor has field-rescue priority
+PASS: fixture has an uninitialized work-settings object
+PASS: uninitialized parent and child priorities stay disabled across 100 scans
+PASS: uninitialized pawn is excluded from rescue worker candidates
+PASS: priority queries do not initialize work settings
+PASS: initialized priority is immediately available after restoring settings
+PASS: initialized doctor returns to rescue candidates
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: one patient cache entry serves repeated queries
+PASS: scoring cache cleared after matching
+PASS: new blood loss is visible immediately outside the scoring scope
+PASS: scoring cache also cleared when evaluation throws
+PASS: despawned worker soft claim rejected before native resource queries
+PASS: destroyed worker soft claim rejected before native resource queries
+PASS: null worker soft claim rejected safely
+PASS: source fixture inventory added
+PASS: source fixture second resource added
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: source index cleared after scoring
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: source index cleared after exception
+PASS: unowned casualty is eligible for supply
+PASS: unowned pending delivery accepted: unknown
+PASS: unowned casualty generates supply candidates
+PASS: sustained prioritized work fixture is between forced jobs
+PASS: sustained prioritized work rejects pending supply during transition
+PASS: deferred SAR wake preserves sustained prioritized work and current transition
+PASS: supply eligibility returns after vanilla clears prioritized work
+PASS: Rescue primary owner blocks both supply generation and pending delivery
+PASS: Rescue supply rejection has a specific diagnostic
+PASS: Capture primary owner blocks both supply generation and pending delivery
+PASS: Capture supply rejection has a specific diagnostic
+PASS: Restock primary owner blocks both supply generation and pending delivery
+PASS: Restock supply rejection has a specific diagnostic
+PASS: FollowupTreat primary owner blocks both supply generation and pending delivery
+PASS: FollowupTreat supply rejection has a specific diagnostic
+PASS: medicated treatment blocks duplicate supply generation and pending delivery
+PASS: urgent dry treatment retains concurrent supply candidates and pending delivery
+PASS: routine injury fixture has no emergency
+PASS: routine casualty stays outside emergency supply even in AllTending
+PASS: routine dry treatment does not create rejected emergency supply tasks
+PASS: releasing the primary owner immediately restores supply eligibility
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+INFO: scenario=0 completedTicks=684 patientJob=Goto
+PASS: scenario 1: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: standing patient retains medicated tending
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+PASS: actual tending job uses selected medicine
+INFO: scenario=1 completedTicks=934 patientJob=Wait_Combat
+PASS: scenario 2: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: standing patient retains medicated tending
+INFO: interrupt patient=Goto moving=True distance=2 sameJob=False tended=False
+PASS: moving away cancels incomplete round without applying treatment
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+PASS: new movement order interrupts the original treatment round
+PASS: actual tending job uses selected medicine
+INFO: scenario=2 completedTicks=1316 patientJob=Wait_Combat
+PASS: scenario 3: injured patient is standing
+PASS: standing patient has native field-tending option
+PASS: standing patient has no impossible RH2 option
+PASS: standing patient retains medicated tending
+PASS: actual SAR scheduler dispatched native tending
+PASS: patient moved while doctor approached
+PASS: patient held still during tending
+PASS: treatment completed without patient becoming downed
+PASS: actual tending job uses selected medicine
+INFO: scenario=3 completedTicks=1372 patientJob=GotoWander
+COMPLETE

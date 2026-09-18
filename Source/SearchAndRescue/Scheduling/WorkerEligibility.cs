@@ -16,7 +16,12 @@ namespace SearchAndRescue
 
         internal static bool WorkerControlledByScheduler(Pawn worker)
         {
-            if (worker == null || worker.mindState?.duty != null || !HardworkingCompatibility.CanWorkNow(worker))
+            // Right-click prioritized work survives between individual jobs (for example,
+            // consecutive tending jobs). During the transition CurJob may not be playerForced; let
+            // vanilla finish or clear the sustained order before matching this worker.
+            if (worker == null || worker.mindState?.duty != null ||
+                worker.mindState?.priorityWork?.IsPrioritized == true ||
+                !HardworkingCompatibility.CanWorkNow(worker))
             {
                 return false;
             }
