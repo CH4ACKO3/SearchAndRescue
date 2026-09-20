@@ -6,6 +6,14 @@ namespace SearchAndRescue
 {
     internal static class WorkerEligibility
     {
+        internal static bool SupplyTargetsAllowed(Pawn worker, Pawn patient, Thing resource)
+        {
+            return worker != null && worker.Spawned && worker.Map != null && worker.mindState != null &&
+                   patient != null && patient.Spawned && patient.Map == worker.Map &&
+                   resource != null && !resource.Destroyed && resource.MapHeld == worker.Map &&
+                   !patient.IsForbidden(worker) && !resource.IsForbidden(worker);
+        }
+
         internal static bool WorkerOperational(Pawn worker, Map map)
         {
             return worker != null && !worker.Destroyed && worker.Spawned && worker.Map == map &&

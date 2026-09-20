@@ -114,6 +114,43 @@ static class SupplyEligibilityProbe
             patient.health.AddHediff(wound);
             refresh();
             check(offers() && valid(), "releasing the primary owner immediately restores supply eligibility");
+            check(map.areaManager.TryMakeNewAllowed(out Area_Allowed area), "supply area fixture created");
+            Area oldArea = hauler.playerSettings.AreaRestrictionInPawnCurrentMap;
+            try
+            {
+                area.Invert();
+                hauler.playerSettings.AreaRestrictionInPawnCurrentMap = area;
+                check(valid(), "supply accepted when pickup and patient are inside allowed area");
+                area[patient.Position] = false;
+                check(hauler.CanReach(patient, PathEndMode.Touch, Danger.Deadly),
+                    "out-of-area patient remains physically reachable");
+                check(!valid(), "pending delivery rejects reachable patient outside allowed area");
+                Job rejected = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("SAR_DeliverMedicalSupply"), medicine, patient);
+                rejected.count = 1;
+                check(!rejected.GetCachedDriver(hauler).TryMakePreToilReservations(false),
+                    "delivery driver rejects out-of-area patient before reserving medicine");
+                area[patient.Position] = true;
+                area[medicine.Position] = false;
+                check(!valid(), "pending delivery rejects medicine outside allowed area");
+                area[medicine.Position] = true;
+                check(valid(), "expanding allowed area restores delivery eligibility");
+                Job delivery = JobMaker.MakeJob(DefDatabase<JobDef>.GetNamed("SAR_DeliverMedicalSupply"), medicine, patient);
+                delivery.count = 1;
+                hauler.jobs.StartJob(delivery, JobCondition.InterruptForced);
+                check(hauler.CurJob == delivery, "in-area delivery starts successfully");
+                int deliveryId = delivery.loadID;
+                area[patient.Position] = false;
+                hauler.jobs.curDriver.DriverTick();
+                check(hauler.CurJob?.loadID != deliveryId, "editing area during delivery stops the stale job");
+                check(!map.reservationManager.ReservationsReadOnly.Any(reservation =>
+                        reservation.Claimant == hauler && reservation.Target.Thing == medicine),
+                    "cancelled delivery releases its medicine reservation");
+            }
+            finally
+            {
+                hauler.playerSettings.AreaRestrictionInPawnCurrentMap = oldArea;
+                area.Delete();
+            }
         }
         finally
         {

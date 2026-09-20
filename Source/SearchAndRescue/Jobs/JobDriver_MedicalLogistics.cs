@@ -176,6 +176,8 @@ namespace SearchAndRescue
 
         public override bool TryMakePreToilReservations(bool errorOnFailed)
         {
+            if (!WorkerEligibility.SupplyTargetsAllowed(pawn, job.targetB.Pawn, job.targetA.Thing))
+                return false;
             Pawn holder = MedicalResourceLedger.InventoryHolder(job.targetA.Thing);
             // Persist the source selected at reservation time, including across save/load.
             job.targetC = holder == null ? LocalTargetInfo.Invalid : new LocalTargetInfo(holder);
@@ -210,6 +212,8 @@ namespace SearchAndRescue
             this.FailOnDestroyedOrNull(ResourceIndex);
             this.FailOnDestroyedOrNull(PatientIndex);
             this.FailOn(() => !job.targetB.Pawn.Spawned);
+            // Area restrictions and moving targets can change after scheduling or pickup.
+            this.FailOn(() => !WorkerEligibility.SupplyTargetsAllowed(pawn, job.targetB.Pawn, job.targetA.Thing));
 
             yield return Toils_Goto.GotoThing(ResourceIndex, PathEndMode.ClosestTouch, true);
 

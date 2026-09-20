@@ -3525,7 +3525,8 @@ namespace SearchAndRescue
             double weight;
             if (task.IsSupply)
             {
-                if (!Compatibility.CanPerformSupplyWork(worker) || task.SupplyResource == null ||
+                if (!Compatibility.CanPerformSupplyWork(worker) ||
+                    !WorkerEligibility.SupplyTargetsAllowed(worker, patient, task.SupplyResource) ||
                     medicalResources.AvailableForRelocation(task.SupplyResource, worker) < task.SupplyCount ||
                     !PickupReservationAvailable(worker, task.SupplyResource, task.SupplyCount, patient) ||
                     !worker.CanReach(patient, PathEndMode.Touch, Danger.Deadly))
@@ -3943,6 +3944,7 @@ namespace SearchAndRescue
             return WorkerCandidates().Any(worker =>
                 WorkerReadyForStage(worker, SearchAndRescueStage.Supply, true) &&
                 WorkerAvailableForMatching(worker) &&
+                WorkerEligibility.SupplyTargetsAllowed(worker, patient, resource) &&
                 PickupReservationAvailable(worker, resource, 1, patient) &&
                 worker.CanReach(patient, PathEndMode.Touch, Danger.Deadly));
         }
@@ -4196,6 +4198,10 @@ namespace SearchAndRescue
             {
                 return false;
             }
+
+            if (pending.Stage == SearchAndRescueStage.Supply &&
+                !WorkerEligibility.SupplyTargetsAllowed(worker, pending.Target, pending.SupplyResource))
+                return false;
 
             if (IsRetryBlocked(pending.Target, pending.Stage, now))
             {
