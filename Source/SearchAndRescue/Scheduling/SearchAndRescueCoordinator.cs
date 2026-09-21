@@ -1372,10 +1372,23 @@ namespace SearchAndRescue
         {
             EngineBenchmarkDiagnostics.Observe(doctor, patient);
             Job job = doctor?.CurJob;
-            if (doctor == null || patient == null || job?.def != JobDefOf.TendPatient)
+            if (doctor == null || patient == null || job == null)
             {
                 return;
             }
+
+            if (job.def?.defName == "CP_FirstAid")
+            {
+                if (activeByTarget.TryGetValue(patient, out ActiveAssignment firstAid) &&
+                    ActiveJobClaims.Matches(firstAid, doctor, ActiveJobClaims.IdentityOf(job)) &&
+                    IsTreatmentStage(firstAid.Stage))
+                {
+                    firstAid.RoundEffectSeen = true;
+                    firstAid.CommittedTreatmentRounds++;
+                }
+                return;
+            }
+            if (job.def != JobDefOf.TendPatient) return;
 
             TreatmentContinuityDiagnostics.Observe(doctor, patient);
             if (!activeByTarget.TryGetValue(patient, out ActiveAssignment assignment) ||
@@ -5230,6 +5243,11 @@ namespace SearchAndRescue
 
         private static bool TreatmentProgressMade(Pawn patient, ActiveAssignment assignment)
         {
+            // RH2 commits through TendUtility.DoTend. Passive recovery during its wait
+            // must not be mistaken for a completed round and restart the progress bar.
+            if (assignment.JobDef?.defName == "CP_FirstAid")
+                return assignment.CommittedTreatmentRounds > 0;
+
             // More Injuries reports Succeeded for an already-treated limb too.
             // Count the actual device effect before granting continuity or clearing retries.
             if (assignment.JobDef?.defName == "UseTourniquet")

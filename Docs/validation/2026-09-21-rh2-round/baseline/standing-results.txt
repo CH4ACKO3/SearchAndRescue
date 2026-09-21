@@ -1,0 +1,85 @@
+PASS: scenario 0: injured patient is standing
+PASS: default preserves existing behavior: UseFastRescueAllocation
+PASS: default preserves existing behavior: SimplifyLogistics
+PASS: default preserves existing behavior: SimplifyMedicineSelection
+PASS: default preserves existing behavior: EnableMissionKits
+PASS: setting survives serialization: UseFastRescueAllocation
+PASS: setting survives serialization: SimplifyLogistics
+PASS: setting survives serialization: SimplifyMedicineSelection
+PASS: setting survives serialization: EnableMissionKits
+PASS: initialized doctor has field-rescue priority
+PASS: fixture has an uninitialized work-settings object
+PASS: uninitialized parent and child priorities stay disabled across 100 scans
+PASS: uninitialized pawn is excluded from rescue worker candidates
+PASS: priority queries do not initialize work settings
+PASS: initialized priority is immediately available after restoring settings
+PASS: initialized doctor returns to rescue candidates
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: repeated scoring query retains exact deadline
+PASS: one patient cache entry serves repeated queries
+PASS: scoring cache cleared after matching
+PASS: new blood loss is visible immediately outside the scoring scope
+PASS: scoring cache also cleared when evaluation throws
+PASS: despawned worker soft claim rejected before native resource queries
+PASS: destroyed worker soft claim rejected before native resource queries
+PASS: null worker soft claim rejected safely
+PASS: source fixture inventory added
+PASS: source fixture second resource added
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: source index cleared after scoring
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: unfiltered inventory source order preserved
+PASS: medicine source index matches live inventory order
+PASS: specific resource index matches live inventory order
+PASS: non-medicine source index matches live inventory order
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: indexed donor candidates equal legacy permissions and ordering
+PASS: source index cleared after exception
+PASS: RH2 aggregate driver started
+PASS: RH2 fixture reaches the native interaction cell
+PASS: RH2 arrival enters the treatment bar (current=CP_FirstAid, end=None, forbidden=False, posture=LayingMask)
+PASS: unchanged RH2 patient keeps the initial treatment bar
+PASS: passive recovery fixture has no treated wound
+FAIL: passive blood-loss recovery does not restart RH2 first aid
+ERROR: System.Exception: passive blood-loss recovery does not restart RH2 first aid
+[Ref 23ED3FF5]
+  at StandingTreatmentProbe.Check (System.Boolean yes, System.String label) [0x00027] in <59b5ca3649dc46b2a619f9b953f4d920>:0 
+  at Rh2RoundProbe.Run (Verse.Map map, System.Action`2[T1,T2] check) [0x00556] in <59b5ca3649dc46b2a619f9b953f4d920>:0 
+  at StandingTreatmentProbe.Setup () [0x002b5] in <59b5ca3649dc46b2a619f9b953f4d920>:0 
+  at StandingTreatmentProbe.Update () [0x00037] in <59b5ca3649dc46b2a619f9b953f4d920>:0 
