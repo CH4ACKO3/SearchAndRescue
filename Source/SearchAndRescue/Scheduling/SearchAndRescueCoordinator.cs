@@ -1368,6 +1368,19 @@ namespace SearchAndRescue
             RequestScheduleRebuild(maintenance: true, delayTicks: 1);
         }
 
+        internal void NotifyTreatmentWithoutEffect(Pawn doctor, Pawn patient)
+        {
+            Job job = doctor?.CurJob;
+            if (job == null || !activeByTarget.TryGetValue(patient, out ActiveAssignment assignment) ||
+                !ActiveJobClaims.Matches(assignment, doctor, ActiveJobClaims.IdentityOf(job)) ||
+                !IsTreatmentStage(assignment.Stage)) return;
+            assignment.LastTreatmentHadNoEffect = true;
+            // FinalizeTend reads this after DoTend unwinds; aggregate drivers are retired
+            // by the next monitor tick. Never end a Job inside its treatment callback.
+            if (job.def == JobDefOf.TendPatient) job.endAfterTendedOnce = true;
+            lastSchedulerDecision[doctor] = $"treatment produced no effect: {patient.ThingID} at {Find.TickManager.TicksGame}";
+        }
+
         internal void NotifyTreatmentCommitted(Pawn doctor, Pawn patient)
         {
             EngineBenchmarkDiagnostics.Observe(doctor, patient);
@@ -1384,6 +1397,7 @@ namespace SearchAndRescue
                     IsTreatmentStage(firstAid.Stage))
                 {
                     firstAid.RoundEffectSeen = true;
+                    firstAid.LastTreatmentHadNoEffect = false;
                     firstAid.CommittedTreatmentRounds++;
                 }
                 return;
@@ -1400,6 +1414,7 @@ namespace SearchAndRescue
             }
 
             assignment.RoundEffectSeen = true;
+            assignment.LastTreatmentHadNoEffect = false;
             assignment.CommittedTreatmentRounds++;
             int now = Find.TickManager.TicksGame;
 
@@ -1533,6 +1548,7 @@ namespace SearchAndRescue
             carePlans[patient] = plan;
             List<MedicalTreatmentOption> options = Compatibility
                 .FindTreatmentOptions(doctor, patient, plan, medicalResources)
+                .Where(option => FieldTreatmentBoundary.AllowsOption(patient, option.Intervention, assignment.Stage))
                 .ToList();
             MedicalTreatmentOption delivered = options
                 .Where(option => option.Resource != null &&
@@ -2029,6 +2045,17 @@ namespace SearchAndRescue
 
         private void FinishTreatmentRound(Pawn patient, ActiveAssignment assignment, int now)
         {
+            if (assignment.LastTreatmentHadNoEffect && Compatibility.NeedsAnyFieldTreatment(patient))
+            {
+                // A stage change (for example the last bleed stabilizing) should let the
+                // other lane run immediately. Persistent eligible empty rounds back off.
+                if (assignment.Stage == SearchAndRescueStage.FollowupTreat
+                    ? !NeedsFieldStabilization(patient) && FieldTreatmentBoundary.AtCareLocation(patient)
+                    : NeedsFieldStabilization(patient))
+                    SetStageRetry(patient, assignment.Stage, now, progressive: true);
+                else RequestScheduleRebuild(maintenance: true, delayTicks: 1);
+                return;
+            }
             if (!TreatmentProgressMade(patient, assignment))
             {
                 if (JobEndWasInterrupted(assignment.EndCondition))
@@ -2039,7 +2066,8 @@ namespace SearchAndRescue
                 {
                     SetStageRetry(patient, assignment.Stage, now,
                         progressive: FailureWarrantsBackoff(assignment.EndCondition) ||
-                                     assignment.EndCondition == JobCondition.None);
+                                     assignment.EndCondition == JobCondition.None ||
+                                     assignment.EndCondition == JobCondition.Succeeded);
                 }
                 return;
             }
@@ -2108,7 +2136,11 @@ namespace SearchAndRescue
                 // Their effects are committed atomically by the driver, so ending after the
                 // first observed effect is a completed round rather than a partial vanilla
                 // tend progress bar.
-                if (TreatmentProgressMade(assignment.Target, assignment))
+                if (assignment.LastTreatmentHadNoEffect)
+                {
+                    assignment.Worker.jobs.EndCurrentJob(JobCondition.Incompletable);
+                }
+                else if (TreatmentProgressMade(assignment.Target, assignment))
                 {
                     assignment.RoundEffectSeen = true;
                     assignment.Worker.jobs.EndCurrentJob(JobCondition.Succeeded);
@@ -3212,6 +3244,7 @@ namespace SearchAndRescue
             foreach (MedicalTreatmentOption option in
                      Compatibility.FindTreatmentOptions(worker, patient, plan, medicalResources))
             {
+                if (!FieldTreatmentBoundary.AllowsOption(patient, option.Intervention, stage)) continue;
                 if (!allowExternalInventory && option.Resource != null)
                 {
                     Pawn holder = MedicalResourceLedger.InventoryHolder(option.Resource);
@@ -4282,7 +4315,9 @@ namespace SearchAndRescue
                                (pending.Stage != SearchAndRescueStage.FollowupTreat ||
                                 WorkerReadyForFollowupLane(worker, pending.Target));
             return worker != null && worker.Map == map && targetReady && targetReservationValid &&
-                   workerReady && resourceValid;
+                   workerReady && resourceValid &&
+                   (pending.Treatment == null || FieldTreatmentBoundary.AllowsOption(
+                       pending.Target, pending.Treatment.Intervention, readinessStage));
         }
 
         private string DebugPendingInvalidReason(Pawn worker, PendingAssignment pending, int now)
@@ -4907,8 +4942,8 @@ namespace SearchAndRescue
                             worker,
                             patient,
                             plan,
-                            allowExternalInventory: stage != SearchAndRescueStage.FollowupTreat);
-                        return option.IsValid ? TreatmentEdgeWeight(worker, patient, option) : 0d;
+                            allowExternalInventory: stage != SearchAndRescueStage.FollowupTreat, stage: stage);
+                        return option.IsValid ? TreatmentEdgeWeight(worker, patient, option, stage) : 0d;
                     }
                 case SearchAndRescueStage.Rescue:
                     {
@@ -5098,7 +5133,9 @@ namespace SearchAndRescue
                     return Compatibility.MakeCaptureJob(patient);
                 case SearchAndRescueStage.Treat:
                 case SearchAndRescueStage.FollowupTreat:
-                    return Compatibility.MakeTreatmentRoundJob(worker, patient, pending.Treatment);
+                    return pending.Treatment != null && !FieldTreatmentBoundary.AllowsOption(
+                        patient, pending.Treatment.Intervention, pending.Stage)
+                        ? null : Compatibility.MakeTreatmentRoundJob(worker, patient, pending.Treatment);
                 case SearchAndRescueStage.Restock:
                     {
                         if (pending.Kit == null || pending.Kit.IsEmpty)
@@ -5245,8 +5282,9 @@ namespace SearchAndRescue
         {
             // RH2 commits through TendUtility.DoTend. Passive recovery during its wait
             // must not be mistaken for a completed round and restart the progress bar.
-            if (assignment.JobDef?.defName == "CP_FirstAid")
-                return assignment.CommittedTreatmentRounds > 0;
+            if (assignment.JobDef?.defName == "CP_FirstAid" || assignment.JobDef == JobDefOf.TendPatient)
+                return !Compatibility.NeedsAnyFieldTreatment(patient) ||
+                    !assignment.LastTreatmentHadNoEffect && assignment.CommittedTreatmentRounds > 0;
 
             // More Injuries reports Succeeded for an already-treated limb too.
             // Count the actual device effect before granting continuity or clearing retries.

@@ -1,0 +1,10 @@
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - ch4acko3.sarcaptureprobe.p1b86ef8d79ed456297625b8697f5ff2a
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 19611.
+Total: 62.671400 ms (FindLiveObjects: 1.035700 ms CreateObjectMapping: 0.353900 ms MarkObjects: 61.252600 ms  DeleteObjects: 0.029000 ms)
+
+Resolution too small (0x0), resetting UI scale to 2.
+[SAR capture] Creating disposable fixture
+[SAR capture] Starting clinical ticks

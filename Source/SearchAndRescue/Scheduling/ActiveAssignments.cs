@@ -63,6 +63,7 @@ namespace SearchAndRescue
         public readonly int TreatmentRoundBudget;
         public bool RoundEffectSeen;
         public int CommittedTreatmentRounds;
+        public bool LastTreatmentHadNoEffect;
         public bool ActualStartObserved;
         public JobCondition EndCondition;
 

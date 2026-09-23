@@ -423,10 +423,19 @@ namespace SearchAndRescue
     [HarmonyPriority(Priority.Last)]
     internal static class TendUtility_SearchAndRescueCommittedRoundPatch
     {
-        private static void Postfix(Pawn doctor, Pawn patient)
+        [HarmonyPriority(int.MaxValue)]
+        private static void Prefix(Pawn doctor, Pawn patient, out TreatmentOutcome __state)
         {
-            doctor?.Map?.GetComponent<SearchAndRescueCoordinator>()
-                ?.NotifyTreatmentCommitted(doctor, patient);
+            __state = doctor?.Map != null && doctor.CurJob != null && patient?.health != null
+                ? new TreatmentOutcome(doctor, patient) : null;
+        }
+
+        private static void Postfix(Pawn doctor, Pawn patient, TreatmentOutcome __state)
+        {
+            if (__state == null || !__state.Matches(doctor)) return;
+            var coordinator = doctor?.Map?.GetComponent<SearchAndRescueCoordinator>();
+            if (__state.Changed(patient)) coordinator?.NotifyTreatmentCommitted(doctor, patient);
+            else coordinator?.NotifyTreatmentWithoutEffect(doctor, patient);
         }
     }
 

@@ -1,0 +1,64 @@
+PASS: fixture has an enclosed prison cell
+0: SAR_CaptureInPlace/0 prisoner=False bed=False cut=False bruise=False
+37: SAR_CaptureInPlace/1 prisoner=False bed=False cut=False bruise=False
+156: Wait_MaintainPosture/0 prisoner=True bed=False cut=False bruise=False
+157: TendPatient/3 prisoner=True bed=False cut=False bruise=False
+618: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+628: Clean/3 prisoner=True bed=False cut=True bruise=False
+741: Clean/4 prisoner=True bed=False cut=True bruise=False
+778: Clean/3 prisoner=True bed=False cut=True bruise=False
+795: Clean/4 prisoner=True bed=False cut=True bruise=False
+838: Clean/3 prisoner=True bed=False cut=True bruise=False
+883: Clean/4 prisoner=True bed=False cut=True bruise=False
+958: Clean/3 prisoner=True bed=False cut=True bruise=False
+987: Clean/4 prisoner=True bed=False cut=True bruise=False
+1063: Clean/3 prisoner=True bed=False cut=True bruise=False
+1120: Clean/4 prisoner=True bed=False cut=True bruise=False
+1153: Clean/3 prisoner=True bed=False cut=True bruise=False
+1175: Clean/4 prisoner=True bed=False cut=True bruise=False
+1393: Clean/3 prisoner=True bed=False cut=True bruise=False
+1470: Clean/4 prisoner=True bed=False cut=True bruise=False
+1513: Clean/3 prisoner=True bed=False cut=True bruise=False
+1585: Clean/4 prisoner=True bed=False cut=True bruise=False
+1663: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+1678: Clean/4 prisoner=True bed=False cut=True bruise=False
+1723: Clean/3 prisoner=True bed=False cut=True bruise=False
+1740: Clean/4 prisoner=True bed=False cut=True bruise=False
+1783: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+1798: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+2449: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+2458: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+2668: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+2683: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+3834: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+3838: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+4093: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+4108: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+5324: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+5338: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+5548: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+5563: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+5814: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+5818: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+6178: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+6193: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+6344: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+6358: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+6673: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+6688: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+6789: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+6793: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+7048: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+7063: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+8069: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+8083: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+8233: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+8248: GotoWander/0 prisoner=True bed=False cut=True bruise=False
+8949: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+8953: Wait_Wander/0 prisoner=True bed=False cut=True bruise=False
+PASS: marked hostile was captured by actual job
+PASS: bleeding treated in field while minor wound was deferred
+FAIL: actual rescue delivered prisoner into safe bed
+FAIL: scheduler assigned followup treatment
+FAIL: bed followup actually treated minor wound without cancelling marks
+PASS: clinical execution logged no errors

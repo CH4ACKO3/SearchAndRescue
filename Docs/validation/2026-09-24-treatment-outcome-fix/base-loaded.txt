@@ -1,0 +1,10 @@
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - ch4acko3.sarcaptureprobe.pbeda66c5a25840f9b82b14e34d49d90d
+Unloading 0 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 2 unused Assets to reduce memory usage. Loaded Objects now: 19468.
+Total: 84.316300 ms (FindLiveObjects: 0.766200 ms CreateObjectMapping: 0.228100 ms MarkObjects: 83.294400 ms  DeleteObjects: 0.027400 ms)
+
+Resolution too small (0x0), resetting UI scale to 2.
+[SAR capture] Creating disposable fixture
+Tried to change priority on disabled worktype Hauling for pawn Rutana

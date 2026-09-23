@@ -1,0 +1,43 @@
+PASS: fixture has an enclosed prison cell
+0: SAR_CaptureInPlace/0 prisoner=False bed=False cut=False bruise=False
+69: SAR_CaptureInPlace/1 prisoner=False bed=False cut=False bruise=False
+188: Wait_MaintainPosture/0 prisoner=True bed=False cut=False bruise=False
+189: TendPatient/3 prisoner=True bed=False cut=False bruise=False
+685: Wait_MaintainPosture/0 prisoner=True bed=False cut=True bruise=False
+691: TakeWoundedPrisonerToBed/6 prisoner=True bed=False cut=True bruise=False
+1086: TendPatient/0 prisoner=True bed=True cut=True bruise=False
+1120: TendPatient/3 prisoner=True bed=True cut=True bruise=False
+1615: Wait_MaintainPosture/0 prisoner=True bed=True cut=True bruise=True
+PASS: marked hostile was captured by actual job
+PASS: bleeding treated in field while minor wound was deferred
+PASS: actual rescue delivered prisoner into safe bed
+PASS: scheduler assigned followup treatment
+PASS: bed followup actually treated minor wound without cancelling marks
+PASS: Treat keeps its intended emergency/routine boundary in bed
+PASS: Treat actual treatment respects bed stage permission
+PASS: Treat medicine consumed only for an effective round
+PASS: Treat restores treatment scope
+PASS: Treat records only effective treatment commits
+PASS: FollowupTreat keeps its intended emergency/routine boundary in bed
+PASS: FollowupTreat actual treatment respects bed stage permission
+PASS: FollowupTreat medicine consumed only for an effective round
+PASS: FollowupTreat restores treatment scope
+PASS: FollowupTreat records only effective treatment commits
+PASS: empty round exits without recording success 1
+PASS: blood-loss delta cannot grant native tending success 1
+PASS: empty round keeps progressive retry state 1
+PASS: empty round exits without recording success 2
+PASS: blood-loss delta cannot grant native tending success 2
+PASS: empty round keeps progressive retry state 2
+PASS: replacement prefix and unchanged medicine stack still record real treatment
+PASS: disease can need retending while still tended
+PASS: renewing a disease tend counts without requiring a removed hediff
+PASS: exception cannot commit and restores emergency scope
+PASS: next treatment works after exception
+PASS: emergency lane excludes stabilized native tend candidates
+PASS: bedside routine wound belongs to followup lane only
+PASS: followup edge scoring preserves the routine stage
+PASS: stabilized emergency finalizer exits before DoTend and provider billing hooks calls=0 commits=0
+PASS: real native driver leaves empty managed tend round and scheduler backs off active=True ended=True retry=True
+PASS: real scheduler resumes successful treatment after provider recovers
+PASS: clinical execution logged no errors

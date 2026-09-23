@@ -264,6 +264,12 @@ namespace SearchAndRescue
                 float before = injury.BleedRate;
                 var comp = injury.comps.First(c => c.GetType().FullName == "CombatExtended.HediffComp_Stabilize");
                 bool Stabilized() => (bool)AccessTools.Property(comp.GetType(), "Stabilized").GetValue(comp, null);
+                int MedicineTotal() => map.listerThings.ThingsOfDef(ThingDefOf.MedicineIndustrial)
+                    .Concat(map.mapPawns.AllPawnsSpawned.SelectMany(p => p.inventory?.innerContainer
+                        .Where(t => t.def == ThingDefOf.MedicineIndustrial) ?? Enumerable.Empty<Thing>()))
+                    .Concat(map.mapPawns.AllPawnsSpawned.Select(p => p.carryTracker?.CarriedThing)
+                        .Where(t => t?.def == ThingDefOf.MedicineIndustrial)).Distinct().Sum(t => t.stackCount);
+                int medicineBefore = MedicineTotal();
                 doctor.jobs.StartJob(job, JobCondition.InterruptForced);
                 int ticks = 0;
                 for (; ticks < 1200 && !patient.Dead && !Stabilized(); ticks++) Find.TickManager.DoSingleTick();
@@ -272,7 +278,8 @@ namespace SearchAndRescue
                 Check(!patient.Dead && Stabilized() && injury.BleedRate < before, "PES7 native job actually stabilizes bleeding");
                 int remaining = doctor.inventory.innerContainer.Where(t => t.def == ThingDefOf.MedicineIndustrial).Sum(t => t.stackCount)
                     + (doctor.carryTracker.CarriedThing?.def == ThingDefOf.MedicineIndustrial ? doctor.carryTracker.CarriedThing.stackCount : 0);
-                Check(remaining == 2, "PES7 native stabilization consumes exactly one medicine");
+                results.Add("PES7 medicine total=" + medicineBefore + "->" + MedicineTotal() + "; doctor-held=" + remaining);
+                Check(MedicineTotal() == medicineBefore - 1, "PES7 native stabilization consumes exactly one medicine including dropped remainder");
                 Check(errors == 0, "PES7 native stabilization without runtime errors");
             }
             finally

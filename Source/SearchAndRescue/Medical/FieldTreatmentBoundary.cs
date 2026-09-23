@@ -4,6 +4,7 @@ using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace SearchAndRescue
 {
@@ -40,6 +41,16 @@ namespace SearchAndRescue
             return patient.health.hediffSet.hediffs.Where(h => h.TendableNow() && (atCareLocation || IsEmergency(h)));
         }
 
+        internal static bool AllowsOption(Pawn patient, MedicalIntervention intervention, SearchAndRescueStage stage)
+        {
+            if (intervention != MedicalIntervention.VanillaTend &&
+                intervention != MedicalIntervention.Rh2FirstAid &&
+                intervention != MedicalIntervention.RimkitBandage) return true;
+            if (MechanicalCare.IsPatient(patient) || RobotMedicalProfile.OwnsMedicineSelection(patient)) return true;
+            bool restricted = stage != SearchAndRescueStage.FollowupTreat || !AtCareLocation(patient);
+            return patient.health.hediffSet.hediffs.Any(h => h.TendableNow() && (!restricted || IsEmergency(h)));
+        }
+
         internal static bool RestrictRound(Pawn doctor, Pawn patient) =>
             doctor?.CurJob?.targetA.Pawn == patient &&
             !MechanicalCare.IsPatient(patient) && !RobotMedicalProfile.OwnsMedicineSelection(patient) &&
@@ -51,6 +62,30 @@ namespace SearchAndRescue
               RimkitCompatibility.IsManagedRound(doctor.CurJob)) && !AtCareLocation(patient));
 
         [ThreadStatic] internal static Pawn EmergencyPatient;
+    }
+
+    [HarmonyPatch(typeof(Toils_Tend), nameof(Toils_Tend.FinalizeTend))]
+    internal static class FieldTendFinalizeEligibilityPatch
+    {
+        private static void Postfix(Toil __result, Pawn patient)
+        {
+            if (__result?.initAction == null) return;
+            Action original = __result.initAction;
+            __result.initAction = () =>
+            {
+                Pawn doctor = __result.actor;
+                // Recheck after the wait, before medicine, XP or provider billing hooks.
+                // Arbitrary third-party no-ops still need the outcome check in DoTend.
+                if (FieldTreatmentBoundary.RestrictRound(doctor, patient) &&
+                    !patient.health.hediffSet.hediffs.Any(FieldTreatmentBoundary.IsEmergency))
+                {
+                    doctor.Map?.GetComponent<SearchAndRescueCoordinator>()?.NotifyTreatmentWithoutEffect(doctor, patient);
+                    doctor.jobs.EndCurrentJob(JobCondition.Succeeded);
+                    return;
+                }
+                original();
+            };
+        }
     }
 
     [HarmonyPatch(typeof(TendUtility), nameof(TendUtility.DoTend))]

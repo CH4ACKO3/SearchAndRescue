@@ -1,0 +1,125 @@
+Mods: brrainz.harmony,ludeon.rimworld,pes7.smartmedicinecontinued,xmb.ancienturbanruins.mo,ch4acko3.saraurprobe.p9eb81988cdf04aac9520d658065a0170
+PASS: AM_AI2A fixture reachable
+AM_AI2A ordinary initial count=null selectedJob=TendPatient
+AM_AI2A ordinary tick=0 job=TendPatient toil=3 patient=(126, 0, 116) doctor=(124, 0, 115) kit=(124, 0, 116)
+AM_AI2A ordinary tick=29 job=TendPatient toil=10 patient=(126, 0, 116) doctor=(124, 0, 116) kit=(124, 0, 116)
+AM_AI2A ordinary tick=61 job=TendPatient toil=13 patient=(126, 0, 116) doctor=(126, 0, 116) kit=(124, 0, 116)
+AM_AI2A ordinary ticks=521 cut=True bruise=True kitDestroyed=True count=null job=Wait_MaintainPosture
+PASS: AM_AI2A ordinary actual wound treated/stabilized
+PASS: AM_AI2A ordinary field boundary preserved
+BASELINE: AM_AI2A ordinary native uninitialized counter kitDestroyed=True
+PASS: AM_AI2A ordinary no runtime errors
+PASS: AM_AI2A fixture reachable
+PASS: AM_AI2A SAR selected production medicine/job
+AM_AI2A SAR initial count=null selectedJob=TendPatient
+AM_AI2A SAR tick=0 job=TendPatient toil=3 patient=(126, 0, 111) doctor=(124, 0, 112) kit=(123, 0, 112)
+AM_AI2A SAR tick=28 job=TendPatient toil=10 patient=(126, 0, 111) doctor=(123, 0, 112) kit=(123, 0, 112)
+AM_AI2A SAR tick=76 job=TendPatient toil=13 patient=(126, 0, 111) doctor=(126, 0, 111) kit=(123, 0, 112)
+AM_AI2A SAR ticks=536 cut=True bruise=False kitDestroyed=False count=2 job=Wait_MaintainPosture
+PASS: AM_AI2A SAR actual wound treated/stabilized
+PASS: AM_AI2A SAR field boundary preserved
+PASS: AM_AI2A SAR exactly one use consumed; kit retained
+PASS: AM_AI2A SAR no runtime errors
+PASS: AM_HemostaticAgent fixture reachable
+AM_HemostaticAgent ordinary initial count=null selectedJob=TendPatient
+AM_HemostaticAgent ordinary tick=0 job=TendPatient toil=10 patient=(119, 0, 112) doctor=(121, 0, 114) kit=(121, 0, 114)
+AM_HemostaticAgent ordinary tick=46 job=TendPatient toil=13 patient=(119, 0, 112) doctor=(119, 0, 112) kit=(121, 0, 114)
+AM_HemostaticAgent ordinary ticks=515 cut=True bruise=True kitDestroyed=True count=null job=Wait_MaintainPosture
+PASS: AM_HemostaticAgent ordinary actual wound treated/stabilized
+PASS: AM_HemostaticAgent ordinary field boundary preserved
+BASELINE: AM_HemostaticAgent ordinary native uninitialized counter kitDestroyed=True
+PASS: AM_HemostaticAgent ordinary no runtime errors
+PASS: AM_HemostaticAgent fixture reachable
+PASS: AM_HemostaticAgent SAR selected production medicine/job
+AM_HemostaticAgent SAR initial count=null selectedJob=TendPatient
+AM_HemostaticAgent SAR tick=0 job=TendPatient toil=3 patient=(123, 0, 116) doctor=(123, 0, 114) kit=(124, 0, 114)
+AM_HemostaticAgent SAR tick=30 job=TendPatient toil=10 patient=(123, 0, 116) doctor=(124, 0, 114) kit=(124, 0, 114)
+AM_HemostaticAgent SAR tick=91 job=TendPatient toil=13 patient=(123, 0, 116) doctor=(123, 0, 116) kit=(124, 0, 114)
+AM_HemostaticAgent SAR ticks=551 cut=True bruise=False kitDestroyed=False count=2 job=Wait_MaintainPosture
+PASS: AM_HemostaticAgent SAR actual wound treated/stabilized
+PASS: AM_HemostaticAgent SAR field boundary preserved
+PASS: AM_HemostaticAgent SAR exactly one use consumed; kit retained
+PASS: AM_HemostaticAgent SAR no runtime errors
+PASS: AM_FirstAidKit fixture reachable
+AM_FirstAidKit ordinary initial count=null selectedJob=TendPatient
+AM_FirstAidKit ordinary tick=0 job=TendPatient toil=3 patient=(123, 0, 118) doctor=(125, 0, 116) kit=(125, 0, 117)
+AM_FirstAidKit ordinary tick=29 job=TendPatient toil=10 patient=(123, 0, 118) doctor=(125, 0, 117) kit=(125, 0, 117)
+AM_FirstAidKit ordinary tick=68 job=TendPatient toil=13 patient=(123, 0, 118) doctor=(123, 0, 118) kit=(125, 0, 117)
+AM_FirstAidKit ordinary ticks=528 cut=True bruise=True kitDestroyed=True count=null job=Wait_MaintainPosture
+PASS: AM_FirstAidKit ordinary actual wound treated/stabilized
+PASS: AM_FirstAidKit ordinary field boundary preserved
+BASELINE: AM_FirstAidKit ordinary native uninitialized counter kitDestroyed=True
+PASS: AM_FirstAidKit ordinary no runtime errors
+PASS: AM_FirstAidKit fixture reachable
+PASS: AM_FirstAidKit SAR selected production medicine/job
+AM_FirstAidKit SAR initial count=null selectedJob=TendPatient
+AM_FirstAidKit SAR tick=0 job=TendPatient toil=3 patient=(119, 0, 112) doctor=(122, 0, 112) kit=(122, 0, 113)
+AM_FirstAidKit SAR tick=30 job=TendPatient toil=10 patient=(119, 0, 112) doctor=(122, 0, 113) kit=(122, 0, 113)
+AM_FirstAidKit SAR tick=93 job=TendPatient toil=13 patient=(119, 0, 112) doctor=(119, 0, 112) kit=(122, 0, 113)
+AM_FirstAidKit SAR ticks=421 cut=True bruise=False kitDestroyed=False count=3 job=Wait_MaintainPosture
+PASS: AM_FirstAidKit SAR actual wound treated/stabilized
+PASS: AM_FirstAidKit SAR field boundary preserved
+PASS: AM_FirstAidKit SAR exactly one use consumed; kit retained
+PASS: AM_FirstAidKit SAR no runtime errors
+PASS: AM_Salewa fixture reachable
+AM_Salewa ordinary initial count=null selectedJob=TendPatient
+AM_Salewa ordinary tick=0 job=TendPatient toil=3 patient=(123, 0, 116) doctor=(122, 0, 115) kit=(123, 0, 115)
+AM_Salewa ordinary tick=29 job=TendPatient toil=10 patient=(123, 0, 116) doctor=(123, 0, 115) kit=(123, 0, 115)
+AM_Salewa ordinary tick=58 job=TendPatient toil=13 patient=(123, 0, 116) doctor=(123, 0, 116) kit=(123, 0, 115)
+AM_Salewa ordinary ticks=518 cut=True bruise=True kitDestroyed=True count=null job=Wait_MaintainPosture
+PASS: AM_Salewa ordinary actual wound treated/stabilized
+PASS: AM_Salewa ordinary field boundary preserved
+BASELINE: AM_Salewa ordinary native uninitialized counter kitDestroyed=True
+PASS: AM_Salewa ordinary no runtime errors
+PASS: AM_Salewa fixture reachable
+PASS: AM_Salewa SAR selected production medicine/job
+AM_Salewa SAR initial count=null selectedJob=TendPatient
+AM_Salewa SAR tick=0 job=TendPatient toil=10 patient=(127, 0, 117) doctor=(126, 0, 115) kit=(126, 0, 115)
+AM_Salewa SAR tick=38 job=TendPatient toil=13 patient=(127, 0, 117) doctor=(127, 0, 117) kit=(126, 0, 115)
+AM_Salewa SAR ticks=498 cut=True bruise=False kitDestroyed=False count=7 job=Wait_MaintainPosture
+PASS: AM_Salewa SAR actual wound treated/stabilized
+PASS: AM_Salewa SAR field boundary preserved
+PASS: AM_Salewa SAR exactly one use consumed; kit retained
+PASS: AM_Salewa SAR no runtime errors
+PASS: AM_Grizzly fixture reachable
+AM_Grizzly ordinary initial count=null selectedJob=TendPatient
+AM_Grizzly ordinary tick=0 job=TendPatient toil=3 patient=(121, 0, 114) doctor=(122, 0, 115) kit=(122, 0, 116)
+AM_Grizzly ordinary tick=29 job=TendPatient toil=10 patient=(121, 0, 114) doctor=(122, 0, 116) kit=(122, 0, 116)
+AM_Grizzly ordinary tick=90 job=TendPatient toil=13 patient=(121, 0, 114) doctor=(121, 0, 114) kit=(122, 0, 116)
+AM_Grizzly ordinary ticks=596 cut=True bruise=True kitDestroyed=True count=null job=Wait_MaintainPosture
+PASS: AM_Grizzly ordinary actual wound treated/stabilized
+PASS: AM_Grizzly ordinary field boundary preserved
+BASELINE: AM_Grizzly ordinary native uninitialized counter kitDestroyed=True
+PASS: AM_Grizzly ordinary no runtime errors
+PASS: AM_Grizzly fixture reachable
+PASS: AM_Grizzly SAR selected production medicine/job
+AM_Grizzly SAR initial count=null selectedJob=TendPatient
+AM_Grizzly SAR tick=0 job=TendPatient toil=3 patient=(124, 0, 116) doctor=(125, 0, 116) kit=(125, 0, 117)
+AM_Grizzly SAR tick=30 job=TendPatient toil=10 patient=(124, 0, 116) doctor=(125, 0, 117) kit=(125, 0, 117)
+AM_Grizzly SAR tick=64 job=TendPatient toil=13 patient=(124, 0, 116) doctor=(124, 0, 116) kit=(125, 0, 117)
+AM_Grizzly SAR ticks=939 cut=True bruise=False kitDestroyed=False count=23 job=Wait_MaintainPosture
+PASS: AM_Grizzly SAR actual wound treated/stabilized
+PASS: AM_Grizzly SAR field boundary preserved
+PASS: AM_Grizzly SAR exactly one use consumed; kit retained
+PASS: AM_Grizzly SAR no runtime errors
+PASS: AM_AncientGrizzly fixture reachable
+AM_AncientGrizzly ordinary initial count=null selectedJob=TendPatient
+AM_AncientGrizzly ordinary tick=0 job=TendPatient toil=3 patient=(119, 0, 116) doctor=(122, 0, 116) kit=(123, 0, 116)
+AM_AncientGrizzly ordinary tick=30 job=TendPatient toil=10 patient=(119, 0, 116) doctor=(123, 0, 116) kit=(123, 0, 116)
+AM_AncientGrizzly ordinary tick=110 job=TendPatient toil=13 patient=(119, 0, 116) doctor=(119, 0, 116) kit=(123, 0, 116)
+AM_AncientGrizzly ordinary ticks=570 cut=True bruise=True kitDestroyed=True count=null job=Wait_MaintainPosture
+PASS: AM_AncientGrizzly ordinary actual wound treated/stabilized
+PASS: AM_AncientGrizzly ordinary field boundary preserved
+BASELINE: AM_AncientGrizzly ordinary native uninitialized counter kitDestroyed=True
+PASS: AM_AncientGrizzly ordinary no runtime errors
+PASS: AM_AncientGrizzly fixture reachable
+PASS: AM_AncientGrizzly SAR selected production medicine/job
+AM_AncientGrizzly SAR initial count=null selectedJob=TendPatient
+AM_AncientGrizzly SAR tick=0 job=TendPatient toil=3 patient=(126, 0, 117) doctor=(126, 0, 116) kit=(126, 0, 115)
+AM_AncientGrizzly SAR tick=30 job=TendPatient toil=10 patient=(126, 0, 117) doctor=(126, 0, 115) kit=(126, 0, 115)
+AM_AncientGrizzly SAR tick=62 job=TendPatient toil=13 patient=(126, 0, 117) doctor=(126, 0, 117) kit=(126, 0, 115)
+AM_AncientGrizzly SAR ticks=522 cut=True bruise=False kitDestroyed=False count=23 job=Wait_MaintainPosture
+PASS: AM_AncientGrizzly SAR actual wound treated/stabilized
+PASS: AM_AncientGrizzly SAR field boundary preserved
+PASS: AM_AncientGrizzly SAR exactly one use consumed; kit retained
+PASS: AM_AncientGrizzly SAR no runtime errors

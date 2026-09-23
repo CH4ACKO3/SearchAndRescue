@@ -1,0 +1,10 @@
+  - brrainz.harmony
+  - Ludeon.RimWorld
+  - Ludeon.RimWorld.Biotech
+  - CETeam.CombatExtended
+  - pes7.smartmedicinecontinued
+  - Th3Fr3d.ExtendedInjuries
+  - aoba.hemogendirect
+  - ch4acko3.sarcombinationprobe.p344e9985c66d42268e975473bbd2a6da
+[CE] Deflection for Instigator:Starry Target: DamageDef:Bite Weapon: has null verb, overriding AP.
+[CE] Deflection for Instigator:Starry Target: DamageDef:Bite Weapon: has null verb, overriding AP.

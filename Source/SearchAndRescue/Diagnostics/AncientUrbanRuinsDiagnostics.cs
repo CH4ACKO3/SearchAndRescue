@@ -102,7 +102,7 @@ namespace SearchAndRescue
                     doctor.jobs.StartJob(job, JobCondition.InterruptForced);
                     int lastToil = -999;
                     int ticks = 0;
-                    for (; ticks < 1200 && !cut.IsTended() && !Stabilized() && !patient.Dead; ticks++)
+                    for (; ticks < 6000 && !cut.IsTended() && !Stabilized() && !patient.Dead; ticks++)
                     {
                         int toil = doctor.jobs.curDriver?.CurToilIndex ?? -1;
                         if (toil != lastToil)

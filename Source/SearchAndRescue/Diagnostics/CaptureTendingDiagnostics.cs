@@ -143,7 +143,17 @@ namespace SearchAndRescue
                 Check(delivered, "actual rescue delivered prisoner into safe bed");
                 Check(followup, "scheduler assigned followup treatment");
                 Check(bruise.IsTended(), "bed followup actually treated minor wound without cancelling marks");
-                if (delivered) CheckBedStages(doctor, patient, coordinator);
+                if (!delivered || !bruise.IsTended())
+                {
+                    results.Add("FIXTURE: downed=" + patient.Downed + " bedSafe=" + Compatibility.IsSafeRescueBed(bed, patient) +
+                        " reachable=" + doctor.CanReach(bed, PathEndMode.Touch, Danger.Deadly));
+                    results.Add(coordinator.DebugDescribeScheduler());
+                }
+                if (delivered)
+                {
+                    CheckBedStages(doctor, patient, coordinator);
+                    TreatmentOutcomeDiagnostics.Run(doctor, patient, coordinator, Check);
+                }
                 CheckGrimWorks(doctor, patient);
                 CheckHaulerSupplies(doctor, patient, coordinator);
                 Check(errors == 0, "clinical execution logged no errors");
@@ -174,6 +184,9 @@ namespace SearchAndRescue
                     Check(medicine.stackCount == (stage == SearchAndRescueStage.Treat ? 2 : 1),
                         stage + " medicine consumed only for an effective round");
                     Check(FieldTreatmentBoundary.EmergencyPatient == null, stage + " restores treatment scope");
+                    var current = claims.Primary[patient];
+                    Check(current.CommittedTreatmentRounds == (stage == SearchAndRescueStage.Treat ? 0 : 1),
+                        stage + " records only effective treatment commits");
                 }
             }
             finally { doctor.jobs.curJob = null; claims.ReleasePrimary(patient); }
