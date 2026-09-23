@@ -1,0 +1,10 @@
+stage= restricted=False untended=2->0 medicine=0->0 commits=0->0 effect=
+stage= restricted=False untended=0->0 medicine=0->0 commits=0->0 effect=
+stage= restricted=False untended=0->0 medicine=0->0 commits=0->0 effect=
+stage= restricted=False untended=0->0 medicine=0->0 commits=0->0 effect=
+stage= restricted=False untended=0->0 medicine=0->0 commits=0->0 effect=
+stage=Treat restricted=True untended=2->1 medicine=0->0 commits=0->1 effect=True
+stage= restricted=False untended=0->0 medicine=0->0 commits=0->0 effect=
+stage=FollowupTreat restricted=False untended=1->0 medicine=0->0 commits=0->1 effect=True
+stage=Treat restricted=True untended=1->1 medicine=2->2 commits=0->1 effect=True
+stage=FollowupTreat restricted=False untended=1->0 medicine=2->1 commits=0->1 effect=True
