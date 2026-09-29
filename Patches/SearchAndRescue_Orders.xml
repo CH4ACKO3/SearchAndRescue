@@ -4,6 +4,7 @@
     <xpath>Defs/DesignationCategoryDef[defName="Orders"]/specialDesignatorClasses</xpath>
     <value>
       <li>SearchAndRescue.Designator_SearchAndRescue</li>
+      <li>SearchAndRescue.Designator_RescueAll</li>
     </value>
   </Operation>
 </Patch>

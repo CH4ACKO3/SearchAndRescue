@@ -4,7 +4,7 @@
 	<modIconPath>Things/Item/Resource/Medicine/MedicineIndustrial/MedicineIndustrial_a</modIconPath>
 	<author>CH4AcKO3</author>
 	<packageId>CH4AcKO3.SearchAndRescue</packageId>
-  <modVersion>0.1.0-alpha.15</modVersion>
+  <modVersion>0.1.0-alpha.16</modVersion>
 	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278</url>
 	<supportedVersions>
 		<li>1.6</li>
@@ -50,16 +50,14 @@
 	</loadAfter>
 	<description>Search and Rescue
 
-For RimWorld 1.6 · Alpha
+For RimWorld 1.6
 
 Batch-mark downed pawns or animals for treatment, evacuation, and capture. Pawns assigned to the Field Rescue work type will coordinate the response efficiently, including on-site first aid, bulk medical-supply delivery, division of labor, and injury-based prioritization.
-
-This is an Alpha release and the mod is still in early development. Back up long-running saves before adding it.
 
 Features
 
 • Three stackable designations: field treatment, rescue, and capture. The default shortcut applies every valid stage to the selected targets at once.
-• Two ways to issue orders: choose a command and drag over casualties, or select casualties first and use the command in their bottom action bar.
+• Flexible orders: drag over casualties, use their bottom action bar, or click Rescue all to mark eligible friendly pawns across the map. Right-click Rescue all for downed enemies or all factions.
 • A dedicated Field Rescue work type: sets the overall priority of battlefield rescue, with Doctor, Hauling and other relevant work types enabling individual tasks.
 • Unified triage and matching: assigns patients to doctors, nurses, and carriers using injury severity, blood loss, infection and immunity progress, distance, skill, work priority, current jobs, and switching costs.
 • Stabilize first, finish later: field care treats bleeding and supported urgent conditions. Minor wounds wait until a safe bed or rescue point. Work Tab can assign emergency care separately from routine tending and surgery.
@@ -134,8 +132,6 @@ Partially compatible
 
 
 Detailed compatibility information is available under Mod Settings → Search and Rescue → Compatibility. Mods that are not active are shown as Disabled. If an optional adapter fails to load correctly, its status is automatically downgraded to Partially compatible.
-
-This is an Alpha release and the mod is still in early development. Back up long-running saves before adding it.
 
 Languages
 

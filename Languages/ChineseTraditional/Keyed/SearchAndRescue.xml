@@ -3,6 +3,12 @@
   <ModName>Search and Rescue</ModName>
   <ModDescription>批次安排戰地治療、救援和俘虜。標記多個人形生物或非敵對動物，讓救援人員依安全、可預測的順序執行相應階段。</ModDescription>
 
+  <SAR_RescueAll_Label>救援全部</SAR_RescueAll_Label>
+  <SAR_RescueAll_Desc>左鍵標記目前地圖上所有符合條件的殖民地及盟友目標。右鍵可選擇所有倒地敵軍，或所有陣營（含中立目標）。沿用「搜尋與救援」的規則，按需加入俘虜、治療和救援標記，略過迷霧內的目標和已有標記。每次點擊僅標記一次。</SAR_RescueAll_Desc>
+  <SAR_RescueAll_Friendly>所有友軍（{0}）</SAR_RescueAll_Friendly>
+  <SAR_RescueAll_Hostile>所有倒地敵軍（{0}）</SAR_RescueAll_Hostile>
+  <SAR_RescueAll_Everyone>所有陣營，含中立目標（{0}）</SAR_RescueAll_Everyone>
+  <SAR_RescueAll_Result>搜尋與救援：已標記 {0} 個目標。</SAR_RescueAll_Result>
   <SAR_Command_Label>搜尋與救援</SAR_Command_Label>
   <SAR_Command_Desc>預設依安全順序標記所有適用階段：就地俘虜、戰地治療、戰地救援。按右鍵可選擇單一階段或設定救援集合點。</SAR_Command_Desc>
   <SAR_Command_All>快速命令：俘虜 + 治療 + 救援</SAR_Command_All>

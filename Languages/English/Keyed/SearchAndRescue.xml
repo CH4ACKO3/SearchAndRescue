@@ -3,6 +3,12 @@
   <ModName>Search and Rescue</ModName>
   <ModDescription>Batch battlefield treatment, rescue, and capture orders. Mark multiple humanlike pawns or non-hostile animals and let responders carry out the requested stages in a safe, predictable order.</ModDescription>
 
+  <SAR_RescueAll_Label>Rescue all</SAR_RescueAll_Label>
+  <SAR_RescueAll_Desc>Left-click to mark all eligible colony and allied pawns on the current map. Right-click to choose downed enemies or all factions (including neutrals). Applies capture, treatment and rescue as appropriate, using the same rules as Search and rescue. Skips targets in fog and existing orders. This is a one-time action.</SAR_RescueAll_Desc>
+  <SAR_RescueAll_Friendly>All friendly pawns ({0})</SAR_RescueAll_Friendly>
+  <SAR_RescueAll_Hostile>All downed enemies ({0})</SAR_RescueAll_Hostile>
+  <SAR_RescueAll_Everyone>All factions, including neutrals ({0})</SAR_RescueAll_Everyone>
+  <SAR_RescueAll_Result>Search and Rescue: marked {0} pawns.</SAR_RescueAll_Result>
   <SAR_Command_Label>Search and rescue</SAR_Command_Label>
   <SAR_Command_Desc>By default, marks every applicable stage in the safe order: capture, field treatment, then rescue. Right-click to choose a single stage or configure the rescue point.</SAR_Command_Desc>
   <SAR_Command_All>All: capture + treat + rescue</SAR_Command_All>

@@ -26,7 +26,7 @@
 - 已发布页面为 https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278 。发布前先核对线上英/中文描述，将作者在工坊手动修改的内容同步回本地；不要用旧版 About 或发布文案覆盖线上修改。`About.xml` 使用英文描述的游戏内纯文本版本。
 - 标签建议：`1.6`、`Mod`、`Medical`、`Utilities`。
 - 使用 [标签发布流程](WorkshopAutomation.zh-CN.md) 更新现有条目，完成订阅安装的干净复测。
-- 保持线上标题 `Search and Rescue`；在简介后保留 Alpha 提示，按需补充已知限制与日志提交要求。
+- 保持线上标题 `Search and Rescue`；简介不再添加 Alpha 提醒，按需补充已知限制与日志提交要求。
 - 现有条目 ID 为 `3796056278`；CI 会在发布包中写入对应的 `About/PublishedFileId.txt`。
 
 ## 不进入发布包
