@@ -89,6 +89,23 @@ namespace SearchAndRescue
                 yield break;
             }
 
+            SearchAndRescueCoordinator coordinator = pawn.Map.GetComponent<SearchAndRescueCoordinator>();
+            if (Compatibility.IsColonyWorkMech(pawn) && coordinator?.CanToggleFieldResponder(pawn) == true &&
+                (pawn.RaceProps.mechEnabledWorkTypes.Contains(WorkTypeDefOf.Doctor) ||
+                 pawn.RaceProps.mechEnabledWorkTypes.Contains(WorkTypeDefOf.Hauling)))
+            {
+                yield return new Command_Toggle
+                {
+                    defaultLabel = "SAR_MechResponder_Label".Translate(),
+                    defaultDesc = "SAR_MechResponder_Desc".Translate(),
+                    icon = ContentFinder<Texture2D>.Get(Designator_SearchAndRescue.CommandIconPath),
+                    isActive = () => coordinator.IsFieldResponderEnabled(pawn),
+                    toggleAction = () => coordinator.SetFieldResponder(pawn, !coordinator.IsFieldResponderEnabled(pawn)),
+                    groupKey = 0x53414D,
+                    Order = -16f
+                };
+            }
+
             Designator_SearchAndRescue designator = new Designator_SearchAndRescue();
             if (designator.CanDesignateThing(pawn).Accepted)
             {

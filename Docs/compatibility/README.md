@@ -1,6 +1,6 @@
 # Search and Rescue 1.6 Compatibility List
 
-Updated: 2026-09-10
+Updated: 2026-10-10
 
 ## Support levels
 
@@ -26,7 +26,7 @@ Royal titles and vanilla medical rules remain unchanged. Battlefield surgery con
 Colonist, slave, prisoner, guest, and medical-permission rules follow vanilla behavior.
 
 **Biotech — Compatible**
-Colony work mechs opt in through the rescue toggle and use their medical or hauling permissions, work modes, charging rules and player orders. Repairable colony mechs support repair and downed evacuation: mechanitors with Field Rescue and Smithing enabled use native repair jobs and respect the auto-repair toggle; evacuation uses the designated rescue point. Repair jobs participate in treatment ownership. Enemy-mech acquisition and resurrection use their respective systems. Suitable human doctors perform CE stabilization; hemogen transfusions are supported.
+Select a colony medical or hauling mech and enable Join field rescue to participate. Medical mechs stabilize and evacuate casualties; hauling mechs deliver medical supplies and evacuate casualties, following native work permissions, work modes, charging rules, allowed areas and player orders. Repairable colony mechs support repair and downed evacuation: mechanitors with Field Rescue and Smithing enabled use native repair jobs and respect the auto-repair toggle; evacuation uses the designated rescue point. Repair jobs participate in treatment ownership. Enemy-mech acquisition and resurrection use their respective systems. Suitable human doctors perform CE stabilization; hemogen transfusions are supported.
 
 **Anomaly — Compatible**
 Supports capture, treatment, and rescue designations for downed hostile humanlikes before and after monolith activation, with the shortcut and drag selection verified in an existing save. Eligible mutants can receive care. Entities that require containment platforms, including native shamblers, continue through the containment flow. Vanilla TendEntity jobs count as external treatment ownership.

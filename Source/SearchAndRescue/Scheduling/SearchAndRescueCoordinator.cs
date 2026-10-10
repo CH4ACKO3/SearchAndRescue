@@ -228,8 +228,9 @@ namespace SearchAndRescue
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 fieldResponders ??= new List<Pawn>();
+                // Mech map and controller references may still be restoring; check eligibility when scheduling.
                 fieldResponders = fieldResponders
-                    .Where(pawn => pawn != null && CanToggleFieldResponder(pawn))
+                    .Where(pawn => pawn != null && !pawn.Destroyed)
                     .Distinct()
                     .ToList();
                 recentMarkerMemories = recentMarkerMemories?
@@ -250,7 +251,12 @@ namespace SearchAndRescue
 
         internal bool IsFieldResponder(Pawn pawn)
         {
-            if (pawn == null || pawn.Drafted)
+            return pawn != null && !pawn.Drafted && IsFieldResponderEnabled(pawn);
+        }
+
+        internal bool IsFieldResponderEnabled(Pawn pawn)
+        {
+            if (pawn == null)
             {
                 return false;
             }

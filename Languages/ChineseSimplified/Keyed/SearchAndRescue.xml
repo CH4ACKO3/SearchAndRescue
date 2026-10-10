@@ -10,6 +10,8 @@
   <SAR_RescueAll_Everyone>所有阵营，含中立目标（{0}）</SAR_RescueAll_Everyone>
   <SAR_RescueAll_Result>搜索与救援：已标记 {0} 个目标。</SAR_RescueAll_Result>
   <SAR_Command_Label>搜索与救援</SAR_Command_Label>
+  <SAR_MechResponder_Label>参与战地救援</SAR_MechResponder_Label>
+  <SAR_MechResponder_Desc>让这台机械体参与 Search and Rescue。医疗机械体负责稳定伤势和转移伤员，搬运机械体负责运送医疗物资和转移伤员。沿用已启用的原生工作类型，并遵守工作模式、能源需求、允许区域和玩家命令。</SAR_MechResponder_Desc>
   <SAR_Command_Desc>默认按安全顺序标记所有适用阶段：就地俘虏、战地治疗、战地救援。右键可选择单个阶段或设置救援集合点。</SAR_Command_Desc>
   <SAR_Command_All>快捷命令：俘虏 + 治疗 + 救援</SAR_Command_All>
   <SAR_ClearAllOrders>清除全部搜索与救援命令（{0}）</SAR_ClearAllOrders>

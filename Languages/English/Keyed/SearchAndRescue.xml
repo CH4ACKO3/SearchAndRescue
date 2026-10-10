@@ -10,6 +10,8 @@
   <SAR_RescueAll_Everyone>All factions, including neutrals ({0})</SAR_RescueAll_Everyone>
   <SAR_RescueAll_Result>Search and Rescue: marked {0} pawns.</SAR_RescueAll_Result>
   <SAR_Command_Label>Search and rescue</SAR_Command_Label>
+  <SAR_MechResponder_Label>Join field rescue</SAR_MechResponder_Label>
+  <SAR_MechResponder_Desc>Assign this mech to Search and Rescue. Medical mechs stabilize and evacuate casualties; hauling mechs deliver medical supplies and evacuate casualties. Uses enabled native work types and follows work modes, energy needs, allowed areas and player orders.</SAR_MechResponder_Desc>
   <SAR_Command_Desc>By default, marks every applicable stage in the safe order: capture, field treatment, then rescue. Right-click to choose a single stage or configure the rescue point.</SAR_Command_Desc>
   <SAR_Command_All>All: capture + treat + rescue</SAR_Command_All>
   <SAR_ClearAllOrders>Clear all Search and Rescue orders ({0})</SAR_ClearAllOrders>
