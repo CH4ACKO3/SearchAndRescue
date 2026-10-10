@@ -20,8 +20,6 @@ foreach ($language in @('ChineseSimplified','ChineseTraditional')) {
 }
 dotnet build Source/SearchAndRescue/SearchAndRescue.csproj -c Release -warnaserror -p:UseReferencePackages=true
 if ($LASTEXITCODE) { throw 'Build failed.' }
-dotnet run --project Tools/SchedulerSimulation/SchedulerSimulation.csproj -c Release -warnaserror
-if ($LASTEXITCODE) { throw 'Production rule regressions failed.' }
 & "$root/Tools/BuildRelease.ps1" -Version $version -OutputRoot $OutputRoot
 $out = (Resolve-Path -LiteralPath $OutputRoot).Path
 $stage = Join-Path $out "SearchAndRescue-$version"

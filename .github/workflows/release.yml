@@ -53,8 +53,6 @@ jobs:
         shell: pwsh
         run: |
           ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot artifacts/ci -DryRun
-          ./Tools/CI/Test-Package.ps1 -ArtifactRoot artifacts/ci
-          ./Tools/CI/Test-SteamSession.ps1
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: workshop-package

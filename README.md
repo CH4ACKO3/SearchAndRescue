@@ -25,9 +25,3 @@ dotnet build Source/SearchAndRescue/SearchAndRescue.csproj -c Release `
 ```
 
 Adjust the paths to your installation. Output: `Assemblies/SearchAndRescue.dll`. Compiled binaries are not committed.
-
-Run the standalone matching regressions with .NET 8:
-
-```shell
-dotnet run --project Tools/SchedulerSimulation/SchedulerSimulation.csproj -c Release
-```
