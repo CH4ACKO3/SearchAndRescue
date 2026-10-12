@@ -81,7 +81,7 @@
     <canBeDoneByMechs>true</canBeDoneByMechs>
   </WorkGiverDef>
 
-  <WorkGiverDef MayRequire="DarthSergeant.NurseJob">
+  <WorkGiverDef MayRequireAnyOf="DarthSergeant.NurseJob,FrozenSnowFox.ComplexJobs">
     <defName>SAR_SupportiveCareMarkedNursing</defName>
     <label>coordinate urgent supportive care</label>
     <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueSupportiveCareNursing</giverClass>
@@ -134,7 +134,7 @@
     <canBeDoneByMechs>true</canBeDoneByMechs>
   </WorkGiverDef>
 
-  <WorkGiverDef MayRequire="DarthSergeant.NurseJob">
+  <WorkGiverDef MayRequireAnyOf="DarthSergeant.NurseJob,FrozenSnowFox.ComplexJobs">
     <defName>SAR_RescueMarkedNursing</defName>
     <label>evacuate marked battlefield casualties</label>
     <giverClass>SearchAndRescue.WorkGiver_SearchAndRescueRescueNursing</giverClass>

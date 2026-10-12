@@ -7,6 +7,7 @@
   <Operation Class="PatchOperationFindMod">
     <mods>
       <li>Nurse Job</li>
+      <li>[FSF] Complex Jobs</li>
     </mods>
     <match Class="PatchOperationFindMod">
       <mods>
@@ -44,6 +45,13 @@
                 <prioritizeSustains>true</prioritizeSustains>
               </WorkGiverDef>
             </value>
+          </li>
+          <li Class="PatchOperationConditional">
+            <xpath>/Defs[WorkTypeDef[defName="FSFNurse"] and not(WorkTypeDef[defName="Nursing"])]</xpath>
+            <match Class="PatchOperationReplace">
+              <xpath>/Defs/WorkGiverDef[defName="SAR_NurseUseBloodBag" or defName="SAR_NurseUseSalineBag"]/workType</xpath>
+              <value><workType>FSFNurse</workType></value>
+            </match>
           </li>
         </operations>
       </match>

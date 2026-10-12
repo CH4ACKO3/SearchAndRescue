@@ -1,6 +1,6 @@
 # Search and Rescue 1.6 Compatibility List
 
-Updated: 2026-10-10
+Updated: 2026-10-12
 
 ## Support levels
 
@@ -138,6 +138,12 @@ Cargo in stationary, player-owned, reachable vehicles acts as a medical-supply s
 
 **Nurse Job — Integration**
 Provides Prefer nursing and Nursing only rescue modes; the default mode uses Hauling. For designated casualties, transfusions, infusions, hemostatic agents, bandages, and tourniquets can be assigned to Nursing, with doctors taking over when nurses are unavailable. CPR, suction, defibrillation, and ordinary tending are matched to doctors by medical skill.
+
+**[FSF] Complex Jobs — Integration**
+Enable Field Rescue and Nurse to use the nursing rescue modes and supportive care, including More Injuries transfusions and infusions. Doctor authorizes ordinary tending and skill-dependent emergency treatment.
+
+**Yet another Optimizer — Compatible**
+Work selection batches containing SAR tasks run serially, preserving rescue assignments and resource ownership. Other work batches retain YaOpt's parallel scanning.
 
 **GrimWorks: Work Manager — Integration**
 Respects individual work priorities and disabled tasks. Enable Field Rescue and the native Rescue work to carry casualties; emergency care still requires medical authorization. Enable the appropriate medical work for tending; GrimWorks Nurse provides nursing duties. When Work Tab is also active, a task must be enabled in both managers.

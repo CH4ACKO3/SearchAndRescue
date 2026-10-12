@@ -38,7 +38,7 @@
   <SAR_CE_NoMedicine>Field treatment skipped for {0}: Combat Extended stabilization requires medicine.</SAR_CE_NoMedicine>
   <SAR_Settings_Category>Search and Rescue</SAR_Settings_Category>
   <SAR_Settings_RescueWorkMode>Rescue workforce</SAR_Settings_RescueWorkMode>
-  <SAR_Settings_RescueWorkMode_Desc>Hauling uses Hauling work. Nursing preferred prioritizes Nurse Job workers, with haulers filling in. Nursing only uses Nursing work. Enable the work type required by your chosen mode for each responder.</SAR_Settings_RescueWorkMode_Desc>
+  <SAR_Settings_RescueWorkMode_Desc>Hauling uses Hauling work. Nursing preferred prioritizes nurses from Nurse Job or FSF Complex Jobs, with haulers filling in. Nursing only uses the active mod's nursing work. Enable the work type required by your chosen mode for each responder.</SAR_Settings_RescueWorkMode_Desc>
   <SAR_Settings_RescueWorkMode_Hauling>Hauling</SAR_Settings_RescueWorkMode_Hauling>
   <SAR_Settings_RescueWorkMode_NursingPreferred>Nursing preferred, hauling fallback</SAR_Settings_RescueWorkMode_NursingPreferred>
   <SAR_Settings_RescueWorkMode_NursingOnly>Nursing only</SAR_Settings_RescueWorkMode_NursingOnly>
@@ -48,7 +48,7 @@
   <SAR_Settings_MedicalCoordinationMode_EmergencyAuto>Automatically coordinate emergencies</SAR_Settings_MedicalCoordinationMode_EmergencyAuto>
   <SAR_Settings_MedicalCoordinationMode_AllTending>Coordinate all ordinary tending</SAR_Settings_MedicalCoordinationMode_AllTending>
   <SAR_Settings_NurseDetected>Nurse Job detected. Nursing rescue modes are available.</SAR_Settings_NurseDetected>
-  <SAR_Settings_NurseNotDetected>Enable Nurse Job to use nursing rescue modes. Hauling is available with the current mod setup.</SAR_Settings_NurseNotDetected>
+  <SAR_Settings_NurseNotDetected>Enable Nurse Job or FSF Complex Jobs to use nursing rescue modes. Hauling is available with the current mod setup.</SAR_Settings_NurseNotDetected>
 
   <SAR_Settings_Tab_General>General</SAR_Settings_Tab_General>
   <SAR_Settings_Tab_Advanced>Triage &amp; logistics</SAR_Settings_Tab_Advanced>
@@ -130,6 +130,8 @@
   <SAR_Compatibility_Hospitality>Coordinates rescue through standard beds, guest status and faction relations. Hospitality settings and systems provide reception, fees and visitor activities.</SAR_Compatibility_Hospitality>
   <SAR_Compatibility_VehicleFramework>Stationary, reachable player vehicles provide cargo for medical kits and deliveries. Use the vehicle and related mods’ actions for patient boarding and in-vehicle care.</SAR_Compatibility_VehicleFramework>
   <SAR_Compatibility_NurseJob>Offers hauling, nurse-preferred, and nurse-only rescue modes. Supportive interventions use Nursing with doctors as fallback where appropriate.</SAR_Compatibility_NurseJob>
+  <SAR_Compatibility_ComplexJobs>Reads the Nurse work priority for nursing rescue modes and supportive care. Ordinary tending uses Doctor.</SAR_Compatibility_ComplexJobs>
+  <SAR_Compatibility_YaOpt>Work selection batches containing SAR tasks run serially to preserve rescue assignments and resource ownership. Other work batches retain parallel scanning.</SAR_Compatibility_YaOpt>
   <SAR_Compatibility_WorkTab>Reads SAR child priorities. More Injuries CPR, airway management, defibrillation and doctor transfusions also require the corresponding native child work. Nursing remains a separate authorization.</SAR_Compatibility_WorkTab>
   <SAR_Compatibility_MechWorkTab>Reads colony-mech detailed work settings when deciding which battlefield lanes a mech may enter.</SAR_Compatibility_MechWorkTab>
   <SAR_Compatibility_WVCWorkModes>Honors additional mech work modes and their effective work authority.</SAR_Compatibility_WVCWorkModes>

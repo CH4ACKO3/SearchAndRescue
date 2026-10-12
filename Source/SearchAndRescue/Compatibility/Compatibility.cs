@@ -41,7 +41,8 @@ namespace SearchAndRescue
             DefDatabase<ResearchProjectDef>.GetNamedSilentFail("Cpr");
         private static readonly ResearchProjectDef MoreInjuriesEmergencyMedicine =
             DefDatabase<ResearchProjectDef>.GetNamedSilentFail("EmergencyMedicine");
-        private static readonly WorkTypeDef NursingWork = DefDatabase<WorkTypeDef>.GetNamedSilentFail("Nursing");
+        private static readonly WorkTypeDef NursingWork = DefDatabase<WorkTypeDef>.GetNamedSilentFail("Nursing")
+            ?? DefDatabase<WorkTypeDef>.GetNamedSilentFail("FSFNurse");
         private static readonly TrainableDef RescueTraining = DefDatabase<TrainableDef>.GetNamedSilentFail("Rescue");
         private static readonly WorkGiverDef NursingRescueWorkGiver =
             DefDatabase<WorkGiverDef>.GetNamedSilentFail("SAR_RescueMarkedNursing");
@@ -227,6 +228,7 @@ namespace SearchAndRescue
         public static bool UsesEmergencyTransfusions => EmergencyTransfusionJob != null && HemogenPackDef != null;
         public static bool UsesHemogenTransfusion => UsesEmergencyTransfusions || UsesHemogenDirect;
         public static bool NurseJobAvailable => NursingWork != null;
+        internal static bool UsesComplexJobs => NursingWork?.defName == "FSFNurse";
         public static bool UsesWorkTab => WorkTabGetPriority != null;
 
         internal static void DisableAllWorkForBenchmark(Pawn worker)

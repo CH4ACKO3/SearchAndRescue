@@ -38,7 +38,7 @@
   <SAR_CE_NoMedicine>已跳过 {0} 的战地治疗：Combat Extended 的稳定伤势需要药品。</SAR_CE_NoMedicine>
   <SAR_Settings_Category>Search and Rescue</SAR_Settings_Category>
   <SAR_Settings_RescueWorkMode>救援人员</SAR_Settings_RescueWorkMode>
-  <SAR_Settings_RescueWorkMode_Desc>“搬运”使用搬运工作；“护士优先”优先安排 Nurse Job 的护士，并由搬运工补位；“仅护士”使用护理工作。请为救援人员启用所选模式对应的工作。</SAR_Settings_RescueWorkMode_Desc>
+  <SAR_Settings_RescueWorkMode_Desc>“搬运”使用搬运工作；“护士优先”优先安排 Nurse Job 或 FSF Complex Jobs 的护士，并由搬运工补位；“仅护士”使用当前模组的护理工作。请为救援人员启用所选模式对应的工作。</SAR_Settings_RescueWorkMode_Desc>
   <SAR_Settings_RescueWorkMode_Hauling>搬运</SAR_Settings_RescueWorkMode_Hauling>
   <SAR_Settings_RescueWorkMode_NursingPreferred>护士优先，搬运补位</SAR_Settings_RescueWorkMode_NursingPreferred>
   <SAR_Settings_RescueWorkMode_NursingOnly>仅护士</SAR_Settings_RescueWorkMode_NursingOnly>
@@ -48,7 +48,7 @@
   <SAR_Settings_MedicalCoordinationMode_EmergencyAuto>自动接管紧急医疗</SAR_Settings_MedicalCoordinationMode_EmergencyAuto>
   <SAR_Settings_MedicalCoordinationMode_AllTending>接管全部普通治疗</SAR_Settings_MedicalCoordinationMode_AllTending>
   <SAR_Settings_NurseDetected>已检测到 Nurse Job，可以使用护士救援模式。</SAR_Settings_NurseDetected>
-  <SAR_Settings_NurseNotDetected>启用 Nurse Job 后即可使用护士救援模式；当前可选择“搬运”。</SAR_Settings_NurseNotDetected>
+  <SAR_Settings_NurseNotDetected>启用 Nurse Job 或 FSF Complex Jobs 后即可使用护士救援模式；当前可选择“搬运”。</SAR_Settings_NurseNotDetected>
 
   <SAR_Settings_Tab_General>常规</SAR_Settings_Tab_General>
   <SAR_Settings_Tab_Advanced>分诊与后勤</SAR_Settings_Tab_Advanced>
@@ -130,6 +130,8 @@
   <SAR_Compatibility_Hospitality>通过标准床位、宾客身份和阵营关系配合救援。接待、收费和访客活动使用 Hospitality 的设置与流程。</SAR_Compatibility_Hospitality>
   <SAR_Compatibility_VehicleFramework>静止、玩家所属且可达的载具货舱可为药包和送药提供物资。伤员入车和车内治疗使用载具及相关模组提供的操作。</SAR_Compatibility_VehicleFramework>
   <SAR_Compatibility_NurseJob>提供搬运、护士优先和仅护士三种救援模式；支持性治疗会使用护理工作，必要时由医生兜底。</SAR_Compatibility_NurseJob>
+  <SAR_Compatibility_ComplexJobs>读取 Nurse 工作优先级，支持护士救援模式和支持性治疗。常规包扎使用 Doctor 权限。</SAR_Compatibility_ComplexJobs>
+  <SAR_Compatibility_YaOpt>包含 SAR 任务的选工批次按顺序执行，保持救援分配与物资占用一致。其他选工批次保留并行扫描。</SAR_Compatibility_YaOpt>
   <SAR_Compatibility_WorkTab>读取 SAR 子工作优先级；More Injuries 的 CPR、气道管理、除颤及医生输液输血还需开启对应原生子工作。护理保持独立授权。</SAR_Compatibility_WorkTab>
   <SAR_Compatibility_MechWorkTab>决定机仆可以进入哪些战地工作通道时，会读取殖民地机仆的细分工作设置。</SAR_Compatibility_MechWorkTab>
   <SAR_Compatibility_WVCWorkModes>遵守新增的机仆工作模式及其最终工作权限。</SAR_Compatibility_WVCWorkModes>
