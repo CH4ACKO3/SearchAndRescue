@@ -13,7 +13,7 @@ namespace SearchAndRescue
             harmony.PatchAll();
             Compatibility.RegisterPriorityTreatmentJobs();
             PriorityTreatmentCompatibility.Install(harmony);
-            Log.Message("[Search and Rescue] Loaded for RimWorld 1.6. Active compatibility: " +
+            Log.Message("[Search and Rescue] Loaded. Active compatibility: " +
                 Compatibility.ActiveCompatibilitySummary() + ".");
         }
     }

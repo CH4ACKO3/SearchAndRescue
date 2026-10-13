@@ -4,10 +4,11 @@
 	<modIconPath>Things/Item/Resource/Medicine/MedicineIndustrial/MedicineIndustrial_a</modIconPath>
 	<author>CH4AcKO3</author>
 	<packageId>CH4AcKO3.SearchAndRescue</packageId>
-  <modVersion>0.1.0-alpha.18</modVersion>
+  <modVersion>0.1.0-alpha.19</modVersion>
 	<url>https://steamcommunity.com/sharedfiles/filedetails/?id=3796056278</url>
 	<supportedVersions>
 		<li>1.6</li>
+		<li>1.7</li>
 	</supportedVersions>
 	<modDependencies>
 		<li>
@@ -50,7 +51,7 @@
 	</loadAfter>
 	<description>Search and Rescue
 
-For RimWorld 1.6
+For RimWorld 1.6 and 1.7
 
 Batch-mark downed pawns or animals for treatment, evacuation, and capture. Pawns assigned to the Field Rescue work type will coordinate the response efficiently, including on-site first aid, bulk medical-supply delivery, division of labor, and injury-based prioritization.
 
@@ -73,7 +74,7 @@ Compatibility
 
 Official content: Compatible
 
-• RimWorld 1.6
+• RimWorld 1.6 and 1.7
 • Royalty
 • Ideology
 • Biotech

@@ -1,6 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Xml.Linq;
 using SteamKit2;
 using SteamKit2.Authentication;
 using SteamKit2.Internal;
@@ -99,21 +100,24 @@ static async Task<int> Run(string[] args)
         for (var i = 0; i < descriptions.Count; i++)
         {
             var item = descriptions[i];
-            if (Normalize(previous[i].file_description) != Normalize(item.Text))
+            var request = CreateUpdate(item, previous[i]);
+            if (Normalize(previous[i].file_description) != Normalize(item.Text) ||
+                !previous[i].tags.Select(t => t.tag).Order().SequenceEqual(request.tags.Order()))
             {
-                var update = await service.Update(CreateUpdate(item, previous[i]));
+                var update = await service.Update(request);
                 if (update.Result != EResult.OK) throw new PublisherException($"Description update rejected for language {item.Language}: {update.Result}.");
             }
             PublishedFileDetails after = previous[i];
             for (var attempt = 0; attempt < 5; attempt++)
             {
                 after = await Read(service, item.Language, live.Client.SteamID!.ConvertToUInt64());
-                if (Normalize(after.file_description) == Normalize(item.Text)) break;
+                if (Normalize(after.file_description) == Normalize(item.Text) &&
+                    after.tags.Select(t => t.tag).Order().SequenceEqual(request.tags.Order())) break;
                 await Task.Delay(2000);
             }
             if (after.language != item.Language || Normalize(after.file_description) != Normalize(item.Text) ||
                 after.title != previous[i].title || after.visibility != previous[i].visibility ||
-                !after.tags.Select(t => t.tag).Order().SequenceEqual(previous[i].tags.Select(t => t.tag).Order()))
+                !after.tags.Select(t => t.tag).Order().SequenceEqual(request.tags.Order()))
                 throw new PublisherException($"Post-update verification failed for language {item.Language}; inspect Workshop before retrying.");
             Console.WriteLine($"Verified Workshop description: {(item.Language == 0 ? "english" : "schinese")}.");
         }
@@ -138,6 +142,8 @@ static List<Description> LoadDescriptions(string root, bool requireTag)
         (requireTag && m.GetProperty("tag").GetString() != "v" + m.GetProperty("version").GetString()))
         throw new PublisherException("Manifest does not identify the SAR release.");
     var result = new List<Description>();
+    var versions = XDocument.Load(Path.Combine(root, "SearchAndRescue-" + m.GetProperty("version").GetString(), "About", "About.xml"))
+        .Root!.Element("supportedVersions")!.Elements("li").Select(e => e.Value).ToArray();
     foreach (var (code, language) in new[] { ("en", 0), ("zh-CN", 6) })
     {
         var bytes = File.ReadAllBytes(Path.Combine(root, $"Description.{code}.bbcode"));
@@ -146,7 +152,7 @@ static List<Description> LoadDescriptions(string root, bool requireTag)
         var text = Encoding.UTF8.GetString(bytes).TrimStart('\uFEFF');
         if (string.IsNullOrWhiteSpace(text) || Encoding.UTF8.GetByteCount(text) >= 8000)
             throw new PublisherException($"Invalid description length: {code}.");
-        result.Add(new(language, text));
+        result.Add(new(language, text, versions));
     }
     return result;
 }
@@ -158,7 +164,7 @@ static CPublishedFile_Update_Request CreateUpdate(Description item, PublishedFil
     {
         request.title = previous.title;
         request.visibility = previous.visibility;
-        request.tags.AddRange(previous.tags.Select(t => t.tag));
+        request.tags.AddRange(previous.tags.Select(t => t.tag).Concat(item.Versions).Distinct());
     }
     return request;
 }
@@ -175,7 +181,7 @@ static async Task<PublishedFileDetails> Read(PublishedFile service, int language
         throw new PublisherException("Workshop identity/ownership check failed.");
     return item;
 }
-sealed record Description(int Language, string Text);
+sealed record Description(int Language, string Text, string[] Versions);
 sealed class Session : IDisposable
 {
     public SteamClient Client { get; } = new();
