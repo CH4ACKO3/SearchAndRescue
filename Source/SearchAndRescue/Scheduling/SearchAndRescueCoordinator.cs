@@ -2509,7 +2509,7 @@ namespace SearchAndRescue
             usedWorkers.UnionWith(activeLogisticsByWorker.Keys);
 
             List<Pawn> targets = allCareTargets
-                .Where(TargetAvailableForUnifiedMatching)
+                .Where(patient => !usedWorkers.Contains(patient) && TargetAvailableForUnifiedMatching(patient))
                 .OrderBy(patient => patient.thingIDNumber)
                 .ToList();
 
@@ -2563,8 +2563,14 @@ namespace SearchAndRescue
             }
 
             HashSet<Pawn> treatmentTargets = new HashSet<Pawn>();
+            HashSet<Pawn> assignedPatients = new HashSet<Pawn>();
             foreach (Match<Pawn, Pawn> match in matches.OrderByDescending(match => match.Weight))
             {
+                // A pawn may occur on both sides of the matching graph. Commit one role
+                // at a time, including reciprocal and longer doctor/patient cycles.
+                if (assignedPatients.Contains(match.Worker) ||
+                    match.Target != match.Worker && usedWorkers.Contains(match.Target))
+                    continue;
                 if (!choices.TryGetValue(new WorkerTargetPair(match.Worker, match.Target), out StageChoice choice) ||
                     !choice.IsValid)
                 {
@@ -2643,6 +2649,7 @@ namespace SearchAndRescue
                     now + SoftClaimLeaseTicks,
                     choice.Treatment,
                     choice.Kit);
+                assignedPatients.Add(match.Target);
                 lastSchedulerDecision[match.Worker] =
                     $"pending {choice.Stage}:{match.Target?.ThingID} weight={choice.Weight:0} at {now}";
                 if ((choice.Stage == SearchAndRescueStage.Treat || choice.Stage == SearchAndRescueStage.Restock) &&
@@ -2672,6 +2679,7 @@ namespace SearchAndRescue
             long transportStart = profile
                 ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.TransportMatching)
                 : 0L;
+            usedWorkers.UnionWith(assignedPatients);
             ScheduleTransportAndStandbyAssignments(
                 now,
                 requestingWorker,
@@ -3181,9 +3189,7 @@ namespace SearchAndRescue
                 ? ManualTreatmentAffinityWeight
                 : 0d;
             int workPriority = TreatmentPriorityFor(worker, option.Intervention, stage);
-            double workPriorityWeight = workPriority > 0
-                ? (5 - Math.Min(4, Math.Max(1, workPriority))) * 6000d
-                : 0d;
+            double workPriorityWeight = WorkPriorityWeight(workPriority) * 6000d;
             return AssignmentBaseWeight + urgency * predictedQuality * 120000d +
                    urgency * option.Benefit * 30000d + predictedQuality * 3000d -
                    option.RouteDistance * routeCost - scarcity -
@@ -3599,10 +3605,10 @@ namespace SearchAndRescue
                 double doctorOpportunityCost = workerCanTreat
                     ? DoctorEmergencySupplyOpportunityCost +
                       worker.GetStatValue(StatDefOf.MedicalTendQuality) * 30000d +
-                      (5 - Compatibility.TreatmentWorkPriority(worker)) * 7000d
+                      WorkPriorityWeight(Compatibility.TreatmentWorkPriority(worker)) * 7000d
                     : 0d;
                 double netUtility = ScoringPatientUrgency(patient) * task.SupplyBenefit * 65000d +
-                                    (5 - priority) * 4000d - route * SupplyRouteCost -
+                                    WorkPriorityWeight(priority) * 4000d - route * SupplyRouteCost -
                                     medicalResources.ScarcityPrice(
                                         task.SupplyResource,
                                         task.SupplyResource.def.stackLimit == 1) -
@@ -4660,11 +4666,21 @@ namespace SearchAndRescue
             return WorkerReadyForStageCore(worker, stage, allowActiveStandby);
         }
 
+        private static double WorkPriorityWeight(int priority)
+        {
+            // Preserve vanilla's four levels and give extended lower priorities a
+            // diminishing positive weight, including medicine-delivery scoring.
+            return priority <= 0 ? 0d : priority <= 4 ? 5d - priority : 1d / (priority - 3d);
+        }
+
         private bool WorkerReadyForStageCore(
             Pawn worker,
             SearchAndRescueStage stage,
             bool allowActiveStandby)
         {
+            if (worker != null && activeByTarget.TryGetValue(worker, out ActiveAssignment care) &&
+                IsTreatmentStage(care.Stage) && (AssignmentJobStillRunning(care) ||
+                    Find.TickManager.TicksGame - care.StartedAt < JobStartGraceTicks)) return false;
             // Preserve short-circuiting of live provider queries for ineligible workers.
             bool operational = WorkerOperational(worker);
             bool responder = operational && IsFieldResponder(worker);
@@ -4933,7 +4949,7 @@ namespace SearchAndRescue
                               TreatmentDeadlineWeight(worker, patient, distance, 720)
                             : 0d;
                         return AssignmentBaseWeight + CaptureBeforeTreatmentWeight + urgency * 35000d +
-                               (5 - Math.Max(1, priority)) * 4000d - distance * 350d + bundle;
+                               WorkPriorityWeight(priority) * 4000d - distance * 350d + bundle;
                     }
                 case SearchAndRescueStage.Treat:
                 case SearchAndRescueStage.FollowupTreat:
@@ -4965,7 +4981,7 @@ namespace SearchAndRescue
                         {
                             double tendQuality = worker.GetStatValue(StatDefOf.MedicalTendQuality);
                             int doctorPriority = Compatibility.TreatmentWorkPriority(worker);
-                            doctorOpportunityCost = tendQuality * 18000d + (5 - doctorPriority) * 5000d;
+                            doctorOpportunityCost = tendQuality * 18000d + WorkPriorityWeight(doctorPriority) * 5000d;
                         }
 
                         double movement = worker.GetStatValue(StatDefOf.MoveSpeed);
@@ -4974,7 +4990,7 @@ namespace SearchAndRescue
                             ? ResumeTransportWeight
                             : 0d;
                         return AssignmentBaseWeight + Compatibility.RescueWorkPreferenceBonus(worker) + resumeBonus +
-                               urgency * 18000d + (5 - rescueWorkPriority) * 5000d +
+                               urgency * 18000d + WorkPriorityWeight(rescueWorkPriority) * 5000d +
                                movement * 1200d - distance * 400d - doctorOpportunityCost +
                                RescueMedicalPriorityWeight(patient);
                     }

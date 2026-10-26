@@ -142,6 +142,8 @@ namespace SearchAndRescue
                     () => YaOptCompatibility.Available, "sz.yaopt"),
                 Entry("Work Tab", "WorkTab", CompatibilitySupportLevel.Compatible,
                     () => Compatibility.UsesWorkTab, "fluffy.worktab"),
+                Entry("Sleek Work Priorities", "SleekWorkPriorities", CompatibilitySupportLevel.Compatible,
+                    () => SleekWorkPrioritiesCompatibility.Available, "squishyjellyfish.SleekWorkPriorities"),
                 Entry("GrimWorks: Work Manager", "GrimWorks", CompatibilitySupportLevel.Integration,
                     () => GrimWorksCompatibility.Available, "grimworks.workmanager"),
                 Entry("Mech Work Tab", "MechWorkTab", CompatibilitySupportLevel.Compatible,

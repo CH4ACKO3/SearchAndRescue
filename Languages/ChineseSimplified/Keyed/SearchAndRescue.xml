@@ -133,6 +133,7 @@
   <SAR_Compatibility_ComplexJobs>读取 Nurse 工作优先级，支持护士救援模式和支持性治疗。常规包扎使用 Doctor 权限。</SAR_Compatibility_ComplexJobs>
   <SAR_Compatibility_YaOpt>包含 SAR 任务的选工批次按顺序执行，保持救援分配与物资占用一致。其他选工批次保留并行扫描。</SAR_Compatibility_YaOpt>
   <SAR_Compatibility_WorkTab>读取 SAR 子工作优先级；More Injuries 的 CPR、气道管理、除颤及医生输液输血还需开启对应原生子工作。护理保持独立授权。</SAR_Compatibility_WorkTab>
+  <SAR_Compatibility_SleekWorkPriorities>读取 Sleek 已启用的 SAR 和原生医疗子工作设置。战地救援及提供具体能力的工作类型共同决定权限，扩展优先级参与匹配。</SAR_Compatibility_SleekWorkPriorities>
   <SAR_Compatibility_MechWorkTab>决定机仆可以进入哪些战地工作通道时，会读取殖民地机仆的细分工作设置。</SAR_Compatibility_MechWorkTab>
   <SAR_Compatibility_WVCWorkModes>遵守新增的机仆工作模式及其最终工作权限。</SAR_Compatibility_WVCWorkModes>
   <SAR_Compatibility_SearchDestroy>Search and Destroy 提供征召战斗控制；解除征召后，人员可按工作设置参与搜索与救援。</SAR_Compatibility_SearchDestroy>

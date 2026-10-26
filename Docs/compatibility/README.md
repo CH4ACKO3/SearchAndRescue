@@ -151,6 +151,9 @@ Respects individual work priorities and disabled tasks. Enable Field Rescue and 
 **Work Tab — Compatible**
 Reads detailed WorkGiver priorities. Emergency-only medics can enable "provide emergency medical care" and Field Rescue. With More Injuries, CPR, airway management, defibrillation and doctor transfusions also require their native child work; nursing remains separately authorized. Routine tending and surgery can stay disabled. Routine care respects humanlike/animal subtasks. Work Tab is optional.
 
+**Sleek Work Priorities — Compatible**
+Reads active per-job settings for field rescue and native medical work. Extended priorities participate in rescue matching and supply scoring.
+
 **Mech Work Tab — Compatible**
 Reads detailed work settings for colony mechs.
 

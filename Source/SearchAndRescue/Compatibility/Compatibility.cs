@@ -1021,6 +1021,8 @@ namespace SearchAndRescue
                 return true;
             }
 
+            if (doctor == patient && patient?.playerSettings?.selfTend != true) return false;
+
             // TendPatient normally limits player doctors to pawns covered by automatic
             // medical care. A Search and Rescue treatment designation is an explicit player
             // order, so it must also authorize field care for a neutral/wild animal. The
@@ -2607,7 +2609,8 @@ namespace SearchAndRescue
                         int workTabPriority = WorkTabGetPriority(worker, workGiver, -1);
                         // Work Tab builds the native list first; GrimWorks then filters
                         // and sorts it. Both permissions apply when both mods are loaded.
-                        return workTabPriority <= 0 ? 0 : grimPriority ?? workTabPriority;
+                        return SleekWorkPrioritiesCompatibility.ApplyPriority(worker, workGiver,
+                            workTabPriority <= 0 ? 0 : grimPriority ?? workTabPriority);
                     }
                     catch (Exception exception)
                     {
@@ -2616,7 +2619,8 @@ namespace SearchAndRescue
                     }
                 }
 
-                return grimPriority ?? worker.workSettings.GetPriority(fallbackWorkType);
+                return SleekWorkPrioritiesCompatibility.ApplyPriority(worker, workGiver,
+                    grimPriority ?? worker.workSettings.GetPriority(fallbackWorkType));
             }
 
             if (!IsColonyWorkMech(worker))

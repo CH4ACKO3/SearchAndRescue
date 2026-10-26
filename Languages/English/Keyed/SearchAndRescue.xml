@@ -133,6 +133,7 @@
   <SAR_Compatibility_ComplexJobs>Reads the Nurse work priority for nursing rescue modes and supportive care. Ordinary tending uses Doctor.</SAR_Compatibility_ComplexJobs>
   <SAR_Compatibility_YaOpt>Work selection batches containing SAR tasks run serially to preserve rescue assignments and resource ownership. Other work batches retain parallel scanning.</SAR_Compatibility_YaOpt>
   <SAR_Compatibility_WorkTab>Reads SAR child priorities. More Injuries CPR, airway management, defibrillation and doctor transfusions also require the corresponding native child work. Nursing remains a separate authorization.</SAR_Compatibility_WorkTab>
+  <SAR_Compatibility_SleekWorkPriorities>Reads enabled Sleek per-job settings for SAR and native medical tasks. Field Rescue and the provider work type retain their permissions; extended priorities participate in matching.</SAR_Compatibility_SleekWorkPriorities>
   <SAR_Compatibility_MechWorkTab>Reads colony-mech detailed work settings when deciding which battlefield lanes a mech may enter.</SAR_Compatibility_MechWorkTab>
   <SAR_Compatibility_WVCWorkModes>Honors additional mech work modes and their effective work authority.</SAR_Compatibility_WVCWorkModes>
   <SAR_Compatibility_SearchDestroy>Search and Destroy provides drafted combat control. After undrafting, pawns can join Search and Rescue according to their work settings.</SAR_Compatibility_SearchDestroy>

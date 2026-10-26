@@ -454,6 +454,9 @@ namespace SearchAndRescue
                     // ownership describes who carries the patient, not their allegiance.
                     new[] { "Rescue", "TakeWoundedPrisonerToBed", "SAR_EvacuateToPoint", "Kidnap" },
                     driverBaseType: typeof(JobDriver_TakeToBed))
+                .Jobs(PatientJobRole.Transport,
+                    new[] { "HaulToTransporter", "HaulToContainer" },
+                    driverBaseType: typeof(JobDriver_HaulToContainer))
                 .Jobs(PatientJobRole.Capture | PatientJobRole.Transport,
                     new[] { "Capture", "Arrest" })
                 .Jobs(PatientJobRole.Capture, new[] { "SAR_CaptureInPlace" }));
