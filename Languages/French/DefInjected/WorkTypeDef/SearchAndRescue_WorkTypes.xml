@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_FieldRescue.labelShort>sauvetage de terrain</SAR_FieldRescue.labelShort>
+  <SAR_FieldRescue.pawnLabel>Intervenant de terrain</SAR_FieldRescue.pawnLabel>
+  <SAR_FieldRescue.gerundLabel>sauvetage de terrain</SAR_FieldRescue.gerundLabel>
+  <SAR_FieldRescue.description>Coordonne le triage, la stabilisation, l'approvisionnement médical, la capture et l'évacuation sur le champ de bataille. Ce type de travail définit la priorité globale du sauvetage sur le champ de bataille. Activez également les types de travail Médecin, Transport et autres types pertinents pour effectuer les tâches individuelles.</SAR_FieldRescue.description>
+  <SAR_FieldRescue.verb>Secourir</SAR_FieldRescue.verb>
+</LanguageData>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_CaptureMarked.label>capturer les blessés de guerre marqués</SAR_CaptureMarked.label>
+  <SAR_CaptureMarked.verb>capturer</SAR_CaptureMarked.verb>
+  <SAR_CaptureMarked.gerund>capturant</SAR_CaptureMarked.gerund>
+
+  <SAR_TreatMarked.label>coordonner le traitement des hémorragies et autres urgences</SAR_TreatMarked.label>
+  <SAR_TreatMarked.verb>stabiliser</SAR_TreatMarked.verb>
+  <SAR_TreatMarked.gerund>stabilisant</SAR_TreatMarked.gerund>
+
+  <SAR_FollowupTreatMarked.label>coordonner les soins de suivi</SAR_FollowupTreatMarked.label>
+  <SAR_FollowupTreatMarked.verb>soigner</SAR_FollowupTreatMarked.verb>
+  <SAR_FollowupTreatMarked.gerund>soignant</SAR_FollowupTreatMarked.gerund>
+
+  <SAR_AutomaticRoutineTreat.label>coordonner les soins de routine automatiques</SAR_AutomaticRoutineTreat.label>
+  <SAR_AutomaticRoutineTreat.verb>soigner</SAR_AutomaticRoutineTreat.verb>
+  <SAR_AutomaticRoutineTreat.gerund>soignant</SAR_AutomaticRoutineTreat.gerund>
+
+  <SAR_SupportiveCareMarkedNursing.label>coordonner les soins de support urgents</SAR_SupportiveCareMarkedNursing.label>
+  <SAR_SupportiveCareMarkedNursing.verb>fournir des soins de support</SAR_SupportiveCareMarkedNursing.verb>
+  <SAR_SupportiveCareMarkedNursing.gerund>fournissant des soins de support</SAR_SupportiveCareMarkedNursing.gerund>
+
+  <SAR_RescueMarkedHauling.label>évacuer les blessés de guerre marqués</SAR_RescueMarkedHauling.label>
+  <SAR_RescueMarkedHauling.verb>évacuer</SAR_RescueMarkedHauling.verb>
+  <SAR_RescueMarkedHauling.gerund>évacuant</SAR_RescueMarkedHauling.gerund>
+
+  <SAR_RescueMarkedParamedic.label>évacuer les blessés de guerre marqués</SAR_RescueMarkedParamedic.label>
+  <SAR_RescueMarkedParamedic.verb>évacuer</SAR_RescueMarkedParamedic.verb>
+  <SAR_RescueMarkedParamedic.gerund>évacuant</SAR_RescueMarkedParamedic.gerund>
+
+  <SAR_RescueMarkedNursing.label>évacuer les blessés de guerre marqués</SAR_RescueMarkedNursing.label>
+  <SAR_RescueMarkedNursing.verb>évacuer</SAR_RescueMarkedNursing.verb>
+  <SAR_RescueMarkedNursing.gerund>évacuant</SAR_RescueMarkedNursing.gerund>
+
+  <SAR_RepairMarkedMech.label>réparer les mécanoïdes marqués</SAR_RepairMarkedMech.label>
+  <SAR_RepairMarkedMech.verb>réparer</SAR_RepairMarkedMech.verb>
+  <SAR_RepairMarkedMech.gerund>réparant</SAR_RepairMarkedMech.gerund>
+
+  <SAR_MechFieldRescueHauling.label>sauvetage de terrain (transport)</SAR_MechFieldRescueHauling.label>
+  <SAR_MechFieldRescueHauling.verb>secourir</SAR_MechFieldRescueHauling.verb>
+  <SAR_MechFieldRescueHauling.gerund>secourant</SAR_MechFieldRescueHauling.gerund>
+
+  <SAR_MechFieldRescueDoctor.label>sauvetage de terrain (médecine)</SAR_MechFieldRescueDoctor.label>
+  <SAR_MechFieldRescueDoctor.verb>secourir</SAR_MechFieldRescueDoctor.verb>
+  <SAR_MechFieldRescueDoctor.gerund>secourant</SAR_MechFieldRescueDoctor.gerund>
+
+  <SAR_EmergencyMedicalCare.label>fournir des soins médicaux d'urgence</SAR_EmergencyMedicalCare.label>
+  <SAR_EmergencyMedicalCare.verb>stabiliser</SAR_EmergencyMedicalCare.verb>
+  <SAR_EmergencyMedicalCare.gerund>stabilisant</SAR_EmergencyMedicalCare.gerund>
+
+  <SAR_AutomaticCasevac.label>coordonner l'évacuation sanitaire du champ de bataille</SAR_AutomaticCasevac.label>
+  <SAR_AutomaticCasevac.verb>évacuer</SAR_AutomaticCasevac.verb>
+  <SAR_AutomaticCasevac.gerund>évacuant</SAR_AutomaticCasevac.gerund>
+</LanguageData>

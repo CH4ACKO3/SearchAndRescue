@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <SAR_Settings_Section_CoordinationCost>Détail de la coordination</SAR_Settings_Section_CoordinationCost>
+  <SAR_Settings_FastRescue>Allocation rapide des secours (expérimental)</SAR_Settings_FastRescue>
+  <SAR_Settings_FastRescue_Desc>Priorise les patients urgents et compare d'abord quelques travailleurs proches. Étend la recherche lorsqu'aucun ne peut aider. Les assignations des travailleurs et l'ordre de traitement peuvent changer. Moins de comparaisons ne garantissent pas une meilleure performance globale. Désactivé par défaut.</SAR_Settings_FastRescue_Desc>
+  <SAR_Settings_SimpleLogistics>Simplifier le transport et les fournitures (expérimental)</SAR_Settings_SimpleLogistics>
+  <SAR_Settings_SimpleLogistics_Desc>Attribue le transport, les relais et les livraisons de fournitures selon l'urgence des patients en utilisant moins de comparaisons de travailleurs. La distance de marche et les temps d'attente peuvent augmenter. Combiner les simplifications peut aussi réduire la performance globale. Les vérifications de propriété des ressources restent actives. Désactivé par défaut.</SAR_Settings_SimpleLogistics_Desc>
+  <SAR_Settings_SimpleMedicine>Comparer moins de sources de médicaments</SAR_Settings_SimpleMedicine>
+  <SAR_Settings_SimpleMedicine_Desc>Limite la recherche ordinaire de médicaments à quatre sources utilisables, en vérifiant d'abord les médicaments portés et à proximité. Les fournitures livrées, les procédures d'urgence spéciales et les restrictions de soins médicaux restent actives. Smart Medicine et Choose Your Medicine conservent leur sélection. La qualité et la consommation peuvent changer. Désactivé par défaut.</SAR_Settings_SimpleMedicine_Desc>
+  <SAR_Settings_MissionKits>Collecter des médicaments pour plusieurs patients</SAR_Settings_MissionKits>
+  <SAR_Settings_MissionKits_Desc>Apporte des médicaments supplémentaires depuis le point de ramassage choisi pour les patients proches. Désactiver ceci peut entraîner plus de trajets de fournitures ; son bénéfice direct en performance est généralement faible. Activé par défaut.</SAR_Settings_MissionKits_Desc>
+</LanguageData>
