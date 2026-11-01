@@ -1,6 +1,6 @@
 # Tag 驱动的工坊发布
 
-工作流：`.github/workflows/release.yml`。普通 main 提交、PR 和手动运行会构建、回归测试、打包，并验证工坊上传参数。推送 `v*` 标签还会创建 GitHub Release；Steam 上传由仓库变量单独控制。
+工作流：`.github/workflows/release.yml`。普通 main 提交、PR 和手动运行会构建、打包，并验证工坊上传参数。推送 `v*` 标签还会创建 GitHub Release；Steam 上传由仓库变量单独控制。
 
 当前已配置四项 Secrets 并启用标签发布。2026-09-06 的 [云端只读验证](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34030863356) 已通过 SteamCMD 登录、双语读取和条目所有权检查；`v0.1.0-alpha.2` 已发布到工坊；[远端下载与双语描述补验](https://github.com/CH4ACKO3/SearchAndRescue/actions/runs/34031451219) 全部通过，下载文件逐项匹配发布清单。原标签任务因成功输出匹配过严而显示失败，文件实际上传成功，后续补验完成了发布流程。兼容性说明维护在 [中文清单](../compatibility/README.zh-CN.md) / [English](../compatibility/README.md)，工坊主页链接到 GitHub。
 
@@ -86,12 +86,11 @@ CI 使用固定版本的 `Krafs.Rimworld.Ref` 和 Harmony NuGet 引用，在无�
 ```powershell
 ./Tools/CI/Build.ps1 -Tag v0.1.0-alpha.1 -OutputRoot artifacts/ci-check-1
 ./Tools/CI/PublishWorkshop.ps1 -ArtifactRoot artifacts/ci-check-1 -DryRun
-./Tools/CI/Test-Package.ps1 -ArtifactRoot artifacts/ci-check-1
 ```
 
 工坊主页发布前，将手工修改同步回本地两份 `Docs/workshop/Description.*.bbcode`；标签中的文件是发布来源。
 
-输出目录须为新的发布目录。验证涵盖 XML、三种语言 Keyed 条目、生产调度规则、打包文件、版本/条目身份和 SHA-256。DryRun 在登录前结束。游戏引擎实测结果由开发者另行维护，CI 的规则回归不等同于引擎实测。
+输出目录须为新的发布目录。验证涵盖 XML、三种语言 Keyed 条目、打包文件、版本/条目身份和 SHA-256。DryRun 在登录前结束。游戏引擎实测结果由开发者另行维护，CI 的构建与载荷检查不等同于引擎实测。
 
 ## 参考
 

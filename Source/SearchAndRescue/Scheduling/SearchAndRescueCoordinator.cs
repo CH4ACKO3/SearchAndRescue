@@ -679,7 +679,6 @@ namespace SearchAndRescue
         {
             base.MapComponentTick();
             EngineBenchmarkDiagnostics.Tick(map);
-            CasevacAndBoundaryDiagnostics.Observe(map);
             bool profile = SearchAndRescuePerformanceDiagnostics.Enabled;
             long mapTickStart = profile
                 ? SearchAndRescuePerformanceDiagnostics.Begin(SarPerformancePhase.MapTick)
@@ -1410,7 +1409,6 @@ namespace SearchAndRescue
             }
             if (job.def != JobDefOf.TendPatient) return;
 
-            TreatmentContinuityDiagnostics.Observe(doctor, patient);
             if (!activeByTarget.TryGetValue(patient, out ActiveAssignment assignment) ||
                 !ActiveJobClaims.Matches(assignment, doctor, ActiveJobClaims.IdentityOf(job)) ||
                 !IsTreatmentStage(assignment.Stage))

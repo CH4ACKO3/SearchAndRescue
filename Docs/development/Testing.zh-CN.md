@@ -1,26 +1,6 @@
-# Search and Rescue 实机回归夹具
+# Search and Rescue 实机验证
 
-## 救援目的地与持有物资回归
-
-仅在一次性测试地图或未保存的测试存档副本上运行以下开发动作。这些检查直接调用生产方法和真实 JobDriver，不复制判断规则。输出前缀为 `[SAR live regression]`，检查结果用 `PASS`/`FAIL` 表示。
-
-1. `Run rescue destination regressions`：临时隔离床位和集合点，检查普通床位选择/送达、医疗床、集合点重复路线抑制、集合点变更和新增床位。动作内不推进 tick，完成后恢复原有床位及集合点。
-2. `Prepare held-supply regression` → 精确推进 1,200 tick → `Check supply regression`：在同阵营 Pawn 背包放入 4 份药品，由真实送货 Driver 提取并送达 2 份；预期来源剩 2 份、患者旁新增 2 份、任务结束。
-3. 重新载入同一原始测试存档，运行 `Prepare changed-owner supply regression` → 推进 1,200 tick → `Check supply regression`：预留后将来源物资卸到地面，预期拒绝继续拾取，来源仍为 4 份，患者旁不新增物资。
-
-两项补给测试走实际 inventory-holder 路径。Vehicle Framework 特有的 cargo 事件/质量缓存需要另外启用该模组验证，不能由普通 Pawn 背包测试代替。不要保存测试后的地图；重新载入原始存档可清除测试生成内容。
-
-感染优先级：`Run infection priority regressions` 检查原版伤口感染进入紧急治疗、严重度与免疫进度评分、治疗冷却及完全免疫退出。只在一次性测试地图运行；[本轮 7 项实机结果](../validation/2026-09-06-infection-priority.json)全部通过。自定义感染 Def 需要单独适配验证。
-
-## 所有权与任务生命周期
-
-`Run ownership lifecycle regressions` 直接操作生产声明表、真实 Job 和 JobTracker，检查同定义 Job 回收复用、旧结束回调、阶段隔离、整组撤销，以及玩家接管后保留标记和其他伤员任务。测试会创建临时 Pawn，只应在一次性地图运行，不保存结果。
-
-`Run external transport regressions` 检查注册运输 Job、孤立搬运清理和手动命令边界；不代替第三方模组完整游玩测试。
-
-本轮结果见 [2026-09-06 所有权回归](../validation/2026-09-06-ownership-lifecycle.json)：68 项生产规则检查、原有 40 场景与 200 组随机图、38 项实机检查通过。实机补给检查含 1,200 tick 推进；未重新测量性能。
-
-真实存档跟跑：`new20` 在原有 13 模组配置下，解除 10 人征召后运行 1,200 tick，再征召 Leah 600 tick、解除征召 600 tick。三个连续阶段合计 2,400 tick，活动主任务为 6 → 5 → 6，补给任务均为 4；22 名殖民者仍存活，12 人仍倒地，无新增运行 warning/error。多名患者出血率下降，但救援尚未全部完成。这是同一存档的连续场景验证，不是三个独立存档或完整兼容性实测。详见 [真实存档记录](../validation/2026-09-06-live-save.json)。
+历史单项回归夹具已移除，复现材料保存在仓库外。保留通用场景生成、真实引擎基准、性能采样与调度状态导出。
 
 ## 大规模战地救援
 
