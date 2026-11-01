@@ -3683,6 +3683,7 @@ namespace SearchAndRescue
 
         private IEnumerable<TransportTask> BuildSupplyTasks(int now)
         {
+            List<Pawn> availableHaulers = null;
             foreach (MedicalCarePlan plan in carePlans.Values
                          .Where(plan => plan.Patient != null && plan.Patient.Spawned && !plan.Patient.Dead)
                          .OrderByDescending(plan => PatientUrgency(plan.Patient)))
@@ -3699,6 +3700,12 @@ namespace SearchAndRescue
                 {
                     continue;
                 }
+
+                // Tasks are fully enumerated before transport assignments change worker eligibility.
+                availableHaulers ??= WorkerCandidates().Where(worker =>
+                    WorkerReadyForStage(worker, SearchAndRescueStage.Supply, true) &&
+                    WorkerAvailableForMatching(worker)).ToList();
+                if (availableHaulers.Count == 0) yield break;
 
                 List<TransportTask> alternatives = new List<TransportTask>();
                 bool resuscitationDoseNearby = plan.Demands.Any(demand => demand.IsResuscitation &&
@@ -3719,7 +3726,7 @@ namespace SearchAndRescue
                         continue;
                     }
                     int remainingDemand = Math.Max(1, required - alreadyNear);
-                    alternatives.AddRange(SupplyAlternatives(candidate.ResourceDef, patient)
+                    alternatives.AddRange(SupplyAlternatives(candidate.ResourceDef, patient, availableHaulers)
                         .Take(6)
                         .Select(resource => new TransportTask(
                             patient,
@@ -3742,7 +3749,7 @@ namespace SearchAndRescue
                         int remainingDemand = Math.Max(
                             1,
                             plan.EssentialMedicineRounds - medicineAlreadyNear);
-                        alternatives.AddRange(SupplyMedicineAlternatives(patient)
+                        alternatives.AddRange(SupplyMedicineAlternatives(patient, availableHaulers)
                             .Take(6)
                             .Select(resource => new TransportTask(
                                 patient,
@@ -3937,21 +3944,21 @@ namespace SearchAndRescue
             RequestScheduleRebuild(maintenance: true, delayTicks: 1);
         }
 
-        private IEnumerable<Thing> SupplyAlternatives(ThingDef def, Pawn patient)
+        private IEnumerable<Thing> SupplyAlternatives(ThingDef def, Pawn patient, IReadOnlyList<Pawn> availableHaulers)
         {
             IEnumerable<Thing> mapSupplies = map.listerThings.ThingsOfDef(def)
                 .Where(thing => thing.Spawned && !thing.Destroyed &&
                                 medicalResources.AvailableForRelocation(thing) >= 1 &&
-                                SupplyReachableByAvailableHauler(thing, patient));
+                                SupplyReachableByAvailableHauler(thing, patient, availableHaulers));
             return mapSupplies
-                .Concat(VehicleCargoSupplies(def, patient))
+                .Concat(VehicleCargoSupplies(def, patient, availableHaulers))
                 .Distinct()
                 .OrderBy(thing => medicalResources.IsClaimedMedicalSupply(thing) ? 1 : 0)
                 .ThenBy(thing => thing.PositionHeld.DistanceToSquared(patient.Position))
                 .ThenBy(thing => thing.thingIDNumber);
         }
 
-        private IEnumerable<Thing> SupplyMedicineAlternatives(Pawn patient)
+        private IEnumerable<Thing> SupplyMedicineAlternatives(Pawn patient, IReadOnlyList<Pawn> availableHaulers)
         {
             if (patient == null || !patient.health.HasHediffsNeedingTend())
             {
@@ -3962,9 +3969,9 @@ namespace SearchAndRescue
                 .Where(thing => thing.Spawned && !thing.Destroyed &&
                                 Compatibility.AllowsMedicine(patient, thing) &&
                                 medicalResources.AvailableForRelocation(thing) > 0 &&
-                                SupplyReachableByAvailableHauler(thing, patient));
+                                SupplyReachableByAvailableHauler(thing, patient, availableHaulers));
             return mapMedicines
-                .Concat(VehicleCargoSupplies(null, patient)
+                .Concat(VehicleCargoSupplies(null, patient, availableHaulers)
                     .Where(thing => thing.def.IsMedicine && Compatibility.AllowsMedicine(patient, thing)))
                 .Distinct()
                 .OrderBy(thing => medicalResources.IsClaimedMedicalSupply(thing) ? 1 : 0)
@@ -3973,7 +3980,7 @@ namespace SearchAndRescue
                 .ThenBy(thing => thing.thingIDNumber);
         }
 
-        private IEnumerable<Thing> VehicleCargoSupplies(ThingDef def, Pawn patient)
+        private IEnumerable<Thing> VehicleCargoSupplies(ThingDef def, Pawn patient, IReadOnlyList<Pawn> availableHaulers)
         {
             if (!Compatibility.UsesVehiclesFramework || patient == null)
             {
@@ -3986,20 +3993,18 @@ namespace SearchAndRescue
                 .Where(thing => thing != null && !thing.Destroyed &&
                                 (def == null || thing.def == def) &&
                                 medicalResources.AvailableForRelocation(thing) > 0 &&
-                                SupplyReachableByAvailableHauler(thing, patient))
+                                SupplyReachableByAvailableHauler(thing, patient, availableHaulers))
                 .Distinct();
         }
 
-        private bool SupplyReachableByAvailableHauler(Thing resource, Pawn patient)
+        private bool SupplyReachableByAvailableHauler(Thing resource, Pawn patient, IReadOnlyList<Pawn> availableHaulers)
         {
             if (resource == null || patient == null)
             {
                 return false;
             }
 
-            return WorkerCandidates().Any(worker =>
-                WorkerReadyForStage(worker, SearchAndRescueStage.Supply, true) &&
-                WorkerAvailableForMatching(worker) &&
+            return availableHaulers.Any(worker =>
                 WorkerEligibility.SupplyTargetsAllowed(worker, patient, resource) &&
                 PickupReservationAvailable(worker, resource, 1, patient) &&
                 worker.CanReach(patient, PathEndMode.Touch, Danger.Deadly));
@@ -4738,6 +4743,7 @@ namespace SearchAndRescue
             schedulingTargetReadiness.Clear();
             schedulingExternalOwnership.Clear();
             schedulingRescueDestinations.Clear();
+            rescueBedSnapshot = new RescueBedSnapshot(map);
             medicalResources.BeginSchedulingSnapshot();
             schedulingSnapshotActive = true;
         }
@@ -4745,6 +4751,7 @@ namespace SearchAndRescue
         private void EndSchedulingSnapshot()
         {
             schedulingSnapshotActive = false;
+            rescueBedSnapshot = null;
             schedulingWorkerReadiness.Clear();
             schedulingTargetReadiness.Clear();
             schedulingExternalOwnership.Clear();
@@ -5215,13 +5222,16 @@ namespace SearchAndRescue
             return true;
         }
 
+        private RescueBedSnapshot rescueBedSnapshot;
+
         private bool TryFindRescueDestination(
             Pawn rescuer,
             Pawn patient,
             out Building_Bed bed,
             out IntVec3 destination)
         {
-            return RescueDestinationPlanner.TryFind(map, rescuer, patient, out bed, out destination);
+            return RescueDestinationPlanner.TryFind(map, rescuer, patient, out bed, out destination,
+                rescueBedSnapshot == null || rescueBedSnapshot.HasCapacity(patient, rescuer));
         }
 
         private bool TryFindRescueDestinationCached(
