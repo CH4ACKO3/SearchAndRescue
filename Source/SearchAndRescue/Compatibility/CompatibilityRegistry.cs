@@ -534,7 +534,8 @@ namespace SearchAndRescue
             Profiles.Add(new Profile(
                     "fortified-features-framework", "Fortified Features Framework", false,
                     "AOBA.Framework")
-                .Jobs(PatientJobRole.Treatment, DmsCompatibility.FrameworkRepairJobs));
+                .Jobs(PatientJobRole.Treatment, DmsCompatibility.FrameworkRepairJobs)
+                .Jobs(PatientJobRole.Treatment, new[] { "FFF_RepairSelf" }, workerIsPatient: true));
             Profiles.Add(new Profile(
                     "dms-joint-operations", "Dead Man's Switch: Joint Operations", false,
                     "DMS.Proton.JointOperations")
@@ -751,7 +752,8 @@ namespace SearchAndRescue
         public static bool IsModActive(string packageId)
         {
             return !string.IsNullOrEmpty(packageId) && LoadedModManager.RunningMods.Any(mod =>
-                string.Equals(mod.PackageId, packageId, StringComparison.OrdinalIgnoreCase));
+                string.Equals(mod.PackageId, packageId, StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(mod.PackageIdPlayerFacing, packageId, StringComparison.OrdinalIgnoreCase));
         }
 
         private static void BuildDynamicWorkGiverCatalog()
