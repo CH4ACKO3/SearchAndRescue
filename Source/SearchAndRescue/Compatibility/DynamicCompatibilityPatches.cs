@@ -905,6 +905,7 @@ namespace SearchAndRescue
             }
 
             if (__exception == null && __state?.OnlyProtectedEntries == true &&
+                PickUpAndHaulUnloadChecker_SearchAndRescueFieldSupplyPatch.UnloadJobFactory == null &&
                 pawn?.CurJobDef?.defName == "UnloadYourHauledInventory")
             {
                 // FirstUnloadableThing is called from the unload driver's target-selection
@@ -930,10 +931,13 @@ namespace SearchAndRescue
     {
         private static Type CheckerType => AccessTools.TypeByName("PickUpAndHaul.PawnUnloadChecker");
         private static Type HaulCompType => AccessTools.TypeByName("PickUpAndHaul.CompHauledToInventory");
+        // Continued funnels interrupted jobs, undrafting and mech work through this factory.
+        internal static readonly MethodInfo UnloadJobFactory = CheckerType?.GetMethod("TryMakeUnloadJob",
+            BindingFlags.Static | BindingFlags.NonPublic, null, new[] { typeof(Pawn), typeof(bool) }, null);
 
         private static MethodBase TargetMethod()
         {
-            return AccessTools.Method(CheckerType, "CheckIfPawnShouldUnloadInventory");
+            return UnloadJobFactory ?? AccessTools.Method(CheckerType, "CheckIfPawnShouldUnloadInventory");
         }
 
         private static bool Prepare()
@@ -970,6 +974,34 @@ namespace SearchAndRescue
                     196320755);
                 return true;
             }
+        }
+    }
+
+    [HarmonyPatch]
+    internal static class PickUpAndHaulContinued_DraftedSupplyPatch
+    {
+        private static MethodBase TargetMethod() =>
+            AccessTools.DeclaredMethod(AccessTools.TypeByName("PickUpAndHaul.HarmonyPatches"), "Drafted_Postfix");
+
+        private static bool Prepare() =>
+            CompatibilityRegistry.IsModActive("Zzyxzz.PickUpAndHaulReworked") && TargetMethod() != null;
+
+        private static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
+        {
+            // Filter the list used for this drop only. PUAH still owns its inventory index.
+            var toList = AccessTools.Method(typeof(Enumerable), nameof(Enumerable.ToList)).MakeGenericMethod(typeof(Thing));
+            foreach (var instruction in instructions)
+            {
+                yield return instruction;
+                if (instruction.Calls(toList))
+                    yield return CodeInstruction.Call(typeof(PickUpAndHaulContinued_DraftedSupplyPatch), nameof(KeepClaimedSupplies));
+            }
+        }
+
+        private static List<Thing> KeepClaimedSupplies(List<Thing> drops)
+        {
+            drops.RemoveAll(SearchAndRescueJobContext.IsProtectedOrClaimedMedicalSupply);
+            return drops;
         }
     }
 
