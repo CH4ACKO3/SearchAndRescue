@@ -209,6 +209,8 @@ namespace SearchAndRescue
         {
             base.ExposeData();
             medicalResources.ExposeData();
+            if (Scribe.mode == LoadSaveMode.Saving) PruneStrataTrips();
+            Scribe_Collections.Look(ref strataTrips, "sarStrataTrips", LookMode.Deep);
             Scribe_Values.Look(
                 ref fieldResponderRosterInitialized,
                 "fieldResponderRosterInitialized",
@@ -766,9 +768,15 @@ namespace SearchAndRescue
             }
         }
 
+        internal bool CanProbeRemoteRescue(Pawn worker, Pawn patient) =>
+            patient.Downed && Compatibility.CanCarryRescueTarget(worker, patient) &&
+            !pendingByWorker.Values.Any(p => p.Target == patient && p.Stage == SearchAndRescueStage.Rescue) &&
+            TargetReadyForStage(patient, SearchAndRescueStage.Rescue, Find.TickManager.TicksGame);
+
         internal Job TryIssueJob(Pawn worker, SearchAndRescueStage stage, RescueWorkProvider rescueProvider)
         {
-            if (worker == null || worker.Map != map)
+            // A projected worker is not on this map yet and cannot own a SAR assignment.
+            if (worker == null || worker.Map != map || MultiLevelRescue.InStrataScan)
             {
                 return null;
             }
@@ -917,6 +925,8 @@ namespace SearchAndRescue
                 GetBloodLossSeverity(pending.Target),
                 GetHediffSeverity(pending.Target, "Hemodilution"));
             activeClaims.Register(active);
+            if (job.def == MultiLevelRescue.StrataRescue && active.DestinationBed is Building_Bed remoteBed)
+                remoteBed.Map.GetComponent<SearchAndRescueCoordinator>().TrackStrataTrip(worker, pending.Target, remoteBed, job);
             if (pending.Stage == SearchAndRescueStage.Treat &&
                 careAffinityClaims.TryGetValue(pending.Target, out SoftCareClaim affinity) &&
                 affinity.Worker == worker && affinity.ConsumeOnTreatmentStart)
@@ -935,7 +945,7 @@ namespace SearchAndRescue
         internal Job TryIssuePriorityTreatmentOverride(Pawn worker, out Pawn target)
         {
             target = null;
-            if (worker == null || worker.Map != map || worker.jobs == null)
+            if (worker == null || worker.Map != map || worker.jobs == null || MultiLevelRescue.InStrataScan)
             {
                 return null;
             }
@@ -974,7 +984,8 @@ namespace SearchAndRescue
 
         internal Job TryIssueAutomaticRoutineTreatment(Pawn worker)
         {
-            if (worker == null || worker.Map != map || CoordinationMode != MedicalCoordinationMode.AllTending)
+            if (worker == null || worker.Map != map || MultiLevelRescue.InStrataScan ||
+                CoordinationMode != MedicalCoordinationMode.AllTending)
             {
                 return null;
             }
@@ -1616,7 +1627,7 @@ namespace SearchAndRescue
         private static double ImmediateTreatmentSwitchScore(Pawn doctor, Pawn patient)
         {
             double distance = doctor.Spawned && patient.Spawned
-                ? Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))
+                ? MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)
                 : 0d;
             return PatientUrgency(patient) * 120000d - distance * 250d;
         }
@@ -1745,6 +1756,17 @@ namespace SearchAndRescue
             {
                 Pawn target = pair.Key;
                 ActiveAssignment assignment = pair.Value;
+
+                // Strata replaces its rescue job with EnterPortal while still carrying the patient.
+                // The native relay owns the remaining hops and the final bed delivery.
+                if (assignment.JobDef == MultiLevelRescue.StrataRescue &&
+                    (assignment.Worker?.CurJob?.def == JobDefOf.EnterPortal || assignment.Worker?.Map != map) &&
+                    assignment.Worker?.carryTracker?.CarriedThing == target)
+                {
+                    activeClaims.ReleasePrimary(target);
+                    medicalResources.ReleaseWorker(assignment.Worker);
+                    continue;
+                }
 
                 if (target == null || target.Destroyed || target.Dead ||
                     target.Spawned && target.Map != map)
@@ -2270,7 +2292,7 @@ namespace SearchAndRescue
         {
             float initialCommitment = 1f - Mathf.Clamp01(
                 (now - assignment.StartedAt) / (float)TravelInitialCommitmentDecayTicks);
-            float distance = Mathf.Sqrt(doctor.Position.DistanceToSquared(currentPatient.Position));
+            float distance = (float)MultiLevelRescue.TravelDistance(doctor, doctor.Position, currentPatient.Position);
             float proximity = 1f - Mathf.Clamp01(distance / TravelNearPatientRadius);
             float recentSwitch = 0f;
             if (lastTravelSwitchAt.TryGetValue(doctor, out int switchedAt))
@@ -3286,7 +3308,7 @@ namespace SearchAndRescue
                 return 0d;
             }
 
-            double directDistance = Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position));
+            double directDistance = MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position);
             double detourDistance = Math.Max(0d, option.RouteDistance - directDistance);
             float moveSpeed = Math.Max(0.1f, doctor.GetStatValue(StatDefOf.MoveSpeed));
             double detourTicks = detourDistance * 60d / moveSpeed;
@@ -3591,8 +3613,8 @@ namespace SearchAndRescue
                 }
 
                 IntVec3 sourcePosition = task.SupplyResource.PositionHeld;
-                double route = Math.Sqrt(worker.Position.DistanceToSquared(sourcePosition)) +
-                               Math.Sqrt(sourcePosition.DistanceToSquared(patient.Position));
+                double route = MultiLevelRescue.TravelDistance(worker, worker.Position, sourcePosition) +
+                               MultiLevelRescue.TravelDistance(worker, sourcePosition, patient.Position);
                 int priority = Compatibility.SupplyWorkPriority(worker);
                 bool workerCanTreat = Compatibility.CanPerformTreatmentWork(worker);
                 if (workerCanTreat && !NeedsFieldStabilization(patient))
@@ -3626,7 +3648,7 @@ namespace SearchAndRescue
                     return 0d;
                 }
 
-                double distance = Math.Sqrt(worker.Position.DistanceToSquared(patient.Position));
+                double distance = MultiLevelRescue.TravelDistance(worker, worker.Position, patient.Position);
                 int expectedWait = existingStandbys.TryGetValue(worker, out ActiveStandby committed) &&
                                    committed.Target == patient
                     ? Math.Max(0, committed.ExpectedTreatmentEndTick - now)
@@ -4123,7 +4145,7 @@ namespace SearchAndRescue
             }
 
             float moveSpeed = Math.Max(0.1f, worker.GetStatValue(StatDefOf.MoveSpeed));
-            float distance = Mathf.Sqrt(worker.Position.DistanceToSquared(patient.Position));
+            float distance = (float)MultiLevelRescue.TravelDistance(worker, worker.Position, patient.Position);
             return Mathf.CeilToInt(distance * 60f / moveSpeed);
         }
 
@@ -4936,7 +4958,7 @@ namespace SearchAndRescue
                 return 0d;
             }
 
-            double distance = Math.Sqrt(worker.Position.DistanceToSquared(interactionPosition));
+            double distance = MultiLevelRescue.TravelDistance(worker, worker.Position, interactionPosition);
             double urgency = ScoringPatientUrgency(patient);
 
             switch (stage)
@@ -5092,7 +5114,7 @@ namespace SearchAndRescue
 
         private static double TreatmentDeadlineWeight(Pawn doctor, Pawn patient, IntVec3 interactionPosition)
         {
-            double distance = Math.Sqrt(doctor.Position.DistanceToSquared(interactionPosition));
+            double distance = MultiLevelRescue.TravelDistance(doctor, doctor.Position, interactionPosition);
             return TreatmentDeadlineWeight(doctor, patient, distance, 600);
         }
 
@@ -5205,9 +5227,17 @@ namespace SearchAndRescue
                 return false;
             }
 
-            if (!TryFindRescueDestination(rescuer, patient, out Building_Bed bed, out destination))
+            if (!RescueDestinationPlanner.TryFind(map, rescuer, patient, out Building_Bed bed, out destination,
+                    out MapPortal portal, rescueBedSnapshot))
             {
                 return false;
+            }
+
+            if (portal != null)
+            {
+                job = JobMaker.MakeJob(MultiLevelRescue.StrataRescue, patient, portal, bed);
+                job.count = 1;
+                return true;
             }
 
             if (bed != null)
@@ -5230,7 +5260,7 @@ namespace SearchAndRescue
             out Building_Bed bed,
             out IntVec3 destination)
         {
-            return RescueDestinationPlanner.TryFind(map, rescuer, patient, out bed, out destination,
+            return RescueDestinationPlanner.TryFind(map, rescuer, patient, out bed, out destination, out _,
                 rescueBedSnapshot);
         }
 

@@ -13,9 +13,11 @@ namespace SearchAndRescue
             Pawn patient,
             out Building_Bed bed,
             out IntVec3 destination,
+            out MapPortal portal,
             RescueBedSnapshot snapshot = null)
         {
             bed = null;
+            portal = null;
             destination = IntVec3.Invalid;
             if (rescuer == null || patient == null || !rescuer.Spawned || !patient.Spawned ||
                 rescuer.Map != map || patient.Map != map)
@@ -35,6 +37,12 @@ namespace SearchAndRescue
                     return false;
                 }
 
+                destination = bed.Position;
+                return true;
+            }
+
+            if (MultiLevelRescue.TryFindStrataBed(rescuer, patient, out bed, out portal))
+            {
                 destination = bed.Position;
                 return true;
             }

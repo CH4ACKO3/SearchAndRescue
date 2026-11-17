@@ -122,6 +122,8 @@
   <SAR_Compatibility_RH2Arrest>俘虜階段使用 RH2 原生的就地逮捕工作。</SAR_Compatibility_RH2Arrest>
   <SAR_Compatibility_DubsRimkit>佩戴有剩餘次數的醫療包並開啟原生自動治療開關後，可自動用於 SAR 包紮。遵守用藥限制，每輪原生治療後重新評估；CE 穩定保持優先，手動 Rimkit 命令沿用原行為。</SAR_Compatibility_DubsRimkit>
   <SAR_Compatibility_TraumaTeam>在其首個工作產生前辨識小隊所有權，辨識治療和運輸工作；沒有可用救援者時會釋放失效所有權。</SAR_Compatibility_TraumaTeam>
+  <SAR_Compatibility_Strata>救援者可跨層接應傷員，並經樓梯將傷員送到相連樓層的床位。</SAR_Compatibility_Strata>
+  <SAR_Compatibility_AsAboveSoBelow2>救援和治療派工按經過樓梯的路線估算跨層距離。</SAR_Compatibility_AsAboveSoBelow2>
   <SAR_Compatibility_MovePatient>優先詢問患者的轉床元件所選擇的醫療床，再回退到原版床位搜尋。</SAR_Compatibility_MovePatient>
   <SAR_Compatibility_MedPod>辨識原生入艙和實際占艙。沒有執行者的 SAR 標記允許原生入艙；已分配救援保留目前階段。選艙及治療沿用原模組。</SAR_Compatibility_MedPod>
   <SAR_Compatibility_Casevac>同時開啟戰地救援和 CASEVAC 的人員優先撤離無人搬運的患者，之後加入已有隊伍或升級附近的 SAR 普通搬運。手動命令保留控制權。</SAR_Compatibility_Casevac>

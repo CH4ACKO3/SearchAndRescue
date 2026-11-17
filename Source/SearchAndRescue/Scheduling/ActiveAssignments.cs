@@ -89,7 +89,7 @@ namespace SearchAndRescue
             Stage = stage;
             Destination = destination;
             DestinationBed = stage == SearchAndRescueStage.Rescue
-                ? job.targetB.Thing as Building_Bed
+                ? (job.def == MultiLevelRescue.StrataRescue ? job.targetC : job.targetB).Thing as Building_Bed
                 : null;
             DestinationIsBed = DestinationBed != null;
             StartedAt = startedAt;

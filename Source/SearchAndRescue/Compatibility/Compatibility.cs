@@ -1096,7 +1096,7 @@ namespace SearchAndRescue
             {
                 if (MechanicalCare.CanRepair(doctor, patient))
                     options.Add(new MedicalTreatmentOption(MedicalIntervention.MechRepair, null, 0,
-                        false, false, 1d, doctor.Position.DistanceTo(patient.Position)));
+                        false, false, 1d, MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)));
                 return options;
             }
             bool ceStabilizeAvailable = UsesCombatExtended &&
@@ -1144,9 +1144,9 @@ namespace SearchAndRescue
                                    UsesEmergencyTransfusions &&
                                    patient.inventory?.innerContainer.Contains(resource) == true;
                 double routeDistance = inInventory
-                    ? Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))
-                    : Math.Sqrt(doctor.Position.DistanceToSquared(resource.PositionHeld)) +
-                      Math.Sqrt(resource.PositionHeld.DistanceToSquared(patient.Position));
+                    ? MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)
+                    : MultiLevelRescue.TravelDistance(doctor, doctor.Position, resource.PositionHeld) +
+                      MultiLevelRescue.TravelDistance(doctor, resource.PositionHeld, patient.Position);
                 options.Add(new MedicalTreatmentOption(
                     demand.Intervention,
                     resource,
@@ -1171,7 +1171,7 @@ namespace SearchAndRescue
                     false,
                     false,
                     3.2d + removableTourniquet.Severity * 2d,
-                    Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))));
+                    MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)));
             }
 
             // Medicine is a substitutable resource class rather than a fixed ThingDef. Smart
@@ -1224,8 +1224,8 @@ namespace SearchAndRescue
                             .ThenByDescending(thing => MedicinePreference(patient, thing))
                             .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
                                 ? 0
-                                : doctor.Position.DistanceToSquared(thing.PositionHeld) +
-                                  thing.PositionHeld.DistanceToSquared(patient.Position))
+                                : MultiLevelRescue.DistanceSquared(doctor, doctor.Position, thing.PositionHeld) +
+                                  MultiLevelRescue.DistanceSquared(doctor, thing.PositionHeld, patient.Position))
                             .FirstOrDefault();
                     if (medicine != null &&
                         (ledger.AvailableForTreatment(medicine, doctor, patient) <= 0 ||
@@ -1243,8 +1243,8 @@ namespace SearchAndRescue
                             .OrderByDescending(thing => MedicinePreference(patient, thing))
                             .ThenBy(thing => doctor.inventory?.innerContainer.Contains(thing) == true
                                 ? 0
-                                : doctor.Position.DistanceToSquared(thing.PositionHeld) +
-                                  thing.PositionHeld.DistanceToSquared(patient.Position))
+                                : MultiLevelRescue.DistanceSquared(doctor, doctor.Position, thing.PositionHeld) +
+                                  MultiLevelRescue.DistanceSquared(doctor, thing.PositionHeld, patient.Position))
                             .FirstOrDefault();
                     }
                     medicineCandidates = (medicine != null
@@ -1273,9 +1273,9 @@ namespace SearchAndRescue
                                        doctor.carryTracker?.CarriedThing == candidateMedicine ||
                                        patient.inventory?.innerContainer.Contains(candidateMedicine) == true;
                     double routeDistance = locallyHeld
-                        ? Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))
-                        : Math.Sqrt(doctor.Position.DistanceToSquared(candidateMedicine.PositionHeld)) +
-                          Math.Sqrt(candidateMedicine.PositionHeld.DistanceToSquared(patient.Position));
+                        ? MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)
+                        : MultiLevelRescue.TravelDistance(doctor, doctor.Position, candidateMedicine.PositionHeld) +
+                          MultiLevelRescue.TravelDistance(doctor, candidateMedicine.PositionHeld, patient.Position);
                     MedicalIntervention intervention = AncientUrbanRuinsCompatibility.RequiresNativeTend(candidateMedicine)
                         ? MedicalIntervention.VanillaTend
                         : ceStabilizeAvailable
@@ -1313,7 +1313,7 @@ namespace SearchAndRescue
                     false,
                     false,
                     1.0d,
-                    Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))));
+                    MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)));
             }
 
             // Dry first aid is a real alternative, not merely a last resort after every map
@@ -1338,7 +1338,7 @@ namespace SearchAndRescue
                         false,
                         false,
                         0.45d,
-                        Math.Sqrt(doctor.Position.DistanceToSquared(patient.Position))));
+                        MultiLevelRescue.TravelDistance(doctor, doctor.Position, patient.Position)));
                 }
             }
 
@@ -2034,15 +2034,18 @@ namespace SearchAndRescue
                 .Where(bed => bed.Medical && !IsTemporaryFieldTendBed(bed)).Distinct();
         }
 
+        internal static bool NeedsLifeSupportBed(Pawn patient) =>
+            LifeSupportSystem != null && !patient.InBed() && !patient.Deathresting && patient.health.hediffSet.hediffs.Any(h => h.def.defName is
+                "MIFB_MissingHeartCardiacArrest" or "MIFB_TraumaticHeartCardiacArrest" or
+                "MIFB_RespiratoryFailure" or "MIFB_AcuteRenalFailure" or "MIFB_AcuteLiverFailure");
+
         public static Building_Bed FindBestRescueBed(Pawn patient, Pawn rescuer, RescueBedSnapshot snapshot = null)
         {
             GuestStatus? status = patient.IsPrisonerOfColony ? GuestStatus.Prisoner : patient.GuestStatus;
-            if (LifeSupportSystem != null && !patient.InBed() && !patient.Deathresting && patient.health.hediffSet.hediffs.Any(h => h.def.defName is
-                "MIFB_MissingHeartCardiacArrest" or "MIFB_TraumaticHeartCardiacArrest" or
-                "MIFB_RespiratoryFailure" or "MIFB_AcuteRenalFailure" or "MIFB_AcuteLiverFailure"))
+            if (NeedsLifeSupportBed(patient))
             {
                 var beds = snapshot?.LifeSupportBeds(patient.Map) ?? FindLifeSupportBeds(patient.Map);
-                var supported = beds.OrderBy(b => patient.Position.DistanceToSquared(b.Position))
+                var supported = beds.OrderBy(b => MultiLevelRescue.DistanceSquared(rescuer, patient.Position, b.Position))
                     .FirstOrDefault(b => b.Position.GetDangerFor(patient, patient.Map) == Danger.None &&
                         RescueDestinationPlanner.DestinationAllowedForAnimal(rescuer, b.Position) &&
                         RestUtility.IsValidBedFor(b, patient, rescuer, false, false, false, status) &&
@@ -2134,10 +2137,11 @@ namespace SearchAndRescue
         public static bool RescueBedHasReservationCapacity(
             Building_Bed bed,
             Pawn patient,
-            Pawn rescuer)
+            Pawn rescuer,
+            bool acrossMaps = false)
         {
             if (bed == null || bed.Destroyed || !bed.Spawned || rescuer == null ||
-                bed.Map != rescuer.Map || !bed.AnyUnoccupiedSleepingSlot)
+                (!acrossMaps && bed.Map != rescuer.Map) || !bed.AnyUnoccupiedSleepingSlot)
             {
                 return false;
             }
@@ -2159,6 +2163,8 @@ namespace SearchAndRescue
             // other patient/carrier is a real pending occupant and must consume one slot.
             competingOccupants.UnionWith(
                 reservers.Where(pawn => pawn != null && pawn != patient && pawn != rescuer));
+            if (MultiLevelRescue.StrataReady)
+                bed.Map.GetComponent<SearchAndRescueCoordinator>().AddIncomingBedOccupants(bed, patient, competingOccupants);
             return competingOccupants.Count < bed.SleepingSlotsCount;
         }
 
@@ -2182,7 +2188,7 @@ namespace SearchAndRescue
                                         false, false, ignoreOtherReservations, status) &&
                                     rescuer.CanReach(candidate, PathEndMode.Touch, Danger.Deadly))
                 .OrderByDescending(candidate => candidate.Medical)
-                .ThenBy(candidate => patient.PositionHeld.DistanceToSquared(candidate.Position))
+                .ThenBy(candidate => MultiLevelRescue.DistanceSquared(rescuer, patient.PositionHeld, candidate.Position))
                 .FirstOrDefault();
         }
 

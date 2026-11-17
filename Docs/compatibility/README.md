@@ -92,6 +92,12 @@ The Workshop item is currently delisted, although existing subscribers may still
 
 ## Transport, beds, and external rescuers
 
+**Strata — Integration**
+With Strata’s work relay enabled, a Field Rescue worker can take a reachable staircase to a casualty on another floor. When the casualty’s floor has no suitable bed, the responder uses Strata’s stairs to carry them to a bed on a connected floor.
+
+**As above, So below II — Integration**
+SAR uses the mod’s stair routes to estimate travel for rescue and treatment assignments. Responders use the normal rescue job to collect a casualty and return through the stairs to bed.
+
 **Trauma Team Complete — Compatible**
 While a trauma team is in its treatment phase and has a capable, reachable medic, it acquires patient ownership before the first concrete job is produced, and SAR yields at job boundaries. Its private ThinkTree participates in the shared ownership gate. A 350-tick medic watchdog accepts every registered treatment or transport job targeting the same patient, including CE and More Injuries jobs. SAR resumes coordination after the treatment phase ends or the whole team becomes incapacitated or cut off. Trauma Team coordinates its own members and carried supplies. SAR plans rescue using the colony’s own workers and medical resources.
 

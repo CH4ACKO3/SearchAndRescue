@@ -47,7 +47,7 @@ namespace SearchAndRescue
             if (kit == null || !FieldTreatmentBoundary.Tendable(patient).Any()) return MedicalTreatmentOption.Invalid;
             return new MedicalTreatmentOption(MedicalIntervention.RimkitBandage, null, 1, true, false,
                 1d + kit.AmmoDef.GetStatValueAbstract(StatDefOf.MedicalPotency) * 0.25d,
-                worker.Position.DistanceTo(patient.Position), kit.parent);
+                MultiLevelRescue.TravelDistance(worker, worker.Position, patient.Position), kit.parent);
         }
 
         internal static Job MakeJob(Pawn worker, Pawn patient, MedicalTreatmentOption option)

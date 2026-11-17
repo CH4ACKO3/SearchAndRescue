@@ -461,6 +461,9 @@ namespace SearchAndRescue
                     new[] { "Capture", "Arrest" })
                 .Jobs(PatientJobRole.Capture, new[] { "SAR_CaptureInPlace" }));
 
+            Profiles.Add(new Profile("strata", "Strata", false, "AzraelGodKing.Strata")
+                .Jobs(PatientJobRole.Transport, new[] { "Strata_RescueToLevel" }));
+
             Profiles.Add(new Profile(
                     "rh2-first-aid", "RH2 First Aid", false, "RH2.BCDs.First.Aid")
                 .Jobs(PatientJobRole.Treatment,

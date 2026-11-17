@@ -51,4 +51,7 @@
   <SAR_AutomaticCasevac.label>coordonner l'évacuation sanitaire du champ de bataille</SAR_AutomaticCasevac.label>
   <SAR_AutomaticCasevac.verb>évacuer</SAR_AutomaticCasevac.verb>
   <SAR_AutomaticCasevac.gerund>évacuant</SAR_AutomaticCasevac.gerund>
+  <SAR_StrataRescueApproach.label>rejoindre les blessés à un autre étage</SAR_StrataRescueApproach.label>
+  <SAR_StrataRescueApproach.verb>secourir</SAR_StrataRescueApproach.verb>
+  <SAR_StrataRescueApproach.gerund>secourant</SAR_StrataRescueApproach.gerund>
 </LanguageData>

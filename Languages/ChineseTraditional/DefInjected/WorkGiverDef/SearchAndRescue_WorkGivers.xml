@@ -46,4 +46,7 @@
   <SAR_AutomaticCasevac.label>協調戰場 CASEVAC</SAR_AutomaticCasevac.label>
   <SAR_AutomaticCasevac.verb>撤離</SAR_AutomaticCasevac.verb>
   <SAR_AutomaticCasevac.gerund>正在撤離</SAR_AutomaticCasevac.gerund>
+  <SAR_StrataRescueApproach.label>前往其他樓層接應傷員</SAR_StrataRescueApproach.label>
+  <SAR_StrataRescueApproach.verb>救援</SAR_StrataRescueApproach.verb>
+  <SAR_StrataRescueApproach.gerund>正在救援</SAR_StrataRescueApproach.gerund>
 </LanguageData>

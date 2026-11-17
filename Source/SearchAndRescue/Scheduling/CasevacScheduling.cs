@@ -20,7 +20,7 @@ namespace SearchAndRescue
 
         internal Job TryJoinOrUpgradeCasevac(Pawn worker)
         {
-            if (!Compatibility.CanUseCasevac(worker) || !IsFieldResponder(worker) ||
+            if (MultiLevelRescue.InStrataScan || !Compatibility.CanUseCasevac(worker) || !IsFieldResponder(worker) ||
                 !WorkerReadyForStage(worker, SearchAndRescueStage.Rescue) ||
                 pendingByWorker.ContainsKey(worker) || HasUnservedCasevacTarget(worker)) return null;
 

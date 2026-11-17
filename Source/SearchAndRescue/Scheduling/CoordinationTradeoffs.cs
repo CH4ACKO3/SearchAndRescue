@@ -6,13 +6,32 @@ namespace SearchAndRescue
 {
     public sealed partial class SearchAndRescueCoordinator
     {
+        // A shortlist and its full score often compare the same stair route in one tick.
+        private Dictionary<(int worker, IntVec3 from, IntVec3 to), double> bandDistances;
+        private int bandDistanceTick;
+
+        internal double BandDistanceSquared(Pawn worker, IntVec3 from, IntVec3 to)
+        {
+            int now = Find.TickManager.TicksGame;
+            bandDistances ??= new Dictionary<(int, IntVec3, IntVec3), double>();
+            if (bandDistanceTick != now)
+            {
+                bandDistances.Clear();
+                bandDistanceTick = now;
+            }
+            var key = (worker.thingIDNumber, from, to);
+            if (!bandDistances.TryGetValue(key, out double distance))
+                bandDistances[key] = distance = MultiLevelRescue.EstimateBandDistanceSquared(worker, from, to);
+            return distance;
+        }
+
         private List<Match<Pawn, Pawn>> MatchRescuePatients(IReadOnlyList<Pawn> workers,
             IReadOnlyList<Pawn> patients, System.Func<Pawn, Pawn, double> score,
             IReadOnlyDictionary<Pawn, PendingAssignment> previous)
         {
             return SearchAndRescueMod.Settings?.UseFastRescueAllocation == true
                 ? FastCandidateMatcher.Match(workers, patients, p => ScoringPatientUrgency(p),
-                    (w, p) => w.Position.DistanceToSquared(p.Position), score, preferred:
+                    (w, p) => MultiLevelRescue.DistanceSquared(w, w.Position, p.Position), score, preferred:
                     (w, p) => previous.TryGetValue(w, out PendingAssignment old) && old.Target == p)
                 : MatchPatients(workers, patients, score);
         }
@@ -27,7 +46,7 @@ namespace SearchAndRescue
             var selected = new Dictionary<WorkerTargetPair, TransportTask>();
             var selectedSupplies = new HashSet<Thing>();
             var matches = FastCandidateMatcher.Match(workers, patients, p => ScoringPatientUrgency(p),
-                (w, p) => w.Position.DistanceToSquared(p.Position), (w, p) =>
+                (w, p) => MultiLevelRescue.DistanceSquared(w, w.Position, p.Position), (w, p) =>
                 {
                     double best = 0;
                     foreach (TransportTask task in options[p])

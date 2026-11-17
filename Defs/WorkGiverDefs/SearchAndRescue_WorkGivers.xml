@@ -149,4 +149,14 @@
     <directOrderable>false</directOrderable>
     <prioritizeSustains>true</prioritizeSustains>
   </WorkGiverDef>
+  <WorkGiverDef MayRequire="AzraelGodKing.Strata">
+    <defName>SAR_StrataRescueApproach</defName>
+    <label>reach casualties on other floors</label>
+    <giverClass>SearchAndRescue.WorkGiver_StrataRescueApproach</giverClass>
+    <workType>SAR_FieldRescue</workType>
+    <verb>rescue</verb>
+    <gerund>rescuing</gerund>
+    <priorityInType>80</priorityInType>
+    <directOrderable>false</directOrderable>
+  </WorkGiverDef>
 </Defs>

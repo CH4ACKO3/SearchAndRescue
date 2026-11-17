@@ -41,8 +41,8 @@ namespace SearchAndRescue
                     !MedicalResourceLedger.CanTakeFromInventoryHolder(worker, holder, resource, 1, patient)))
                     return MedicalTreatmentOption.Invalid;
             }
-            double distance = resource == null ? worker.Position.DistanceTo(patient.Position) :
-                worker.Position.DistanceTo(resource.PositionHeld) + resource.PositionHeld.DistanceTo(patient.Position);
+            double distance = resource == null ? MultiLevelRescue.TravelDistance(worker, worker.Position, patient.Position) :
+                MultiLevelRescue.TravelDistance(worker, worker.Position, resource.PositionHeld) + MultiLevelRescue.TravelDistance(worker, resource.PositionHeld, patient.Position);
             return new MedicalTreatmentOption(MedicalIntervention.NativeRobotTend, resource,
                 resource == null ? 0 : 1, holder != null, false, 1d, distance);
         }

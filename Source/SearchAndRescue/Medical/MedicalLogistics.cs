@@ -1010,8 +1010,8 @@ namespace SearchAndRescue
                                 CanReserveAndReachForPickupCached(worker, thing, reusable ? 1 : count));
             return onMap
                 .Concat(AvailableInOtherPawnInventories(worker, patient, def, reusable, count))
-                .OrderBy(thing => worker.Position.DistanceToSquared(thing.PositionHeld) +
-                                  thing.PositionHeld.DistanceToSquared(patient.Position))
+                .OrderBy(thing => MultiLevelRescue.DistanceSquared(worker, worker.Position, thing.PositionHeld) +
+                                  MultiLevelRescue.DistanceSquared(worker, thing.PositionHeld, patient.Position))
                 .FirstOrDefault();
         }
 
@@ -1049,8 +1049,8 @@ namespace SearchAndRescue
             if (SearchAndRescueMod.Settings?.SimplifyMedicineSelection == true &&
                 !Compatibility.UsesSmartMedicine && !Compatibility.UsesChooseYourMedicine)
                 mapMedicines = mapMedicines.OrderBy(thing =>
-                    worker.Position.DistanceToSquared(thing.PositionHeld) +
-                    thing.PositionHeld.DistanceToSquared(patient.Position));
+                    MultiLevelRescue.DistanceSquared(worker, worker.Position, thing.PositionHeld) +
+                    MultiLevelRescue.DistanceSquared(worker, thing.PositionHeld, patient.Position));
             foreach (Thing thing in mapMedicines
                          .Where(thing => thing.Spawned && !thing.IsForbidden(worker) &&
                                          Compatibility.AllowsMedicine(patient, thing) &&
@@ -1176,8 +1176,8 @@ namespace SearchAndRescue
                     candidate.Holder.Faction == worker.Faction && !candidate.Holder.Destroyed &&
                     AvailableForRelocation(candidate.Thing, worker) >= needed &&
                     CanTakeFromInventoryHolder(worker, candidate.Holder, candidate.Thing, needed, patient))
-                .OrderBy(candidate => worker.Position.DistanceToSquared(candidate.Holder.Position) +
-                                      candidate.Holder.Position.DistanceToSquared(patient.Position))
+                .OrderBy(candidate => MultiLevelRescue.DistanceSquared(worker, worker.Position, candidate.Holder.Position) +
+                                      MultiLevelRescue.DistanceSquared(worker, candidate.Holder.Position, patient.Position))
                 .Select(candidate => candidate.Thing);
         }
 

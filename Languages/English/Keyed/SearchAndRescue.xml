@@ -122,6 +122,8 @@
   <SAR_Compatibility_RH2Arrest>Uses RH2's native arrest-in-place job for the capture stage.</SAR_Compatibility_RH2Arrest>
   <SAR_Compatibility_DubsRimkit>Automatically uses a worn, charged medical kit when its native automatic-tending toggle is enabled. Respects medicine policy and reassesses after one native round. CE stabilization retains priority; manual Rimkit jobs keep their original behavior.</SAR_Compatibility_DubsRimkit>
   <SAR_Compatibility_TraumaTeam>Recognizes team ownership before its first job, its treatment/transport jobs, and releases stale ownership when no operational responder remains.</SAR_Compatibility_TraumaTeam>
+  <SAR_Compatibility_Strata>Responders can travel to casualties on another floor and carry them through stairs to a bed.</SAR_Compatibility_Strata>
+  <SAR_Compatibility_AsAboveSoBelow2>Rescue and treatment travel estimates use routes through stairs between levels.</SAR_Compatibility_AsAboveSoBelow2>
   <SAR_Compatibility_MovePatient>Asks the patient's transfer component for its preferred medical bed before falling back to vanilla bed search.</SAR_Compatibility_MovePatient>
   <SAR_Compatibility_MedPod>Recognizes pod admission and occupancy. Unassigned SAR marks allow native admission; committed SAR care retains its phase. Pod selection and treatment remain native.</SAR_Compatibility_MedPod>
   <SAR_Compatibility_Casevac>Workers assigned to Field Rescue and CASEVAC start unattended evacuations first, then join existing teams or upgrade nearby SAR transports. Manual commands retain control.</SAR_Compatibility_Casevac>
