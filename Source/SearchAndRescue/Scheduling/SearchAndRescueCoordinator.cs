@@ -5231,7 +5231,7 @@ namespace SearchAndRescue
             out IntVec3 destination)
         {
             return RescueDestinationPlanner.TryFind(map, rescuer, patient, out bed, out destination,
-                rescueBedSnapshot == null || rescueBedSnapshot.HasCapacity(patient, rescuer));
+                rescueBedSnapshot);
         }
 
         private bool TryFindRescueDestinationCached(

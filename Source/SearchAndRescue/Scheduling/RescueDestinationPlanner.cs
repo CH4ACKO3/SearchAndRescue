@@ -13,7 +13,7 @@ namespace SearchAndRescue
             Pawn patient,
             out Building_Bed bed,
             out IntVec3 destination,
-            bool searchBeds = true)
+            RescueBedSnapshot snapshot = null)
         {
             bed = null;
             destination = IntVec3.Invalid;
@@ -23,9 +23,9 @@ namespace SearchAndRescue
                 return false;
             }
 
-            bed = !searchBeds || MechanicalCare.IsPatient(patient)
+            bed = MechanicalCare.IsPatient(patient) || snapshot?.HasCapacity(patient, rescuer) == false
                 ? null
-                : Compatibility.FindBestRescueBed(patient, rescuer);
+                : Compatibility.FindBestRescueBed(patient, rescuer, snapshot);
             if (bed != null)
             {
                 if (!Compatibility.RescueBedHasReservationCapacity(bed, patient, rescuer) ||

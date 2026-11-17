@@ -12,6 +12,11 @@ namespace SearchAndRescue
         private readonly List<(int Slots, HashSet<Pawn> Claimants)> beds =
             new List<(int, HashSet<Pawn>)>();
 
+        private List<Building_Bed> lifeSupportBeds;
+
+        internal List<Building_Bed> LifeSupportBeds(Map map) =>
+            lifeSupportBeds ??= Compatibility.FindLifeSupportBeds(map).ToList();
+
         internal RescueBedSnapshot(Map map)
         {
             foreach (Building_Bed bed in map.listerThings.ThingsInGroup(ThingRequestGroup.Bed)

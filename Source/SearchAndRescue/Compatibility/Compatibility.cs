@@ -2019,9 +2019,36 @@ namespace SearchAndRescue
             return true;
         }
 
-        public static Building_Bed FindBestRescueBed(Pawn patient, Pawn rescuer)
+        private static readonly ThingDef LifeSupportSystem =
+            ModLister.AllModsActiveNoSuffix(new[] { "troopersmith1.lifesupport", "wenders.moreinjuries.organbridge" })
+                ? DefDatabase<ThingDef>.GetNamedSilentFail("QE_LifeSupportSystem")
+                : null;
+
+        internal static IEnumerable<Building_Bed> FindLifeSupportBeds(Map map)
+        {
+            return map.listerThings.ThingsOfDef(LifeSupportSystem)
+                .Where(system => system.TryGetComp<CompPowerTrader>()?.PowerOn == true)
+                .SelectMany(system => GenAdj.CellsAdjacent8Way(system))
+                .Where(cell => cell.InBounds(map))
+                .SelectMany(cell => cell.GetThingList(map)).OfType<Building_Bed>()
+                .Where(bed => bed.Medical && !IsTemporaryFieldTendBed(bed)).Distinct();
+        }
+
+        public static Building_Bed FindBestRescueBed(Pawn patient, Pawn rescuer, RescueBedSnapshot snapshot = null)
         {
             GuestStatus? status = patient.IsPrisonerOfColony ? GuestStatus.Prisoner : patient.GuestStatus;
+            if (LifeSupportSystem != null && !patient.InBed() && !patient.Deathresting && patient.health.hediffSet.hediffs.Any(h => h.def.defName is
+                "MIFB_MissingHeartCardiacArrest" or "MIFB_TraumaticHeartCardiacArrest" or
+                "MIFB_RespiratoryFailure" or "MIFB_AcuteRenalFailure" or "MIFB_AcuteLiverFailure"))
+            {
+                var beds = snapshot?.LifeSupportBeds(patient.Map) ?? FindLifeSupportBeds(patient.Map);
+                var supported = beds.OrderBy(b => patient.Position.DistanceToSquared(b.Position))
+                    .FirstOrDefault(b => b.Position.GetDangerFor(patient, patient.Map) == Danger.None &&
+                        RescueDestinationPlanner.DestinationAllowedForAnimal(rescuer, b.Position) &&
+                        RestUtility.IsValidBedFor(b, patient, rescuer, false, false, false, status) &&
+                        RescueBedHasReservationCapacity(b, patient, rescuer));
+                if (supported != null) return supported;
+            }
             if (FindBestPatientBedMethod != null && PatientTransferCompType != null)
             {
                 try
